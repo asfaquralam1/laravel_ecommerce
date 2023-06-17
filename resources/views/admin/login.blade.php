@@ -30,8 +30,8 @@
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                            <a href="#">
-                                <img src="{{ asset('admin_assets/images/icon/logo.png') }}" alt="laravel-ecommerce">
+                            <a href="admin">
+                                {{Config::get('constants.site_name')}}
                             </a>
                         </div>
                         <div class="login-form">

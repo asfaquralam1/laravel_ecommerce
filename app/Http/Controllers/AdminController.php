@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -12,30 +13,49 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.login');
+        if($request->session()->put('ADMIN_LOGIN')){
+            return redirect('admin/dashboard');
+        }else{
+            return view('admin.login');
+        }
     }
     public function auth(Request $request)
     {
         $email = $request->post('email');
         $password = $request->post('password');
 
-        $result = Admin::where(['email' => $email, 'password' => $password])->get();
-
-        //if result id is zero
-        if (isset($result['0']->id)) {
-            //generating a admin login session
-            $request->session()->put('ADMIN_LOGIN',true);
-            //passing admin id
-            $request->session()->put('ADMIN_ID',$result['0']->id);
-            return redirect('admin/dashboard');
+        //$result = Admin::where(['email' => $email, 'password' => $password])->get();
+        $result = Admin::where(['email' => $email])->first();
+        if($result) {
+            if (Hash::check($request->post('password'), $request->password)) {
+                //generating a admin login session
+                $request->session()->put('ADMIN_LOGIN', true);
+                //passing admin id
+                $request->session()->put('ADMIN_ID', $result->id);
+                return redirect('admin/dashboard');
+            } else {
+                $request->session()->flash('error', 'Please enter valid password');
+                return redirect('admin');
+            }
         } else {
-            $request->session()->flash('error','Please enter valid login details');
+            $request->session()->flash('error', 'Please enter valid login details');
             return redirect('admin');
         }
     }
-    public function dashboard(){
+    public function updatepassword()
+    {
+        $r = Admin::find(1);
+        $r->password = Hash::make('ahsansagor445');
+        $r->save();
+    }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+    public function category()
+    {
         return view('admin.dashboard');
     }
 }
