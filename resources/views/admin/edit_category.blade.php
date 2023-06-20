@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('container')
-<h1 class="mb-10">Manage Category</h1>
+<h1 class="mb-10">Update Category</h1>
 
 <a href="{{url('admin/category')}}">
     <button type="button" class="btn btn-success">Back</button>
@@ -12,21 +12,21 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h3 class="text-center title-2">Add Category</h3>
+                    <h3 class="text-center title-2">Update Category</h3>
                 </div>
                 <hr>
-                <form action="{{ route('category.add') }}" method="post">
+                <form action="{{url('admin/category/update-category/')}}/{{$category->id}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="category_name" class="control-label mb-1">Category Name</label>
-                        <input id="category_name" name="category_name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="category_name" name="category_name" type="text" class="form-control" value="{{ $category->category_name }}">
                         @error('category_name')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="category_slug" class="control-label mb-1">Category Slug</label>
-                        <input id="category_slug" name="category_slug" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <input id="category_slug" name="category_slug" type="text" class="form-control" value="{{ $category->category_slug }}">
                         @error('category_slug')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror

@@ -14652,3 +14652,6 @@ section {
 .mb-10{
     margin-bottom: 10px;
 }
+.fas{
+    font-size: 12px !important;
+}

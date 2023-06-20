@@ -1,10 +1,10 @@
 @extends('admin.layout')
 
 @section('container')
-{{ session('message')}}
+<div class="text-success">{{ session('message')}}</div>
 <h1 class="mb-10">Category</h1>
 
-<a href="manage-category">
+<a href="{{ route('admin/manage-category') }}">
     <button type="button" class="btn btn-success">Add Catagory</button>
 </a>
 
@@ -22,18 +22,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $res)
                     <tr>
-                        <td>2018-09-29 05:57</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td>$999.00</td>
+                        <td >{{$res->id}}</td>
+                        <td >{{$res->category_name}}</td>
+                        <td >{{$res->category_slug}}</td>
+                        <td class="text-right">
+                            <a href="{{url('admin/category/edit-category/')}}/{{$res->id}}">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                            </a>
+                            <a href="{{url('admin/category/delete-category/')}}/{{$res->id}}">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            </a>
+                        </td>
                     </tr>
-                        <td>2018-09-22 00:43</td>
-                        <td>Computer</td>
-                        <td>Macbook Pro Retina 2017</td>
-                        <td class="process">Processed</td>
-                        <td>$10.00</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

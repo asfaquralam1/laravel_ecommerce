@@ -37,5 +37,9 @@ Route::group(['middleware' => 'admin_auth'], function () {
 
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('admin/category', [CategoryController::class, 'index'])->name('admin/category');
-Route::get('admin/manage-category', [CategoryController::class, 'manage_category'])->name('admin/manage-category');
-Route::post('admin/manage-category-process', [CategoryController::class, 'manage_category_process'])->name('category.insert');
+Route::get('admin/category/manage-category', [CategoryController::class, 'manage_category'])->name('admin/manage-category');
+Route::post('admin/category/add-category', [CategoryController::class, 'add_category'])->name('category.add');
+Route::get('admin/category/delete-category/{id}', [CategoryController::class, 'delete_category'])->name('category.destroy');
+Route::get('admin/category/edit-category/{id}', [CategoryController::class, 'edit_category'])->name('category.edit');
+Route::post('admin/category/update-category/{id}', [CategoryController::class, 'update_category'])->name('category.update');
+
