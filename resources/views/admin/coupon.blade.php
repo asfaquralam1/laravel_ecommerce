@@ -1,11 +1,11 @@
 @extends('admin.layout')
-@section('page_title','Catagory')
+@section('page_title','Coupon')
 @section('container')
 <div class="text-success">{{ session('message')}}</div>
-<h1 class="mb-10">Category</h1>
+<h1 class="mb-10">Coupon</h1>
 
-<a href="{{ route('admin/manage-category') }}">
-    <button type="button" class="btn btn-success">Add Catagory</button>
+<a href="{{ route('admin/manage-coupon') }}">
+    <button type="button" class="btn btn-success">Add Coupon</button>
 </a>
 
 <div class="row m-t-30">
@@ -16,8 +16,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Category Name</th>
-                        <th>Category Slug</th>
+                        <th>Coupon Title</th>
+                        <th>Coupon Code</th>
+                        <th>Coupon Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -25,13 +26,14 @@
                     @foreach($data as $res)
                     <tr>
                         <td >{{$res->id}}</td>
-                        <td >{{$res->category_name}}</td>
-                        <td >{{$res->category_slug}}</td>
+                        <td >{{$res->title}}</td>
+                        <td >{{$res->code}}</td>
+                        <td >{{$res->value}}</td>
                         <td class="text-right">
-                            <a href="{{url('admin/category/edit-category/')}}/{{$res->id}}">
+                            <a href="{{url('admin/coupon/edit-coupon/')}}/{{$res->id}}">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                             </a>
-                            <a href="{{url('admin/category/delete-category/')}}/{{$res->id}}">
+                            <a href="{{url('admin/coupon/delete-coupon/')}}/{{$res->id}}">
                             <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                             </a>
                         </td>

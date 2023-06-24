@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>@yield('page_title')</title>
 
     <!-- Fontfaces CSS-->
     <link href="{{ asset('admin_assets/css/font-face.css') }}" rel="stylesheet" media="all">
@@ -130,20 +130,24 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="{{ asset('admin_assets/images/icon/logo.png') }}" alt="" />
+                <a href="{{ route('admin/dashboard')}}">
+                    {{Config::get('constants.site_name')}}
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a href="dashboard">
+                            <a href="{{ route('admin/dashboard') }}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="category">
+                            <a href="{{ route('admin/category') }}">
                                 <i class="fas fa-chart-bar"></i>Category</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin/coupon') }}">
+                                <i class="fas fa-vouchar-alt"></i>Coupon</a>
                         </li>
                     </ul>
                 </nav>

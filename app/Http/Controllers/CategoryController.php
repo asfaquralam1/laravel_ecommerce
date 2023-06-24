@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $modal->category_name = $request->post('category_name');
         $modal->category_slug = $request->post('category_slug');
         $modal->save();
-        $request->session()->flash('message', 'Category inserted');
+        $request->session()->flash('message', 'Category Inserted');
         return redirect('admin/category');
     }
     public function edit_category(Request $request,$id)
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $modal->category_slug = $request->post('category_slug');
         //dd($category);
         $modal->update();
-        $request->session()->flash('message', 'Category delete');
+        $request->session()->flash('message', 'Category Updated');
         return redirect('admin/category');
     }
     public function delete_category(Request $request,$id)
@@ -55,7 +55,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         //dd($category);
         $category->delete();
-        $request->session()->flash('message', 'Category delete');
+        $request->session()->flash('message', 'Category Deleted');
         return redirect('admin/category');
     }
 }

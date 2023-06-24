@@ -29,7 +29,7 @@ class AdminController extends Controller
         //$result = Admin::where(['email' => $email, 'password' => $password])->get();
         $result = Admin::where(['email' => $email])->first();
         if($result) {
-            if (Hash::check($request->post('password'), $request->password)) {
+            if (Hash::check($request->post('password'), $result->password)) {
                 //generating a admin login session
                 $request->session()->put('ADMIN_LOGIN', true);
                 //passing admin id
@@ -51,10 +51,6 @@ class AdminController extends Controller
         $r->save();
     }
     public function dashboard()
-    {
-        return view('admin.dashboard');
-    }
-    public function category()
     {
         return view('admin.dashboard');
     }

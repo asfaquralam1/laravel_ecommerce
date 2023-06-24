@@ -1,9 +1,9 @@
 @extends('admin.layout')
-
+@section('page_title','Update Category')
 @section('container')
 <h1 class="mb-10">Update Category</h1>
 
-<a href="{{url('admin/category')}}">
+<a href="{{ route('admin/category')}}">
     <button type="button" class="btn btn-success">Back</button>
 </a>
 

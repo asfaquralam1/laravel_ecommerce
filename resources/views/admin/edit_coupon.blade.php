@@ -1,0 +1,51 @@
+@extends('admin.layout')
+@section('page_title','Update Coupon')
+@section('container')
+<h1 class="mb-10">Update Coupon</h1>
+
+<a href="{{ route('admin/coupon')}}">
+    <button type="button" class="btn btn-success">Back</button>
+</a>
+
+<div class="row m-t-30">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h3 class="text-center title-2">Update Coupon</h3>
+                </div>
+                <hr>
+                <form action="{{url('admin/coupon/update-coupon/')}}/{{$coupon->id}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="title" class="control-label mb-1">Coupon Title</label>
+                        <input id="title" name="title" type="text" class="form-control" value="{{ $coupon->title }}">
+                        @error('title')
+                        <div class="text-center text-danger">{{ $message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="code" class="control-label mb-1">Coupon Code</label>
+                        <input id="code" name="code" type="text" class="form-control" value="{{ $coupon->code }}">
+                        @error('code')
+                        <div class="text-center text-danger">{{ $message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="value" class="control-label mb-1">Coupon Code</label>
+                        <input id="value" name="value" type="text" class="form-control" value="{{ $coupon->value }}">
+                        @error('value')
+                        <div class="text-center text-danger">{{ $message}}</div>
+                        @enderror
+                    </div>
+                    <div>
+                        <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                            submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

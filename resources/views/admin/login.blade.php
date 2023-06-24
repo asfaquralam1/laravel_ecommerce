@@ -30,7 +30,7 @@
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
-                            <a href="admin">
+                            <a href="{{ route('admin')}}">
                                 {{Config::get('constants.site_name')}}
                             </a>
                         </div>
