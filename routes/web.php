@@ -43,6 +43,8 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::post('admin/coupon/update-coupon/{id}', [CouponController::class, 'update'])->name('coupon.update');
     Route::get('admin/coupon/delete-coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
     //coupon
+    Route::get('admin/category/status/{status}/{id}', [CategoryController::class, 'status'])->name('category.status');
+    Route::get('admin/coupon/status/{status}/{id}', [CouponController::class, 'status'])->name('coupon.status');
     Route::get('admin/logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');
         session()->forget('ADMIN_ID');

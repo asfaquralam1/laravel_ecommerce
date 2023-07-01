@@ -58,4 +58,12 @@ class CouponController extends Controller
         $request->session()->flash('message', 'Coupon Deleted');
         return redirect('admin/coupon');
     }
+    public function status(Request $request,$status,$id)
+    {
+        $coupon = Coupon::find($id);
+        $coupon->status= $status;
+        $coupon->save();
+        $request->session()->flash('message', 'Coupon Status updated');
+        return redirect('admin/category');
+    }
 }

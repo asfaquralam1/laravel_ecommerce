@@ -1,5 +1,6 @@
 @extends('admin.layout')
 @section('page_title','Update Category')
+@section('category_select','active')
 @section('container')
 <h1 class="mb-10">Update Category</h1>
 
