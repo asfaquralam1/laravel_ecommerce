@@ -149,6 +149,10 @@
                             <a href="{{ route('admin/coupon') }}">
                                 <i class="fa fa-tag" aria-hidden="true"></i>Coupon</a>
                         </li>
+                        <li class="@yield('size_select')">
+                            <a href="{{ route('admin/size') }}">
+                                <i class="fa fa-tag" aria-hidden="true"></i>Size</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

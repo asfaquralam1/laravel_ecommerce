@@ -2,7 +2,7 @@
 @section('page_title','Manage Coupon')
 @section('coupon_select','active')
 @section('container')
-<h1 class="mb-10">Update Coupon</h1>
+<h1 class="mb-10">Manage Coupon</h1>
 
 <a href="{{ route('admin/coupon')}}">
     <button type="button" class="btn btn-success">Back</button>
@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h3 class="text-center title-2">Update Coupon</h3>
+                    <h3 class="text-center title-2">Add Coupon</h3>
                 </div>
                 <hr>
                 <form action="{{ route('coupon.add') }}" method="post">

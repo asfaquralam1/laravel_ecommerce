@@ -14,7 +14,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
+        $size['data'] = Size::all();
+        return view('admin.size',$size);
     }
 
     /**
@@ -22,9 +23,17 @@ class SizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'size'=>'required',
+        ]);
+
+        $modal = new Size();
+        $modal->size = $request->post('size');
+        $modal->save();
+        $request->session()->flash('message', 'Size Inserted');
+        return redirect('admin/size');
     }
 
     /**
@@ -46,7 +55,7 @@ class SizeController extends Controller
      */
     public function show(Size $size)
     {
-        //
+        return view('admin.manage_size');
     }
 
     /**
@@ -55,9 +64,10 @@ class SizeController extends Controller
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $size)
+    public function edit(Size $size,$id)
     {
-        //
+        $modal['size'] = Size::find($id);
+        return view('admin.edit_size',$modal);
     }
 
     /**
@@ -67,9 +77,13 @@ class SizeController extends Controller
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, Size $size,$id)
     {
-        //
+        $modal = Size::find($id);
+        $modal->size = $request->post('size');
+        $modal->update();
+        $request->session()->flash('message', 'Size Updated');
+        return redirect('admin/size');
     }
 
     /**
@@ -78,8 +92,19 @@ class SizeController extends Controller
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Size $size)
+    public function destroy($id,Request $request)
     {
-        //
+        $size = Size::find($id);
+        $size->delete();
+        $request->session()->flash('message', 'Size Deleted');
+        return redirect('admin/size');
+    }
+    public function status(Request $request,$status,$id)
+    {
+        $size = Size::find($id);
+        $size->size= $status;
+        $size->save();
+        $request->session()->flash('message', 'Size Status updated');
+        return redirect('admin/size');
     }
 }

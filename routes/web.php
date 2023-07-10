@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\SizeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,12 +48,12 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/coupon/status/{status}/{id}', [CouponController::class, 'status'])->name('coupon.status');
 
      //size
-     Route::get('admin/size', [CouponController::class, 'index'])->name('admin/size');
-     Route::get('admin/size/manage-size', [CouponController::class, 'show'])->name('admin/manage-size');
-     Route::post('admin/size/add-size', [CouponController::class, 'create'])->name('size.add');
-     Route::get('admin/size/edit-size/{id}', [CouponController::class, 'edit'])->name('size.edit');
-     Route::post('admin/size/update-size/{id}', [CouponController::class, 'update'])->name('size.update');
-     Route::get('admin/size/delete-size/{id}', [CouponController::class, 'destroy'])->name('size.destroy');
+     Route::get('admin/size', [SizeController::class, 'index'])->name('admin/size');
+     Route::get('admin/size/manage-size', [SizeController::class, 'show'])->name('admin/manage-size');
+     Route::post('admin/size/add-size', [SizeController::class, 'create'])->name('size/add');
+     Route::get('admin/size/edit-size/{id}', [SizeController::class, 'edit'])->name('size.edit');
+     Route::post('admin/size/update-size/{id}', [SizeController::class, 'update'])->name('size.update');
+     Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
      //size
     Route::get('admin/logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');

@@ -33,7 +33,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="value" class="control-label mb-1">Coupon Code</label>
+                        <label for="value" class="control-label mb-1">Coupon Value</label>
                         <input id="value" name="value" type="text" class="form-control" value="{{ $coupon->value }}">
                         @error('value')
                         <div class="text-center text-danger">{{ $message}}</div>
