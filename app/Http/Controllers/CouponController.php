@@ -64,6 +64,6 @@ class CouponController extends Controller
         $coupon->status= $status;
         $coupon->save();
         $request->session()->flash('message', 'Coupon Status updated');
-        return redirect('admin/category');
+        return redirect('admin/coupon');
     }
 }

@@ -54,6 +54,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
      Route::get('admin/size/edit-size/{id}', [SizeController::class, 'edit'])->name('size.edit');
      Route::post('admin/size/update-size/{id}', [SizeController::class, 'update'])->name('size.update');
      Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
+     Route::get('admin/size/status/{status}/{id}', [SizeController::class, 'status'])->name('coupon.status');
      //size
     Route::get('admin/logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');

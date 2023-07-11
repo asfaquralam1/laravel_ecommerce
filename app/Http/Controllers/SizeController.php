@@ -102,7 +102,7 @@ class SizeController extends Controller
     public function status(Request $request,$status,$id)
     {
         $size = Size::find($id);
-        $size->size= $status;
+        $size->status= $status;
         $size->save();
         $request->session()->flash('message', 'Size Status updated');
         return redirect('admin/size');
