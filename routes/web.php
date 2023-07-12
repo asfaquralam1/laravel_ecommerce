@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SizeController;
 use Illuminate\Http\Request;
@@ -56,6 +57,15 @@ Route::group(['middleware' => 'admin_auth'], function () {
      Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
      Route::get('admin/size/status/{status}/{id}', [SizeController::class, 'status'])->name('coupon.status');
      //size
+      //size
+      Route::get('admin/color', [ColorController::class, 'index'])->name('admin/color');
+      Route::get('admin/color/manage-color', [ColorController::class, 'show'])->name('admin/manage-color');
+      Route::post('admin/color/add-color', [ColorController::class, 'create'])->name('color/add');
+      Route::get('admin/color/edit-color/{id}', [ColorController::class, 'edit'])->name('color.edit');
+      Route::post('admin/color/update-color/{id}', [ColorController::class, 'update'])->name('color.update');
+      Route::get('admin/color/delete-color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
+      Route::get('admin/color/status/{status}/{id}', [ColorController::class, 'status'])->name('Color.status');
+      //size
     Route::get('admin/logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');
         session()->forget('ADMIN_ID');

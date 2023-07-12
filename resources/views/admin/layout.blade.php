@@ -151,7 +151,11 @@
                         </li>
                         <li class="@yield('size_select')">
                             <a href="{{ route('admin/size') }}">
-                                <i class="fa fa-tag" aria-hidden="true"></i>Size</a>
+                                <i class="fas fa-window-maximize" aria-hidden="true"></i>Size</a>
+                        </li>
+                        <li class="@yield('color_select')">
+                            <a href="{{ route('admin/color') }}">
+                                <i class="fas fa-palette" aria-hidden="true"></i>Color</a>
                         </li>
                     </ul>
                 </nav>
