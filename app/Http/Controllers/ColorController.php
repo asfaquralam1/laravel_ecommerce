@@ -89,9 +89,13 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Color $color,$id,Request $request)
     {
-        //
+        $color = Color::find($id);
+        //dd($category);
+        $color->delete();
+        $request->session()->flash('message', 'Color Deleted');
+        return redirect('admin/color');
     }
     public function status(Request $request,$status,$id)
     {
