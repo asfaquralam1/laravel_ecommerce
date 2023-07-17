@@ -60,7 +60,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
       //size
       Route::get('admin/color', [ColorController::class, 'index'])->name('admin/color');
       Route::get('admin/color/manage-color', [ColorController::class, 'show'])->name('admin/manage-color');
-      Route::post('admin/color/add-color', [ColorController::class, 'create'])->name('color/add');
+      Route::post('admin/color/add-color', [ColorController::class, 'create'])->name('color.add');
       Route::get('admin/color/edit-color/{id}', [ColorController::class, 'edit'])->name('color.edit');
       Route::post('admin/color/update-color/{id}', [ColorController::class, 'update'])->name('color.update');
       Route::get('admin/color/delete-color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');

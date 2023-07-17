@@ -59,6 +59,7 @@
 
     </div>
 
+     div.demo>ul>li*5>a{home}
     <!-- Jquery JS-->
     <script src="{{ asset('admin_assets/vendor/jquery-3.2.1.min.js') }}"></script>
     <!-- Bootstrap JS-->

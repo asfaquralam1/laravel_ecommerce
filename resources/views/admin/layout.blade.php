@@ -155,7 +155,8 @@
                         </li>
                         <li class="@yield('color_select')">
                             <a href="{{ route('admin/color') }}">
-                                <i class="fas fa-palette" aria-hidden="true"></i>Color</a>
+                            <i class="fa fa-paint-brush" aria-hidden="true"></i>Color</a>
+                            <i class="fa-solid fa-palette"></i>
                         </li>
                     </ul>
                 </nav>

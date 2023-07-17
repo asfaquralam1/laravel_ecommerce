@@ -57,7 +57,7 @@ class ColorController extends Controller
      */
     public function show(Color $color)
     {
-        return view('admin.color');
+        return view('admin.manage_color');
     }
 
     /**
@@ -66,9 +66,10 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color)
+    public function edit(Color $color,$id)
     {
-        //
+        $modal['color'] = Color::find($id);
+        return view('admin.edit_coupon',$modal);
     }
 
     /**
@@ -78,9 +79,14 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(Request $request, $id)
     {
-        //
+        $modal = Color::find($id);
+        $modal->color = $request->post('color');
+        $modal->size = $request->post('size');
+        $modal->update();
+        $request->session()->flash('message', 'Color Updated');
+        return redirect('admin/color');
     }
 
     /**
@@ -102,7 +108,7 @@ class ColorController extends Controller
         $size = Color::find($id);
         $size->status= $status;
         $size->save();
-        $request->session()->flash('message', 'Size Status updated');
-        return redirect('admin/size');
+        $request->session()->flash('message', 'Color Status updated');
+        return redirect('admin/color');
     }
 }
