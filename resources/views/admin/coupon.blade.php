@@ -2,7 +2,12 @@
 @section('page_title', 'Coupon')
 @section('coupon_select', 'active')
 @section('container')
-    <div class="text-success">{{ session('message') }}</div>
+<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+    {{ session('message') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
     <h1 class="mb-10">Coupon</h1>
 
     <a href="{{ route('admin/manage-coupon') }}">

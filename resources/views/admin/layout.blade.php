@@ -17,6 +17,8 @@
     <!-- Bootstrap CSS-->
     <link href="{{ asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
     <!-- Main CSS-->
     <link href="{{ asset('admin_assets/css/theme.css') }}" rel="stylesheet" media="all">
 
@@ -227,6 +229,46 @@
     <!-- Main JS-->
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+    <script>
+        @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'success') }}";
+    switch(type){
+        case 'info':
+            toastr.options= {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.options= {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.options= {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.options= {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
+    </script>
 </body>
 
 </html>
