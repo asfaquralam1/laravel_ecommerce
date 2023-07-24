@@ -2,7 +2,7 @@
 @section('page_title','Manage Coupon')
 @section('coupon_select','active')
 @section('container')
-<h1 class="mb-10">Update Coupon</h1>
+<h1 class="mb-10">Manage Coupon</h1>
 
 <a href="{{ route('admin/size')}}">
     <button type="button" class="btn btn-success">Back</button>

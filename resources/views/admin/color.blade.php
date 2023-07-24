@@ -2,12 +2,7 @@
 @section('page_title', 'Color')
 @section('color_select', 'active')
 @section('container')
-<div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
-    {{ session('message') }}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-    </button>
-</div>
+{!! session('success') !!}
 <h1 class="mb-10">Color</h1>
 
 <a href="{{ route('admin/manage-color') }}">
