@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/category/delete-category/{id}', [CategoryController::class, 'delete_category'])->name('category.destroy');
     Route::get('admin/category/edit-category/{id}', [CategoryController::class, 'edit_category'])->name('category.edit');
     Route::post('admin/category/update-category/{id}', [CategoryController::class, 'update_category'])->name('category.update');
+    Route::get('admin/category/status/{status}/{id}', [CategoryController::class, 'status'])->name('category.status');
     //category
     //coupon
     Route::get('admin/coupon', [CouponController::class, 'index'])->name('admin/coupon');
@@ -44,9 +46,17 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/coupon/edit-coupon/{id}', [CouponController::class, 'edit'])->name('coupon.edit');
     Route::post('admin/coupon/update-coupon/{id}', [CouponController::class, 'update'])->name('coupon.update');
     Route::get('admin/coupon/delete-coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
-    //coupon
-    Route::get('admin/category/status/{status}/{id}', [CategoryController::class, 'status'])->name('category.status');
     Route::get('admin/coupon/status/{status}/{id}', [CouponController::class, 'status'])->name('coupon.status');
+    //coupon
+    //product
+    Route::get('admin/product', [ProductController::class, 'index'])->name('admin/product');
+    Route::get('admin/product/manage-product', [ProductController::class, 'show'])->name('admin/manage-product');
+    Route::post('admin/product/add-product', [ProductController::class, 'create'])->name('product.add');
+    Route::get('admin/product/edit-product/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('admin/product/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('admin/product/delete-product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('admin/product/status/{status}/{id}', [ProductController::class, 'status'])->name('product.status');
+    //product
 
      //size
      Route::get('admin/size', [SizeController::class, 'index'])->name('admin/size');
