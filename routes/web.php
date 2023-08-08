@@ -65,7 +65,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::post('admin/size/add-size', [SizeController::class, 'create'])->name('size.add');
     Route::get('admin/size/edit-size/{id}', [SizeController::class, 'edit'])->name('size.edit');
     Route::post('admin/size/update-size/{id}', [SizeController::class, 'update'])->name('size.update');
-    Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
+    Route::delete('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
     Route::get('admin/size/status/{status}/{id}', [CouponController::class, 'status'])->name('size.status');
     //size
     Route::get('admin/logout', function (Request $request) {

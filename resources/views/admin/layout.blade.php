@@ -154,6 +154,14 @@
                             <a href="{{ route('admin/coupon') }}">
                                 <i class="fa fa-tag" aria-hidden="true"></i>Coupon</a>
                         </li>
+                        <li class="@yield('size_select')">
+                            <a href="{{ route('admin/size') }}">
+                                <i class="fa fa-window-maximize" aria-hidden="true"></i>Size</a>
+                        </li>
+                        <li class="@yield('color_select')">
+                            <a href="{{ route('admin/color') }}">
+                                <i class="fa fa-paint-brush" aria-hidden="true"></i></i>Color</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

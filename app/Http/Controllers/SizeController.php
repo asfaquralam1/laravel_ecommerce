@@ -18,9 +18,17 @@ class SizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'color'=>'required|unique:colors',
+        ]);
+
+        $modal = new Size();
+        $modal->color= $request->post('size');
+        $modal->save();
+        $request->session()->flash('message', 'Size Inserted');
+        return redirect('admin/size');
     }
     public function store(Request $request)
     {
@@ -32,11 +40,16 @@ class SizeController extends Controller
     }
     public function edit($id)
     {
-        //
+        $modal['size'] = Size::find($id);
+        return view('admin.edit_color',$modal);
     }
-    public function update(Request $request, Size $size)
+    public function update(Request $request, $id)
     {
-        //
+        $modal = Size::find($id);
+        $modal->size = $request->post('size');
+        $modal->update();
+        $request->session()->flash('message', 'Size Updated');
+        return redirect('admin/size');
     }
     public function destroy(Size $size,Request $request,$id)
     {
