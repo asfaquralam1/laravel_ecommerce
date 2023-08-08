@@ -9,6 +9,7 @@ class CouponController extends Controller
 {
     public function index()
     {
+        //return Coupon::all();
         $coupon['data'] = Coupon::all();
         return view('admin.coupon',$coupon);
     }

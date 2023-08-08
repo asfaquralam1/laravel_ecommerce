@@ -21,16 +21,6 @@
                     <div class="form-group">
                         <label for="color" class="control-label mb-1">Color</label>
                         <input id="color" name="color" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                        @error('color')
-                        <div class="text-center text-danger">{{ $message}}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="size" class="control-label mb-1">Size</label>
-                        <input id="size" name="size" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                        @error('size')
-                        <div class="text-center text-danger">{{ $message}}</div>
-                        @enderror
                     </div>
                     <div>
                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">

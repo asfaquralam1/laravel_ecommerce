@@ -26,13 +26,11 @@ class ColorController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'color'=>'required',
-            'size'=>'required',
+            'color'=>'required|unique:colors',
         ]);
 
         $modal = new Color();
-        $modal->color = $request->post('color');
-        $modal->size = $request->post('size');
+        $modal->color= $request->post('color');
         $modal->save();
         $request->session()->flash('message', 'Color Inserted');
         return redirect('admin/color');
@@ -55,7 +53,7 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show()
     {
         return view('admin.manage_color');
     }
@@ -66,10 +64,10 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Color $color,$id)
+    public function edit($id)
     {
         $modal['color'] = Color::find($id);
-        return view('admin.edit_coupon',$modal);
+        return view('admin.edit_color',$modal);
     }
 
     /**
@@ -79,11 +77,10 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         $modal = Color::find($id);
         $modal->color = $request->post('color');
-        $modal->size = $request->post('size');
         $modal->update();
         $request->session()->flash('message', 'Color Updated');
         return redirect('admin/color');
@@ -95,20 +92,19 @@ class ColorController extends Controller
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color,$id,Request $request)
+    public function destroy(Request $request,$id)
     {
         $color = Color::find($id);
-        //dd($category);
         $color->delete();
-        $request->session()->flash('message', 'Color Deleted');
+        $request->session()->flash('message', 'Coupon Deleted');
         return redirect('admin/color');
     }
     public function status(Request $request,$status,$id)
     {
-        $size = Color::find($id);
-        $size->status= $status;
-        $size->save();
-        $request->session()->flash('message', 'Color Status updated');
+        $color = Color::find($id);
+        $color->status= $status;
+        $color->save();
+        $request->session()->flash('message', 'color Status updated');
         return redirect('admin/color');
     }
 }

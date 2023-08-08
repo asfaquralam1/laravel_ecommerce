@@ -10,9 +10,12 @@
 
     <!-- Fontfaces CSS-->
     <link href="{{ asset('admin_assets/css/font-face.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('admin_assets/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('admin_assets/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('admin_assets/vendor/mdi-font/css/material-design-iconic-font.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin_assets/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet"
+        media="all">
+    <link href="{{ asset('admin_assets/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet"
+        media="all">
+    <link href="{{ asset('admin_assets/vendor/mdi-font/css/material-design-iconic-font.css') }}" rel="stylesheet"
+        media="all">
 
     <!-- Bootstrap CSS-->
     <link href="{{ asset('admin_assets/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
@@ -132,8 +135,8 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="{{ route('admin/dashboard')}}">
-                    {{Config::get('constants.site_name')}}
+                <a href="{{ route('admin/dashboard') }}">
+                    {{ Config::get('constants.site_name') }}
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -153,12 +156,11 @@
                         </li>
                         <li class="@yield('size_select')">
                             <a href="{{ route('admin/size') }}">
-                                <i class="fas fa-window-maximize" aria-hidden="true"></i>Size</a>
+                                <i class="fa fa-window-maximize" aria-hidden="true"></i>Size</a>
                         </li>
                         <li class="@yield('color_select')">
                             <a href="{{ route('admin/color') }}">
-                            <i class="fa fa-paint-brush" aria-hidden="true"></i>Color</a>
-                            <i class="fa-solid fa-palette"></i>
+                                <i class="fa fa-paint-brush" aria-hidden="true"></i></i>Color</a>
                         </li>
                         <li class="@yield('product_select')">
                             <a href="{{ route('admin.product') }}">

@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class SizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $size['data'] = Size::all();
@@ -26,58 +21,29 @@ class SizeController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'size'=>'required',
+            'size'=>'required|unique:sizes',
         ]);
 
         $modal = new Size();
-        $modal->size = $request->post('size');
+        $modal->size= $request->post('size');
         $modal->save();
         $request->session()->flash('message', 'Size Inserted');
         return redirect('admin/size');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Size $size)
+    public function show()
     {
         return view('admin.manage_size');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Size $size,$id)
+    public function edit($id)
     {
         $modal['size'] = Size::find($id);
         return view('admin.edit_size',$modal);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Size $size,$id)
+    public function update(Request $request, $id)
     {
         $modal = Size::find($id);
         $modal->size = $request->post('size');
@@ -85,14 +51,7 @@ class SizeController extends Controller
         $request->session()->flash('message', 'Size Updated');
         return redirect('admin/size');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id,Request $request)
+    public function destroy(Size $size,Request $request,$id)
     {
         $size = Size::find($id);
         $size->delete();
