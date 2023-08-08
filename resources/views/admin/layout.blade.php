@@ -160,6 +160,11 @@
                             <i class="fa fa-paint-brush" aria-hidden="true"></i>Color</a>
                             <i class="fa-solid fa-palette"></i>
                         </li>
+                        <li class="@yield('product_select')">
+                            <a href="{{ route('admin.product') }}">
+                            <i class="fa fa-paint-brush" aria-hidden="true"></i>Product</a>
+                            <i class="fa-solid fa-palette"></i>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -232,7 +237,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
     <script>
-        @if(Session::has('message'))
+    @if(Session::has('message'))
     var type = "{{ Session::get('alert-type', 'success') }}";
     switch(type){
         case 'info':
