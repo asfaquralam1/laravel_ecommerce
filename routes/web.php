@@ -57,6 +57,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::post('admin/color/update-color/{id}', [ColorController::class, 'update'])->name('color.update');
     Route::get('admin/color/delete-color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
     Route::get('admin/color/status/{status}/{id}', [ColorController::class, 'status'])->name('color.status');
+    //color
 
     //size
     Route::get('admin/size', [SizeController::class, 'index'])->name('admin/size');
