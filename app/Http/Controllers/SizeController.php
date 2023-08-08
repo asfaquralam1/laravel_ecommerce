@@ -21,11 +21,11 @@ class SizeController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'color'=>'required|unique:colors',
+            'size'=>'required|unique:sizes',
         ]);
 
         $modal = new Size();
-        $modal->color= $request->post('size');
+        $modal->size= $request->post('size');
         $modal->save();
         $request->session()->flash('message', 'Size Inserted');
         return redirect('admin/size');
@@ -41,7 +41,7 @@ class SizeController extends Controller
     public function edit($id)
     {
         $modal['size'] = Size::find($id);
-        return view('admin.edit_color',$modal);
+        return view('admin.edit_size',$modal);
     }
     public function update(Request $request, $id)
     {

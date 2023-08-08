@@ -19,9 +19,9 @@
                 <form action="{{url('admin/color/update-color/')}}/{{$color->id}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="color" class="control-label mb-1">Color</label>
-                        <input id="color" name="color" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                        @error('color')
+                        <label for="color" class="control-label mb-1">Color Name</label>
+                        <input id="color" name="color" type="text" class="form-control" value="{{ $color->color }}">
+                        @error('title')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>
