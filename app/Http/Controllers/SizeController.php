@@ -34,38 +34,23 @@ class SizeController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Size $size)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Size $size)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Size $size)
+    public function destroy(Size $size,Request $request,$id)
     {
-        //
+        $size = Size::find($id);
+        $size->delete();
+        $request->session()->flash('message', 'Size Deleted');
+        return redirect('admin/size');
+    }
+    public function status(Request $request,$status,$id)
+    {
+        $size = Size::find($id);
+        $size->status= $status;
+        $size->save();
+        $request->session()->flash('message', 'Size Status updated');
+        return redirect('admin/size');
     }
 }
