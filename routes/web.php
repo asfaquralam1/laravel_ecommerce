@@ -49,36 +49,6 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/coupon/delete-coupon/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy');
     Route::get('admin/coupon/status/{status}/{id}', [CouponController::class, 'status'])->name('coupon.status');
     //coupon
-<<<<<<< HEAD
-    //product
-    Route::get('admin/product', [ProductController::class, 'index'])->name('admin.product');
-    Route::get('admin/product/manage-product', [ProductController::class, 'show'])->name('admin.manage-product');
-    Route::post('admin/product/add-product', [ProductController::class, 'create'])->name('product.add');
-    Route::get('admin/product/edit-product/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::post('admin/product/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('admin/product/delete-product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-    Route::get('admin/product/status/{status}/{id}', [ProductController::class, 'status'])->name('product.status');
-
-    //product
-     //size
-     Route::get('admin/size', [SizeController::class, 'index'])->name('admin/size');
-     Route::get('admin/size/manage-size', [SizeController::class, 'show'])->name('admin/manage-size');
-     Route::post('admin/size/add-size', [SizeController::class, 'create'])->name('size/add');
-     Route::get('admin/size/edit-size/{id}', [SizeController::class, 'edit'])->name('size.edit');
-     Route::post('admin/size/update-size/{id}', [SizeController::class, 'update'])->name('size.update');
-     Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
-     Route::get('admin/size/status/{status}/{id}', [SizeController::class, 'status'])->name('coupon.status');
-     //size
-    //color
-      Route::get('admin/color', [ColorController::class, 'index'])->name('admin/color');
-      Route::get('admin/color/manage-color', [ColorController::class, 'show'])->name('admin/manage-color');
-      Route::post('admin/color/add-color', [ColorController::class, 'create'])->name('color.add');
-      Route::get('admin/color/edit-color/{id}', [ColorController::class, 'edit'])->name('color.edit');
-      Route::post('admin/color/update-color/{id}', [ColorController::class, 'update'])->name('color.update');
-      Route::get('admin/color/delete-color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
-      Route::get('admin/color/status/{status}/{id}', [ColorController::class, 'status'])->name('Color.status');
-      //color
-=======
 
     //color
     Route::get('admin/color', [ColorController::class, 'index'])->name('admin/color');
@@ -99,7 +69,6 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
     Route::get('admin/size/status/{status}/{id}', [CouponController::class, 'status'])->name('size.status');
     //size
->>>>>>> 50c8b35a0d36fbdd34585adf4037d74c314a21d7
     Route::get('admin/logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');
         session()->forget('ADMIN_ID');
