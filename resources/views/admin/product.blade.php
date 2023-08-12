@@ -18,6 +18,11 @@
                         <tr>
                             <th>ID</th>
                             <th>name</th>
+                            <th>name</th>
+                            <th>category_id</th>
+                            <th>size_id</th>
+                            <th>color_id</th>
+                            <th>coupon_id</th>
                             <th>Action</th>
                         </tr>
                     </thead>
