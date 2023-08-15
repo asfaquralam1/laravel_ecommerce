@@ -15,7 +15,11 @@ class ProductController extends Controller
     public function index()
     {
         $product['data'] = Product::all();
-        return view('admin.product',$product);
+        $category['data'] = Category::all();
+        $color['data'] = Color::all();
+        $coupon['data'] = Coupon::all();
+        $size['data'] = Size::all();
+        return view('admin.product',$product,$category,$color,$size,$coupon);
     }
 
     /**

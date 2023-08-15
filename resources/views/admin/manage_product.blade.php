@@ -34,7 +34,12 @@
                     </div>
                     <div class="form-group">
                         <label for="category_id" class="control-label mb-1">Category</label>
-                        <input id="category_id" name="category_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <!-- <input id="category_id" name="category_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required> -->
+                        <select class="js-example-basic-single" name="category_id" style="width: 100%" required>
+                            @foreach ($category as $post)
+                                <option value="{{ $post->category_name }}">{{ $post->category_name }}</option>
+                            @endforeach
+                        </select>
                         @error('category_id')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
