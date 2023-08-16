@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Coupon;
 use App\Models\product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +19,11 @@ class ProductController extends Controller
     public function index()
     {
         $product['data'] = Product::all();
-        return view('admin.product',$product);
+        $category['data'] = Category::all();
+        $color['data'] = Color::all();
+        $coupon['data'] = Coupon::all();
+        $size['data'] = Size::all();
+        return view('admin.product',$product,$category,$color,$size,$coupon);
     }
 
     /**
@@ -47,7 +55,7 @@ class ProductController extends Controller
      */
     public function show(product $product)
     {
-        //
+        return view('admin.manage_product');
     }
 
     /**
