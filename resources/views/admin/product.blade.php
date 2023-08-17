@@ -3,10 +3,10 @@
 @section('product_select', 'active')
 @section('container')
     <div class="text-success">{{ session('message') }}</div>
-    <h1 class="mb-10">Product</h1>
+    <h1 class="mb-10">product</h1>
 
     <a href="{{ route('admin/manage-product') }}">
-        <button type="button" class="btn btn-success">Add Product</button>
+        <button type="button" class="btn btn-success">Add product</button>
     </a>
 
     <div class="row m-t-30">
@@ -17,7 +17,12 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Size</th>
+                            <th>name</th>
+                            <th>name</th>
+                            <th>category_id</th>
+                            <th>size_id</th>
+                            <th>color_id</th>
+                            <th>coupon_id</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -25,20 +30,19 @@
                         @foreach ($data as $res)
                             <tr>
                                 <td>{{ $res->id }}</td>
-                                <td>{{ $res->size }}</td>
                                 <td class="text-right">
-                                    <a href="{{ url('admin/size/edit-size/') }}/{{ $res->id }}">
+                                    <a href="{{ url('admin/product/edit-product/') }}/{{ $res->id }}">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                                     </a>
-                                    <a href="{{ url('admin/size/delete-size/') }}/{{ $res->id }}">
+                                    <a href="{{ url('admin/product/delete-product/') }}/{{ $res->id }}">
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                     </a>
                                     @if ($res->status == 1)
-                                        <a href="{{ url('admin/size/status/0') }}/{{ $res->id }}">
+                                        <a href="{{ url('admin/product/status/0') }}/{{ $res->id }}">
                                             <button type="submit" class="btn btn-success">Active</button>
                                         </a>
                                     @elseif ($res->status == 0)
-                                        <a href="{{ url('admin/size/status/1') }}/{{ $res->id }}">
+                                        <a href="{{ url('admin/product/status/1') }}/{{ $res->id }}">
                                             <button type="submit" class="btn btn-secondary">Deactive</button>
                                         </a>
                                     @endif
