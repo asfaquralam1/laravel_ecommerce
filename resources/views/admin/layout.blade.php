@@ -238,45 +238,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
-    {{-- <script>
-    @if (Session::has('message'))
-    var type = "{{ Session::get('alert-type', 'success') }}";
-    switch(type){
-        case 'info':
-            toastr.options= {
-                "closeButton": true,
-                "progressBar": true
-            }
-            toastr.info("{{ Session::get('message') }}");
-            break;
-
-        case 'warning':
-            toastr.options= {
-                "closeButton": true,
-                "progressBar": true
-            }
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-
-        case 'success':
-            toastr.options= {
-                "closeButton": true,
-                "progressBar": true
-            }
-            toastr.success("{{ Session::get('message') }}");
-            break;
-
-        case 'error':
-            toastr.options= {
-                "closeButton": true,
-                "progressBar": true
-            }
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
-    @endif
-    </script> --}}
-
     <script>
         @if (Session::has('message'))
             toastr.options = {
