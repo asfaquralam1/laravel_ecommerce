@@ -19,9 +19,9 @@
                 <form action="{{url('admin/size/update-size/')}}/{{$size->id}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="size" class="control-label mb-1">size</label>
-                        <input id="size" name="size" type="text" class="form-control" value="{{ $size->size }}">
-                        @error('size')
+                        <label for="size_name" class="control-label mb-1">size</label>
+                        <input id="size_name" name="size_name" type="text" class="form-control" value="{{ $size->size_name }}">
+                        @error('size_name')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>

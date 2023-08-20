@@ -26,10 +26,9 @@ class AdminController extends Controller
         $email = $request->post('email');
         $password = $request->post('password');
 
-        //$result = Admin::where(['email' => $email, 'password' => $password])->get();
-        $result = Admin::where(['email' => $email])->first();
+        $result = Admin::where(['email' => $email, 'password' => $password])->get();
         if($result) {
-            if (Hash::check($request->post('password'), $result->password)) {
+            if (Hash::check($password, $result->password)) {
                 //generating a admin login session
                 $request->session()->put('ADMIN_LOGIN', true);
                 //passing admin id

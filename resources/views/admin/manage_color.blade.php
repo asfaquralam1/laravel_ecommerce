@@ -19,8 +19,8 @@
                 <form action="{{ route('color.add') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="color" class="control-label mb-1">Color</label>
-                        <input id="color" name="color" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <label for="color_name" class="control-label mb-1">Color</label>
+                        <input id="color_name" name="color_name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                     </div>
                     <div>
                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">

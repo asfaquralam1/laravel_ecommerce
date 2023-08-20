@@ -52,7 +52,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         //dd($category);
         $category->delete();
-        $request->session()->flash('message', 'Category Deleted');
+        $request->session()->flash('warning', 'Category Deleted');
         return redirect('admin/category');
     }
     public function status(Request $request,$status,$id)

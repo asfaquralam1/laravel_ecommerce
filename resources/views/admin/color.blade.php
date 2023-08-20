@@ -2,7 +2,6 @@
 @section('page_title', 'Color')
 @section('color_select', 'active')
 @section('container')
-    <div class="text-success">{{ session('message') }}</div>
     <h1 class="mb-10">Color</h1>
 
     <a href="{{ route('admin/manage-color') }}">
@@ -25,7 +24,7 @@
                         @foreach ($data as $res)
                             <tr>
                                 <td>{{ $res->id }}</td>
-                                <td>{{ $res->color }}</td>
+                                <td>{{ $res->color_name }}</td>
                                 <td class="text-right">
                                     <a href="{{ url('admin/color/edit-color/') }}/{{ $res->id }}">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>

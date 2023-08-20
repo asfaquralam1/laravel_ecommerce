@@ -2,7 +2,7 @@
 @section('page_title', 'Coupon')
 @section('coupon_select', 'active')
 @section('container')
-{{ session('message') }}
+{{-- {{ session('message') }} --}}
 <h1 class="mb-10">Coupon</h1>
 
 <a href="{{ route('admin/manage-coupon') }}">
@@ -27,7 +27,7 @@
                     @foreach ($data as $res)
                     <tr>
                         <td>{{ $res->id }}</td>
-                        <td>{{ $res->title }}</td>
+                        <td>{{ $res->coupon_name }}</td>
                         <td>{{ $res->code }}</td>
                         <td>{{ $res->value }}</td>
                         <td class="text-right">

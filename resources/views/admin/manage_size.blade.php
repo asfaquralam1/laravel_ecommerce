@@ -19,8 +19,8 @@
                 <form action="{{ route('size.add') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="size" class="control-label mb-1">size</label>
-                        <input id="size" name="size" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        <label for="size_name" class="control-label mb-1">Size</label>
+                        <input id="size_name" name="size_name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                     </div>
                     <div>
                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">

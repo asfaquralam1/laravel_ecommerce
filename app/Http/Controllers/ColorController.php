@@ -26,11 +26,11 @@ class ColorController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'color'=>'required|unique:colors',
+            'color_name'=>'required|unique:colors',
         ]);
 
         $modal = new Color();
-        $modal->color= $request->post('color');
+        $modal->color_name= $request->post('color_name');
         $modal->save();
         $request->session()->flash('message', 'Color Inserted');
         return redirect('admin/color');
@@ -80,7 +80,7 @@ class ColorController extends Controller
     public function update(Request $request,$id)
     {
         $modal = Color::find($id);
-        $modal->color = $request->post('color');
+        $modal->color_name = $request->post('color_name');
         $modal->update();
         $request->session()->flash('message', 'Color Updated');
         return redirect('admin/color');
@@ -96,7 +96,7 @@ class ColorController extends Controller
     {
         $color = Color::find($id);
         $color->delete();
-        $request->session()->flash('message', 'Coupon Deleted');
+        $request->session()->flash('warning', 'Coupon Deleted');
         return redirect('admin/color');
     }
     public function status(Request $request,$status,$id)

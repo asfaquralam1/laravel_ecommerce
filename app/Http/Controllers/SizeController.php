@@ -21,11 +21,11 @@ class SizeController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'size'=>'required|unique:sizes',
+            'size_name'=>'required|unique:sizes',
         ]);
 
         $modal = new Size();
-        $modal->size= $request->post('size');
+        $modal->size_name= $request->post('size_name');
         $modal->save();
         $request->session()->flash('message', 'Size Inserted');
         return redirect('admin/size');
@@ -46,7 +46,7 @@ class SizeController extends Controller
     public function update(Request $request, $id)
     {
         $modal = Size::find($id);
-        $modal->size = $request->post('size');
+        $modal->size_name = $request->post('size_name');
         $modal->update();
         $request->session()->flash('message', 'Size Updated');
         return redirect('admin/size');
@@ -55,7 +55,7 @@ class SizeController extends Controller
     {
         $size = Size::find($id);
         $size->delete();
-        $request->session()->flash('message', 'Size Deleted');
+        $request->session()->flash('warning', 'Size Deleted');
         return redirect('admin/size');
     }
     public function status(Request $request,$status,$id)

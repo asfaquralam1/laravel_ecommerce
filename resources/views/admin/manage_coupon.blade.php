@@ -19,9 +19,9 @@
                 <form action="{{ route('coupon.add') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="coupon_title" class="control-label mb-1">Coupon Title</label>
-                        <input id="coupon_title" name="title" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                        @error('coupon_title')
+                        <label for="coupon_name" class="control-label mb-1">Coupon Title</label>
+                        <input id="coupon_name" name="coupon_name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        @error('coupon_name')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>
