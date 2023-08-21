@@ -450,6 +450,7 @@ section {
     padding: 0 35px;
     text-transform: uppercase;
     color: #fff;
+    margin: auto;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -475,7 +476,7 @@ section {
 
 .au-btn--block {
     display: block;
-    width: 100%;
+    width: 30%;
 }
 
 .au-btn-icon i {
@@ -681,6 +682,10 @@ section {
     border-color: rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.051);
     color: #999;
+    width: 100%;
+    outline: none;
+    height: 30px;
+    font-size: 18px;
 }
 
 .form-header2 .au-input::-webkit-input-placeholder {
@@ -712,11 +717,11 @@ section {
 
 /* ----- Input ----- */
 .au-input {
+    width: 100%;
     line-height: 43px;
-    border: 1px solid #e5e5e5;
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
-    padding: 0 17px;
+    padding: 0 5px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -740,11 +745,6 @@ section {
     -moz-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-.au-input--full {
-    width: 100%;
-}
-
 .au-input--h65 {
     line-height: 63px;
     font-size: 16px;
@@ -14655,3 +14655,18 @@ section {
 .fas{
     font-size: 12px !important;
 }
+
+.form-group{
+    border:1px solid #c1c1c1;
+    display: flex;
+    margin-bottom: 15px;
+  }
+  .form-group i{
+    padding: 10px !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.051) !important;
+    font-size: 20px !important;
+  }
+  .forget-btn{
+    float: right;
+  }

@@ -38,15 +38,20 @@
                             <form action="{{ route('admin.auth') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Email Address</label>
+                                    <span><i class="fas fa-user"></i></span>
                                     <input class="au-input au-input--full" type="email" name="email"
                                         placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <span><i class="fas fa-lock"></i></span>
                                     <input class="au-input au-input--full" type="password" name="password"
                                         placeholder="Password" required>
                                 </div>
+                               <div>
+                                <input type="checkbox" checked="checked" name="remember"> Remember
+
+                                <a href="http://" class="forget-btn">Forget Password ?</a>
+                               </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign
                                     in</button>
                                     <div class="text-center text-danger">{{ session('error') }}</div>
