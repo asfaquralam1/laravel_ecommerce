@@ -48,4 +48,12 @@ class ProductController extends Controller
     {
         //
     }
+    public function status(Request $request,$status,$id)
+    {
+        $product = Product::find($id);
+        $product->status= $status;
+        $product->save();
+        $request->session()->flash('message', 'product Status updated');
+        return redirect('admin/product');
+    }
 }
