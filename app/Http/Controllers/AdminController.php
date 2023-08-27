@@ -15,20 +15,21 @@ class AdminController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->session()->put('ADMIN_LOGIN')){
+        if ($request->session()->put('ADMIN_LOGIN')) {
             return redirect('admin/dashboard');
-        }else{
+        } else {
             return view('admin.login');
         }
     }
     public function auth(Request $request)
     {
-        $email = $request->post('email');
-        $password = $request->post('password');
+        $request->post('email');
+        $request->post('password');
+        //dd($request->post('password'));
 
-        $result = Admin::where(['email' => $email, 'password' => $password])->get();
-        if($result) {
-            if (Hash::check($password, $result->password)) {
+        $result = Admin::where(['email' => $request->post('email')])->first();
+        if ($result) {
+            if (Hash::check($request->post('password'), $result->password)) {
                 //generating a admin login session
                 $request->session()->put('ADMIN_LOGIN', true);
                 //passing admin id
