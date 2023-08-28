@@ -236,6 +236,8 @@
     <!-- Main JS-->
     <script src="{{ asset('admin_assets/js/main.js') }}"></script>
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
 
     <script>
