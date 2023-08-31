@@ -18,7 +18,6 @@
                         <tr>
                             <th>ID</th>
                             <th>name</th>
-                            <th>name</th>
                             <th>category_id</th>
                             <th>size_id</th>
                             <th>color_id</th>
@@ -54,5 +53,6 @@
             </div>
             <!-- END DATA TABLE-->
         </div>
+
     </div>
 @endsection
