@@ -46,14 +46,24 @@
                     </div>
                     <div class="form-group">
                         <label for="size_id" class="control-label mb-1">Size</label>
-                        <input id="size_id" name="size_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        {{-- <input id="size_id" name="size_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required> --}}
+                        <select class="js-example-basic-single" name="size_id" style="width: 100%" required>
+                            @foreach ($size as $post)
+                                <option value="{{ $post->size_name }}">{{ $post->size_name }}</option>
+                            @endforeach
+                        </select>
                         @error('size_id')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="color_id" class="control-label mb-1">Color</label>
-                        <input id="color_id" name="color_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        {{-- <input id="color_id" name="color_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required> --}}
+                        <select class="js-example-basic-single" name="color_id" style="width: 100%" required>
+                            @foreach ($color as $post)
+                                <option value="{{ $post->color_name }}">{{ $post->color_name }}</option>
+                            @endforeach
+                        </select>
                         @error('color_id')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror

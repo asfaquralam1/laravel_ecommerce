@@ -58,13 +58,13 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/color/status/{status}/{id}', [ColorController::class, 'status'])->name('color.status');
 
     //product
-    Route::get('admin/product', [ColorController::class, 'index'])->name('admin.product');
-    Route::get('admin/product/manage-product', [ColorController::class, 'show'])->name('admin/manage-product');
-    Route::post('admin/product/add-product', [ColorController::class, 'create'])->name('product.add');
-    Route::get('admin/product/edit-product/{id}', [ColorController::class, 'edit'])->name('product.edit');
-    Route::post('admin/product/update-product/{id}', [ColorController::class, 'update'])->name('product.update');
-    Route::get('admin/product/delete-product/{id}', [ColorController::class, 'destroy'])->name('product.destroy');
-    Route::get('admin/product/status/{status}/{id}', [ColorController::class, 'status'])->name('product.status');
+    Route::get('admin/product', [ProductController::class, 'index'])->name('admin.product');
+    Route::get('admin/product/manage-product', [ProductController::class, 'show'])->name('admin/manage-product');
+    Route::post('admin/product/add-product', [ProductController::class, 'create'])->name('product.add');
+    Route::get('admin/product/edit-product/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('admin/product/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('admin/product/delete-product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::get('admin/product/status/{status}/{id}', [ProductController::class, 'status'])->name('product.status');
 
     //size
     Route::get('admin/size', [SizeController::class, 'index'])->name('admin/size');

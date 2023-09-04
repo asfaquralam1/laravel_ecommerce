@@ -18,10 +18,11 @@
                         <tr>
                             <th>ID</th>
                             <th>name</th>
-                            <th>category_id</th>
-                            <th>size_id</th>
-                            <th>color_id</th>
-                            <th>coupon_id</th>
+                            <th>short_desc</th>
+                            <th>category</th>
+                            <th>size</th>
+                            <th>color</th>
+                            <th>coupon</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -29,6 +30,12 @@
                         @foreach ($data as $res)
                             <tr>
                                 <td>{{ $res->id }}</td>
+                                <th>{{ $res->product_name }}</th>
+                                <td>{{ $res->short_desc }}</td>
+                                <th>{{ $res->category_id }}</th>
+                                <th>{{ $res->size_id }}</th>
+                                <th>{{ $res->color_id }}</th>
+                                <th>{{ $res->coupon_id }}</th>
                                 <td class="text-right">
                                     <a href="{{ url('admin/product/edit-product/') }}/{{ $res->id }}">
                                         <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button>
