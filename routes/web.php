@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('admin', [AdminController::class, 'index'])->name('admin');
 Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
-Route::get('admin/updatepassword', [AdminController::class, 'updatepassword'])->name('admin/updatepassword');
+Route::get('admin/updatepassword/{id}', [AdminController::class, 'updatepassword'])->name('admin/updatepassword');
 
 Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
@@ -75,7 +75,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/size/delete-size/{id}', [SizeController::class, 'destroy'])->name('size.destroy');
     Route::get('admin/size/status/{status}/{id}', [CouponController::class, 'status'])->name('size.status');
 
-    Route::get('admin/logout', function (Request $request) {
+    Route::get('logout', function (Request $request) {
         session()->forget('ADMIN_LOGIN');
         session()->forget('ADMIN_ID');
         session()->flash('error', 'Logout Succsessfully');

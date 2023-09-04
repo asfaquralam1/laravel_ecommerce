@@ -23,13 +23,13 @@ class AdminController extends Controller
     }
     public function auth(Request $request)
     {
-        $request->post('email');
-        $request->post('password');
+        $email = $request->post('email');
+        $password = $request->post('password');
         //dd($request->post('password'));
 
-        $result = Admin::where(['email' => $request->post('email')])->first();
+        $result = Admin::where(['email' => $email])->first();
         if ($result) {
-            if (Hash::check($request->post('password'), $result->password)) {
+            if (Hash::check($password,$result->password)) {
                 //generating a admin login session
                 $request->session()->put('ADMIN_LOGIN', true);
                 //passing admin id
@@ -44,11 +44,12 @@ class AdminController extends Controller
             return redirect('admin');
         }
     }
-    public function updatepassword()
+    public function updatepassword(Request $request,$id)
     {
-        $r = Admin::find(1);
-        $r->password = Hash::make('ahsansagor445');
-        $r->save();
+        $password = $request->post('password');
+        $user = Admin::find($id);
+        $user->password = Hash::make($password);
+        $user->save();
     }
     public function dashboard()
     {
