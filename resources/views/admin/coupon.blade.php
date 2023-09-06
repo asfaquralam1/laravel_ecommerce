@@ -27,7 +27,7 @@
                     @foreach ($data as $res)
                     <tr>
                         <td>{{ $res->id }}</td>
-                        <td>{{ $res->coupon_name }}</td>
+                        <td>{{ $res->title }}</td>
                         <td>{{ $res->code }}</td>
                         <td>{{ $res->value }}</td>
                         <td class="text-right">

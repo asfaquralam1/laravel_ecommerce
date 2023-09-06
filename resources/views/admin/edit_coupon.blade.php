@@ -20,8 +20,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="coupon_name" class="control-label mb-1">Coupon Title</label>
-                        <input id="coupon_name" name="coupon_name" type="text" class="form-control" value="{{ $coupon->coupon_name }}">
-                        @error('coupon_name')
+                        <input id="coupon_name" name="title" type="text" class="form-control" value="{{ $coupon->title }}">
+                        @error('title')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
                     </div>
