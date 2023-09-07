@@ -25,7 +25,6 @@ class AdminController extends Controller
     {
         $email = $request->post('email');
         $password = $request->post('password');
-        //dd($request->post('password'));
 
         $result = Admin::where(['email' => $email])->first();
         if ($result) {
