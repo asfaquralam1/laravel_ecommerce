@@ -52,7 +52,7 @@ class ProductController extends Controller
         $color['color'] = Color::all();
         $coupon['coupon'] = Coupon::all();
         $size['size'] = Size::all();
-        return view('admin.manage_product',$category,$size)->with($color);
+        return view('admin.manage_product',$category,$size)->with($color)->with($coupon);
     }
 
     public function edit(product $product)

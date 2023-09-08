@@ -3,7 +3,7 @@
 @section('product_select', 'active')
 @section('container')
     <div class="text-success">{{ session('message') }}</div>
-    <h1 class="mb-10">product</h1>
+    <h1 class="mb-10">Product</h1>
 
     <a href="{{ route('admin/manage-product') }}">
         <button type="button" class="btn btn-success">Add product</button>

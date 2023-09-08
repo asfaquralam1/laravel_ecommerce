@@ -70,7 +70,12 @@
                     </div>
                     <div class="form-group">
                         <label for="coupon_id" class="control-label mb-1">Coupon</label>
-                        <input id="coupon_id" name="coupon_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        {{-- <input id="coupon_id" name="coupon_id" type="text" class="form-control" aria-required="true" aria-invalid="false" required> --}}
+                        <select class="js-example-basic-single" name="coupon_id" style="width: 100%" required>
+                            @foreach ($coupon as $post)
+                                <option value="{{ $post->title }}">{{ $post->title }}</option>
+                            @endforeach
+                        </select>
                         @error('coupon_id')
                         <div class="text-center text-danger">{{ $message}}</div>
                         @enderror
