@@ -555,7 +555,7 @@
                 </div>
             </div>
         </div> --}}
-        <h1 style="text-align: center">Welcome to my Website</h1>
+        <h1 style="text-align: center">Welcome to my site</h1>
         </div>
     </body>
 
