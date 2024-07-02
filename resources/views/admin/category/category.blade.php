@@ -3,8 +3,6 @@
 @section('category_select', 'active')
 @section('container')
     <h1>Category</h1>
-    <button><a href="{{ route('admin/manage-category') }}">Add Category</a></button>
-
     <div class="row">
             @foreach ($categories as $category)
                 <p>Category Name : {{ $category->name }}</p>
