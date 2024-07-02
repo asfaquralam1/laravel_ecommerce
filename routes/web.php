@@ -27,7 +27,12 @@ Route::get('admin/edit-category/{id}', [AdminController::class, 'edit_category']
 Route::post('admin/update-category/{id}', [AdminController::class, 'update_category'])->name('admin/update-category');
 Route::delete('admin/destory-category/{id}', [AdminController::class, 'delete_category'])->name('admin/destory-category');
 Route::post('admin/category/status/{status}/{id}', [AdminController::class, 'status'])->name('admin/status-category');
+//product
 Route::get('admin/product', [AdminController::class, 'product'])->name('admin/product');
-
-
+Route::get('admin/manage-product', [AdminController::class, 'manage_product'])->name('admin/manage-product');
+Route::post('admin/add-product', [AdminController::class, 'add_product'])->name('admin/add-product');
+Route::get('admin/edit-product/{id}', [AdminController::class, 'edit_product'])->name('admin/edit-product');
+Route::post('admin/update-product/{id}', [AdminController::class, 'update_product'])->name('admin/update-product');
+Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin/destory-product');
+//Frontend
 Route::get('/categories', [HomeController::class, 'product'])->name('category');

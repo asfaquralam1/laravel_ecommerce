@@ -93,10 +93,37 @@
                                 <span class="nav-item">Dashboard</span>
                             </a>
                         </li>
+                        <!-- <li class="sidebar-item @yield('category_select')">
+                            <a href="{{ route('admin/category') }}" class="sidebar-link has-dropdown collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false"
+                                aria-controls="category">
+                                <i class="far fa-user"></i>
+                                <span>Category</span>
+                            </a>
+                            <ul id="category" class="sidebar-dropdown list-unstyled accordion-collapse collapse"
+                                data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">
+                                        Add category
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">
+                                        Edit category
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> -->
                         <li>
                             <a href="{{ route('admin/category') }}">
                                 <i class="fas fa-list"></i>
                                 <span class="nav-item">Category</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin/product') }}">
+                                <i class="fas fa-list"></i>
+                                <span class="nav-item">Product</span>
                             </a>
                         </li>
                         <li>

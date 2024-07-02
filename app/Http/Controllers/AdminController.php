@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -31,9 +32,6 @@ class AdminController extends Controller
             'name' => $request->post('name'),
             'slug' => $request->post('slug'),
         ]);
-        // $modal->category_name = $request->post('category_name');
-        // $modal->category_slug = $request->post('category_slug');
-        // $modal->status = 1;
         $modal->save();
         $request->session()->flash('message', 'Category Inserted');
         return redirect('admin/category');
@@ -69,6 +67,55 @@ class AdminController extends Controller
     }
     public function product()
     {
-        return view('admin.product.product');
+        $products = Product::all();
+        return view('admin.product.product', compact('products'));
+    }
+    public function manage_product()
+    {
+        $categories = Category::all();
+        return view('admin.product.add_product', compact('categories'));
+    }
+    public function add_product(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'details' => 'required',
+            'price' => 'required',
+        ]);
+
+        $modal = new Product([
+            'name' => $request->post('name'),
+            'category' => $request->post('category'),
+            'details' => $request->post('details'),
+            'price' => $request->post('price'),
+        ]);
+        $modal->save();
+        $request->session()->flash('message', 'Product Inserted');
+        return redirect('admin/product');
+    }
+    public function edit_product($id)
+    {
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('admin.product.edit_product', compact('product','categories'));
+    }
+    public function update_product(Request $request, $id)
+    {
+        $modal = Product::find($id);
+        $modal->name = $request->post('name');
+        $modal->category = $request->post('category');
+        $modal->details = $request->post('details');
+        $modal->price = $request->post('price');
+        $modal->update();
+        $request->session()->flash('message', 'Product Updated');
+        return redirect('admin/product');
+    }
+    public function delete_product(Request $request, $id)
+    {
+        $category = Product::find($id);
+        $category->delete();
+        $request->session()->flash('warning', 'Product Deleted');
+        return redirect('admin/product');
     }
 }
