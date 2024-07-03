@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
@@ -35,4 +33,4 @@ Route::get('admin/edit-product/{id}', [AdminController::class, 'edit_product'])-
 Route::post('admin/update-product/{id}', [AdminController::class, 'update_product'])->name('admin/update-product');
 Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin/destory-product');
 //Frontend
-Route::get('/categories', [HomeController::class, 'product'])->name('category');
+Route::get('/products', [HomeController::class, 'product'])->name('product');

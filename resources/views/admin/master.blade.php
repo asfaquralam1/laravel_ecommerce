@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
@@ -26,7 +27,8 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="{{ route('admin/dashboard') }}" class="logo"><img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
+                            <a href="{{ route('admin/dashboard') }}" class="logo"><img
+                                    src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
                                 <span class="nav-item">Ecommarce</span>
                             </a>
                         </li>
@@ -37,28 +39,25 @@
                             </a>
                         </li>
                         <li class="sidebar-item @yield('category_select')">
-                            <a href="{{ route('admin/category') }}" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false" aria-controls="category">
-                                <i class="far fa-user"></i>
-                                <span>Category</span>
+                            <a href="{{ route('admin/category') }}" class="sidebar-link has-dropdown collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false"
+                                aria-controls="category">
+                                <i class="fas fa-list"></i>
+                                <span class="nav-item">Category</span>
                             </a>
-                            <ul id="category" class="sidebar-dropdown list-unstyled accordion-collapse collapse" data-bs-parent="#sidebar">
+                            <ul id="category" class="sidebar-dropdown list-unstyled accordion-collapse collapse"
+                                data-bs-parent="#sidebar">
                                 <li>
                                     <a href="{{ route('admin/manage-category') }}">
-                                        <span> Add category</span>
+                                        <span class="dropdown-item"> Add category</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('admin/category') }}">
-                                        <span> Show category</span>
+                                        <span class="dropdown-item"> Show category</span>
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="{{ route('admin/category') }}">
-                                <i class="fas fa-list"></i>
-                                <span class="nav-item">Category</span>
-                            </a>
                         </li>
                         <li>
                             <a href="{{ route('admin/product') }}">
@@ -81,32 +80,12 @@
             </div>
         </div>
     </div>
-    {{-- <nav>
-        <ul>
-            <li>
-                <a href=""><img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
-    <span class="nav-item">Ecommarce</span>
-    </a>
-    </li>
-    <li class="sidebar-item @yield('dashboard_select')">
-        <a href="{{ route('admin/dashboard') }}" class="sidebar-link">
-            <i class="far fa-user"></i>
-            <span>Home</span>
-        </a>
-    </li>
-    <li class="sidebar-item">
-        <a href="{{ route('admin/category') }}" class="sidebar-link">
-            <i class="far fa-user"></i>
-            <span>Category</span>
-        </a>
-    </li>
-    </ul>
-    </nav> --}}
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 </body>
 

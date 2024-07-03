@@ -71,6 +71,11 @@ a {
     margin-left: 10px;
 }
 
+.dropdown-item {
+    margin-top: 10px !important;
+    margin-left: 90px !important;
+}
+
 a:hover {
     background: #eee;
 }

@@ -16,9 +16,15 @@
                             <label for="category_name" class="control-label mb-1">Category Name</label>
                             <input id="category_name" name="name" type="text" class="form-control"
                                 aria-required="true" aria-invalid="false" required>
-                            @error('name')
+                            {{-- @error('name')
                                 <div class="text-center text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
+                            @if (session()->has('message'))
+                                <div class="alert alert-success">
+                                    <button type="button" class="" data-dismiss="alert" aria-hidden="true">x</button>
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="form-group">
                             <label for="category_slug" class="control-label mb-1">Category Slug</label>

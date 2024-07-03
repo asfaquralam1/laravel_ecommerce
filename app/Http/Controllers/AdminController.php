@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function category()
     {
         $categories = Category::all();
-        return view('admin.category.category', compact('categories'));
+        return view('admin.category.manage_category', compact('categories'));
     }
     public function manage_category()
     {
@@ -68,7 +68,7 @@ class AdminController extends Controller
     public function product()
     {
         $products = Product::all();
-        return view('admin.product.product', compact('products'));
+        return view('admin.product.manage_product', compact('products'));
     }
     public function manage_product()
     {
@@ -84,12 +84,21 @@ class AdminController extends Controller
             'price' => 'required',
         ]);
 
-        $modal = new Product([
-            'name' => $request->post('name'),
-            'category' => $request->post('category'),
-            'details' => $request->post('details'),
-            'price' => $request->post('price'),
-        ]);
+        // $modal = new Product([
+        //     'name' => $request->post('name'),
+        //     'category' => $request->post('category'),
+        //     'details' => $request->post('details'),
+        //     'price' => $request->post('price'),
+        // ]);
+        $modal = new Product;
+        $modal->name = $request->name;
+        $modal->category = $request->category;
+        $modal->details = $request->details;
+        $modal->price = $request->price;
+        $image = $request->image;
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('product', $imagename);
+        $modal->image = $imagename;
         $modal->save();
         $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product');
@@ -98,7 +107,7 @@ class AdminController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all();
-        return view('admin.product.edit_product', compact('product','categories'));
+        return view('admin.product.edit_product', compact('product', 'categories'));
     }
     public function update_product(Request $request, $id)
     {

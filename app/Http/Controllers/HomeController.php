@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
+    public function index()
+    {
+        $products = Product::all();
+        return view('home', compact('products'));
+    }
     public function product()
     {
-        $categories = Category::all();
-        return view('product', compact('categories'));
+        $products = Product::all();
+        return view('product', compact('products'));
     }
 }
