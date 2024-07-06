@@ -13,16 +13,16 @@
             <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
             @endif
             <form action="{{route('add_cart',$product->id)}}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input type="text" name="quantity" value="1" min="1" style="width:100px">
-                            </div>
-                            <div class="col-md-4">
-                                <input type="submit" value="Add to Cart">
-                            </div>
-                        </div>
-                    </form>
+                @csrf
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="quantity" value="1" min="1" style="width:100px">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="submit" value="Add to Cart">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

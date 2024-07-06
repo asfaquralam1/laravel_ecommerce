@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,13 +13,15 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products'));
+        return view('home', compact('products','categories'));
     }
     public function product()
     {
+        $categories = Category::all();
         $products = Product::all();
-        return view('product', compact('products'));
+        return view('product', compact('products','categories'));
     }
     public function product_details($id)
     {
@@ -76,5 +79,12 @@ class HomeController extends Controller
         //     return redirect('login');
         // }
 
+    }
+    public function show_cart(){
+        $categories = Category::all();
+        //$id = Auth::user()->id;
+        $id = 1;
+        $products = Cart::where("user_id",'=' ,$id)->get();
+        return view('cart', compact('products','categories'));
     }
 }

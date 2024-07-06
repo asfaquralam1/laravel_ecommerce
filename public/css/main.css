@@ -1,3 +1,41 @@
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-text {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}
+
+.mobile-cart {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-cart {
+        display: block;
+        display: flex;
+        gap: 20px;
+    }
+
+    .large-cart {
+        display: none;
+    }
+}
+.newslatter-input {
+    width: 50%;
+    height: 2.5rem;
+    padding: 0.45rem;
+    color: #1a202c;
+    border: 1px solid #d2d6dc;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
 .subscribe-btn {
     width: 25%;
     height: 2.5rem;
@@ -11,24 +49,6 @@
 .subscribe-btn:hover {
     background-color: #553c9a;
 }
-
-.newslatter-input {
-    width: 50%;
-    height: 2.5rem;
-    padding: 0.45rem;
-    color: #1a202c;
-    border: 1px solid #d2d6dc;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
 /*footer */
 .social-icon {
     display: flex;

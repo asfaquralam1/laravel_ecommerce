@@ -36,3 +36,4 @@ Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_pro
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
 Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->name('add_cart');
+Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart');
