@@ -34,3 +34,5 @@ Route::post('admin/update-product/{id}', [AdminController::class, 'update_produc
 Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin/destory-product');
 //Frontend
 Route::get('/products', [HomeController::class, 'product'])->name('product');
+Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
+Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->name('add_cart');

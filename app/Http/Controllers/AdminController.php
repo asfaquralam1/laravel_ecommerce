@@ -82,6 +82,8 @@ class AdminController extends Controller
             'category' => 'required',
             'details' => 'required',
             'price' => 'required',
+            'discount_price' => 'required',
+            'quantity' => 'required'
         ]);
 
         // $modal = new Product([
@@ -95,6 +97,8 @@ class AdminController extends Controller
         $modal->category = $request->category;
         $modal->details = $request->details;
         $modal->price = $request->price;
+        $modal->discount_price = $request->discount_price;
+        $modal->quantity = $request->quantity;
         $image = $request->image;
         $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move('product', $imagename);
@@ -116,6 +120,8 @@ class AdminController extends Controller
         $modal->category = $request->post('category');
         $modal->details = $request->post('details');
         $modal->price = $request->post('price');
+        $modal->discount_price = $request->post('discount_price');
+        $modal->quantity = $request->post('quantity');
         $modal->update();
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');

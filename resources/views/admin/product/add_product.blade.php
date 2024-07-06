@@ -49,6 +49,22 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="discount_price" class="control-label mb-1">Product Discount Price</label>
+                            <input id="discount_price" name="discount_price" type="text" class="form-control" aria-required="true"
+                                aria-invalid="false" required>
+                            @error('discount_price')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
+                            <input id="quantity" name="quantity" type="text" class="form-control" aria-required="true"
+                                aria-invalid="false" required>
+                            @error('quantity')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="image" class="control-label mb-1">Product image</label>
                             <input id="image" name="image" type="file">
                             @error('image')

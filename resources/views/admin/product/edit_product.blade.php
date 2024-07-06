@@ -47,6 +47,22 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="discount_price" class="control-label mb-1">Product Discount Price</label>
+                            <input id="discount_price" name="discount_price" value="{{ $product->discount_price}}" type="text" class="form-control" aria-required="true"
+                                aria-invalid="false" required>
+                            @error('discount_price')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
+                            <input id="quantity" name="quantity" value="quantity" type="text" class="form-control" aria-required="true"
+                                aria-invalid="false" required>
+                            @error('quantity')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 submit

@@ -11,7 +11,8 @@
             <p>Category: {{ $product->category }}</p>
             <p>Details: {{ $product->details }}</p>
             <p>Price: {{ $product->price }}</p>
-            <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" style="width: 100%,height: 100%">
+            <p>Discount Price: {{ $product->discount_price }}</p>
+            <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" style="width: 100%">
             <a href="{{ route('admin/edit-product', $product->id) }}"><button>Edit</button></a>
             <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
                 @method('DELETE')
