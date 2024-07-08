@@ -46,7 +46,7 @@ nav {
     margin-left: 20px !important;
 }
 
-a {
+nav a {
     position: relative;
     color: rgb(85, 83, 83);
     font-size: 18px;
@@ -76,7 +76,7 @@ a {
     margin-left: 90px !important;
 }
 
-a:hover {
+nav a:hover {
     background: #eee;
 }
 
@@ -88,4 +88,47 @@ nav:hover {
 .logout {
     position: absolute;
     bottom: 0;
+}
+/*nav*/
+.add-btn{
+    padding: 8px 17px 8px 17px !important;
+    margin-bottom: 20px !important;
+    background-color: #5fb637;
+    border: none;
+    border-radius: 5px;
+}
+.add-btn a{
+    color: white !important;
+}
+.table{
+    border: 1px solid black;
+    width: 90%;
+}
+th{
+    background-color: rgb(51, 50, 50) !important;
+    color: #eee;
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+.product_image{
+    width: 100% !important;
+    height: 60px !important;
+}
+.edit-btn{
+    padding: 8px 17px 8px 17px !important;
+    margin-bottom: 20px !important;
+    background-color: #5fb637;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.delete-btn{
+    padding: 8px 17px 8px 17px !important;
+    margin-bottom: 20px !important;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
 }

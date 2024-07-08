@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,6 @@ Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
 Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->name('add_cart');
 Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart');
+
+Route::post('/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
+Route::post('/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
