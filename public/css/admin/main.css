@@ -89,34 +89,41 @@ nav:hover {
     position: absolute;
     bottom: 0;
 }
+
 /*nav*/
-.add-btn{
+.add-btn {
     padding: 8px 17px 8px 17px !important;
     margin-bottom: 20px !important;
     background-color: #5fb637;
     border: none;
     border-radius: 5px;
 }
-.add-btn a{
+
+.add-btn a {
     color: white !important;
 }
-.table{
+
+.table {
     border: 1px solid black;
     width: 90%;
 }
-th{
+
+th {
     background-color: rgb(51, 50, 50) !important;
     color: #eee;
     text-align: center;
 }
-td{
+
+td {
     text-align: center;
 }
-.product_image{
-    width: 100% !important;
-    height: 60px !important;
+
+.product_image {
+    width: 100%;
+    height: 100px !important;
 }
-.edit-btn{
+
+.edit-btn {
     padding: 8px 17px 8px 17px !important;
     margin-bottom: 20px !important;
     background-color: #5fb637;
@@ -124,11 +131,19 @@ td{
     border-radius: 5px;
     color: white;
 }
-.delete-btn{
+
+.delete-btn {
     padding: 8px 17px 8px 17px !important;
     margin-bottom: 20px !important;
     background-color: red;
     border: none;
     border-radius: 5px;
     color: white;
+}
+
+.status-btn {
+    padding: 8px 17px 8px 17px !important;
+    margin-bottom: 20px !important;
+    border: none;
+    border-radius: 5px;
 }
