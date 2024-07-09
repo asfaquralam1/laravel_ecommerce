@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="category" class="control-label mb-1">Category</label>
-                            <select name="category" id="">
+                            <select name="category">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->name }}">{{ $category->name }}</option>
                                 @endforeach
@@ -57,12 +57,19 @@
                         </div>
                         <div class="form-group">
                             <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
-                            <input id="quantity" name="quantity" value="quantity" type="text" class="form-control" aria-required="true"
+                            <input id="quantity" name="quantity" value="{{$product->quantity}}" type="text" class="form-control" aria-required="true"
                                 aria-invalid="false" required>
                             @error('quantity')
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <!-- <div class="form-group">
+                            <label for="image" class="control-label mb-1">Product image</label>
+                            <input id="image" name="iamge" value="{{$product->iamge}}" type="file">
+                            @error('image')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div> -->
                         <div>
                             <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                 submit

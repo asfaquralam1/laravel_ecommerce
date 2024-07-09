@@ -122,6 +122,10 @@ class AdminController extends Controller
         $modal->price = $request->post('price');
         $modal->discount_price = $request->post('discount_price');
         $modal->quantity = $request->post('quantity');
+        // $image = $request->image;
+        // $imagename = time() . '.' . $image->getClientOriginalExtension();
+        // $request->image->move('product', $imagename);
+        // $modal->image = $imagename;
         $modal->update();
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');

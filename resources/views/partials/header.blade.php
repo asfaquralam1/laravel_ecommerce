@@ -35,7 +35,7 @@
                         <a class="nav-link" href="#">
                             <i class="fas fa-user"></i>
                         </a>
-                        <a class="nav-link" href="{{ route('show_cart') }}">
+                        <a class="nav-link" href="{{ route('cart.show') }}">
                             <i class="fas fa-shopping-basket"></i>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
                     <a class="nav-link" href="#">
                         <i class="fas fa-user"></i>
                     </a>
-                    <a class="nav-link" href="{{ route('show_cart') }}">
+                    <a class="nav-link" href="{{ route('cart.show') }}">
                         <i class="fas fa-shopping-basket"></i>
                     </a>
                 </div>

@@ -36,8 +36,9 @@ Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_pro
 //Frontend
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
-Route::post('/add_cart/{id}', [HomeController::class, 'add_cart'])->name('add_cart');
-Route::get('/show_cart', [HomeController::class, 'show_cart'])->name('show_cart');
+Route::post('/add_cart/{id}', [CartController::class, 'add_cart'])->name('cart.add');
+Route::get('/show_cart', [CartController::class, 'show_cart'])->name('cart.show');
+Route::delete('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('cart.delete');
 
-Route::post('/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
-Route::post('/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
+Route::post('/cart/increase',[CartController::class,'increaseQuantity'])->name('cart.increase');
+Route::post('/cart/decrease', [CartController::class,'decreaseQuantity'])->name('cart.decrease');

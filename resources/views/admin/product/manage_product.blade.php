@@ -12,6 +12,7 @@
             <th>Details</th>
             <th>Price</th>
             <th>Discount Price</th>
+            <th>Quantity</th>
             <th>image</th>
             <th colspan="3">action</th>
         </tr>
@@ -22,6 +23,7 @@
                 <td>{{ $product->details }}</td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->discount_price }}</td>
+                <td>{{ $product->quantity }}</td>
                 <td><img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="product_image"></td>
                 <td><a href="{{ route('admin/edit-product', $product->id) }}"><button class="edit-btn">Edit</button></a></td>
                 <td>

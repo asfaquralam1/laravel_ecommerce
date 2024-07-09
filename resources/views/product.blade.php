@@ -10,14 +10,14 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
-                    @if (is_null($product->discount_price))
+                    @if ($product->discount_price > 0)
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->discount_price }}</p>
                     <p class="card-text" style="text-align: justify;">Tk.  <del>{{ $product->price }}</del></p>
-                    @elseif (is_null($product->price))
+                    @elseif ($product->discount_price == 0)
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                     @endif
                     <a href="{{route('product_details',$product->id)}}" class="btn btn-primary">View</a>
-                    <form action="{{route('add_cart',$product->id)}}" method="post">
+                    <form action="{{route('cart.add',$product->id)}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
