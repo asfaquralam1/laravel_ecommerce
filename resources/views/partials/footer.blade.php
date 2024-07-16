@@ -1,43 +1,53 @@
-<section id="footer" style="padding-top: 20px">
+<section id="footer">
     <div class="container">
         <div class="row ">
-            <div class="col-3">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <img src="https://marketplace.canva.com/EAFYecj_1Sc/1/0/1600w/canva-cream-and-black-simple-elegant-catering-food-logo-2LPev1tJbrg.jpg"
                     alt="img" width="50" height="50">
-                <p>Address</p>
-                <p>Email</p>
-                <p>phone</p>
+                <p>Ecommarce</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis pariatur minima, consequatur
+                    provident quibusdam impedit ad itaque nobis, fugit unde debitis dolore repellendus alias atque minus
+                    excepturi labore magnam necessitatibus!</p>
             </div>
-            <div class="col-3">
-                <h4>Quick Links</h4>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="footer-content text-justify">
+                    <h4>Quick Links</h4>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <h4>Contact Us</h4>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        {{-- <a class="nav-link" href="#">Home</a> --}}
+                        <p>House 27, Road 2, Sector 9, Uttara, Dhaka-1230</p>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <p>01111111111</p>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="#">as@gmail.com</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-3">
-                <h4>Information</h4>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                </ul>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <p style="text-align: left;">Copyright © Ecommarce project All Rights Reserved.
+                </p>
             </div>
-            <div class="col-3">
-                <h4 style="text-align: center;">Stay with Us</h4>
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="social-icon">
                     <a class="nav-link" href="#">
                         <i class="fab fa-facebook-f"></i>

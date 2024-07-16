@@ -1,6 +1,6 @@
 <div class="row">
     @foreach ($products as $product)
-        <div class="col-3">
+        <div class="col-md-3 col-sm-12">
             <div class="card">
                 <img src="/product/{{ $product->image }}" alt="...">
                 <div class="card-body">

@@ -29,22 +29,23 @@
         </div>
     </section>
 
-    <section id="product" style="padding-top: 20px;padding-bottom: 20px;">
+    <section id="product">
         <div class="container">
-            <h1 style="text-align: center;padding: 10px 10px;">Products</h1>
-            @include('topproduct');
+            <h1 class="product_heading">Products</h1>
+            @include('topproduct')
+        </div>
     </section>
 
 
-    <section id="newsletter" style="padding-top: 20px;padding-bottom: 20px; background-color: #65CCB7;">
+    <section id="newsletter">
         <div class="container">
             <div class="row">
-                <div class="col-6" style="text-align: center;">
+                <div class="col-md-6 col-sm-12 text-center">
                     <div class="mb-4" style="font-weight: 900;">Join
                         2,000+ subscribers</div>
                     <div class="text-lg">Stay in the loop with everything you need to know.</div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6 col-sm-12">
                     <input type="text" placeholder="Enter your email" class="newslatter-input">
                     <button type="submit" class="subscribe-btn">Subscribe</button>
                 </div>
