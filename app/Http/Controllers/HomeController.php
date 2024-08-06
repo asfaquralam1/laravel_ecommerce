@@ -15,17 +15,18 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('home', compact('products','categories'));
+        return view('home', compact('products', 'categories'));
     }
     public function product()
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('product', compact('products','categories'));
+        return view('product', compact('products', 'categories'));
     }
     public function product_details($id)
     {
+        $categories = Category::all();
         $product = Product::find($id);
-        return view('product_details', compact('product'));
+        return view('product_details', compact('product', 'categories'));
     }
 }

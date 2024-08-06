@@ -25,13 +25,19 @@
                 <td>{{ $product->discount_price }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td><img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="product_image"></td>
-                <td><a href="{{ route('admin/edit-product', $product->id) }}"><button class="edit-btn">Edit</button></a></td>
                 <td>
-                    <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <button class="delete-btn">Delete</button>
-                    </form>
+                    <button class="edit-btn">
+                        <a href="{{ route('admin/edit-product', $product->id) }}"><i class="fas fa-edit"></i>
+                        </a></button>
+                </td>
+                <td>
+                    <button class="delete-btn">
+                        <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <i class="fas fa-trash"></i>
+                        </form>
+                    </button>
                 </td>
             </tr>
         @endforeach

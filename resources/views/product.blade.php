@@ -6,7 +6,8 @@
             @foreach ($products as $product)
                 <div class="col-3">
                     <div class="card">
-                        <img src="/product/{{ $product->image }}" alt="...">
+                        <a href="{{ route('product_details', $product->id) }}"><img src="/product/{{ $product->image }}"
+                                alt="..." class="product_image"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
@@ -16,10 +17,9 @@
                             @elseif ($product->discount_price == 0)
                                 <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                             @endif
-                            <a href="{{ route('product_details', $product->id) }}" class="btn btn-primary">View</a>
-                            <form action="{{ route('cart.add', $product->id) }}" method="post">
+                            <form action="{{ route('add_cart', $product->id) }}" method="post">
                                 @csrf
-                                <button> <i class="fas fa-shopping-basket"></i></button>
+                                <button class="add-btn">ADD TO CART </button>
                             </form>
                         </div>
                     </div>

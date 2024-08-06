@@ -41,9 +41,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12 text-center">
-                    <div class="mb-4" style="font-weight: 900;">Join
-                        2,000+ subscribers</div>
-                    <div class="text-lg">Stay in the loop with everything you need to know.</div>
+                    <p style="font-weight: bold;font-size:20px">Subscribe for Our newsletters!</p>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <input type="text" placeholder="Enter your email" class="newslatter-input">

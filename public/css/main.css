@@ -32,14 +32,36 @@
     }
 }
 
+.cart {
+    width: 100%;
+    height: 560px;
+}
+
 /*product*/
 #product {
     padding: 20px 0px 20px 0px;
 }
 
+.card {
+    margin-bottom: 20px;
+}
+
 .product_heading {
     text-align: center;
     padding: 10px 10px;
+}
+
+.product_image {
+    width: 100%;
+    height: auto;
+}
+
+.add-btn {
+    padding: 10px;
+    background-color: #65CCB7;
+    border: none;
+    border-radius: 5px;
+    color: white;
 }
 
 /*newslatter*/
@@ -84,6 +106,11 @@
     padding-top: 20px;
     background-color: #65CCB7;
     color: white;
+}
+
+.footer-content>.navbar-nav>.nav-item>.nav-link {
+    text-decoration: none;
+    color: white !important;
 }
 
 .social-icon {

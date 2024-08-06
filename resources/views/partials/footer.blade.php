@@ -26,19 +26,20 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12">
-                <h4>Contact Us</h4>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        {{-- <a class="nav-link" href="#">Home</a> --}}
-                        <p>House 27, Road 2, Sector 9, Uttara, Dhaka-1230</p>
-                    </li>
-                    <li class="nav-item">
-                        <p>01111111111</p>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">as@gmail.com</a>
-                    </li>
-                </ul>
+                <div class="footer-content text-justify">
+                    <h4>Contact Us</h4>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <p>House 27, Road 2, Sector 9, Uttara, Dhaka-1230</p>
+                        </li>
+                        <li class="nav-item">
+                            <p>01111111111</p>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">as@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <hr>

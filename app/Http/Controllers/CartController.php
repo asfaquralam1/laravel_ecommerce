@@ -10,32 +10,32 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function add_cart(Request $request,$id)
+    public function add_cart(Request $request, $id)
     {
-           $user =   User::find(1);
-           $product = Product::find($id);
-           $cart = new Cart;
-           $cart->name = $user->name;
-           $cart->email = $user->email;
-           $cart->phone = $user->phone;
-           $cart->address = $user->address;
-           $cart->user_id = $user->id;
+        $user =   User::find(1);
+        $product = Product::find($id);
+        $cart = new Cart;
+        $cart->name = $user->name;
+        $cart->email = $user->email;
+        $cart->phone = $user->phone;
+        $cart->address = $user->address;
+        $cart->user_id = $user->id;
 
-           $cart->product_title = $product->name;
-           if($product->discount_price > 0){
+        $cart->product_title = $product->name;
+        if ($product->discount_price > 0) {
             $cart->price = $product->discount_price;
             $cart->total_price = $product->discount_price * $request->quantity;
-           }else{
+        } else {
             $cart->price = $product->price;
             $cart->total_price = $product->price * $request->quantity;
-           }
-           $cart->image = $product->image;
-           $cart->product_id = $product->id;
+        }
+        $cart->image = $product->image;
+        $cart->product_id = $product->id;
 
-           $cart->quantity = $request->quantity;
-           $cart->save();
+        $cart->quantity = 1;
+        $cart->save();
 
-           return redirect()->back();
+        return redirect()->back();
         // if(Auth::id())
         // {
         //    $user = Auth::user();
@@ -55,27 +55,28 @@ class CartController extends Controller
         //    $cart->save();
 
         //    return redirect()->back();
-           
+
 
         // }else{
         //     return redirect('login');
         // }
 
     }
-    public function show_cart(){
+    public function show_cart()
+    {
         $categories = Category::all();
         //$id = Auth::user()->id;
         $id = 1;
-        $products = Cart::where("user_id",'=' ,$id)->get();
-        return view('cart', compact('products','categories'));
+        $products = Cart::where("user_id", '=', $id)->get();
+        return view('cart', compact('products', 'categories'));
     }
-    public function delete_cart(Request $request,$id)
+    public function delete_cart(Request $request, $id)
     {
         $cart = Cart::find($id);
         $cart->delete();
         $request->session()->flash('warning', 'Cart Deleted');
         return redirect('show_cart');
-    } 
+    }
     public function increaseQuantity(Request $request)
     {
         $productId = $request->id;

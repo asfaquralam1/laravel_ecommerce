@@ -1,9 +1,9 @@
 @extends('master')
 @section('content')
     <div class="container">
-        <div class="card">
-            <table>
-                <tr style="background-color: yellow; padding: 20px;">
+        <div class="cart">
+            <table style="width: 100%;border: 1px solid black">
+                <tr style="background-color: yellow; padding: 100px;">
                     <th>Product</th>
                     <th>Variant</th>
                     <th>Price</th>
