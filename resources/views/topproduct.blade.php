@@ -8,7 +8,6 @@
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
-                    {{-- <form action="{{ route('add_cart', $product->id) }}" method="post"> --}}
                     <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                         @csrf
                         <button class="add-btn">ADD TO CART </button>

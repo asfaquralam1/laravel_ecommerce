@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="#"><img
+                <a class="navbar-brand" href="{{ route('home') }}"><img
                         src="https://marketplace.canva.com/EAFYecj_1Sc/1/0/1600w/canva-cream-and-black-simple-elegant-catering-food-logo-2LPev1tJbrg.jpg"
                         alt="img" width="50" height="50"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -13,7 +13,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
@@ -25,7 +25,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($categories as $category)
-                                    <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+                                <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -40,8 +40,10 @@
                         <a class="nav-link" href="#">
                             <i class="fas fa-user"></i>
                         </a>
-                        <a class="nav-link" href="{{ route('cart.show') }}">
-                            <i class="fas fa-shopping-basket"></i>
+                        <a class="nav-link" href="{{ route('cart') }}">
+                        <button type="button" class="btn btn-info">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        </button>
                         </a>
                     </div>
                 </div>
@@ -49,8 +51,10 @@
                     <a class="nav-link" href="#">
                         <i class="fas fa-user"></i>
                     </a>
-                    <a class="nav-link" href="{{ route('cart.show') }}">
-                        <i class="fas fa-shopping-basket"></i>
+                    <a class="nav-link" href="{{ route('cart') }}">
+                        <button type="button" class="btn btn-info">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        </button>
                     </a>
                 </div>
             </div>

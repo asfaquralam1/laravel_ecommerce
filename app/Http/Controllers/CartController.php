@@ -114,7 +114,8 @@ class CartController extends Controller
      */
     public function cart()
     {
-        return view('cart');
+        $categories = Category::all();
+        return view('cart',compact('categories'));
     }
 
     /**
@@ -150,7 +151,6 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        dd("hello");
         if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
