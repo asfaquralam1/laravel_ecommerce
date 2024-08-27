@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/register-view', [AuthController::class, 'register_view'])->name('register.view');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');

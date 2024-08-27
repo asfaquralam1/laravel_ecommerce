@@ -115,7 +115,7 @@ class CartController extends Controller
     public function cart()
     {
         $categories = Category::all();
-        return view('cart',compact('categories'));
+        return view('cart', compact('categories'));
     }
 
     /**
@@ -136,7 +136,8 @@ class CartController extends Controller
                 "name" => $product->name,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => $product->image
+                "image" => $product->image,
+                "product_id" => $product->id,
             ];
         }
 

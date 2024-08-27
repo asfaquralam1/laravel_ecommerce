@@ -24,7 +24,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request,$id)
+    public function create(Request $request, $id)
     {
         $user =   User::find(2);
         $product = Product::find($id);
@@ -36,11 +36,10 @@ class OrderController extends Controller
         $order->user_id = $user->id;
 
         $order->product_title = $product->name;
-        
         $order->image = $product->image;
         $order->product_id = $product->id;
+        $order->quantity = $request->quantity;
 
-        $order->quantity = $product->quantity;
         $order->save();
 
         return redirect()->back();
