@@ -10,6 +10,10 @@ class AdminController extends Controller
 {
     public function index()
     {
+        return view('admin.auth.login');
+    }
+    public function dashboaard()
+    {
         return view('admin.dashboard');
     }
     public function category()

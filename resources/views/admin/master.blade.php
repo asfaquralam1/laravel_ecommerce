@@ -17,11 +17,14 @@
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
 
     <link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/admin/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/custom.css') }}">
 </head>
 
 <body>
-    <div class="wrapper">
+    @section('container')
+    @show
+    {{-- <div class="wrapper">
         <div class="row">
             <div class="col-2">
                 <nav>
@@ -79,9 +82,11 @@
                 @show
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Optional JavaScript; choose one of the two! -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

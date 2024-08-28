@@ -23,7 +23,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register-view', [AuthController::class, 'register_view'])->name('register.view');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin/dashboard');
+Route::get('/admin/login', [AdminController::class, 'index'])->name('admin.login');
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
 Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');
 Route::post('admin/add-category', [AdminController::class, 'add_category'])->name('admin/add-category');
