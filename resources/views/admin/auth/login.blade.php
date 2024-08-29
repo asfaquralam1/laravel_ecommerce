@@ -1,27 +1,3 @@
-{{-- @extends('admin.master')
-@section('page_title', 'Login')
-@section('login_select', 'active')
-@section('container')
-    <div class="container">
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-@endsection --}}
-
 <!doctype html>
 <html lang="en">
 
@@ -45,15 +21,20 @@
 
 <body>
     <div class="login-form-section" style="background-image: url({{ asset('image/3165.jpg') }})">
-        <form class="login-form">
+        <form class="login-form" action="{{route('admin.authenticate')}}" method="post">
+            @csrf
             <h1 class="login-heading">Login</h1>
             <div class="mb-4">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Useremail">
-                {{-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+                <input type="email" class="form-control" name="email" id="email" placeholder="Useremail">
+                @error('email')
+                <p>{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-4">
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                @error('password')
+                <p>{{$message}}</p>
+                @enderror
             </div>
             <div class="mb-3 form-check" style="display: flex;justify-content:space-between">
                 <div>

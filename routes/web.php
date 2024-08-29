@@ -23,7 +23,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register-view', [AuthController::class, 'register_view'])->name('register.view');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/admin/login', [AdminController::class, 'index'])->name('admin.login');
+//admin
+Route::group(['prefix'=> 'admin'],function(){
+    Route::group(['middleware'=> 'admin.guest'],function(){
+        Route::get('/login', [AdminController::class, 'index'])->name('admin.login');
+        Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
+    });
+    Route::group(['middleware'=> 'admin.auth'],function(){
+    
+    });
+});
+
+
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
 Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');
