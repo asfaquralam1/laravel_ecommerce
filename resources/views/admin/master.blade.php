@@ -17,8 +17,6 @@
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
 
     <link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin/custom.css') }}">
 </head>
 
 <body>
