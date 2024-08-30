@@ -25,13 +25,13 @@
             @csrf
             <h1 class="login-heading">Login</h1>
             <div class="mb-4">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Useremail">
+                <input type="email" class="form-control @error('email') is-invalid @enderror"  value="{{old('email')}}" name="email" id="email" placeholder="Useremail">
                 @error('email')
                 <p>{{$message}}</p>
                 @enderror
             </div>
             <div class="mb-4">
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                 @error('password')
                 <p>{{$message}}</p>
                 @enderror

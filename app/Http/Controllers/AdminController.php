@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -19,14 +20,28 @@ class AdminController extends Controller
             'password'=> 'required',
         ]);
         if($validator->passes()){
-
+            if(Auth::guard('admin')->attempt(['email' => $request->email,'password' => $request->password],$request->get('remember'))){
+                $admin = Auth::guard('admin')->user();
+                if($admin->role == 2){
+                    return redirect()->route('admin.dashboard');      
+                }else{
+                    Auth::guard('admin')->logout();
+                    return redirect()->route('admin.login')->with('error','You are not authorized to access');
+                }
+            }else{
+                return redirect()->route('admin.login')->with('error','Either Email/Password is incorrect');
+            }
         }else{
             return redirect()->route('admin.login')
             ->withErrors($validator)
             ->withInput($request->only('email'));
         }
     }
-    public function dashboaard()
+    public  function logout(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    }
+    public function dashboard()
     {
         return view('admin.dashboard');
     }

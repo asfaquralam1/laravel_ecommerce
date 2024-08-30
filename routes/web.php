@@ -24,18 +24,19 @@ Route::get('/register-view', [AuthController::class, 'register_view'])->name('re
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 //admin
+Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login');
 Route::group(['prefix'=> 'admin'],function(){
     Route::group(['middleware'=> 'admin.guest'],function(){
-        Route::get('/login', [AdminController::class, 'index'])->name('admin.login');
         Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
     });
     Route::group(['middleware'=> 'admin.auth'],function(){
-    
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     });
 });
 
 
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
+// Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
 Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');
 Route::post('admin/add-category', [AdminController::class, 'add_category'])->name('admin/add-category');
