@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Expr\New_;
 
 class AdminController extends Controller
 {
@@ -14,36 +16,65 @@ class AdminController extends Controller
     {
         return view('admin.auth.login');
     }
-    public function authenticate(Request $request){
-        $validator = Validator::make($request->all(),[
+    public function authenticate(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password'=> 'required',
+            'password' => 'required',
         ]);
-        if($validator->passes()){
-            if(Auth::guard('admin')->attempt(['email' => $request->email,'password' => $request->password],$request->get('remember'))){
+        if ($validator->passes()) {
+            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
                 $admin = Auth::guard('admin')->user();
-                if($admin->role == 2){
-                    return redirect()->route('admin.dashboard');      
-                }else{
+                if ($admin->role == 2) {
+                    return redirect()->route('admin.dashboard');
+                } else {
                     Auth::guard('admin')->logout();
-                    return redirect()->route('admin.login')->with('error','You are not authorized to access');
+                    return redirect()->route('admin.login')->with('error', 'You are not authorized to access');
                 }
-            }else{
-                return redirect()->route('admin.login')->with('error','Either Email/Password is incorrect');
+            } else {
+                return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
             }
-        }else{
+        } else {
             return redirect()->route('admin.login')
-            ->withErrors($validator)
-            ->withInput($request->only('email'));
+                ->withErrors($validator)
+                ->withInput($request->only('email'));
         }
     }
-    public  function logout(){
+    public  function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+    public function order()
+    {
+        $categories = Category::all();
+        return view('admin.order', compact('categories'));
+    }
+    public function add_order(Request $request)
+    {
+
+        $order = new Order;
+
+        $order->category_id = $request->category_id;
+        $order->order_name = $request->order_name;
+        $result = $order->save();
+        dd($result);
+
+        if ($result) {
+            return response()->json([
+                "message" => "Category Inserted",
+                "code" => 200
+            ]);
+        } else {
+            return response()->json([
+                "message" => "Internal Server Error",
+                "code" => 500
+            ]);
+        }
     }
     public function category()
     {

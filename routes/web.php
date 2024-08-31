@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/order', [AdminController::class, 'order']);
+Route::post('/addorder', [AdminController::class, 'add_order']);
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/register-view', [AuthController::class, 'register_view'])->name('register.view');
@@ -25,18 +29,16 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 //admin
 Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login');
-Route::group(['prefix'=> 'admin'],function(){
-    Route::group(['middleware'=> 'admin.guest'],function(){
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['middleware' => 'admin.guest'], function () {
         Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
     });
-    Route::group(['middleware'=> 'admin.auth'],function(){
+    Route::group(['middleware' => 'admin.auth'], function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     });
 });
 
-
-// Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
 Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');
 Route::post('admin/add-category', [AdminController::class, 'add_category'])->name('admin/add-category');
