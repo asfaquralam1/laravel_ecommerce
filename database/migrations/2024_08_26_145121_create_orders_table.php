@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             // $table->integer('product_id')->nullable();
             // $table->integer('user_id')->nullable();
             $table->integer('category_id')->nullable();
-            $table->integer('order_name')->nullable();
+            $table->string('order_name')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/order', [AdminController::class, 'order']);
-Route::post('/addorder', [AdminController::class, 'add_order']);
+Route::post('/addorder', [AdminController::class, 'add_order'])->name('addorder');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

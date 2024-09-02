@@ -56,25 +56,21 @@ class AdminController extends Controller
     }
     public function add_order(Request $request)
     {
-
         $order = new Order;
-
         $order->category_id = $request->category_id;
         $order->order_name = $request->order_name;
         $result = $order->save();
-        dd($result);
-
-        if ($result) {
-            return response()->json([
-                "message" => "Category Inserted",
-                "code" => 200
-            ]);
-        } else {
-            return response()->json([
-                "message" => "Internal Server Error",
-                "code" => 500
-            ]);
-        }
+        // if ($result) {
+        //     return response()->json([
+        //         "message" => "Category Inserted",
+        //         "code" => 200
+        //     ]);
+        // } else {
+        //     return response()->json([
+        //         "message" => "Internal Server Error",
+        //         "code" => 500
+        //     ]);
+        // }
     }
     public function category()
     {

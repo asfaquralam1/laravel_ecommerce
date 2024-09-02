@@ -8,7 +8,6 @@
                     <th style="width:10%">Price</th>
                     <th style="width:8%">Quantity</th>
                     <th style="width:22%" class="text-center">Subtotal</th>
-                    <th style="width:10%"></th>
                 </tr>
             </thead>
             <tbody>

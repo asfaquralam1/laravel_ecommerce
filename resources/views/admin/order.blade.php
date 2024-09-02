@@ -7,7 +7,7 @@
             @include('admin.sidebar')
         </div>
         <div class="col-10">
-            <form action="" id="myForm">
+            <form id="myForm">
                 @csrf
                 <div class="from-group">
                     <label for="">Select Category</label>
@@ -32,10 +32,9 @@
     $(document).ready(function() {
         $('#submit').click(function(e) {
             e.preventDefault();
-            console.log("hi");
             $.ajax({
-                url: "{{ url('addorder') }}",
-                type: "post",
+                url: "{{ route('addorder') }}",
+                type: "POST",
                 dataType: "json",
                 data: $('#myForm').serialize(),
                 success: function(response) {
