@@ -23,6 +23,8 @@ Route::get('/order', [AdminController::class, 'order']);
 Route::post('/addorder', [AdminController::class, 'add_order'])->name('addorder');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+//login
+Route::get('/login',[AuthController::class, 'index'])->name('login');
 
 Route::get('/register-view', [AuthController::class, 'register_view'])->name('register.view');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
