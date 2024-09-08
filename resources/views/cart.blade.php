@@ -1,66 +1,75 @@
 @extends('master')
 @section('content')
-    <div class="container">
-        <table id="cart" class="table table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th style="width:50%">Product</th>
-                    <th style="width:10%">Price</th>
-                    <th style="width:8%">Quantity</th>
-                    <th style="width:22%" class="text-center">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $total = 0 @endphp
-                @if (session('cart'))
-                    @foreach (session('cart') as $id => $details)
-                        {{ var_dump($details) }}
-                        @php $total += $details['price'] * $details['quantity'] @endphp
-                        <tr data-id="{{ $id }}">
-                            <td data-th="Product">
-                                <div class="row">
-                                    <div class="col-sm-3 hidden-xs"><img src="/product/{{ $details['image'] }}"
-                                            width="100" height="100" class="img-responsive" /></div>
-                                    <div class="col-sm-9">
-                                        <h4 class="nomargin">{{ $details['name'] }}</h4>
+    <section id="cart-page">
+        <div class="container">
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr style="background-color: orange;">
+                        <th style="width:50%; padding: 20px;">Product</th>
+                        <th style="width:10%; padding: 20px;">Price</th>
+                        <th style="width:8%; padding: 20px;">Quantity</th>
+                        <th style="width:22%; padding: 20px;" class="text-center">Subtotal</th>
+                        <th style="width:22%; padding: 20px;" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php $total = 0 @endphp
+                    @if (session('cart'))
+                        @foreach (session('cart') as $id => $details)
+                            {{-- {{ var_dump($details) }} --}}
+                            @php $total += $details['price'] * $details['quantity'] @endphp
+                            <tr data-id="{{ $id }}">
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <div class="col-sm-3 hidden-xs"><img src="/product/{{ $details['image'] }}"
+                                                width="100" height="100" class="img-responsive" /></div>
+                                        <div class="col-sm-9">
+                                            <h4 class="nomargin">{{ $details['name'] }}</h4>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td data-th="Price">${{ $details['price'] }}</td>
-                            <td data-th="Quantity">
-                                <input type="number" min="1" value="{{ $details['quantity'] }}"
-                                    class="form-control quantity update-cart" />
-                            </td>
-                            <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
-                            <td class="actions" data-th="">
-                                <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    @endforeach
-                @endif
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5" class="text-end">
-                        <h3><strong>Total ${{ $total }}</strong></h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="text-end">
-                        <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue
-                            Shopping</a>
-                        <button class="btn btn-success">
-                            {{-- {{var_dump($id)}} --}}
-                            <form action="{{ route('palce.order', $id) }}" method="post">
-                                @csrf
-                                <button class="add-btn">Checkout </button>
-                            </form>
-                        </button>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+                                </td>
+                                <td data-th="Price">${{ $details['price'] }}</td>
+                                <td data-th="Quantity">
+                                    <input type="number" min="1" value="{{ $details['quantity'] }}"
+                                        class="form-control quantity update-cart" />
+                                </td>
+                                <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}
+                                </td>
+                                <td class="actions" class="text-center">
+                                    <button class="btn btn-danger btn-sm remove-from-cart"><i
+                                            class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-end">
+                            <h3><strong>Total ${{ $total }}</strong></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{{ url('/') }}" class="btn btn-warning text-end"><i class="fa fa-angle-left"></i>
+                                Continue
+                                Shopping</a>
+                        </td>
+                        <td colspan="5" class="text-end">
+                            <button
+                                style="background-color: #65CCB7 !important;padding: 5px !important;border-radius: 5px;border: 1px solid #65CCB7">
+                                <form action="{{ route('palce.order') }}" method="post"
+                                    style="margin-block-end: 0 !important;">
+                                    @csrf
+                                    Checkout
+                                </form>
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

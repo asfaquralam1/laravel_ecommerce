@@ -3,7 +3,7 @@
 @section('login_select', 'active')
 @section('container')
     <div class="login-form-section" style="background-image: url({{ asset('image/3165.jpg') }})">
-        <form class="login-form" action="{{ route('admin.authenticate') }}" method="post">
+        <form class="login-form" action="{{ route('user.login') }}" method="post">
             @csrf
             <h1 class="login-heading">Login</h1>
             <div class="mb-4">

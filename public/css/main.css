@@ -64,6 +64,20 @@
     color: white;
 }
 
+/* product page with no product default height */
+#products-page {
+    min-height: 555px !important;
+}
+
+#cart-page {
+    min-height: 550px !important;
+}
+
+#cart {
+    border: none !important;
+    border: 1px solid #eee !important;
+}
+
 /*newslatter*/
 #newsletter {
     padding-top: 20px;

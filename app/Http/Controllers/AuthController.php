@@ -2,30 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('auth.login');
     }
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+        $request->validate([
+            'email' => 'required',
             'password' => 'required',
         ]);
-        if (Auth::attempt($validator)) {
-            // $admin = Auth::guard('admin')->user();
-            return redirect()->back()->with('validator');
+        $categories = Category::all();
+        $products = Product::all();
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return view('home', compact('products', 'categories'));
         } else {
             return redirect()->route('login')->with('error', 'Either Email/Password is incorrect');
-
         }
     }
-    public function register_view(Request $request)
+    public function register_view()
     {
         return view('Auth.register');
     }

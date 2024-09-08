@@ -15,9 +15,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -25,7 +25,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($categories as $category)
-                                <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+                                    <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -41,9 +41,8 @@
                             <i class="fas fa-user"></i>
                         </a>
                         <a class="nav-link" href="{{ route('cart') }}">
-                        <button type="button" class="btn btn-info">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
-                        </button>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="text-danger">{{ count((array) session('cart')) }}</span>
                         </a>
                     </div>
                 </div>
@@ -52,9 +51,8 @@
                         <i class="fas fa-user"></i>
                     </a>
                     <a class="nav-link" href="{{ route('cart') }}">
-                        <button type="button" class="btn btn-info">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
-                        </button>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="text-danger">{{ count((array) session('cart')) }}</span>
                     </a>
                 </div>
             </div>
