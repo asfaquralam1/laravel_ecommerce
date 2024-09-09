@@ -55,7 +55,7 @@
                                 Continue
                                 Shopping</a>
                         </td>
-                        <td colspan="5" class="text-end">
+                        {{-- <td colspan="5" class="text-end">
                             <button
                                 style="background-color: #65CCB7 !important;padding: 5px !important;border-radius: 5px;border: 1px solid #65CCB7">
                                 <form action="{{ route('palce.order') }}" method="post"
@@ -64,7 +64,7 @@
                                     Checkout
                                 </form>
                             </button>
-                        </td>
+                        </td> --}}
                     </tr>
                 </tfoot>
             </table>
