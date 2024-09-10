@@ -44,13 +44,14 @@
                                         </a></button>
                                 </td>
                                 <td>
-                                    <button class="delete-btn">
+                                    <p>a</p>
+                                    <!-- <button class="delete-btn">
                                         <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf
                                             <i class="fas fa-trash"></i>
                                         </form>
-                                    </button>
+                                    </button> -->
                                 </td>
                             </tr>
                         @endforeach
