@@ -1,4 +1,5 @@
 <?php
+require 'admin.php';
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/order', [AdminController::class, 'order']);
 Route::post('/addorder', [AdminController::class, 'add_order'])->name('addorder');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 //login
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');

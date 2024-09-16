@@ -15,15 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            // $table->string('product_title')->nullable();
-            // $table->integer('price')->nullable();
-            // $table->integer('quantity')->nullable();
-            // $table->integer('total_price')->nullable();
-            // $table->string('image')->nullable();
-            // $table->integer('product_id')->nullable();
-            // $table->integer('user_id')->nullable();
-            $table->integer('category_id')->nullable();
-            $table->string('order_name')->nullable();
+            $table->integer('product_id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->enum('status', ['pending', 'accept', 'cooking', 'packing', 'delivered', 'cancel', 'failed'])->default('pending');
+
+            $table->decimal('grand_total', 20, 6);
+            $table->unsignedInteger('item_count');
+            $table->boolean('payment_status')->default(0);             // 1 means completed
+            $table->string('payment_method')->default('cash');         // for sslcommerze card_type
             $table->timestamps();
         });
     }

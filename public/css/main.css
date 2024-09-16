@@ -115,6 +115,18 @@
     background-color: #553c9a;
 }
 
+@media (min-width: 414px) {
+    .newslatter-input {
+        width: 68%;
+    }
+}
+
+@media (max-width: 376px) {
+    .newslatter-input {
+        width: 65%;
+    }
+}
+
 /*footer */
 #footer {
     padding-top: 20px;
