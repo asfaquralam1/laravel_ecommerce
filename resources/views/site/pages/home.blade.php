@@ -1,4 +1,4 @@
-@extends('master')
+@extends('site.pages.master')
 @section('content')
     <section id="banner">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -32,7 +32,7 @@
     <section id="product">
         <div class="container">
             <h1 class="product_heading">Products</h1>
-            @include('topproduct')
+            @include('site.pages.homeproduct')
         </div>
     </section>
 

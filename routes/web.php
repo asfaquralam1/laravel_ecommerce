@@ -19,10 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/order', [AdminController::class, 'order']);
-Route::post('/addorder', [AdminController::class, 'add_order'])->name('addorder');
-
-// Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 //login
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/user/login', [AuthController::class, 'login'])->name('user.login');
@@ -56,22 +53,10 @@ Route::post('admin/add-product', [AdminController::class, 'add_product'])->name(
 Route::get('admin/edit-product/{id}', [AdminController::class, 'edit_product'])->name('admin/edit-product');
 Route::post('admin/update-product/{id}', [AdminController::class, 'update_product'])->name('admin/update-product');
 Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin/destory-product');
+
+
 //Frontend
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
-Route::post('/add_cart/{id}', [CartController::class, 'add_cart'])->name('add_cart');
-Route::get('/show_cart', [CartController::class, 'show_cart'])->name('cart.show');
-Route::delete('/delete_cart/{id}', [CartController::class, 'delete_cart'])->name('cart.delete');
-
-Route::post('/cart/increase', [CartController::class, 'increaseQuantity'])->name('cart.increase');
-Route::post('/cart/decrease', [CartController::class, 'decreaseQuantity'])->name('cart.decrease');
-
-
-
-Route::get('cart', [CartController::class, 'cart'])->name('cart');
-Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-
-
-Route::post('palce-order', [OrderController::class, 'create'])->name('palce.order');
+Route::get('cart', [HomeController::class, 'show_cart'])->name('cart');
+Route::post('add-to-cart/{id}', [HomeController::class, 'addToCart'])->name('add_cart');

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('site.pages.master')
 @section('content')
     <div class="container">
         <div class="card">
