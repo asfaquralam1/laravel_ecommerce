@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('page_title', 'Login')
-@section('login_select', 'active')
+{{-- @section('login_select', 'active') --}}
 @section('container')
     <div class="login-form-section" style="background-image: url({{ asset('image/3165.jpg') }})">
         <form class="login-form" action="{{ route('user.login') }}" method="post">

@@ -13,7 +13,7 @@
                 @elseif (is_null($product->price))
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                 @endif
-                <form action="{{ route('add_cart', $product->id) }}" method="post">
+                <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                     @csrf
                     <button class="add-btn">ADD TO CART</button>
                     {{-- <div class="row">

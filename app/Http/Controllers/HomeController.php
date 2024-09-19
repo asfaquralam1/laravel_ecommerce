@@ -29,19 +29,23 @@ class HomeController extends Controller
         $product = Product::find($id);
         return view('site.pages.product_details', compact('product', 'categories'));
     }
-    public function show_cart()
+    public function checkout()
     {
+        //if cart is empty redirect to cart page
+        if (Cart::count() == 0) {
+            return redirect()->route('login');
+        }
+        //--if user is not logged in then
+        if (Auth::check() == false) {
+            //--get back to last page
+            if (!session()->has('url.intended')) {
+                session(['url.intended' => url()->current()]);
+            }
+            return redirect()->route('login');
+        }
+
         $categories = Category::all();
-        //$id = Auth::user()->id;
-        $id = 1;
-        $products = Cart::where("user_id", '=', $id)->get();
-        return view('site.pages.cart', compact('products', 'categories'));
-    }
-    public function add_cart(Request $request, $id)
-    {
-        $cart = new Cart;
-        $cart->quantity = 1;
-        $cart->save();
-        return redirect()->back();
+        $products = Product::all();
+        return view('site.pages.checkout', compact('products', 'categories'));
     }
 }

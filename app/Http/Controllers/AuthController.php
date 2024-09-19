@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        return view('site.auth.login');
     }
     public function login(Request $request)
     {
@@ -25,14 +25,14 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return view('home', compact('products', 'categories'));
+            return view('site.pages.home', compact('products', 'categories'));
         } else {
             return redirect()->route('login')->with('error', 'Either Email/Password is incorrect');
         }
     }
     public function register_view()
     {
-        return view('Auth.register');
+        return view('site.auth.register');
     }
     public function register(Request $request)
     {

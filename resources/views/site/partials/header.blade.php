@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="navbar-text large-cart">
-                    <a class="nav-link" href="{{ route('login') }}">
+                    <a class="nav-link" href="{{ route('register') }}">
                         <i class="fas fa-user"></i>
                     </a>
                     <a class="nav-link" href="{{ route('cart') }}">

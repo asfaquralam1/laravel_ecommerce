@@ -1,4 +1,4 @@
-@extends('master')
+@extends('site.pages.master')
 @section('content')
     <section id="cart-page">
         <div class="container">
@@ -50,21 +50,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+
+                        <td colspan="5" class="text-end">
                             <a href="{{ url('/') }}" class="btn btn-warning text-end"><i class="fa fa-angle-left"></i>
                                 Continue
                                 Shopping</a>
+                            <a href="{{ url('/checkout') }}" class="btn btn-success text-end">Checkout</a>
                         </td>
-                        {{-- <td colspan="5" class="text-end">
-                            <button
-                                style="background-color: #65CCB7 !important;padding: 5px !important;border-radius: 5px;border: 1px solid #65CCB7">
-                                <form action="{{ route('palce.order') }}" method="post"
-                                    style="margin-block-end: 0 !important;">
-                                    @csrf
-                                    Checkout
-                                </form>
-                            </button>
-                        </td> --}}
                     </tr>
                 </tfoot>
             </table>
@@ -75,51 +67,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.btn-increase').on('click', function() {
-            var id = $(this).data('id');
-            console.log("increaseQuantity", id)
-            increaseQuantity(id);
-        });
 
-        $('.btn-decrease').on('click', function() {
-            var id = $(this).data('id');
-            console.log("decreaseQuantity", id)
-            decreaseQuantity(id);
-        });
-
-        function increaseQuantity(id) {
-            $.ajax({
-                url: "{{ route('cart.increase') }}",
-                type: "POST",
-                data: {
-                    id: id,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    $('#quantity_' + id).val(response.quantity);
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        }
-
-        function decreaseQuantity(id) {
-            $.ajax({
-                url: "{{ route('cart.decrease') }}",
-                type: "POST",
-                data: {
-                    id: id,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    $('#quantity_' + id).val(response.quantity);
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        }
 
         $(".update-cart").change(function(e) {
             e.preventDefault();
