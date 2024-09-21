@@ -34,19 +34,19 @@ class AuthController extends Controller
     {
         return view('site.auth.register');
     }
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:5'
-        ]);
-        if ($validator->passes()) {
-        } else {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
-            ]);
-        }
-    }
+    // public function register(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'name' => 'required|min:3',
+    //         'email' => 'required|email|unique:users',
+    //         'password' => 'required|min:5'
+    //     ]);
+    //     if ($validator->passes()) {
+    //     } else {
+    //         return response()->json([
+    //             'status' => false,
+    //             'errors' => $validator->errors()
+    //         ]);
+    //     }
+    // }
 }
