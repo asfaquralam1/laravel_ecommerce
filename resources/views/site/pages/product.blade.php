@@ -1,4 +1,4 @@
-@extends('master')
+@extends('site.pages.master')
 @section('content')
     <section id="products-page">
         <div class="container">

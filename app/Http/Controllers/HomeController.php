@@ -48,4 +48,13 @@ class HomeController extends Controller
         $products = Product::all();
         return view('site.pages.checkout', compact('products', 'categories'));
     }
+    public function profile(){
+        $categories = Category::all();
+        return view('site.pages.profile',compact('categories'));
+    }
+    public  function logout()
+    {
+        auth()->logout();
+        return redirect()->route('login');
+    }
 }

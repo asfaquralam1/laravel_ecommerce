@@ -47,9 +47,13 @@
                     </div>
                 </div>
                 <div class="navbar-text large-cart">
+                    @if (Auth::user())
+                    <a href="{{ route('profile') }}">{{Auth::user()->name}}</a>
+                    @else
                     <a class="nav-link" href="{{ route('register') }}">
                         <i class="fas fa-user"></i>
                     </a>
+                    @endif
                     <a class="nav-link" href="{{ route('cart') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         <span class="text-danger">{{ count((array) session('cart')) }}</span>

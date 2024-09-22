@@ -19,14 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-//login
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
-
-Route::get('/register', [AuthController::class, 'register_view'])->name('register');
-Route::post('/register-user', [AuthController::class, 'register'])->name('user.register');
-
 //admin
 Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login');
 Route::group(['prefix' => 'admin'], function () {
@@ -56,11 +48,26 @@ Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_pro
 
 
 //Frontend
+Route::get('/', [HomeController::class, 'index'])->name('home');
+//register
+Route::get('/register', [AuthController::class, 'register_view'])->name('register');
+Route::post('/register-user', [AuthController::class, 'register'])->name('user.register');
+//login
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
+//logout
+Route::get('/logout-user', [HomeController::class, 'logout'])->name('user.logout');
+
+Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+//product
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
+//cart
 Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-
 Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
+
+//user
+Route::get('profile', [HomeController::class, 'profile'])->name('profile');
