@@ -48,9 +48,11 @@
                 </div>
                 <div class="navbar-text large-cart">
                     @if (Auth::user())
-                    <a href="{{ route('profile') }}">{{Auth::user()->name}}</a>
+                    <a class="nav-link" href="{{ route('profile') }}">
+                        <i class="fas fa-user"></i>
+                    </a>
                     @else
-                    <a class="nav-link" href="{{ route('register') }}">
+                    <a class="nav-link" href="{{ route('login') }}">
                         <i class="fas fa-user"></i>
                     </a>
                     @endif

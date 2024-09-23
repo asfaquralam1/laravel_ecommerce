@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,53 +20,51 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="register-form-section">
-            <form action="{{route("user.register")}}" method="post" class="register-form" name="registrationForm" id="registrationForm">
-                @csrf
-                <h4 class="text-center" style="padding-bottom: 20px;color: black">Register Now</h4>
-                <div class="mb-4">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        id="name" placeholder="Name">
-                    @error('name')
+    <div class="register-form-section">
+        <form action="{{ route('user.register') }}" method="post" class="register-form" name="registrationForm"
+            id="registrationForm">
+            @csrf
+            <h4 class="text-center" style="padding-bottom: 20px;color: black">Register Now</h4>
+            <div class="mb-4">
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                    id="name" placeholder="Name">
+                @error('name')
                     <p>{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                        id="email" placeholder="Email">
-                    @error('email')
+                @enderror
+            </div>
+            <div class="mb-4">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    id="email" placeholder="Email">
+                @error('email')
                     <p>{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-4">
-                    <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
-                        id="phone" placeholder="Phone">
-                    @error('phone')
+                @enderror
+            </div>
+            <div class="mb-4">
+                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                    id="phone" placeholder="Phone">
+                @error('phone')
                     <p>{{ $message }}</p>
-                    @enderror
-                </div>
+                @enderror
+            </div>
 
-                <div class="mb-4">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                        id="password" placeholder="Password">
-                    @error('password')
+            <div class="mb-4">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                    id="password" placeholder="Password">
+                @error('password')
                     <p>{{ $message }}</p>
-                    @enderror
-                </div>
-                <!-- <div class="mb-4">
-                    <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"
-                        id="confirm_password" placeholder="Confirm Password">
-                    @error('confirm_password')
-                    <p>{{ $message }}</p>
-                    @enderror
-                </div> -->
-                <button type="submit" class="btn btn-success">Submit</button>
-                <p style="color: black ">Already have a account?<a href="{{ route('login') }}">Login</a></p>
-            </form>
-        </div>
+                @enderror
+            </div>
+            <!-- <div class="mb-4">
+                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"
+                    id="confirm_password" placeholder="Confirm Password">
+                @error('confirm_password')
+    <p>{{ $message }}</p>
+@enderror
+            </div> -->
+            <button type="submit" class="btn btn-success">Submit</button>
+            <p style="color: black ">Already have a account?<a href="{{ route('login') }}">Login</a></p>
+        </form>
     </div>
-
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -78,7 +75,7 @@
             event.preventDefault();
 
             $.ajax({
-                url: '{{route("user.register")}}',
+                url: '{{ route('user.register') }}',
                 type: 'post',
                 data: $(this).serializeArray(),
                 dataType: 'json',
@@ -102,13 +99,15 @@
                             $("#email").addClass('is-invalid')
                         }
                         if (errors.password) {
-                            $("#password").siblings("p").addClass('invalid-feedback').html(errors.password);
+                            $("#password").siblings("p").addClass('invalid-feedback').html(errors
+                                .password);
                             $("#password").addClass('is-invalid')
                         } else {
-                            $("#password").siblings("p").addClass('invalid-feedback').html(errors.password);
+                            $("#password").siblings("p").addClass('invalid-feedback').html(errors
+                                .password);
                             $("#password").addClass('is-invalid')
                         }
-                    }else{
+                    } else {
                         $("#name").siblings("p").removeClass('invalid-feedback').html('');
                         $("#name").removeClass('is-invalid')
 
@@ -118,7 +117,7 @@
                         $("#password").siblings("p").removeClass('invalid-feedback').html('');
                         $("#password").removeClass('is-invalid')
 
-                        window.location.href = "{{route('login')}}";
+                        window.location.href = "{{ route('login') }}";
                     }
 
                 },

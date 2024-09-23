@@ -56,7 +56,7 @@ Route::post('/register-user', [AuthController::class, 'register'])->name('user.r
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
 //logout
-Route::get('/logout-user', [HomeController::class, 'logout'])->name('user.logout');
+Route::get('/logout-user', [AuthController::class, 'logout'])->name('user.logout');
 
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 //product
@@ -71,3 +71,5 @@ Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
 
 //user
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
+Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');

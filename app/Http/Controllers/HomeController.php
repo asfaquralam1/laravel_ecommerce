@@ -50,11 +50,20 @@ class HomeController extends Controller
     }
     public function profile(){
         $categories = Category::all();
-        return view('site.pages.profile',compact('categories'));
+        $user = Auth::user();
+        return view('site.pages.profile',compact('user','categories'));
     }
-    public  function logout()
+    public function update_profile(Request $request)
     {
-        auth()->logout();
-        return redirect()->route('login');
+        $user = Auth::user();
+        $user->name = $request->post('name');
+        $user->email = $request->post('email');
+        $user->phone = $request->post('phone');
+        $user->address = $request->post('address');
+        $user->city = $request->post('city');
+        $user->country = $request->post('country');
+        $user->update();
+        $request->session()->flash('message', 'User Updated');
+        return redirect('profile');
     }
 }
