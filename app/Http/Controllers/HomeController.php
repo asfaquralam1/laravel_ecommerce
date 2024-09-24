@@ -66,4 +66,8 @@ class HomeController extends Controller
         $request->session()->flash('message', 'User Updated');
         return redirect('profile');
     }
+    public function user_order(){
+        $categories = Category::all();
+        return view('site.pages.order',compact('categories'));
+    }
 }

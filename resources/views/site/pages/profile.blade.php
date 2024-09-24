@@ -7,7 +7,7 @@
                 <div class="col-2">
                     <div class="options" style="display: flex;flex-direction: column">
                         <a class="profile-btn" href="{{ route('profile') }}"> <i class="fas fa-user"></i> <span style="margin-left: 5px">My profile</span></a>
-                        <a class="profile-btn" href="{{ route('profile') }}"> <i class="fas fa-shopping-bag"></i> <span style="margin-left: 5px">My Orders</span></a>
+                        <a class="profile-btn" href="{{ route('user.order') }}"> <i class="fas fa-shopping-bag"></i> <span style="margin-left: 5px">My Orders</span></a>
                         <a class="profile-btn" href="{{ route('profile') }}"> <i class="fas fa-lock"></i> <span style="margin-left: 5px">Change Password</span></a>
                         <a class="profile-btn" href="{{ route('user.logout') }}"> <i class="fas fa-arrow-right"></i> <span style="margin-left: 5px">Logout</span></a>
                     </div>

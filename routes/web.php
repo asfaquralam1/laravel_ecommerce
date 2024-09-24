@@ -73,3 +73,4 @@ Route::get('checkout', [HomeController::class, 'checkout'])->name('checkout');
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
+Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
