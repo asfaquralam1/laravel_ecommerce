@@ -26,13 +26,13 @@ class CreateOrdersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->string('address');
             $table->string('mobile');
+            $table->string('address');
             $table->string('apartment')->nullable();
-            $table->string('country');
             $table->string('city');
             $table->string('district');
-            $table->string('zip');
+            // $table->string('zip');
+            $table->string('country');
 
             $table->boolean('payment_status')->default(0);             // 1 means completed
             $table->string('payment_method')->default('cash');         // for sslcommerze card_type
