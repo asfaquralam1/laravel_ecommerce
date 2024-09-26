@@ -31,7 +31,7 @@ class CreateOrdersTable extends Migration
             $table->string('apartment')->nullable();
             $table->string('city');
             $table->string('district');
-            // $table->string('zip');
+            $table->string('zip');
             $table->string('country');
 
             $table->boolean('payment_status')->default(0);             // 1 means completed

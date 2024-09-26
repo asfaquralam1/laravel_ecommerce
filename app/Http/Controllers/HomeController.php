@@ -33,10 +33,17 @@ class HomeController extends Controller
     public function checkout_view()
     {
         $user = Auth::user();
-
-        $categories = Category::all();
-        $products = Product::all();
-        return view('site.pages.checkout', compact('products', 'categories', 'user'));
+        if ($user !== null) {
+            $cart = session()->get('cart');
+            if ($cart !== []) {
+                $categories = Category::all();
+                $products = Product::all();
+                return view('site.pages.checkout', compact('products', 'categories', 'user'));
+            }
+            return redirect()->back();
+        }else{
+            return redirect('login');
+        }
     }
     public function place_order(Request $request)
     {
@@ -53,9 +60,10 @@ class HomeController extends Controller
         //     return redirect()->route('login');
         // }
         $order = new Order();
+        $order->user_id = $request->post('user_id');
         $order->subtotal = $request->post('subtotal');
         $order->city = $request->post('city');
-        $order->shipping= $request->post('shipping');
+        $order->shipping = $request->post('shipping');
         $order->coupon_code = $request->post('coupon_code');
         $order->discount = $request->post('discount');
         $order->grand_total = $request->post('grand_total');

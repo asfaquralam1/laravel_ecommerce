@@ -80,18 +80,18 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="country">Country</label>
-                            <input type="text" class="form-control @error('country') is-invalid @enderror" name="country"
-                                placeholder="Country">
-                            @error('country')
-                                <p>{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
                             <label for="zip">Zip</label>
                             <input type="text" class="form-control @error('zip') is-invalid @enderror" name="zip"
                                 placeholder="zip">
                             @error('zip')
+                                <p>{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control @error('country') is-invalid @enderror" name="country"
+                                placeholder="Country">
+                            @error('country')
                                 <p>{{ $message }}</p>
                             @enderror
                         </div>
@@ -139,6 +139,9 @@
                         </div>
                     </div>
                 </div>
+                @if ($user)
+                <input hidden type="text" name="user_id" value="{{ $user->id }}">
+                @endif
                 <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>
