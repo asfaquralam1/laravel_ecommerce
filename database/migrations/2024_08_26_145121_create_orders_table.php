@@ -16,26 +16,31 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->double('subtotal', 20, 6);
-            $table->double('shipping', 10,2);
+            $table->double('subtotal', 20, 6)->nullable();
+            $table->double('shipping', 10,2)->nullable();
             $table->string('coupon_code')->nullable();
             $table->double('discount',10,2)->nullable();
-            $table->double('grand_total', 10, 2);
+            $table->double('grand_total', 10, 2)->nullable();
 
             //User Address data
-            $table->string('first_name');
-            $table->string('last_name');
+            // $table->string('first_name');
+            // $table->string('last_name');
+            $table->string('name');
             $table->string('email');
-            $table->string('mobile');
+            $table->string('phone');
             $table->string('address');
             $table->string('apartment')->nullable();
-            $table->string('city');
-            $table->string('district');
-            $table->string('zip');
-            $table->string('country');
+            $table->string('city')->nullable();
+            $table->string('district')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('country')->nullable();
 
             $table->boolean('payment_status')->default(0);             // 1 means completed
             $table->string('payment_method')->default('cash');         // for sslcommerze card_type
+            $table->double('amount')->default(null);
+            $table->string('status',10)->default(null);
+            $table->string('transaction_id',255)->default(null);
+            $table->string('currency',20)->default(null);
             $table->timestamps();
         });
     }

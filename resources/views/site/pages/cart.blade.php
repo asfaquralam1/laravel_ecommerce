@@ -16,7 +16,6 @@
                     @php $total = 0 @endphp
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
-                            {{ var_dump($id) }}
                             @php $total += $details['price'] * $details['quantity'] @endphp
                             <tr data-id="{{ $id }}">
                                 <td data-th="Product">
