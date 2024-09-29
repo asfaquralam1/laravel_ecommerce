@@ -9,24 +9,12 @@
                         <h4>Personal Information</h4>
                         <div class="Information_form"  style="background-color: rgb(241, 238, 238);border-radius: 5px;margin-bottom: 10px;padding: 20px;">
                         <div class="mb-4">
-                            <div class="row">
-                                <div class="col-6"><label for="Name">First Name</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        name="first_name" id="first_name"
-                                        placeholder="First Name">
-                                    @error('first_name')
-                                        <p>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                                <div class="col-6"><label for="Name">Last Name</label>
-                                    <input type="text" class="form-control @error('last_name') is-invalid @enderror"
-                                        name="last_name" id="last_name"
-                                        placeholder="Last Name">
-                                    @error('last_name')
-                                        <p>{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
+                            <label for="Name">Name</label>
+                            <input type="name" class="form-control @error('name') is-invalid @enderror" name="name"
+                               id="name" placeholder="Name">
+                            @error('name')
+                                <p>{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label for="Email">Email</label>
@@ -38,8 +26,8 @@
                         </div>
                         <div class="mb-4">
                             <label for="Phone">Phone</label>
-                            <input type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" id="mobile" placeholder="mobile">
-                            @error('mobile')
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Number">
+                            @error('phone')
                                 <p>{{ $message }}</p>
                             @enderror
                         </div>
@@ -130,19 +118,19 @@
                                 </tr>
                             @endif
                         </div>
-                        <div class="order-card" style="background-color: rgb(221, 219, 219);padding: 20px;margin: 20px">
+                        {{-- <div class="order-card" style="background-color: rgb(221, 219, 219);padding: 20px;margin: 20px">
                             <p><strong>Payment Method</strong></p>
                             <input type="radio" id="cod" name="fav_language" value="cod">
                             <label for="cod">COD</label><br>
                             <input type="radio" id="bKash" name="fav_language" value="bKash">
                             <label for="bKash">bKash</label><br>
-                        </div>
+                        </div> --}}
+                        <button type="submit" class="btn btn-success order-btn">Place Order</button>
                     </div>
                 </div>
                 @if ($user)
                 <input hidden type="text" name="user_id" value="{{ $user->id }}">
                 @endif
-                <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>
     </section>

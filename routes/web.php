@@ -72,8 +72,9 @@ Route::get('cart', [CartController::class, 'cart'])->name('cart');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-// Route::get('checkout', [HomeController::class, 'checkout_view'])->name('checkout');
+Route::get('checkout', [HomeController::class, 'checkout_view'])->name('checkout');
 Route::post('place-order', [HomeController::class, 'place_order'])->name('place.order');
+Route::get('/checkout/order/{id}', [HomeController::class, 'checkoutPayment'])->name('checkout.payment');
 
 //user
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
@@ -83,11 +84,11 @@ Route::get('user/order', [HomeController::class, 'user_order'])->name('user.orde
 
 
 // SSLCOMMERZ Start
-Route::get('/checkout', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+//Route::get('/checkout', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 Route::get('/checkout2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay-via-ajax');
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);

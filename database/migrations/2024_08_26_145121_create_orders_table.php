@@ -23,8 +23,6 @@ class CreateOrdersTable extends Migration
             $table->double('grand_total', 10, 2)->nullable();
 
             //User Address data
-            // $table->string('first_name');
-            // $table->string('last_name');
             $table->string('name');
             $table->string('email');
             $table->string('phone');
@@ -37,10 +35,10 @@ class CreateOrdersTable extends Migration
 
             $table->boolean('payment_status')->default(0);             // 1 means completed
             $table->string('payment_method')->default('cash');         // for sslcommerze card_type
-            $table->double('amount')->default(null);
-            $table->string('status',10)->default(null);
-            $table->string('transaction_id',255)->default(null);
-            $table->string('currency',20)->default(null);
+            $table->double('amount')->default(0);
+            $table->string('status',10)->nullable();
+            $table->string('transaction_id',255)->nullable();
+            $table->string('currency',20)->nullable();
             $table->timestamps();
         });
     }

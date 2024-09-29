@@ -41,7 +41,7 @@ class HomeController extends Controller
                 return view('site.pages.checkout', compact('products', 'categories', 'user'));
             }
             return redirect()->back();
-        }else{
+        } else {
             return redirect('login');
         }
     }
@@ -68,10 +68,9 @@ class HomeController extends Controller
         $order->discount = $request->post('discount');
         $order->grand_total = $request->post('grand_total');
         //user
-        $order->first_name = $request->post('first_name');
-        $order->last_name = $request->post('last_name');
+        $order->name = $request->post('name');
         $order->email = $request->post('email');
-        $order->mobile = $request->post('mobile');
+        $order->phone = $request->post('phone');
         $order->address = $request->post('address');
         $order->apartment = $request->post('apartment');
         $order->city = $request->post('city');
@@ -80,8 +79,21 @@ class HomeController extends Controller
         $order->country = $request->post('country');
 
         $order->save();
-        $request->session()->flash('message', 'Order Placed');
-        return redirect('/');
+        // when order is placed we set order_id to cart for that cart and set cart ip_address to null as it is used
+        // for guest only.
+        // foreach (Cart::totalCarts() as $cart) {
+        //     $cart->order_id = $order->id;
+        //     $cart->ip_address = NULL;
+        //     $cart->save();
+        // }
+        return redirect()->route('checkout.payment', $order->id);
+    }
+    public function checkoutPayment($id)
+    {
+        $categories = Category::all();
+        //getting the order for the respective user.
+        $order = Order::where('id', $id)->first();
+        return view('site.pages.payment', compact('order','categories'));
     }
     public function profile()
     {
