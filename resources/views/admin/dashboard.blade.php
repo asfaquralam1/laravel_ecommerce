@@ -7,7 +7,7 @@
             @include('admin.sidebar')
         </div>
         <div class="col-10">
-            <a href="{{ route('admin.logout') }}" style="background-color: green;color: white;">Logout</a>
+            <h1>Dashboard</h1>
         </div>
     </div>
 @endsection

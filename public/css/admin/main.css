@@ -23,6 +23,9 @@
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgb(0, 0, 0, 0.1);
 }
+.side-nav:hover{
+    width: 220px;
+}
 
 .logo {
     text-align: center;
@@ -43,7 +46,7 @@
     padding: 15px;
     font-size: 18px;
     text-transform: uppercase;
-    margin-left: 20px !important;
+    /* margin-left: 20px !important; */
 }
 
 nav a {

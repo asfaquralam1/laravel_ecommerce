@@ -28,9 +28,6 @@
                 <a href="" style="color: white;">Forget Password</a>
             </div>
             <button type="submit" class="btn btn-primary login-btn">Login</button>
-
-            <p class="register-text">Dont have account? <a href=""
-                    style="color: white;font-weight: bold">Register</a></p>
         </form>
     </div>
 @endsection
