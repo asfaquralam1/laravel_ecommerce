@@ -15,7 +15,7 @@
                                 <h3 class="text-center title-2">Edit product</h3>
                             </div>
                             <hr>
-                            <form action="{{ route('admin/update-product', $product->id) }}" method="post">
+                            <form action="{{ route('admin/update-product', $product->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name" class="control-label mb-1">Product Name</label>
@@ -69,16 +69,18 @@
                                         <div class="text-center text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <label for="image" class="control-label mb-1">Product image</label>
-                                    <input id="image" name="iamge" value="{{ $product->iamge }}" type="file">
+                                    <input id="image" name="image" type="file">
+                                    <img src="/product/{{ $product->image }}" alt="{{ $product->name }}"
+                                      width="70px" height="70px">
                                     @error('image')
                                         <div class="text-center text-danger">{{ $message }}</div>
                                     @enderror
-                                </div> --}}
+                                </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                        submit
+                                        Update
                                     </button>
                                 </div>
                             </form>

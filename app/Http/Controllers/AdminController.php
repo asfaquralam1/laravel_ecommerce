@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -181,10 +182,17 @@ class AdminController extends Controller
         $modal->price = $request->post('price');
         $modal->discount_price = $request->post('discount_price');
         $modal->quantity = $request->post('quantity');
-        // $image = $request->image;
-        // $imagename = time() . '.' . $image->getClientOriginalExtension();
-        // $request->image->move('product', $imagename);
-        // $modal->image = $imagename;
+        if($request->hasFile('image')){
+            $destination = 'product/'.$modal->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('product/',$filename);
+            $modal->image = $filename;
+        }
         $modal->update();
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');

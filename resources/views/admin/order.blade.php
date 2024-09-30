@@ -7,7 +7,7 @@
             @include('admin.sidebar')
         </div>
         <div class="col-10">
-            <h1 class="text-center" style="padding-top: 20px;padding-bottom: 20px;">User Orders</h1>
+            <h1 class="text-center" style="padding-top: 20px;padding-bottom: 20px;">Orders</h1>
             <table id="myTable" class="table table-bordered">
                 <thead>
                     <tr>

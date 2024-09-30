@@ -7,10 +7,6 @@
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-/* body {
-    background: #dfe9f5;
-} */
-
 .side-nav {
     position: absolute;
     top: 0;
@@ -23,7 +19,8 @@
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgb(0, 0, 0, 0.1);
 }
-.side-nav:hover{
+
+.side-nav:hover {
     width: 220px;
 }
 
@@ -167,6 +164,21 @@ input::placeholder {
     text-align: center;
     margin-top: 10px !important;
     color: white;
+}
+
+.dasboard_top_card {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px !important;
+    margin: 10px !important;
+    background-color: darkblue;
+    color: white;
+}
+.dasboard_top_card p{
+    font-size: 20px;
+}
+.dasboard_top_card i {
+    font-size: 45px;
 }
 
 /*nav*/
