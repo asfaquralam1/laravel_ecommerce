@@ -1,34 +1,45 @@
 @extends('admin.master')
-@section('page_title', 'Add Category')
-@section('category_select', 'active')
+@section('page_title', 'Order')
+@section('order_select', 'active')
 @section('container')
     <div class="row">
         <div class="col-2">
             @include('admin.sidebar')
         </div>
         <div class="col-10">
-            <form id="myForm">
-                @csrf
-                <div class="from-group">
-                    <label for="">Select Category</label>
-                    <select name="category_id" id="" class="form-control">
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="from-group">
-                    <label for="">Order Name</label>
-                    <input type="text" name="order_name" class="form-control">
-                </div>
-                <button id="submit" class="btn btn-success">Add Order</button>
-            </form>
+            <h1 class="text-center" style="padding-top: 20px;padding-bottom: 20px;">User Orders</h1>
+            <table id="myTable" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="color: white !important;text-align:center;">Date</th>
+                        <th style="color: white !important;text-align:center;">Customer Name</th>
+                        <th style="color: white !important;text-align:center;">Address</th>
+                        <th style="color: white !important;text-align:center;">Payment Method</th>
+                        <th style="color: white !important;text-align:center;">Grand Total</th>
+                        <th style="color: white !important;text-align:center;">Tarnsection Id</th>
+                        <th style="color: white !important;text-align:center;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td class="text-center">{{ $order->created_at }}</td>
+                            <td class="text-center">{{ $order->name }}</td>
+                            <td class="text-center">{{ $order->address }}</td>
+                            <td class="text-center">{{ $order->payment_method }}</td>
+                            <td class="text-center">{{ $order->grand_total }}</td>
+                            <td class="text-center">{{ $order->transaction_id }}</td>
+                            <td class="text-center">{{ $order->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script>
+{{-- <script>
     $(document).ready(function() {
         $('#submit').click(function(e) {
             e.preventDefault();
@@ -44,4 +55,4 @@
             })
         })
     })
-</script>
+</script> --}}

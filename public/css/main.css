@@ -89,12 +89,12 @@
 
 }
 
-input:focus {
+.login-form input:focus {
     background-color: transparent !important;
     outline: none !important;
 }
 
-input::placeholder {
+.login-form input::placeholder {
     color: white !important;
 }
 
@@ -350,3 +350,14 @@ input::placeholder {
     border: 1px solid green;
     color: green;
 }
+
+#contact{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.contact-form-area{
+    padding: 20px !important;
+}
+/* .contact-form input{
+
+} */

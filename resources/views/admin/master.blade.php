@@ -11,8 +11,9 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!--datatable-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css"> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
@@ -33,9 +34,15 @@
     <!--datatable-->
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script defer src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    {{-- <script defer src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
     <script defer src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
-    <script defer src="{{ asset('js/app.js') }}"></script>
+    <script defer src="{{ asset('js/app.js') }}"></script> --}}
+    <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>

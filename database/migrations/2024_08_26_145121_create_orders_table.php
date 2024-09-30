@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->double('shipping', 10,2)->nullable();
             $table->string('coupon_code')->nullable();
             $table->double('discount',10,2)->nullable();
-            $table->double('grand_total', 10, 2)->nullable();
+            $table->double('grand_total', 10, 2)->default(0);
 
             //User Address data
             $table->string('name');

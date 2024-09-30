@@ -46,26 +46,23 @@ Route::post('admin/add-product', [AdminController::class, 'add_product'])->name(
 Route::get('admin/edit-product/{id}', [AdminController::class, 'edit_product'])->name('admin/edit-product');
 Route::post('admin/update-product/{id}', [AdminController::class, 'update_product'])->name('admin/update-product');
 Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin/destory-product');
+//order
+Route::get('admin/order', [AdminController::class, 'order'])->name('admin/order');
 
 
 //Frontend
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-//Register
-Route::get('/register', [AuthController::class, 'register_view'])->name('register');
-Route::post('/register-user', [AuthController::class, 'register'])->name('user.register');
-
-//login
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
-
-//logout
-Route::get('/logout-user', [AuthController::class, 'logout'])->name('user.logout');
-Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-
 //product
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product_details');
+Route::get('/contact',[HomeController::class, 'contact'])->name('contact');
+
+//Authentication
+Route::get('/register', [AuthController::class, 'register_view'])->name('register');
+Route::post('/register-user', [AuthController::class, 'register'])->name('user.register');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
+Route::get('/logout-user', [AuthController::class, 'logout'])->name('user.logout');
 
 //cart
 Route::get('cart', [CartController::class, 'cart'])->name('cart');

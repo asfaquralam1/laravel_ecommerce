@@ -33,7 +33,7 @@
                             <a class="nav-link" href="{{ route('product') }}">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                     </ul>
                     <div class="navbar-text mobile-cart">

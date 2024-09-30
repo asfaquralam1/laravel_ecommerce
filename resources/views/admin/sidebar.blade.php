@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin/order') }}">
                     <i class="fas fa-list"></i>
                     <span class="nav-item">Order</span>
                 </a>

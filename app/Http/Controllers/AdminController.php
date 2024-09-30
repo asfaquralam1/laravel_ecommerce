@@ -50,8 +50,8 @@ class AdminController extends Controller
     }
     public function order()
     {
-        $categories = Category::all();
-        return view('admin.order', compact('categories'));
+        $orders = Order::all();
+        return view('admin.order', compact('orders'));
     }
     public function add_order(Request $request)
     {

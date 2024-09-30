@@ -119,4 +119,8 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('site.pages.order', compact('categories'));
     }
+    public function contact(){
+        $categories = Category::all();
+        return view('site.pages.contact',compact('categories'));
+    }
 }

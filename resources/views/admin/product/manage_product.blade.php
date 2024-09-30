@@ -12,7 +12,8 @@
                     <h1 style="text-align: center">Product</h1>
                     <button class="add-btn"><a href="{{ route('admin/manage-product') }}">Add Product</a></button>
                 </div>
-                <table id="example" class="table table-bordered table-striped table-light" style="width: 100%">
+                {{-- <table id="example" class="table table-bordered table-striped table-light" style="width: 100%"> --}}
+                <table id="myTable" class="display">
                     <thead>
                         <tr>
                             <th style="color: white !important;text-align:center;">Name</th>
@@ -22,7 +23,6 @@
                             <th style="color: white !important; text-align:center;">Discount Price</th>
                             <th style="color: white !important; text-align:center;">Quantity</th>
                             <th style="color: white !important; text-align:center;">image</th>
-                            <th style="color: white !important; text-align:center;">action</th>
                             <th style="color: white !important; text-align:center;">action</th>
                         </tr>
                     </thead>
@@ -43,16 +43,15 @@
                                                 class="fas fa-edit"></i>
                                         </a></button>
                                 </td>
-                                <td>
-                                    <p>a</p>
-                                    <!-- <button class="delete-btn">
+                                {{-- <td>
+                                    <button class="delete-btn">
                                         <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf
                                             <i class="fas fa-trash"></i>
                                         </form>
-                                    </button> -->
-                                </td>
+                                    </button>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
