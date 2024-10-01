@@ -13,16 +13,16 @@
     bottom: 0;
     left: 0;
     height: 100%;
-    background-color: #fff;
-    width: 90px;
+    background-color: #1C305C;
+    width: 250px;
     overflow: hidden;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgb(0, 0, 0, 0.1);
 }
 
-.side-nav:hover {
+/* .side-nav:hover {
     width: 220px;
-}
+} */
 
 .logo {
     text-align: center;
@@ -36,20 +36,22 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
 }
 
 .logo span {
     font-weight: bold;
-    padding: 15px;
     font-size: 18px;
     text-transform: uppercase;
-    margin-left: 20px !important;
+    margin: 20px 20px 20px 20px !important;
+    color: white;
 }
 
 nav a {
     position: relative;
-    color: rgb(85, 83, 83);
     font-size: 18px;
+    color: white;
     display: table;
     width: 300px;
     padding: 10px;
@@ -68,16 +70,17 @@ nav .fas,
 .nav-item {
     position: relative;
     top: 12px;
-    margin-left: 10px;
 }
 
 .dropdown-item {
-    margin-top: 10px !important;
+    color: white;
+    padding: 5px !important;
     margin-left: 90px !important;
 }
 
 nav a:hover {
     background: #eee;
+    color: black !important;
 }
 
 nav:hover {
@@ -107,7 +110,6 @@ nav:hover {
     border: 1px solid #ced4da !important;
     border-radius: 5px;
     padding: 40px !important;
-    /* background-color: rgb(255, 255, 255); */
     background: transparent;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
     backdrop-filter: blur(20px);
@@ -183,6 +185,7 @@ input::placeholder {
 
 /*nav*/
 .add-btn {
+    margin-top: 20px !important;
     padding: 8px 17px 8px 17px !important;
     margin-bottom: 20px !important;
     background-color: #5fb637;
@@ -215,7 +218,7 @@ td {
 }
 
 .edit-btn {
-    padding: 5px !important;
+    padding: 5px 20px 5px 20px !important;
     background-color: #5fb637;
     border: none;
     border-radius: 5px;

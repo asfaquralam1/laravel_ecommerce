@@ -8,7 +8,7 @@
         </div>
         <div class="col-10">
             <h1 style="text-align: center">Category</h1>
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <th>Category Name</th>
                     <th>Category Slug</th>
@@ -27,13 +27,12 @@
                             @elseif ($category->status == 0)
                                 <form action="{{ url('admin/category/status/1') }}/{{ $category->id }}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn btn-secondary status-btn"
-                                        style="padding: 5px 18px 5px 18px !important">Deactive</button>
+                                    <button type="submit" class="btn btn-secondary status-btn">Deactive</button>
                                 </form>
                             @endif
                         </td>
                         <td><a href="{{ route('admin/edit-category', $category->id) }}"><button
-                                    class="edit-btn">Edit</button></a>
+                                    class="btn btn-primary edit-btn">Edit</button></a>
                         </td>
                         <td>
                             <form action="{{ route('admin/destory-category', $category->id) }}" method="post">

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,7 +48,11 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $orders = DB::table('orders')->count();
+        $categories = DB::table('categories')->count();
+        $users = DB::table('users')->count();
+        $products = DB::table('products')->count();
+        return view('admin.dashboard',compact('users','categories','orders','products'));
     }
     public function order()
     {
@@ -197,11 +202,10 @@ class AdminController extends Controller
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');
     }
-    public function delete_product(Request $request, $id)
+    public function delete_product($id)
     {
         $category = Product::find($id);
         $category->delete();
-        $request->session()->flash('warning', 'Product Deleted');
         return redirect('admin/product');
     }
 }

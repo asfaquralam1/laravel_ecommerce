@@ -1,12 +1,16 @@
 <div class="side-nav">
+    <a href="{{ route('admin.dashboard') }}" class="logo">
+        <img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
+           <span class="nav-item">Ecommarce</span>
+    </a>
     <nav>
         <ul>
-            <li>
-                <a href="{{ route('admin.dashboard') }}" class="logo"><img src="{{ asset('image/favicon.png') }}"
-                        alt="" style="width: 50px">
-                    <span class="nav-item">Ecommarce</span>
+            {{-- <li>
+                <a href="{{ route('admin.dashboard') }}" class="logo">
+                    <img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
+                       <span>Ecommarce</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="@yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
