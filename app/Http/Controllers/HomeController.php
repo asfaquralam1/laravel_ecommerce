@@ -117,7 +117,8 @@ class HomeController extends Controller
     public function user_order()
     {
         $categories = Category::all();
-        return view('site.pages.order', compact('categories'));
+        $orders = Order::all()->where('id', Auth::id());
+        return view('site.pages.order', compact('categories','orders'));
     }
     public function contact(){
         $categories = Category::all();

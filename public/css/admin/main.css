@@ -14,7 +14,7 @@
     left: 0;
     height: 100%;
     background-color: #1C305C;
-    width: 250px;
+    width: 220px;
     overflow: hidden;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgb(0, 0, 0, 0.1);
@@ -168,24 +168,33 @@ input::placeholder {
     color: white;
 }
 
-.dasboard_top_card {
+.header_card {
     display: flex;
     justify-content: space-between;
-    padding: 20px !important;
-    margin: 10px !important;
-    background-color: darkblue;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.item_card {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px 20px 20px !important;
+    margin: 10px 10px 0px 0px !important;
+    background-color: #1C305C;
     color: white;
 }
-.dasboard_top_card p{
+
+.item_card p {
     font-size: 20px;
 }
-.dasboard_top_card i {
+
+.item_card i {
     font-size: 45px;
 }
 
 /*nav*/
 .add-btn {
-    margin-top: 20px !important;
     padding: 8px 17px 8px 17px !important;
     margin-bottom: 20px !important;
     background-color: #5fb637;

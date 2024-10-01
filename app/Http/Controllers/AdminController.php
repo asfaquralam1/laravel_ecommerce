@@ -26,12 +26,13 @@ class AdminController extends Controller
         if ($validator->passes()) {
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
                 $admin = Auth::guard('admin')->user();
-                if ($admin->role == 2) {
-                    return redirect()->route('admin.dashboard');
-                } else {
-                    Auth::guard('admin')->logout();
-                    return redirect()->route('admin.login')->with('error', 'You are not authorized to access');
-                }
+                return redirect()->route('admin.dashboard');
+                // if ($admin->role == 2) {
+                //     return redirect()->route('admin.dashboard');
+                // } else {
+                //     Auth::guard('admin')->logout();
+                //     return redirect()->route('admin.login')->with('error', 'You are not authorized to access');
+                // }
             } else {
                 return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
             }

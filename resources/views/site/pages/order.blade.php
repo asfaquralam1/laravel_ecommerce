@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="col-10">
-                 <h1>Order</h1>
+                 <p>Order</p>
                 </div>
             </div>
         </div>
