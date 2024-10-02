@@ -8,20 +8,17 @@
     </div>
     <div class="col-10">
         <div class="header_card">
-            <h4></i>Add Product</h4>
-            <p><i class="fas fa-user"></i>{{ auth()->user()->name }}</p>
+            <i class="fas fa-bars"></i>
+            <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
         </div>
         <div class="row m-t-30">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h3 class="text-center title-2">Add Product</h3>
-                        </div>
-                        <hr>
+                <div class="admin_body">
+                    <h4>Create Product</h4>
+                    <div class="admin_input_card">
                         <form action="{{ route('admin/add-product') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="name" class="control-label mb-1">Product Name</label>
                                 <input id="name" name="name" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
@@ -29,8 +26,8 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="category" class="control-label mb-1">Category</label>
+                            <div class="mb-4">
+                                <label for="category" class="control-label mb-1">Category</label><br>
                                 <select name="category" id="">
                                     <option value="">Add Category</option>
                                     @foreach ($categories as $category)
@@ -41,7 +38,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="details" class="control-label mb-1">Product Details</label>
                                 <input id="details" name="details" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
@@ -49,7 +46,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="price" class="control-label mb-1">Product Price</label>
                                 <input id="price" name="price" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
@@ -57,7 +54,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="discount_price" class="control-label mb-1">Product Discount Price</label>
                                 <input id="discount_price" name="discount_price" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
@@ -65,7 +62,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
                                 <input id="quantity" name="quantity" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
@@ -73,7 +70,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+                            <div class="mb-4">
                                 <label for="image" class="control-label mb-1">Product image</label>
                                 <input id="image" name="image" type="file">
                                 @error('image')

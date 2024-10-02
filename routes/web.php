@@ -79,6 +79,8 @@ Route::post('update-profile', [HomeController::class, 'update_profile'])->name('
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
 
+Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('pdf');
+
 
 // SSLCOMMERZ Start
 //Route::get('/checkout', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);

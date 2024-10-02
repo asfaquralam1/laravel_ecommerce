@@ -4,7 +4,7 @@
         <div class="container">
             <h1 class="text-center">My Account</h1>
             <div class="row">
-                <div class="col-2">
+                <div class="col-md-2 col-sm-12">
                     <div class="options" style="display: flex;flex-direction: column">
                         <a class="profile-btn" href="{{ route('profile') }}"> <i class="fas fa-user"></i> <span style="margin-left: 5px">My profile</span></a>
                         <a class="profile-btn" href="{{ route('user.order') }}"> <i class="fas fa-shopping-bag"></i> <span style="margin-left: 5px">My Orders</span></a>
@@ -12,7 +12,7 @@
                         <a class="profile-btn" href="{{ route('user.logout') }}"> <i class="fas fa-arrow-right"></i> <span style="margin-left: 5px">Logout</span></a>
                     </div>
                 </div>
-                <div class="col-10">
+                <div class="col-md-10 col-sm-12">
                     <form action="{{ route('update.profile') }}" method="post" style="background-color: rgb(241, 238, 238);border-radius: 5px;margin-bottom: 10px;padding: 20px;">
                         @csrf
                         <h4>Personal Information</h4>

@@ -5,7 +5,7 @@
             <h1 style="text-align: center">Products</h1>
             <div class="row">
                 @forelse($products as $product)
-                    <div class="col-3">
+                    <div class="col-md-3 col-lg-3 col-sm-12">
                         <div class="card">
                             <a href="{{ route('product_details', $product->id) }}"><img src="/product/{{ $product->image }}"
                                     alt="product_image" class="product_image"></a>

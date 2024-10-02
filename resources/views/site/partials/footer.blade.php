@@ -30,13 +30,13 @@
                     <h4>Contact Us</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <p>House 27, Road 2, Sector 9, Uttara, Dhaka-1230</p>
+                            <p>House 27, Road 2, Sector 9, Uttara</p>
                         </li>
                         <li class="nav-item">
                             <p>01111111111</p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">as@gmail.com</a>
+                            <p>as@gmail.com</p>
                         </li>
                     </ul>
                 </div>

@@ -8,8 +8,8 @@
     </div>
     <div class="col-10">
         <div class="header_card">
-            <h4></i>Orders</h4>
-            <p><i class="fas fa-user"></i>{{ auth()->user()->name }}</p>
+            <i class="fas fa-bars"></i>
+            <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
         </div>
         <table id="myTable" class="table table-bordered">
             <thead>
@@ -20,6 +20,7 @@
                     <th>Payment Method</th>
                     <th>Grand Total</th>
                     <th>Tarnsection Id</th>
+                    <th>Shiping</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -27,12 +28,13 @@
             <tbody>
                 @foreach ($orders as $order)
                 <tr>
-                    <td>{{ $order->created_at }}</td>
+                    <td>{{ date('d-m-Y', strtotime( $order->created_at)) }}</td>
                     <td>{{ $order->name }}</td>
                     <td>{{ $order->address }}</td>
                     <td>{{ $order->payment_method }}</td>
                     <td>{{ $order->grand_total }}</td>
                     <td>{{ $order->transaction_id }}</td>
+                    <td>{{ $order->shipping }}</td>
                     <td>{{ $order->status }}</td>
                     <td>Edit</td>
                 </tr>

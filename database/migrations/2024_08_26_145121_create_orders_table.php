@@ -16,6 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->string('order_number')->default(1);
+            $table->enum('status', ['pending', 'accept', 'cooking','packing', 'delivered', 'cancel','failed' ])->default('pending');
+
             $table->double('subtotal', 20, 6)->nullable();
             $table->double('shipping', 10,2)->nullable();
             $table->string('coupon_code')->nullable();
@@ -35,8 +38,6 @@ class CreateOrdersTable extends Migration
 
             $table->boolean('payment_status')->default(0);             // 1 means completed
             $table->string('payment_method')->default('cash');         // for sslcommerze card_type
-            $table->double('amount')->default(0);
-            $table->string('status',10)->nullable();
             $table->string('transaction_id',255)->nullable();
             $table->string('currency',20)->nullable();
             $table->timestamps();

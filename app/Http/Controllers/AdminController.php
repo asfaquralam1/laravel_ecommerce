@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -19,27 +18,16 @@ class AdminController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+        $request->validate([
+            'email' => 'required',
             'password' => 'required',
+
         ]);
-        if ($validator->passes()) {
-            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-                $admin = Auth::guard('admin')->user();
-                return redirect()->route('admin.dashboard');
-                // if ($admin->role == 2) {
-                //     return redirect()->route('admin.dashboard');
-                // } else {
-                //     Auth::guard('admin')->logout();
-                //     return redirect()->route('admin.login')->with('error', 'You are not authorized to access');
-                // }
-            } else {
-                return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
-            }
-        } else {
-            return redirect()->route('admin.login')
-                ->withErrors($validator)
-                ->withInput($request->only('email'));
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
+        }else{
+            return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
         }
     }
     public  function logout()
@@ -53,7 +41,7 @@ class AdminController extends Controller
         $categories = DB::table('categories')->count();
         $users = DB::table('users')->count();
         $products = DB::table('products')->count();
-        return view('admin.dashboard',compact('users','categories','orders','products'));
+        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products'));
     }
     public function order()
     {
@@ -188,15 +176,15 @@ class AdminController extends Controller
         $modal->price = $request->post('price');
         $modal->discount_price = $request->post('discount_price');
         $modal->quantity = $request->post('quantity');
-        if($request->hasFile('image')){
-            $destination = 'product/'.$modal->image;
-            if(File::exists($destination)){
+        if ($request->hasFile('image')) {
+            $destination = 'product/' . $modal->image;
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('product/',$filename);
+            $filename = time() . '.' . $extension;
+            $file->move('product/', $filename);
             $modal->image = $filename;
         }
         $modal->update();

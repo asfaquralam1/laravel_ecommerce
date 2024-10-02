@@ -8,8 +8,8 @@
     </div>
     <div class="col-10">
         <div class="header_card">
-            <h4></i>Add Category</h4>
-            <p><i class="fas fa-user"></i>{{ auth()->user()->name }}</p>
+            <i class="fas fa-bars"></i>
+            <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
         </div>
         <div class="row m-t-30">
             <div class="col-md-12">
