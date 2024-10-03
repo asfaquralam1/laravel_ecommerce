@@ -17,7 +17,8 @@
                     </div>
                 </div>
                 <div class="col-10">
-                    <a href="{{ route('pdf') }}">Print</a>
+                    {{-- <a href="{{ route('snappyPdf') }}">SnappyPdf</a> --}}
+                    <a class="pdf-btn" href="{{ route('pdf') }}">PDF</a>
                     <div class="user-order-table">
                         <table class="table table-bordered">
                             <thead>

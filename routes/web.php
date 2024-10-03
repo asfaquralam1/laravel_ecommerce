@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,7 +80,8 @@ Route::post('update-profile', [HomeController::class, 'update_profile'])->name('
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
 
-Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF'])->name('pdf');
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf');
+Route::get('/download-pdf', [PDFController::class, 'downloadPdf'])->name('snappyPdf');
 
 
 // SSLCOMMERZ Start

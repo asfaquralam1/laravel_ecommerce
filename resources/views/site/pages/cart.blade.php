@@ -2,7 +2,7 @@
 @section('content')
     <section id="cart-page">
         <div class="container">
-            <table id="cart" class="table table-hover table-condensed">
+            <table id="cart-table" class="table table-hover table-condensed">
                 <thead>
                     <tr style="background-color: orange;">
                         <th style="width:50%; padding: 20px;">Product</th>
@@ -28,7 +28,7 @@
                                     </div>
                                 </td>
                                 <td data-th="Price">${{ $details['price'] }}</td>
-                                <td data-th="Quantity">
+                                <td data-th="Quantity">checkout
                                     <input type="number" min="1" value="{{ $details['quantity'] }}"
                                         class="form-control quantity update-cart" />
                                 </td>

@@ -11,7 +11,7 @@
             <i class="fas fa-bars"></i>
             <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
         </div>
-        <table id="myTable" class="table table-bordered">
+        <table id="table" class="cell-border" style="width:100%">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -22,7 +22,6 @@
                     <th>Tarnsection Id</th>
                     <th>Shiping</th>
                     <th>Status</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,7 +35,6 @@
                     <td>{{ $order->transaction_id }}</td>
                     <td>{{ $order->shipping }}</td>
                     <td>{{ $order->status }}</td>
-                    <td>Edit</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -44,22 +42,3 @@
     </div>
 </div>
 @endsection
-
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-{{-- <script>
-    $(document).ready(function() {
-        $('#submit').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "{{ route('addorder') }}",
-type: "POST",
-dataType: "json",
-data: $('#myForm').serialize(),
-success: function(response) {
-console.log(response);
-
-}
-})
-})
-})
-</script> --}}

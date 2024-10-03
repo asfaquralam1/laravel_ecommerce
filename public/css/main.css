@@ -177,20 +177,6 @@
     color: white;
 }
 
-/* product page with no product default height */
-#products-page {
-    min-height: 555px !important;
-}
-
-#cart-page {
-    min-height: 550px !important;
-}
-
-#cart {
-    border: none !important;
-    border: 1px solid #eee !important;
-}
-
 /*newslatter*/
 #newsletter {
     padding-top: 20px;
@@ -277,64 +263,29 @@
     color: #65CCB7;
 }
 
-
-/* cart start */
-.thumbnail {
-    position: relative;
-    padding: 0px;
-    margin-bottom: 20px;
+/* product-page */
+#products-page {
+    min-height: 555px !important; /* with no product default height */
 }
 
-.thumbnail img {
-    width: 80%;
+/*contact-page */
+#contact {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.thumbnail .caption {
-    margin: 7px;
+.contact-form-area {
+    padding: 20px !important;
 }
 
-.main-section {
-    background-color: #F8F8F8;
+/* cart-page */
+#cart-page {
+    min-height: 550px !important;
 }
 
-.btn {
-    border: 0px;
-    margin: 10px 0px;
-    box-shadow: none !important;
-}
-
-.total-header-section {
-    border-bottom: 1px solid #d2d2d2;
-}
-
-.total-section p {
-    margin-bottom: 20px;
-}
-
-.cart-detail {
-    padding: 15px 0px;
-}
-
-.cart-detail-img img {
-    width: 100%;
-    height: 100%;
-    padding-left: 15px;
-}
-
-.cart-detail-product p {
-    margin: 0px;
-    color: #000;
-    font-weight: 500;
-}
-
-.cart-detail .price {
-    font-size: 12px;
-    margin-right: 10px;
-    font-weight: 500;
-}
-
-.cart-detail .count {
-    color: #C2C2DC;
+#cart-table {
+    border: none !important;
+    border: 1px solid #eee !important;
 }
 
 .checkout {
@@ -360,15 +311,12 @@
     color: green;
 }
 
-#contact {
-    padding-top: 20px;
-    padding-bottom: 20px;
+/*start-order-page*/
+.pdf-btn {
+    border: 1px solid blue !important;
+    border-radius: 20px;
+    padding: 0px 20px 0px 20px !important;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 12px;
 }
-
-.contact-form-area {
-    padding: 20px !important;
-}
-
-/* .contact-form input{
-
-} */

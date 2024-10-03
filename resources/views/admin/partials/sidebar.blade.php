@@ -20,7 +20,7 @@
             <li class="sidebar-item @yield('category_select')">
                 <a href="{{ route('admin/category') }}" class="sidebar-link has-dropdown collapsed"
                     data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false" aria-controls="category">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-tag"></i>
                     <span class="nav-item">Category</span>
                 </a>
                 <ul id="category" class="sidebar-dropdown list-unstyled accordion-collapse collapse"
@@ -39,13 +39,13 @@
             </li>
             <li>
                 <a href="{{ route('admin/product') }}">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-tshirt"></i>
                     <span class="nav-item">Product</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('admin/order') }}">
-                    <i class="fas fa-list"></i>
+                    <i class="fas fa-shopping-bag"></i>
                     <span class="nav-item">Order</span>
                 </a>
             </li>
