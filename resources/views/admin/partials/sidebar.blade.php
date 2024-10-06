@@ -5,16 +5,16 @@
     </a>
     <nav>
         <ul>
-            {{-- <li>
-                <a href="{{ route('admin.dashboard') }}" class="logo">
-                    <img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
-                       <span>Ecommarce</span>
-                </a>
-            </li> --}}
             <li class="@yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
-                    <span class="nav-item">Dashboard</span>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin/order') }}">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-item">Customer</span>
                 </a>
             </li>
             <li class="sidebar-item @yield('category_select')">
@@ -45,8 +45,20 @@
             </li>
             <li>
                 <a href="{{ route('admin/order') }}">
-                    <i class="fas fa-shopping-bag"></i>
+                    <i class="fas fa-cart-arrow-down"></i>
                     <span class="nav-item">Order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin/order') }}">
+                    <i class="fas fa-cash-register"></i>
+                    <span class="nav-item">Payment</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin/order') }}">
+                    <i class="fas fa-file"></i>
+                    <span class="nav-item">Report</span>
                 </a>
             </li>
             <li>

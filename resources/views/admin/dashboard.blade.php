@@ -15,7 +15,7 @@
                 <div class="col-3">
                     <div class="item_card">
                         <p>87 <br> Customers</p>
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
                 <div class="col-3">
@@ -27,7 +27,7 @@
                 <div class="col-3">
                     <div class="item_card">
                         <p>{{ $orders }} <br> Orders</p>
-                        <i class="fas fa-shopping-bag"></i>
+                        <i class="fas fa-cart-arrow-down"></i>
                     </div>
                 </div>
                 <div class="col-3">

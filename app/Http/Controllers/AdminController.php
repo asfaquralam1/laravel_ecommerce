@@ -26,7 +26,7 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
-        }else{
+        } else {
             return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
         }
     }
@@ -137,7 +137,8 @@ class AdminController extends Controller
             'details' => 'required',
             'price' => 'required',
             'discount_price' => 'required',
-            'quantity' => 'required'
+            'quantity' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // $modal = new Product([
@@ -153,10 +154,15 @@ class AdminController extends Controller
         $modal->price = $request->price;
         $modal->discount_price = $request->discount_price;
         $modal->quantity = $request->quantity;
-        $image = $request->image;
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('product', $imagename);
-        $modal->image = $imagename;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            // Resize the image
+            // $imgsize = Image::make($image)->resize(800, 600);
+            // Set your desired resolution
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('product', $imagename);
+            $modal->image = $imagename;
+        }
         $modal->save();
         $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product');
