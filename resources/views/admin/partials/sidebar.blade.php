@@ -5,19 +5,19 @@
     </a>
     <nav>
         <ul>
-            <li class="@yield('dashboard_select')">
+            <li class="sidebar-item @yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
                     <span class="nav-item">Dashboard</span>
                 </a>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin/order') }}">
                     <i class="fas fa-users"></i>
                     <span class="nav-item">Customer</span>
                 </a>
             </li>
-            <li class="sidebar-item @yield('category_select')">
+            <li class="@yield('category_select') dropdown-item-parent">
                 <a href="{{ route('admin/category') }}" class="sidebar-link has-dropdown collapsed"
                     data-bs-toggle="collapse" data-bs-target="#category" aria-expanded="false" aria-controls="category">
                     <i class="fas fa-tag"></i>
@@ -37,31 +37,31 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin/product') }}">
                     <i class="fas fa-tshirt"></i>
                     <span class="nav-item">Product</span>
                 </a>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin/order') }}">
                     <i class="fas fa-cart-arrow-down"></i>
                     <span class="nav-item">Order</span>
                 </a>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin/order') }}">
                     <i class="fas fa-cash-register"></i>
                     <span class="nav-item">Payment</span>
                 </a>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin/order') }}">
                     <i class="fas fa-file"></i>
                     <span class="nav-item">Report</span>
                 </a>
             </li>
-            <li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin.logout') }}" class="logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="nav-item">Logout</span>
