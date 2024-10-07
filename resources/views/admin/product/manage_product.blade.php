@@ -11,8 +11,8 @@
                 <i class="fas fa-bars"></i>
                 <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
             </div>
-            <div style="padding: 20px !important">
-                <div class="row align-items-center mb-4 justify-content-between">
+            <div style="padding: 20px !important;">
+                {{-- <div class="row align-items-center mb-4 justify-content-between">
                     <div class="col-md-6 col-sm-6">
                         <h5>All Product</h5>
                     </div>
@@ -21,8 +21,14 @@
                             href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
                             New</a>
                     </div>
+                </div> --}}
+                <div class="card-title">
+                    <h5>All Product</h5>
+                    <a class="btn-success add-btn"
+                        href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
+                        New</a>
                 </div>
-                <div class="table_card">
+                <div class="info_card">
                     <table id="table" class="table">
                         <thead>
                             <tr>

@@ -1,14 +1,14 @@
 <div class="side-nav">
     <a href="{{ route('admin.dashboard') }}" class="logo">
         <img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
-           <span class="nav-item">Ecommarce</span>
+           <span>Ecommarce</span>
     </a>
     <nav>
         <ul>
             <li class="@yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
-                    Dashboard
+                    <span class="nav-item">Dashboard</span>
                 </a>
             </li>
             <li>

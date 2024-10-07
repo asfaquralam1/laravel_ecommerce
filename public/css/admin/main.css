@@ -9,10 +9,6 @@ body {
 }
 
 .side-nav {
-    /* position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0; */
     height: 100%;
     background-color: #1C305C;
     width: 250px;
@@ -48,6 +44,14 @@ body {
     color: white;
 }
 
+nav li {
+    padding: 15px 0px;
+}
+
+nav li:hover {
+    background-color: #ced4da;
+}
+
 nav a {
     font-size: 18px;
     color: white;
@@ -55,8 +59,7 @@ nav a {
 }
 
 nav a:hover {
-    background: #d91212;
-    color: black !important;
+    color: black;
 }
 
 nav .fas,
@@ -65,7 +68,9 @@ nav .fas,
     text-align: center;
 }
 
-.nav-item {}
+.nav-item {
+    padding: 30px;
+}
 
 .dropdown-item {
     color: white;
@@ -156,6 +161,7 @@ input::placeholder {
     margin-top: 10px !important;
     color: white;
 }
+
 .item_card {
     display: flex;
     justify-content: space-between;
@@ -181,15 +187,11 @@ input::placeholder {
     padding: 10px !important;
     margin-bottom: 20px !important;
 }
-.info_card{
+
+.info_card {
     padding: 20px !important;
     background-color: #FFFFFF;
     border-radius: 5px;
-}
-.table_card {
-    background-color: #FFFFFF;
-    padding: 20px !important;
-    border-radius: 10px;
 }
 
 .card-title {
@@ -197,17 +199,25 @@ input::placeholder {
     justify-content: space-between;
 }
 
-
-/*nav*/
 .add-btn {
-    padding: 8px 17px 8px 17px !important;
+    padding: 7px 15px !important;
     margin-bottom: 20px !important;
-    background-color: #5fb637;
-    border: none;
     border-radius: 5px;
+    font-size: 13px;
 }
 
 .add-btn a {
+    color: white !important;
+}
+
+.back-btn {
+    padding: 7px 15px !important;
+    margin-bottom: 20px !important;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.back-btn a {
     color: white !important;
 }
 
@@ -253,4 +263,52 @@ td {
     border-radius: 5px;
     color: white;
     font-size: 13px;
+}
+
+
+/* select option */
+.options {
+    cursor: pointer;
+    width: 200px;
+    min-height: 35px;
+    max-height: 300px;
+    border-radius: 5px;
+    border: none;
+    transition: all 300ms;
+    border: 1px solid #c5c5c5;
+}
+
+.options.opened {
+    overflow-y: scroll;
+}
+
+select:focus,
+select:active {
+    outline: 0;
+}
+
+.avatar-edit label {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 45px;
+    border: 2px solid #fff;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #7367f0 !important;
+}
+
+.input_image {
+    display: block;
+    border: 3px solid #f1f1f1;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25);
+    border-radius: 10px;
+    width: 210px;
+    height: 210px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
 }

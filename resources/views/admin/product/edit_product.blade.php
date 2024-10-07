@@ -13,13 +13,12 @@
             </div>
             <div style="padding: 20px !important;">
                 <div class="card-title">
-                    <h5 class="mb-2">Edit product</h5>
-                    <a class="btn-warning" href="{{ route('admin/product') }}"><i class="fas fa-backward"></i> Go
+                    <h5>Edit product</h5>
+                    <a class="btn-warning back-btn" href="{{ route('admin/product') }}"><i class="fas fa-backward"></i> Go
                         Back</a>
                 </div>
                 <div class="info_card">
-                    <h5 class="mb-2">Product Information</h5>
-                    <hr>
+                    <h5 class="mb-4">Product Information</h5>
                     <form class="admin_form" action="{{ route('admin/update-product', $product->id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
@@ -40,7 +39,7 @@
                                 <label for="category" class="control-label mb-1">Category</label>
                             </div>
                             <div class="col-md-10">
-                                <select name="category">
+                                <select name="category" class="options">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->name }}">{{ $category->name }}</option>
                                     @endforeach
@@ -99,20 +98,20 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="image" class="control-label mb-1">Product image</label>
-                            <input id="image" name="image" type="file">
-                            <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" width="70px"
-                                height="70px">
+                        <div class="avatar-edit">
+                            <h6 class="mb-4">Product Image</h6>
+                            <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="input_image">
+                            <div>
+                                <label for="image"><i class="fas fa-pencil-alt"></i></label>
+                                <input id="image" name="image" type="file" style="visibility: hidden;">
+                            </div>
                             @error('image')
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div>
-                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                Update
-                            </button>
-                        </div>
+                        <button type="submit" class="btn btn-block btn-success mt-3">
+                            Update
+                        </button>
                     </form>
                 </div>
             </div>
