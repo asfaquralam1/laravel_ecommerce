@@ -11,43 +11,59 @@
             <i class="fas fa-bars"></i>
             <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
         </div>
-        <div class="row m-t-30">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('admin/add-category') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="category_name" class="control-label mb-1">Category Name</label>
-                                <input id="category_name" name="name" type="text" class="form-control"
-                                    aria-required="true" aria-invalid="false" required>
-                                {{-- @error('name')
-                                    <div class="text-center text-danger">{{ $message }}
-                            </div>
-                            @enderror --}}
-                            @if (session()->has('message'))
-                            <div class="alert alert-success">
-                                <button type="button" class="" data-dismiss="alert"
-                                    aria-hidden="true">x</button>
-                                {{ session()->get('message') }}
-                            </div>
-                            @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="category_slug" class="control-label mb-1">Category Slug</label>
-                        <input id="category_slug" name="slug" type="text" class="form-control"
-                            aria-required="true" aria-invalid="false" required>
-                        @error('slug')
-                        <div class="text-center text-danger">{{ $message }}</div>
+        <div style="padding: 20px !important;">
+            <div class="card-title">
+                <h5>Add Category</h5>
+                <a class="btn-warning back-btn" href="{{ route('admin/category') }}"><i class="fas fa-backward"></i> Go
+                    Back</a>
+            </div>
+            <div class="info_card">
+                <h5 class="mb-4">Category Information</h5>
+                <form class="admin_form" action="{{ route('admin/add-category') }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="mt-4 mb-4 row">
+                        <div class="col-md-2">
+                            <label for="category_name" class="control-label mb-1">Category Name</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input id="category_name" name="name" type="text" class="form-control"
+                             aria-required="true" aria-invalid="false" required>
+                        </div>
+                        @error('name')
+                            <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div>
-                        <button id="payment-button" type="submit" class="btn btn-info">
-                            submit
-                        </button>
+                    <div class="mb-4 row">
+                        <div class="col-md-2">
+                            <label for="category_slug" class="control-label mb-1">Category Slug</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input id="category_slug" name="slug" type="text" class="form-control"
+                                aria-required="true" aria-invalid="false" required>
+                            @error('slug')
+                                <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        @error('slug')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    </form>
-                </div>
+                    {{-- <div class="avatar-edit">
+                        <h6 class="mb-4">Product Image</h6>
+                        <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="input_image">
+                        <div>
+                            <label for="image"><i class="fas fa-pencil-alt"></i></label>
+                            <input id="image" name="image" type="file" style="visibility: hidden;">
+                        </div>
+                        @error('image')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                    <button type="submit" class="btn btn-block btn-success mt-3">
+                        Save
+                    </button>
+                </form>
             </div>
         </div>
     </div>

@@ -12,16 +12,6 @@
                 <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
             </div>
             <div style="padding: 20px !important;">
-                {{-- <div class="row align-items-center mb-4 justify-content-between">
-                    <div class="col-md-6 col-sm-6">
-                        <h5>All Product</h5>
-                    </div>
-                    <div class="col-md-6 col-sm-6" style="text-align: right !important">
-                        <a class="btn-success" style="font-size: 13px;padding: 7px 15px !important;border-radius: 5px;"
-                            href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
-                            New</a>
-                    </div>
-                </div> --}}
                 <div class="card-title">
                     <h5>All Product</h5>
                     <a class="btn-success add-btn"
@@ -38,8 +28,8 @@
                                 <th class="text-center">Price</th>
                                 <th class="text-center">Discount Price</th>
                                 <th class="text-center">Quantity</th>
-                                <th class="text-center">image</th>
-                                <th class="text-center">action</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
