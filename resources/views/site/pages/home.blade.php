@@ -37,7 +37,7 @@
     </section>
 
 
-    <section id="newsletter">
+    <!-- <section id="newsletter">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12 text-center">
@@ -49,5 +49,17 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+    <section id="newsletter">
+    <div class="container">
+        <div class="newsletter_area">
+            <p>Subscribe for Our newsletters!</p>
+            <div class="newsletter_area">
+                <input type="text" placeholder="Enter your email" class="newslatter-input">
+                <button type="submit" class="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
