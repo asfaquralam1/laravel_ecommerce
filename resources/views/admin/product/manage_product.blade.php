@@ -14,38 +14,36 @@
             <div style="padding: 20px !important;">
                 <div class="card-title">
                     <h5>All Product</h5>
-                    <a class="btn-success add-btn"
-                        href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
+                    <a class="btn-success add-btn" href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
                         New</a>
                 </div>
                 <div class="info_card">
                     <table id="table" class="table">
                         <thead>
                             <tr>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Category</th>
-                                <th class="text-center">Details</th>
-                                <th class="text-center">Price</th>
-                                <th class="text-center">Discount Price</th>
-                                <th class="text-center">Quantity</th>
-                                <th class="text-center">Image</th>
-                                <th class="text-center">Action</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Details</th>
+                                <th>Price</th>
+                                <th>Discount Price</th>
+                                <th>Quantity</th>
+                                <th>Image</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
                                 <tr>
-                                    <td class="text-center">{{ $product->name }}</td>
-                                    <td class="text-center">{{ $product->category }}</td>
-                                    <td class="text-center">{{ $product->details }}</td>
-                                    <td class="text-center">{{ $product->price }}</td>
-                                    <td class="text-center">{{ $product->discount_price }}</td>
-                                    <td class="text-center">{{ $product->quantity }}</td>
-                                    <td class="text-center"><img src="/product/{{ $product->image }}"
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->category }}</td>
+                                    <td>{{ $product->details }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->discount_price }}</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    <td><img src="/product/{{ $product->image }}"
                                             alt="{{ $product->name }}" class="product_tumb"></td>
-                                    <td class="text-center"
-                                        style="display:flex; flex-direction: row;justify-content:space-around;padding-top: 20px;">
-                                        <a class="btn-warning edit-btn"
+                                    <td class="action_icon_row">
+                                        <a class="btn btn-warning edit-btn"
                                             href="{{ route('admin/edit-product', $product->id) }}"><i
                                                 class="fas fa-edit"></i></a>
                                         <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
@@ -53,7 +51,6 @@
                                             @csrf
                                             <button class="btn btn-danger delete-btn"><i class="fas fa-trash"></i></button>
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach

@@ -85,8 +85,7 @@ nav .fas,
     background-color: #ced4da;
 }
 
-.logout {
-}
+.logout {}
 
 
 .login-form-section {
@@ -222,24 +221,24 @@ input::placeholder {
     color: white !important;
 }
 
-/* .table {
-    border: 1px solid black;
-    width: 90%;
-} */
-
 th {
-    background-color: rgb(51, 50, 50) !important;
-    color: #eee;
-    text-align: center;
+    text-align: center !important;
 }
 
 td {
-    text-align: center;
+    height: auto;
+    text-align: center !important;
 }
 
 .product_tumb {
     width: 40px;
     height: 40px;
+}
+
+.action_icon_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .edit-btn {

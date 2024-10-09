@@ -21,9 +21,9 @@
                     <table id="table" class="table">
                         <thead>
                             <tr>
-                                <th class="text-center">Category Name</th>
-                                <th class="text-center">Category Slug</th>
-                                <th class="text-center">Action</th>
+                                <th>Category Name</th>
+                                <th>Category Slug</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         @foreach ($categories as $category)
@@ -31,7 +31,7 @@
                                 <tr>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->slug }}</td>
-                                    <td style="display:flex; flex-direction: row;justify-content:space-around;">
+                                    <td class="action_icon_row">
                                         @if ($category->status == 1)
                                             <form action="{{ url('admin/category/status/0') }}/{{ $category->id }}"
                                                 method="post">

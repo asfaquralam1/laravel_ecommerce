@@ -30,13 +30,13 @@
                     <h4>Contact Us</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <p>House 27, Road 2, Sector 9, Uttara</p>
+                            <p class="nav-link">House 27, Road 2, Sector 9, Uttara</p>
                         </li>
                         <li class="nav-item">
-                            <p>01111111111</p>
+                            <p class="nav-link">01111111111</p>
                         </li>
                         <li class="nav-item">
-                            <p>as@gmail.com</p>
+                            <a href="" class="nav-link">asfaquralam01@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +45,7 @@
         <hr>
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12">
-                <p style="text-align: left;">Copyright © Ecommarce project All Rights Reserved.
+                <p class="copytight_text">Copyright © Ecommarce project All Rights Reserved.
                 </p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
