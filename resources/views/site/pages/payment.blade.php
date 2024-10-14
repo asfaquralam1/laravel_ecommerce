@@ -8,7 +8,7 @@
             <h2>Checkout</h2>
             <ul class="list-inline">
                 {{-- <li class="list-inline-item"><a href="{{ route('/')}}">HOME</a></li> --}}
-                <li class="list-inline-item"><a href="#">Checkout</a></li>
+                <li class="list-inline-item"><a href="{{ url('/checkout') }}">Checkout</a></li>
             </ul>
         </div>
     </div>

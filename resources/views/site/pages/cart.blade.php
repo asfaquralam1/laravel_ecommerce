@@ -2,14 +2,15 @@
 @section('content')
     <section id="cart-page">
         <div class="container">
-            <table id="cart-table" class="table table-hover table-condensed">
+            <table id="cart-table">
                 <thead>
                     <tr style="background-color: orange;">
-                        <th style="width:50%; padding: 20px;">Product</th>
-                        <th style="width:10%; padding: 20px;">Price</th>
-                        <th style="width:8%; padding: 20px;">Quantity</th>
-                        <th style="width:22%; padding: 20px;" class="text-center">Subtotal</th>
-                        <th style="width:22%; padding: 20px;" class="text-center">Action</th>
+                        <th style="width: 25%" class="table_header">Product</th>
+                        <th style="width: 25%" class="table_header">Variant</th>
+                        <th style="width: 8%" class="table_header">Price</th>
+                        <th style="width: 10%" class="table_header">Quantity</th>
+                        <th style="width: 16%" class="table_header">Subtotal</th>
+                        <th style="width: 16%" class="table_header">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -17,24 +18,26 @@
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
                             @php $total += $details['price'] * $details['quantity'] @endphp
-                            <tr data-id="{{ $id }}">
+                            <tr data-id="{{ $id }}" style="border-bottom: 1px solid #e5e5e5">
                                 <td data-th="Product">
-                                    <div class="row">
-                                        <div class="col-sm-3 hidden-xs"><img src="/product/{{ $details['image'] }}"
-                                                width="100" height="100" class="img-responsive" /></div>
-                                        <div class="col-sm-9">
-                                            <h4 class="nomargin">{{ $details['name'] }}</h4>
-                                        </div>
-                                    </div>
+                                    <a href="#"
+                                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;"
+                                        class="nav-link">
+                                        <img src="/product/{{ $details['image'] }}" width="100" height="100"
+                                            class="img-responsive" style="border-radius: 3px;border: 1px solid #e5e5e5;" />
+                                        <h5 style="margin-left: 20px;color: black;font-weight: bold;">{{ $details['name'] }}
+                                        </h5>
+                                    </a>
                                 </td>
-                                <td data-th="Price">${{ $details['price'] }}</td>
-                                <td data-th="Quantity">checkout
+                                <td class="text-center">Size</td>
+                                <td data-th="Price" class="text-center">${{ $details['price'] }}</td>
+                                <td data-th="Quantity">
                                     <input type="number" min="1" value="{{ $details['quantity'] }}"
-                                        class="form-control quantity update-cart" />
+                                        class="form-control quantity update-cart text-center" />
                                 </td>
                                 <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}
                                 </td>
-                                <td class="actions" class="text-center">
+                                <td class="actions text-center">
                                     <button class="btn btn-danger btn-sm remove-from-cart"><i
                                             class="fa fa-trash"></i></button>
                                 </td>
@@ -44,21 +47,27 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5" class="text-end">
+                        <td colspan="6" class="text-end" style="background: #f8f8f8;">
                             <h3><strong>Total ${{ $total }}</strong></h3>
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
 
-                        <td colspan="5" class="text-end">
+                        <td colspan="6" class="text-end">
                             <a href="{{ url('/') }}" class="btn btn-warning text-end"><i class="fa fa-angle-left"></i>
                                 Continue
                                 Shopping</a>
                             <a href="{{ url('/checkout') }}" class="btn btn-success text-end">Checkout</a>
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tfoot>
             </table>
+            <div style="padding-top: 10px;display: flex;justify-content: space-between;">
+                <a href="{{ url('/') }}" class="btn btn-warning text-end"><i class="fa fa-angle-left"></i>
+                    Continue
+                    Shopping</a>
+                <a href="{{ url('/checkout') }}" class="btn btn-success text-end">Checkout</a>
+            </div>
         </div>
     </section>
 @endsection
