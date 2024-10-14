@@ -89,14 +89,14 @@
                                         </tr>
                                         <tr>
                                             @php
-                                            $time = strtotime($order->order_date);
+                                            $time = strtotime($order->created_at);
                                             $date = date('Y-m-d', $time); @endphp
                                             <td class="text-center">Order Date: <span class="ml-5">{{ $date }}</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             @php
-                                            $time = strtotime($order->delivery_date);
+                                            $time = strtotime($order->created_at);
                                             $date = date('Y-m-d', $time); @endphp
                                             <td class="text-center">Delivery Date: <span class="ml-5">{{ $date }}</span>
                                             </td>
@@ -113,7 +113,7 @@
                             </div>
                             <div class="card-body text-center">
                                 <table class="table table-borderless">
-                                    @php $subtotal = ($order->grand_total - config('settings.delivery_charge'))/(1+
+                                    @php $subtotal = ($order->subtotal - config('settings.delivery_charge'))/(1+
                                     (config('settings.tax_percentage')/100)) @endphp
                                     <tbody>
                                         <tr>
@@ -134,7 +134,7 @@
                                         <tr>
                                             <td class="text-left">Shipping Cost</td>
                                             <td class="text-left">{{ config('settings.currency_symbol') }}
-                                                {{  config('settings.delivery_charge') }}</td>
+                                            {{  round($order->shipping,0) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">Order Total</td>

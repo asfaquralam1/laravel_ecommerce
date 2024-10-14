@@ -1,6 +1,7 @@
-body{
+body {
     background-color: #FFFFFF;
 }
+
 .navbar .container {
     display: flex;
     justify-content: space-between;
@@ -308,12 +309,24 @@ body{
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
 .product_deatils_main_img {
     width: 100%;
-    /* height: auto; */
 }
 
+
+@media (min-width: 1200px) {
+    .product_image_section {
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (max-width: 575.98px) { 
+
+ }
 
 /*contact-page */
 #contact {
@@ -375,12 +388,14 @@ body{
     border-radius: 4px;
     padding: 40px 30px 0px 30px;
 }
+
 .mycart p {
     font-size: 17px;
     font-weight: 400;
     color: rgb(65, 65, 65);
     margin: 0 0 10px;
 }
+
 .mycart {
     margin: 50px 0;
 }
