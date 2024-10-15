@@ -5,7 +5,6 @@
 <div class="bread-crumb">
     <div class="container">
         <div class="matter">
-            <h2>Checkout</h2>
             <ul class="list-inline">
                 {{-- <li class="list-inline-item"><a href="{{ route('/')}}">HOME</a></li> --}}
                 <li class="list-inline-item"><a href="{{ url('/checkout') }}">Checkout</a></li>
@@ -89,7 +88,7 @@
                                         </tr>
                                         <tr>
                                             @php
-                                            $time = strtotime($order->order_date);
+                                            $time = strtotime($order->created_at);
                                             $date = date('Y-m-d', $time); @endphp
                                             <td class="text-center">Order Date: <span class="ml-5">{{ $date }}</span>
                                             </td>
@@ -113,7 +112,7 @@
                             </div>
                             <div class="card-body text-center">
                                 <table class="table table-borderless">
-                                    @php $subtotal = ($order->grand_total - config('settings.delivery_charge'))/(1+
+                                    @php $subtotal = ($order->subtotal - config('settings.delivery_charge'))/(1+
                                     (config('settings.tax_percentage')/100)) @endphp
                                     <tbody>
                                         <tr>

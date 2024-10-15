@@ -2,7 +2,6 @@
 @section('content')
     <section id="products-page">
         <div class="container">
-            <h1 style="text-align: center">Products</h1>
             <div class="row">
                 @forelse($products as $product)
                     <div class="col-md-3 col-lg-3 col-sm-12">

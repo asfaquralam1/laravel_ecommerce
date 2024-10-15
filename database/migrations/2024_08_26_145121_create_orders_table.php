@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_number')->default(1);
             $table->enum('status', ['pending', 'accept', 'cooking','packing', 'delivered', 'cancel','failed' ])->default('pending');
 
-            $table->double('subtotal', 20, 6)->nullable();
+            $table->double('subtotal', 20, 2)->nullable();
             $table->double('shipping', 10,2)->nullable();
             $table->string('coupon_code')->nullable();
             $table->double('discount',10,2)->nullable();
