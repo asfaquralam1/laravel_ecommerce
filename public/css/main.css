@@ -310,12 +310,24 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
 .product_deatils_main_img {
     width: 100%;
-    /* height: auto; */
 }
 
+
+@media (min-width: 1200px) {
+    .product_image_section {
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1400px) {
+}
+
+@media (max-width: 575.98px) { 
+
+ }
 
 /*contact-page */
 #contact {

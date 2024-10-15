@@ -95,7 +95,7 @@
                                         </tr>
                                         <tr>
                                             @php
-                                            $time = strtotime($order->delivery_date);
+                                            $time = strtotime($order->created_at);
                                             $date = date('Y-m-d', $time); @endphp
                                             <td class="text-center">Delivery Date: <span class="ml-5">{{ $date }}</span>
                                             </td>
@@ -133,7 +133,7 @@
                                         <tr>
                                             <td class="text-left">Shipping Cost</td>
                                             <td class="text-left">{{ config('settings.currency_symbol') }}
-                                                {{  config('settings.delivery_charge') }}</td>
+                                            {{  round($order->shipping,0) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="text-left">Order Total</td>

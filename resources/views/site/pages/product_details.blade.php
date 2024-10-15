@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="product_image_section" style="width: 400px;margin: 0 auto;">
+                    <div class="product_image_section">
                         <a href="{{ route('product_details', $product->id) }}"><img src="/product/{{ $product->image }}"
                             alt="product_deatils_main_img" class="product_deatils_main_img"></a>
                     </div>
