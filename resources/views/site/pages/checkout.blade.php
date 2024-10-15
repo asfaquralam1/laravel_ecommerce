@@ -2,6 +2,14 @@
 @section('content')
     <section id="checkout-page">
         <div class="container">
+        <div class="breadcrumb-section pt-4 py-4">
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li>Products</li>
+                    </ul>
+                </div>
+            </div>
             <form action="{{ route('place.order') }}" method="post" style="margin-bottom: 10px;padding: 20px;">
                 @csrf
                 <div class="row">

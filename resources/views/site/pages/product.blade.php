@@ -2,19 +2,11 @@
 @section('content')
     <section id="products-page">
         <div class="container">
-            <div class="breadcrumb-section" style="background-color: #f8f8f8;padding-bottom: 1.5rem !important;">
-                <div class="breadcrumb"
-                    style="display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding: .75rem 1rem;
-    margin-bottom: 1rem;
-    list-style: none;
-    background-color: #e9ecef;
-    border-radius: .25rem;">
+            <div class="breadcrumb-section pt-4 py-4">
+                <div class="breadcrumb">
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li></li>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li>Products</li>
                     </ul>
                 </div>
             </div>

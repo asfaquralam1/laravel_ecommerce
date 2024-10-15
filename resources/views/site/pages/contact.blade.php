@@ -2,7 +2,14 @@
 @section('content')
 <section id="contact">
     <div class="container">
-        <h1 class="text-center">Contact Us</h1>
+        <div class="breadcrumb-section pt-4 py-4">
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+        </div>
         <div class="contact_area">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12" style="padding: 0px !important;">

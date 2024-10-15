@@ -1,5 +1,6 @@
 body {
     background-color: #FFFFFF;
+    list-style: none;
 }
 
 .navbar .container {
@@ -290,30 +291,55 @@ body {
     .copytight_text {
         text-align: center !important;
     }
-
     .social-icon {
         justify-content: center !important;
         padding-bottom: 20px !important;
     }
 }
 
+/* breadcrumb */
+.breadcrumb-section{
+    background-color: #f8f8f8;
+}
+.breadcrumb {
+    display: flex;
+    justify-content: center;
+    border-radius: .25rem;
+    padding: 0;
+    margin: 0;
+}
+.breadcrumb ul{
+    margin: 0;
+}
+.breadcrumb li {
+    display: inline-block;
+    color: #555555;
+}
+.breadcrumb li a{
+    text-decoration: none;
+    color: black;
+}
+.breadcrumb li a::after {
+    content: "/";
+    display: inline-block;
+    margin: 0 8px;
+    color: #555555;
+}
 
 /* product-page */
 #products-page {
-    padding-top: 20px;
     min-height: 555px !important;
     /* with no product default height */
 }
 
 /* product-details-page */
 #product_deatils {
-    padding-top: 20px;
     padding-bottom: 20px;
 }
+
 .product_deatils_main_img {
     width: 100%;
 }
-
 
 @media (min-width: 1200px) {
     .product_image_section {
@@ -322,24 +348,7 @@ body {
     }
 }
 
-@media (min-width: 1400px) {
-}
-
-@media (max-width: 575.98px) { 
-
- }
-
 /*contact-page */
-#contact {
-    padding-top: 20px;
-    /* padding-bottom: 20px; */
-}
-
-.contact_area {
-    padding-top: 40px;
-    /* padding-bottom: 40px; */
-}
-
 .contact-form-area {
     padding: 20px !important;
 }
@@ -367,7 +376,8 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.shopping_btn{
+
+.shopping_btn {
     background-color: #FFCA2C;
     color: black;
     padding: 10px 20px;
@@ -375,10 +385,12 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
-.shopping_btn:hover{
+
+.shopping_btn:hover {
     color: white;
 }
-.checkout_btn{
+
+.checkout_btn {
     background-color: #FFCA2C;
     color: black;
     padding: 10px 20px;
@@ -386,14 +398,14 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
-.checkout_btn:hover{
+
+.checkout_btn:hover {
     color: white;
 }
 
 /* checkout page*/
 .checkout {
     border-top: 1px solid #d2d2d2;
-    padding-top: 15px;
 }
 
 .checkout .btn-primary {

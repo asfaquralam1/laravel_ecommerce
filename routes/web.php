@@ -22,16 +22,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 //admin
-Route::get('admin/login', [AdminController::class, 'index'])->name('admin.login');
-Route::group(['prefix' => 'admin'], function () {
-    Route::group(['middleware' => 'admin.guest'], function () {
-        Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
-    });
-    Route::group(['middleware' => 'admin.auth'], function () {
-        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-    });
+Route::get('admin', [AdminController::class, 'index'])->name('admin.login');
+Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
+// Route::group(['prefix' => 'admin'], function () {
+//     Route::group(['middleware' => 'admin.guest'], function () {
+//         Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('admin.authenticate');
+//     });
+//     Route::group(['middleware' => 'admin.auth'], function () {
+//         Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+//     });
+// });
+// Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+Route::group(['middleware' => 'isAdmin'], function () {
+    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
 Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');

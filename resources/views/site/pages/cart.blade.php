@@ -2,6 +2,15 @@
 @section('content')
     <section id="cart-page">
         <div class="container">
+        <div class="breadcrumb-section pt-4 py-4">
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="{{route('products')}}">Products</a></li>
+                        <li>My Cart</li>
+                    </ul>
+                </div>
+            </div>
             <table id="cart-table">
                 <thead>
                     <tr style="background-color: orange;">

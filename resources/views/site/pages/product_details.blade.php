@@ -2,6 +2,14 @@
 @section('content')
     <section id="product_deatils">
         <div class="container">
+        <div class="breadcrumb-section pt-4 py-4">
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li>Product Details</li>
+                    </ul>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-8">
                     <div class="product_image_section">
