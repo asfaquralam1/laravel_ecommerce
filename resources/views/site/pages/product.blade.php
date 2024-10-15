@@ -2,6 +2,22 @@
 @section('content')
     <section id="products-page">
         <div class="container">
+            <div class="breadcrumb-section" style="background-color: #f8f8f8;padding-bottom: 1.5rem !important;">
+                <div class="breadcrumb"
+                    style="display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: .25rem;">
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
             <div class="row">
                 @forelse($products as $product)
                     <div class="col-md-3 col-lg-3 col-sm-12">
