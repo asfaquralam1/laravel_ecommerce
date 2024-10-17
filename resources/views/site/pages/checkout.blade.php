@@ -13,7 +13,7 @@
             <form action="{{ route('place.order') }}" method="post" style="margin-bottom: 10px;padding: 20px;">
                 @csrf
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-sm-12 col-md-9">
                         <h4>Personal Information</h4>
                         <div class="Information_form"  style="background-color: rgb(241, 238, 238);border-radius: 5px;margin-bottom: 10px;padding: 20px;">
                         <div class="mb-4">

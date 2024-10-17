@@ -18,16 +18,15 @@ class AdminController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('admin/dashboard')->withSuccess('You have Successfully loggedin');
-        } else {
-            return redirect()->route('admin.login')->with('error', 'Either Email/Password is incorrect');
+        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->get('remember'))){
+            return redirect()->intended(route('admin.dashboard'));
+        }
+        else {
+            return redirect()->back()->withInput($request->only('email','remmember'));
         }
     }
     public  function logout()

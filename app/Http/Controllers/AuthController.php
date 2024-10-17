@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +20,9 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        $categories = Category::all();
-        $products = Product::all();
-
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return view('site.pages.home', compact('products', 'categories'));
+            return redirect()->route('home');
         } else {
             return redirect()->route('login')->with('error', 'Either Email/Password is incorrect');
         }
@@ -52,9 +47,6 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
             session()->flash('success','You Have Register successfully');
-            // return response()->json([
-            //     'status' => true,
-            // ]);
             return redirect('login');
         } else {
             return response()->json([

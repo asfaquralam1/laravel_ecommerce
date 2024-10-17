@@ -6,7 +6,7 @@
                 <div class="breadcrumb">
                     <ul>
                         <li><a href="{{route('home')}}">Home</a></li>
-                        <li><a href="{{route('products')}}">Products</a></li>
+                        <li><a href="{{route('product')}}">Products</a></li>
                         <li>My Cart</li>
                     </ul>
                 </div>
