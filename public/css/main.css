@@ -327,10 +327,9 @@ body {
 }
 
 /* product-page */
-#products-page {
+/* #products-page {
     min-height: 555px !important;
-    /* with no product default height */
-}
+} */
 
 /* product-details-page */
 #product_deatils {
@@ -339,6 +338,21 @@ body {
 
 .product_deatils_main_img {
     width: 100%;
+}
+
+.related-products{
+    padding: 40px 0px;
+}
+
+.owl-carousel .item {
+    text-align: center;
+    margin: 0px 5px;
+}
+
+.owl-carousel img {
+    width: 100%;
+    /* Make images responsive */
+    height: auto;
 }
 
 @media (min-width: 1200px) {
