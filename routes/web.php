@@ -93,3 +93,7 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+Route::get('/task',function(){
+    return view('site.pages.task');
+});
