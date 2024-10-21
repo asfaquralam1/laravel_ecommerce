@@ -10,22 +10,72 @@
 </head>
 
 <body>
-    <button class="btn btn-primary mb-4" id="addForm">Add Content +</button>
+    <button class="btn btn-primary mb-4" id="addModule">Add Module +</button>
 
     <div id="formContainer">
 
+        <button onclick="myFunction()">Remove</button>
     </div>
 
-    <button onclick="myFunction()">Remove</button>
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
-        document.getElementById('addForm').addEventListener('click', function() {
+         document.getElementById('addModule').addEventListener('click', function() {
             // Create form element
             const form = document.createElement("form");
             form.setAttribute("action", "#");
             form.setAttribute("method", "POST");
 
             
+            // Create a Title input element
+            const header = document.createElement("h4");
+            header.textContent = "Module";
+            header.setAttribute("class", "p-2");
+            header.setAttribute("style", "background-color: lightgrey;border-radius: 5px");
+
+            const addContent = document.createElement("button");
+            addContent.setAttribute("type", "button");
+            addContent.setAttribute("class", "btn btn-primary mb-2");
+            addContent.setAttribute("id", "addForm");
+            addContent.setAttribute("onclick", "f();");
+            addContent.textContent = "Add Content +";
+            
+            const div = document.createElement("div");
+            div.setAttribute("id","contentContainer");
+
+
+            // Create a Title input element
+            const input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("placeholder", "Content Title");
+            input.setAttribute("class", "form-control mb-4");
+
+            // Create a saveBtn element
+            const saveBtn = document.createElement("button");
+            saveBtn.setAttribute("type", "submit");
+            saveBtn.setAttribute("class", "btn btn-success mx-2");
+            saveBtn.textContent = "Save";
+
+            // Create a cancleBtn element
+            const cancleBtn = document.createElement("button");
+            cancleBtn.setAttribute("type", "submit");
+            cancleBtn.setAttribute("class", "btn btn-danger");
+            cancleBtn.textContent = "Cancle";
+
+            // Append input to form
+            form.appendChild(header);
+            form.appendChild(addContent);
+            form.appendChild(input);
+            form.appendChild(div);
+            form.appendChild(saveBtn);
+            form.appendChild(cancleBtn);
+
+            document.getElementById("formContainer").appendChild(form);
+        })
+
+        function f() {
+           const form = document.createElement("form");
+            form.setAttribute("action", "#");
+            form.setAttribute("method", "POST");
             // Create a Title input element
             const header = document.createElement("h4");
             header.textContent = "Content";
@@ -47,28 +97,15 @@
             input2.setAttribute("placeholder", "Content Length");
             input2.setAttribute("class", "form-control mb-4");
 
-            // Create a saveBtn element
-            const saveBtn = document.createElement("button");
-            saveBtn.setAttribute("type", "submit");
-            saveBtn.setAttribute("class", "btn btn-success mx-2");
-            saveBtn.textContent = "Save";
-
-            // Create a cancleBtn element
-            const cancleBtn = document.createElement("button");
-            cancleBtn.setAttribute("type", "submit");
-            cancleBtn.setAttribute("class", "btn btn-danger");
-            cancleBtn.textContent = "Cancle";
-
             // Append input to form
-            form.appendChild(header)
+            form.appendChild(header);
             form.appendChild(input);
             form.appendChild(input1);
             form.appendChild(input2);
-            form.appendChild(saveBtn);
-            form.appendChild(cancleBtn);
+            
 
-            document.getElementById("formContainer").appendChild(form);
-        })
+            document.getElementById("contentContainer").appendChild(form);
+         }
 
         function myFunction() {
             const list = document.getElementById("formContainer");
