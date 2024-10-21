@@ -124,4 +124,16 @@ class HomeController extends Controller
         $categories = Category::all();
         return view('site.pages.contact',compact('categories'));
     }
+    public function task(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'slug' => 'required',
+        ]);
+        $categories = new Category();
+        $categories->name = $request->post('name');
+        $categories->slug = $request->post('slug');
+        $categories->save();
+        $request->session()->flash('message', 'Your message has been sent successfully');
+        return redirect('contact');
+    }
 }
