@@ -3,10 +3,10 @@
 @section('product_select', 'active')
 @section('container')
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2">
             @include('admin.partials.sidebar')
         </div>
-        <div class="col-10">
+        <div class="col-md-10">
             @include('admin.partials.header')
             <div style="padding: 20px !important;">
                 <div class="card-title">
@@ -15,7 +15,7 @@
                         New</a>
                 </div>
                 <div class="info_card">
-                    <table id="table" class="table">
+                    <table id="table"> 
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
-                                <tr>
+                                <tr class="tr">
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->category }}</td>
                                     <td>{{ $product->details }}</td>
@@ -40,13 +40,13 @@
                                     <td><img src="/product/{{ $product->image }}"
                                             alt="{{ $product->name }}" class="product_tumb"></td>
                                     <td class="action_icon_row">
-                                        <a class="btn btn-warning edit-btn"
+                                        <a class="btn-primary action-btn"
                                             href="{{ route('admin/edit-product', $product->id) }}"><i
                                                 class="fas fa-edit"></i></a>
                                         <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger delete-btn"><i class="fas fa-trash"></i></button>
+                                            <button class="btn-danger action-btn"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
