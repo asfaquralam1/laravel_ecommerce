@@ -7,11 +7,9 @@
             @include('admin.partials.sidebar')
         </div>
         <div class="col-10">
-            <div class="header_card">
-                <i class="fas fa-bars"></i>
-                <p><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
-            </div>
-            <div style="padding: 20px !important">
+            @include('admin.partials.header')
+
+            <div class="info-section">
                 <div class="card-title">
                     <h5>All Order</h5>
                 </div>

@@ -76,16 +76,17 @@ class AdminController extends Controller
     }
     public function add_category(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required|unique:categories',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'slug' => 'required|unique:categories',
+        // ]);
 
-        $modal = new Category([
-            'name' => $request->post('name'),
-            'slug' => $request->post('slug'),
-        ]);
-        $modal->save();
+        // $modal = new Category([
+        //     'name' => $request->post('name'),
+        //     'slug' => $request->post('slug'),
+        // ]);
+        // $modal->save();
+        Category::create(array_merge($request->only(['name', 'slug'])));
         $request->session()->flash('message', 'Category Inserted');
         return redirect('admin/category');
     }

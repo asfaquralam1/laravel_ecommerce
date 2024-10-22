@@ -1,10 +1,7 @@
 <div class="side-nav">
-    <a href="{{ route('admin.dashboard') }}" class="logo">
-        <img src="{{ asset('image/favicon.png') }}" alt="" style="width: 50px">
-           <span>Ecommarce</span>
-    </a>
     <nav>
         <ul>
+            <img src="{{ asset('image/site_logo.jpg') }}" class="logo" alt="">
             <li class="sidebar-item @yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>

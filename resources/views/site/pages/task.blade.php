@@ -13,17 +13,23 @@
     <button class="btn btn-primary mb-4" id="addModule">Add Module +</button>
 
     <div id="formContainer">
-
-        <button onclick="myFunction()">Remove</button>
     </div>
+    <button onclick="myFunction()">Remove</button>
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
         document.getElementById('addModule').addEventListener('click', function() {
             // Create form element
             const form = document.createElement("form");
-            form.setAttribute("action", "#");
-            form.setAttribute("method", "POST");
+            form.setAttribute("action", "{{ route('admin/add-category') }}");
+            form.setAttribute("method", "get");
+
+            const csrfToken = "{{ csrf_token() }}";
+            const csrfInput = document.createElement("input");
+            csrfInput.setAttribute("type", "hidden");
+            csrfInput.setAttribute("name", "csrf_token"); 
+            // Use the appropriate name for your application
+            csrfInput.setAttribute("value", csrfToken);
 
             // Create a Title input element
             const header = document.createElement("h4");
@@ -63,6 +69,7 @@
             cancleBtn.textContent = "Cancle";
 
             // Append input to form
+            form.appendChild(csrfInput);
             form.appendChild(header);
             form.appendChild(addContent);
             form.appendChild(input);
@@ -76,7 +83,7 @@
         function f() {
             const form = document.createElement("form");
             form.setAttribute("action", "{{ route('admin/add-category') }}");
-            form.setAttribute("method", "POST");
+            form.setAttribute("method", "get");
             form.setAttribute("enctype", "multipart/form-data");
             form.setAttribute("class", "multiForms");
 
@@ -95,13 +102,13 @@
             // Create a Title input element
             const input = document.createElement("input");
             input.setAttribute("type", "text");
-            input.setAttribute("name", "name[]");
+            input.setAttribute("name", "name");
             input.setAttribute("placeholder", "Content Title");
             input.setAttribute("class", "form-control mb-4");
 
             const input1 = document.createElement("input");
             input1.setAttribute("type", "text");
-            input1.setAttribute("name", "slug[]");
+            input1.setAttribute("name", "slug");
             input1.setAttribute("placeholder", "Video Link");
             input1.setAttribute("class", "form-control mb-4");
 
@@ -111,11 +118,11 @@
             // input2.setAttribute("class", "form-control mb-4");
 
             // Append input to form
+            form.appendChild(csrfInput);
             form.appendChild(header);
             form.appendChild(input);
             form.appendChild(input1);
             // form.appendChild(input2);
-            form.appendChild(csrfInput);
 
 
             document.getElementById("contentContainer").appendChild(form);
