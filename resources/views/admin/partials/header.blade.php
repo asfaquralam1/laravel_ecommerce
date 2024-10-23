@@ -1,4 +1,4 @@
 <div class="header_card">
-    <i class="fas fa-bars"></i>
+    <i class="fas fa-bars" onclick="openNav()"></i>
     <p style="margin: 0px"><i class="fas fa-user"></i>{{ auth()->user() ? auth()->user()->name : '' }}</p>
 </div>
