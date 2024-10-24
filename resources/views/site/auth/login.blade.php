@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 </head>
+
 <body>
     <div class="login-form-section" style="background-image: url({{ asset('image/3165.jpg') }})">
         <form class="login-form" action="{{ route('user.login') }}" method="post">
@@ -25,19 +27,26 @@
             <h1 class="login-heading">Login</h1>
             <div class="mb-4">
                 <input type="email" class="form-control @error('email') is-invalid @enderror"
-                    value="{{ old('email') }}" name="email" id="email" placeholder="Useremail">
-                @error('email')
-                    <p>{{ $message }}</p>
-                @enderror
+                    value="{{ old('email') }}" name="email" id="email" placeholder="Email">
+                {{-- @error('email')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror --}}
             </div>
             <div class="mb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                     id="password" placeholder="Password">
-                @error('password')
-                    <p>{{ $message }}</p>
-                @enderror
+                {{-- @error('password')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror --}}
             </div>
-            <div class="mb-3 form-check" style="display: flex;justify-content:space-between">
+            @if ($errors->any())
+                <div class="error">
+                    @foreach ($errors->all() as $error)
+                        <p class="text-danger"><strong>{{ $error }}</strong></p>
+                    @endforeach
+                </div>
+            @endif
+            <div class="form-check">
                 <div>
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: white">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
@@ -56,4 +65,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 </body>
+
 </html>

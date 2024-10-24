@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -28,39 +29,43 @@
             <div class="mb-4">
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                     id="name" placeholder="Name">
-                @error('name')
-                    <p>{{ $message }}</p>
-                @enderror
+                @if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif
             </div>
             <div class="mb-4">
                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                     id="email" placeholder="Email">
-                @error('email')
-                    <p>{{ $message }}</p>
-                @enderror
+                @if ($errors->has('email'))
+                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                @endif
             </div>
+
             <div class="mb-4">
                 <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
                     id="phone" placeholder="Phone">
-                @error('phone')
-                    <p>{{ $message }}</p>
-                @enderror
+                    @if ($errors->has('phone'))
+                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                @endif
             </div>
 
             <div class="mb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                     id="password" placeholder="Password">
-                @error('password')
-                    <p>{{ $message }}</p>
-                @enderror
+                    @if ($errors->has('password'))
+                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                @endif
+                
             </div>
-            <!-- <div class="mb-4">
-                <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password"
-                    id="confirm_password" placeholder="Confirm Password">
-                @error('confirm_password')
-    <p>{{ $message }}</p>
-@enderror
-            </div> -->
+
+            <div class="mb-4">
+                <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                    name="password_confirmation " id="password_confirmation" placeholder="Confirm Password">
+                @if ($errors->has('password_confirmation'))
+                    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                @endif
+            </div>
+
             <button type="submit" class="btn btn-success">Submit</button>
             <p style="color: black ">Already have a account?<a href="{{ route('login') }}">Login</a></p>
         </form>

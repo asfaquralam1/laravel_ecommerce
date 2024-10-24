@@ -23,9 +23,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
-        } else {
-            return redirect()->route('login')->with('error', 'Either Email/Password is incorrect');
-        }
+        }  
+        return back()->withErrors([
+            'email' => 'These credentials do not match',
+        ])->withInput($request->only('email')); // Preserve email in the input
     }
     public function register_view()
     {
@@ -36,9 +37,14 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'phone' => 'required|phone|unique:users',
-            'password' => 'required|min:5|confirmed'
+            'phone' => ['required','regex:/^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/'],
+            'password' => 'required|confirmed'
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
         if ($validator) {
             $user = new User;
             $user->name = $request->name;
