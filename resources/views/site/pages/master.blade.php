@@ -12,13 +12,13 @@
 
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    
+
     <!-- OwlCarousel -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-    <title>Laravel</title>
+    <title>Ecommerce Website</title>
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
 
@@ -38,7 +38,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
                 items: 4, // Number of items to display
                 loop: true,
@@ -54,6 +54,11 @@
             });
         });
     </script>
+    </script>
+
+    @stack('script-lib')
+    @include('site.partials.notify')
+    @stack('script')
 </body>
 
 </html>

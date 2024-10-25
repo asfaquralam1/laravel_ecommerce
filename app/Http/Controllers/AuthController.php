@@ -25,7 +25,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         }  
         return back()->withErrors([
-            'email' => 'These credentials do not match',
+            'verify' => 'These credentials do not match',
         ])->withInput($request->only('email')); // Preserve email in the input
     }
     public function register_view()

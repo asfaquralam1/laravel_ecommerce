@@ -25,7 +25,7 @@
         <form action="{{ route('user.register') }}" method="post" class="register-form" name="registrationForm"
             id="registrationForm">
             @csrf
-            <h4 class="text-center" style="padding-bottom: 20px;color: black">Register Now</h4>
+            <h1 class="auth-heading">Register</h1>
             <div class="mb-4">
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                     id="name" placeholder="Name">
@@ -66,8 +66,8 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-success">Submit</button>
-            <p style="color: black ">Already have a account?<a href="{{ route('login') }}">Login</a></p>
+            <button type="submit" class="btn btn-success auth-btn">Submit</button>
+            <p class="register-text">Already have a account?<a href="{{ route('login') }}">Login</a></p>
         </form>
     </div>
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>

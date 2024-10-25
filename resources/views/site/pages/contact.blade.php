@@ -18,8 +18,8 @@
                         frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br />
                 </div>
                 <div class="col-lg-6 col-lg-6 col-sm-12 bg-theme-primary" style="padding: 0px !important;">
-                    <div class="contact-form-area" style="background-color: orange">
-                        <h4 style="padding-bottom: 10px;">We want to hear from you</h4>
+                    <div class="contact-form-area" style="background-color: #00203FFF">
+                        <h4 style="padding-bottom: 10px;color: white;">We want to hear from you</h4>
                         <form action="" class="contact-form">
                             <div class="mb-4">
                                 <div class="row">

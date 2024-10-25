@@ -21,30 +21,32 @@
 </head>
 
 <body>
-    <div class="login-form-section" style="background-image: url({{ asset('image/3165.jpg') }})">
+    <div class="login-form-section">
         <form class="login-form" action="{{ route('user.login') }}" method="post">
             @csrf
-            <h1 class="login-heading">Login</h1>
+            <h1 class="auth-heading">Login</h1>
             <div class="mb-4">
                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email') }}" name="email" id="email" placeholder="Email">
                 {{-- @error('email')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror --}}
+                @if ($errors->has('email'))
+                <span class="text-danger">{{ $errors->first('email') }}</span>
+                @endif
             </div>
             <div class="mb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                     id="password" placeholder="Password">
-                {{-- @error('password')
-                    <p class="text-danger">{{ $message }}</p>
-                @enderror --}}
+
+                @if ($errors->has('password'))
+                <span class="text-danger">{{ $errors->first('password') }}</span>
+                @endif
             </div>
-            @if ($errors->any())
-                <div class="error">
-                    @foreach ($errors->all() as $error)
-                        <p class="text-danger"><strong>{{ $error }}</strong></p>
-                    @endforeach
-                </div>
+            @if ($errors->has('verify'))
+            <div class="mb-4 text-center">
+                <span class="text-danger">{{ $errors->first('verify') }}</span>
+            </div>
             @endif
             <div class="form-check">
                 <div>
@@ -53,10 +55,9 @@
                 </div>
                 <a href="" style="color: white;">Forget Password</a>
             </div>
-            <button type="submit" class="btn btn-primary login-btn">Login</button>
+            <button type="submit" class="btn btn-primary auth-btn">Login</button>
 
-            <p class="register-text">Dont have account? <a href="{{ route('register') }}"
-                    style="color: white;font-weight: bold">Register</a></p>
+            <p class="register-text">Dont have account? <a href="{{ route('register') }}">Register</a></p>
         </form>
     </div>
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>

@@ -96,3 +96,7 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::get('/task',function(){
     return view('site.pages.task');
 });
+
+Route::get('/basic_response', function () {
+    return 'Hello World';
+ });
