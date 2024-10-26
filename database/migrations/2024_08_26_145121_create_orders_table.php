@@ -15,15 +15,19 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
-            $table->string('order_number')->default(1);
-            $table->enum('status', ['pending', 'accept', 'cooking','packing', 'delivered', 'cancel','failed' ])->default('pending');
+            $table->integer('user_id');
+            $table->string('order_number')->unique();
+            $table->enum('status', ['pending', 'accept', 'cooking', 'packing', 'delivered', 'cancel', 'failed'])->default('pending');
 
-            $table->double('subtotal', 20, 2)->nullable();
-            $table->double('shipping', 10,2)->nullable();
-            $table->string('coupon_code')->nullable();
-            $table->double('discount',10,2)->nullable();
-            $table->double('grand_total', 10, 2)->default(0);
+            $table->boolean('payment_status')->default(0);             // 1 means completed
+            $table->string('payment_method')->default('cash');         // for sslcommerze card_type 
+            $table->decimal('grand_total', 20, 6);
+            $table->unsignedInteger('item_count');
+            // $table->double('subtotal', 20, 2)->nullable();
+            // $table->double('shipping', 10,2)->nullable();
+            // $table->string('coupon_code')->nullable();
+            // $table->double('discount',10,2)->nullable();
+            // $table->double('grand_total', 10, 2)->default(0);
 
             //User Address data
             $table->string('name');
@@ -33,13 +37,25 @@ class CreateOrdersTable extends Migration
             $table->string('apartment')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('country')->nullable();
 
-            $table->boolean('payment_status')->default(0);             // 1 means completed
-            $table->string('payment_method')->default('cash');         // for sslcommerze card_type
-            $table->string('transaction_id',255)->nullable();
-            $table->string('currency',20)->nullable();
+             // for sslcommerze TRANSACTION INFO
+             $table->string('tran_date')->nullable();
+             $table->string('tran_id')->nullable();
+             $table->string('val_id')->nullable();
+             $table->string('amount')->nullable();
+             $table->string('store_amount')->nullable(); 
+             $table->string('bank_tran_id')->nullable();             
+             $table->string('currency_type')->nullable();
+             $table->string('currency_amount')->nullable();
+             $table->string('error')->nullable();
+             // card details
+             $table->string('card_type')->nullable();
+             $table->string('card_no')->nullable();
+             $table->string('card_brand')->nullable();
+             $table->string('card_issuer')->nullable(); 
+             $table->string('card_issuer_country')->nullable(); 
+             $table->string('card_issuer_country_code')->nullable();
+
             $table->timestamps();
         });
     }

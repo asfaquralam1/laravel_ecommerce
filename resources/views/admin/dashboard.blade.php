@@ -3,7 +3,7 @@
 @section('dashboard_select', 'active')
 @section('container')
 @include('admin.partials.header')
-<div class="row w-100">
+{{-- <div class="row w-100">
     <div class="col-sm-12 col-md-3">
         <div class="item_card">
             <p>87 <br> Customers</p>
@@ -28,8 +28,8 @@
             <i class="fas fa-tag"></i>
         </div>
     </div>
-</div>
-<!-- <div class="row w-100">
+</div> --}}
+<div class="row w-100">
     <div class="col-md-2">
         @include('admin.partials.sidebar')
     </div>
@@ -72,8 +72,8 @@
                 <div class="dashbaord_card">
                     <table class="table">
                         <div style="display: flex;flex-direction:row;justify-content:space-between">
-                            <h4>Top Selling Products</h4>
-                            <a href=""><strong>View All</strong></a>
+                            <h4>Top Selling</h4>
+                            <a href="" class="view-btn">View All</a>
                         </div>
                         <thead>
                             <tr>
@@ -111,8 +111,8 @@
                 <div class="dashbaord_card">
                     <table class="table">
                         <div style="display: flex;flex-direction:row;justify-content:space-between">
-                            <h4>Top</h4>
-                            <a href=""><strong>View All</strong></a>
+                            <h4>Uers</h4>
+                            <a href="" class="view-btn">View All</a>
                         </div>
                         <thead>
                             <tr>
@@ -148,5 +148,5 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 @endsection

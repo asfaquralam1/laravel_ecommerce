@@ -2,6 +2,7 @@ body {
     background-color: #FFFFFF;
     list-style: none;
     /* color: #65CCB7; */
+    /* color: #00203FFF; */
 }
 
 .navbar .container {
@@ -47,7 +48,7 @@ body {
     /* Center vertically */
     height: 100vh;
     color: #eee;
-    background-color: #00203FFF;
+    background-color: #1C305C;
 }
 
 .register-form {
@@ -71,7 +72,7 @@ body {
     /* Center vertically */
     height: 100vh;
     color: #eee;
-    background-color: #00203FFF;
+    background-color: #1C305C;
 }
 
 .login-form {
@@ -186,7 +187,7 @@ body {
 
 .add-btn {
     padding: 10px;
-    background-color: #00203FFF;
+    background-color: #1C305C;
     border: none;
     border-radius: 5px;
     color: white;
@@ -230,7 +231,7 @@ body {
 .subscribe-btn {
     padding: 7px 20px 7px 20px;
     color: white;
-    background-color: #00203FFF;
+    background-color: #1C305C;
     border: none;
     font-size: 18px;
     border-radius: 0.5rem;
@@ -258,7 +259,7 @@ body {
 /*footer */
 #footer {
     padding-top: 20px;
-    background-color: #00203FFF;
+    background-color: #1C305C;
     color: white;
 }
 
@@ -290,7 +291,7 @@ body {
     vertical-align: middle;
     background-color: #fff;
     margin-right: 3px;
-    color: #00203FFF;
+    color: #1C305C;
 }
 
 .copytight_text {
@@ -436,6 +437,13 @@ body {
 /* checkout page*/
 .checkout {
     border-top: 1px solid #d2d2d2;
+}
+
+.checkout-info {
+    background-color: rgb(241, 238, 238);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 20px;
 }
 
 .checkout .btn-primary {

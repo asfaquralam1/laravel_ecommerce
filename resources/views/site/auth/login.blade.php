@@ -5,19 +5,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
     <title>Laravel</title>
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
-
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-
 </head>
 
 <body>
@@ -38,7 +34,6 @@
             <div class="mb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                     id="password" placeholder="Password">
-
                 @if ($errors->has('password'))
                 <span class="text-danger">{{ $errors->first('password') }}</span>
                 @endif
@@ -56,7 +51,6 @@
                 <a href="" style="color: white;">Forget Password</a>
             </div>
             <button type="submit" class="btn btn-primary auth-btn">Login</button>
-
             <p class="register-text">Dont have account? <a href="{{ route('register') }}">Register</a></p>
         </form>
     </div>

@@ -59,25 +59,41 @@ class HomeController extends Controller
         //     }
         //     return redirect()->route('login');
         // }
-        $order = new Order();
-        $order->user_id = $request->post('user_id');
-        $order->subtotal = $request->post('subtotal');
-        $order->city = $request->post('city');
-        $order->shipping = $request->post('shipping');
-        $order->coupon_code = $request->post('coupon_code');
-        $order->discount = $request->post('discount');
-        $order->grand_total = $request->post('grand_total');
-        //user
-        $order->name = $request->post('name');
-        $order->email = $request->post('email');
-        $order->phone = $request->post('phone');
-        $order->address = $request->post('address');
-        $order->apartment = $request->post('apartment');
-        $order->city = $request->post('city');
-        $order->district = $request->post('district');
-        $order->zip = $request->post('zip');
-        $order->country = $request->post('country');
+        $shipping_cost = (float)config('settings.delivery_charge');
+        $sub_total = Cart::calculateSubtotal();
+        $vat = $sub_total * (config('settings.tax_percentage') / 100);
+        $grand_total = $sub_total + $shipping_cost + $vat;
 
+        // finding last order id: we use it for customer order id (customized) for billing purpose
+        // it will be false only for the first record.
+        if (!Order::orderBy('id', 'desc')->first()) {
+            $ord_id = 0;
+        } else {
+            $ord_id = Order::orderBy('id', 'desc')->first()->id;
+        }
+        $ord_id = '#' . (100000 + ($ord_id + 1));
+
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->order_number = $ord_id;
+        $order->payment_method = 'Cash';
+        $order->bank_tran_id = 'N/A';
+        $order->status = 'pending';
+        $order->payment_status = 0;
+        $order->grand_total = $grand_total;
+        $order->item_count = Cart::totalItems();
+        //user
+        $order->name = $request->name;
+        $order->email = $request->email;
+        $order->phone = $request->phone;
+        $order->address = $request->address;
+        $order->apartment = $request->apartment;
+        $order->city = $request->city;
+        $order->district = $request->district;
+        $order->zip = $request->zip;
+        $order->country = $request->country;
+        $order->delivery_date = $request->delivery_timings;
+        $order->order_date = \Carbon\Carbon::now()->toDateTimeString();
         $order->save();
         // when order is placed we set order_id to cart for that cart and set cart ip_address to null as it is used
         // for guest only.
@@ -86,6 +102,8 @@ class HomeController extends Controller
         //     $cart->ip_address = NULL;
         //     $cart->save();
         // }
+        // event(new OrderPlaced($order->order_number));
+
         return redirect()->route('checkout.payment', $order->id);
     }
     public function checkoutPayment($id)
@@ -93,7 +111,7 @@ class HomeController extends Controller
         $categories = Category::all();
         //getting the order for the respective user.
         $order = Order::where('id', $id)->first();
-        return view('site.pages.payment', compact('order','categories'));
+        return view('site.pages.payment', compact('order', 'categories'));
     }
     public function profile()
     {
@@ -118,13 +136,15 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $orders = Order::all()->where('id', Auth::id());
-        return view('site.pages.order', compact('categories','orders'));
+        return view('site.pages.order', compact('categories', 'orders'));
     }
-    public function contact(){
+    public function contact()
+    {
         $categories = Category::all();
-        return view('site.pages.contact',compact('categories'));
+        return view('site.pages.contact', compact('categories'));
     }
-    public function task(Request $request){
+    public function task(Request $request)
+    {
         $request->validate([
             'name' => 'required',
             'slug' => 'required',

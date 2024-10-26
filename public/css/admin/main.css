@@ -11,11 +11,10 @@ body {
 .side-nav {
     height: 100vh;
     background-color: #1C305C;
-    /* width: 220px; */
+    width: 220px;
     overflow: hidden;
     transition: width 0.2s linear;
     box-shadow: 0 20px 35px rgb(0, 0, 0, 0.1);
-    width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -221,7 +220,12 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
 }
-
+.view-btn{
+    padding: 5px 10px;
+    background-color: #1C305C;
+    color: white;
+    border-radius: 5px;
+}
 .add-btn {
     padding: 7px 15px !important;
     margin-bottom: 20px !important;
