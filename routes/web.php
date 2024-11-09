@@ -29,7 +29,7 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('admin/category', [AdminController::class, 'category'])->name('admin/category');
     Route::get('admin/manage-category', [AdminController::class, 'manage_category'])->name('admin/manage-category');
-    Route::get('admin/add-category', [AdminController::class, 'add_category'])->name('admin/add-category');
+    Route::post('admin/add-category', [AdminController::class, 'add_category'])->name('admin/add-category');
     Route::get('admin/edit-category/{id}', [AdminController::class, 'edit_category'])->name('admin/edit-category');
     Route::post('admin/update-category/{id}', [AdminController::class, 'update_category'])->name('admin/update-category');
     Route::delete('admin/destory-category/{id}', [AdminController::class, 'delete_category'])->name('admin/destory-category');

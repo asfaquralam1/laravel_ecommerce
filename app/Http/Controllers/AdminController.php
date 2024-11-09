@@ -87,8 +87,7 @@ class AdminController extends Controller
         // ]);
         // $modal->save();
         Category::create(array_merge($request->only(['name', 'slug'])));
-        $request->session()->flash('message', 'Category Inserted');
-        return redirect('admin/category');
+        return redirect('admin/category')->with('success','Category Added Successfully');
     }
     public function edit_category($id)
     {
@@ -101,15 +100,15 @@ class AdminController extends Controller
         $modal->name = $request->post('name');
         $modal->slug = $request->post('slug');
         $modal->update();
-        $request->session()->flash('message', 'Category Updated');
-        return redirect('admin/category');
+        // $request->session()->flash('message', 'Category Updated');
+        return redirect('admin/category')->with('success','Category Updated Successfully');
     }
-    public function delete_category(Request $request, $id)
+    public function delete_category($id)
     {
         $category = Category::find($id);
         $category->delete();
-        $request->session()->flash('warning', 'Category Deleted');
-        return redirect('admin/category');
+        //$request->session()->flash('warning', 'Category Deleted');
+        return redirect('admin/category')->with('warning','Category Deleted');
     }
     public function status(Request $request, $status, $id)
     {
@@ -164,8 +163,8 @@ class AdminController extends Controller
             $modal->image = $imagename;
         }
         $modal->save();
-        $request->session()->flash('message', 'Product Inserted');
-        return redirect('admin/product');
+        // $request->session()->flash('message', 'Product Inserted');
+        return redirect('admin/product')->with('success','Product Added Successfully');
     }
     public function edit_product($id)
     {

@@ -2,8 +2,8 @@
 @section('page_title', 'Dashboard')
 @section('dashboard_select', 'active')
 @section('container')
-@include('admin.partials.header')
-{{-- <div class="row w-100">
+    {{-- @include('admin.partials.header') --}}
+    {{-- <div class="row w-100">
     <div class="col-sm-12 col-md-3">
         <div class="item_card">
             <p>87 <br> Customers</p>
@@ -29,7 +29,7 @@
         </div>
     </div>
 </div> --}}
-<div class="row w-100">
+    {{-- <div class="row w-100">
     <div class="col-md-2">
         @include('admin.partials.sidebar')
     </div>
@@ -148,5 +148,24 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+    @include('admin.partials.header')
+    <div class="dashboard-content">
+        <div class="item_card">
+            <p>87 <br> Customers</p>
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="item_card">
+            <p>{{ $products }} <br> Products</p>
+            <i class="fas fa-tshirt"></i>
+        </div>
+        <div class="item_card">
+            <p>{{ $orders }} <br> Orders</p>
+            <i class="fas fa-cart-arrow-down"></i>
+        </div>
+        <div class="item_card">
+            <p>{{ $categories }} <br> Categories</p>
+            <i class="fas fa-tag"></i>
+        </div>
+    </div>
 @endsection
