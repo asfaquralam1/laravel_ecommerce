@@ -16,6 +16,7 @@ class AdminController extends Controller
     {
         return view('admin.auth.login');
     }
+
     public function authenticate(Request $request)
     {
         $this->validate($request, [
@@ -47,6 +48,7 @@ class AdminController extends Controller
         $orders = Order::all();
         return view('admin.order', compact('orders'));
     }
+
     public function add_order(Request $request)
     {
         $order = new Order;
@@ -65,15 +67,18 @@ class AdminController extends Controller
         //     ]);
         // }
     }
+
     public function category()
     {
         $categories = Category::all();
         return view('admin.category.manage_category', compact('categories'));
     }
+
     public function manage_category()
     {
         return view('admin.category.add_category');
     }
+
     public function add_category(Request $request)
     {
         // $request->validate([
@@ -89,11 +94,13 @@ class AdminController extends Controller
         Category::create(array_merge($request->only(['name', 'slug'])));
         return redirect('admin/category')->with('success','Category Added Successfully');
     }
+
     public function edit_category($id)
     {
         $category = Category::find($id);
         return view('admin.category.edit_category', compact('category'));
     }
+
     public function update_category(Request $request, $id)
     {
         $modal = Category::find($id);
@@ -103,6 +110,7 @@ class AdminController extends Controller
         // $request->session()->flash('message', 'Category Updated');
         return redirect('admin/category')->with('success','Category Updated Successfully');
     }
+
     public function delete_category($id)
     {
         $category = Category::find($id);
@@ -110,6 +118,7 @@ class AdminController extends Controller
         //$request->session()->flash('warning', 'Category Deleted');
         return redirect('admin/category')->with('warning','Category Deleted');
     }
+
     public function status(Request $request, $status, $id)
     {
         $category = Category::find($id);
@@ -118,6 +127,7 @@ class AdminController extends Controller
         $request->session()->flash('message', 'Category Status updated');
         return redirect('admin/category');
     }
+    
     public function product()
     {
         $products = Product::all();
@@ -128,6 +138,7 @@ class AdminController extends Controller
         $categories = Category::all();
         return view('admin.product.add_product', compact('categories'));
     }
+
     public function add_product(Request $request)
     {
         $request->validate([
@@ -166,12 +177,14 @@ class AdminController extends Controller
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success','Product Added Successfully');
     }
+
     public function edit_product($id)
     {
         $product = Product::find($id);
         $categories = Category::all();
         return view('admin.product.edit_product', compact('product', 'categories'));
     }
+
     public function update_product(Request $request, $id)
     {
         $modal = Product::find($id);
@@ -196,6 +209,7 @@ class AdminController extends Controller
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');
     }
+
     public function delete_product($id)
     {
         $category = Product::find($id);

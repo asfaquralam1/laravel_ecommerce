@@ -12,7 +12,7 @@
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-    <title>Laravel</title>
+    <title>Register</title>
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
 
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="register-form-section">
+    <div class="auth-form-section">
         <form action="{{ route('user.register') }}" method="post" class="register-form" name="registrationForm"
             id="registrationForm">
             @csrf
@@ -66,8 +66,8 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-success auth-btn">Submit</button>
-            <p class="register-text">Already have a account?<a href="{{ route('login') }}">Login</a></p>
+            <button type="submit" class="btn auth-btn">Submit</button>
+            <p class="register-text">Already have a account? <a href="{{ route('login') }}"><strong>Login</strong></a></p>
         </form>
     </div>
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>

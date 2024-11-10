@@ -17,8 +17,6 @@ class CartController extends Controller
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
     public function addToCart($id)
     {
@@ -43,8 +41,6 @@ class CartController extends Controller
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
     public function update(Request $request)
     {
@@ -58,8 +54,6 @@ class CartController extends Controller
 
     /**
      * Write code on Method
-     *
-     * @return response()
      */
     public function remove(Request $request)
     {

@@ -234,30 +234,48 @@ input::placeholder {
     }
 }
 
-.dashbaord_table_area{
+.a {
     display: flex;
     flex-direction: row;
-    margin: 0px 18px;
+    margin: 0px 17px;
 }
 
-.dashbaord_table {
+.dashbaord_table_area {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 100%;
+    margin: 0px 17px;
     padding: 10px;
     background-color: #FFFFFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.dashbaord_table {
     border-radius: 5px;
     margin: 0px 18px;
 }
 
+.dashbaord_table_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 @media (max-width: 768px) {
-    .dashbaord_table_area{
+    .dashbaord_table_area {
         display: flex;
         flex-direction: column;
-        margin: 0px;
+        margin: 20px 25px;
     }
 
     .dashbaord_table {
         padding: 0px;
         margin: 0px;
+    }
+
+    .a {
+        flex-direction: column !important;
     }
 }
 
@@ -283,6 +301,10 @@ input::placeholder {
     background-color: #1C305C;
     color: white;
     border-radius: 5px;
+}
+
+.view-btn:hover {
+    color: white;
 }
 
 .add-btn {

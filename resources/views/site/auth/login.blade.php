@@ -10,26 +10,23 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Fontawsome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>Laravel</title>
+    <title>Login</title>
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 </head>
 
 <body>
-    <div class="login-form-section">
+    <div class="auth-form-section">
         <form class="login-form" action="{{ route('user.login') }}" method="post">
             @csrf
             <h1 class="auth-heading">Login</h1>
             <div class="mb-4">
                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                     value="{{ old('email') }}" name="email" id="email" placeholder="Email">
-                {{-- @error('email')
+                @error('email')
                     <p class="text-danger">{{ $message }}</p>
-                @enderror --}}
-                @if ($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
+                @enderror
             </div>
             <div class="mb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
@@ -48,10 +45,10 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: white">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                <a href="" style="color: white;">Forget Password</a>
+                <a href="{{ route('user.forgotpass') }}">Forget Password</a>
             </div>
-            <button type="submit" class="btn btn-primary auth-btn">Login</button>
-            <p class="register-text">Dont have account? <a href="{{ route('register') }}">Register</a></p>
+            <button type="submit" class="btn auth-btn">Login</button>
+            <p class="register-text">Dont have account? <a href="{{ route('register') }}"><strong>Register</strong></a></p>
         </form>
     </div>
     <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>

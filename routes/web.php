@@ -59,6 +59,8 @@ Route::post('/register-user', [AuthController::class, 'register'])->name('user.r
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login-user', [AuthController::class, 'login'])->name('user.login');
 Route::get('/logout-user', [AuthController::class, 'logout'])->name('user.logout');
+Route::post('/logout-user', [AuthController::class, 'logout'])->name('user.logout');
+Route::get('/forgot-pass', [AuthController::class,'forgotpass'])->name('user.forgotpass');
 
 //cart
 Route::get('cart', [CartController::class, 'cart'])->name('cart');

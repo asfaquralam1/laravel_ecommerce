@@ -14,6 +14,7 @@ class AuthController extends Controller
     {
         return view('site.auth.login');
     }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -28,10 +29,12 @@ class AuthController extends Controller
             'verify' => 'These credentials do not match',
         ])->withInput($request->only('email')); // Preserve email in the input
     }
+
     public function register_view()
     {
         return view('site.auth.register');
     }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -52,8 +55,8 @@ class AuthController extends Controller
             $user->phone = $request->phone;
             $user->password = Hash::make($request->password);
             $user->save();
-            session()->flash('success','You Have Register successfully');
-            return redirect('login');
+            //session()->flash('success','You Have Register successfully');
+            return redirect('login')->with('success','You Have Register successfully');
         } else {
             return response()->json([
                 'status' => false,
@@ -61,6 +64,12 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function forgotpass()
+    {
+       return view('site.auth.change_password');
+    }
+
     public  function logout()
     {
         auth()->logout();

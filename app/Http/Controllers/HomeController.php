@@ -18,18 +18,21 @@ class HomeController extends Controller
         $products = Product::all();
         return view('site.pages.home', compact('products', 'categories'));
     }
+
     public function product()
     {
         $categories = Category::all();
         $products = Product::all();
         return view('site.pages.product', compact('products', 'categories'));
     }
+
     public function product_details($id)
     {
         $categories = Category::all();
         $product = Product::find($id);
         return view('site.pages.product_details', compact('product', 'categories'));
     }
+
     public function checkout_view()
     {
         $user = Auth::user();
@@ -45,6 +48,7 @@ class HomeController extends Controller
             return redirect('login');
         }
     }
+
     public function place_order(Request $request)
     {
         // //if cart is empty redirect to cart page
@@ -106,6 +110,7 @@ class HomeController extends Controller
 
         return redirect()->route('checkout.payment', $order->id);
     }
+
     public function checkoutPayment($id)
     {
         $categories = Category::all();
@@ -113,24 +118,35 @@ class HomeController extends Controller
         $order = Order::where('id', $id)->first();
         return view('site.pages.payment', compact('order', 'categories'));
     }
+
     public function profile()
     {
         $categories = Category::all();
         $user = Auth::user();
         return view('site.pages.profile', compact('user', 'categories'));
     }
+
     public function update_profile(Request $request)
     {
-        $user = Auth::user();
-        $user->name = $request->post('name');
-        $user->email = $request->post('email');
-        $user->phone = $request->post('phone');
-        $user->address = $request->post('address');
-        $user->city = $request->post('city');
-        $user->country = $request->post('country');
-        $user->update();
+        // Step 1: Validate the incoming data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:100',
+            'country' => 'nullable|string|max:100',
+        ]);
+
+        // Step 2: Get the authenticated user
+        $user = User::findOrFail(Auth::id());
+
+        // Step 3: Use mass assignment for simplicity (be sure to define the $fillable property in your User model)
+        $user->update($validatedData);
+
+        // Step 4: Flash a success message and redirect
         $request->session()->flash('message', 'User Updated');
-        return redirect('profile');
+        return redirect()->route('profile')->with('success', 'Your Profile is Updated');
     }
     public function user_order()
     {
@@ -138,11 +154,13 @@ class HomeController extends Controller
         $orders = Order::all()->where('id', Auth::id());
         return view('site.pages.order', compact('categories', 'orders'));
     }
+
     public function contact()
     {
         $categories = Category::all();
         return view('site.pages.contact', compact('categories'));
     }
+
     public function task(Request $request)
     {
         $request->validate([
