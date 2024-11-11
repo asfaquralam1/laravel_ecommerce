@@ -1,4 +1,7 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     list-style: none !important;
     text-decoration: none !important;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -227,6 +230,7 @@ input::placeholder {
 
     .dashboard-content {
         flex-direction: column;
+        margin: 15px;
     }
 
     .item_card {
@@ -234,7 +238,7 @@ input::placeholder {
     }
 }
 
-.a {
+/* .dashbaord_footer {
     display: flex;
     flex-direction: row;
     margin: 0px 17px;
@@ -274,10 +278,130 @@ input::placeholder {
         margin: 0px;
     }
 
-    .a {
+    .dashbaord_footer {
         flex-direction: column !important;
     }
+} */
+
+ /* Basic Reset */
+
+.dashboard_footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+    margin: 0 35px;
 }
+
+.dashboard_table_area {
+    flex: 0 0 75%;  /* First element: 70% width */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 10px;
+}
+
+.dashboard_table_area:nth-child(2) {
+    flex: 0 0 20%;  /* Second element: 20% width */
+}
+
+
+.dashboard_table_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user_table{
+    width: 30% !important;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.view-btn {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.table-responsive {
+    max-width: 100%;
+    overflow-x: auto; /* Horizontal scrolling for small screens */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .dashboard_footer {
+        gap: 10px;
+        margin: 0 25px;
+    }
+    .dashboard_table_area {
+        flex: 1 1 100%; /* Stack tables vertically on smaller screens */
+    }
+    .dashboard_table_area:nth-child(2) {
+        flex: 0 0 100%;  /* Second element: 20% width */
+    }
+    .dashboard_table_header {
+        flex-direction: row !important;
+    }
+
+    h4 {
+        font-size: 16px; /* Smaller font size on small screens */
+    }
+
+    .view-btn {
+        font-size: 12px; /* Adjust button font size */
+    }
+
+    .table th, .table td {
+        padding: 8px; /* Smaller padding for smaller screens */
+    }
+
+    .table-responsive {
+        font-size: 14px; /* Adjust table font size */
+    }
+}
+
+@media (max-width: 480px) {
+    h4 {
+        font-size: 14px; /* Further reduce font size for mobile */
+    }
+
+    .view-btn {
+        font-size: 10px; /* Smaller view button text */
+    }
+
+    .table th, .table td {
+        padding: 6px; /* Further reduce padding for very small screens */
+    }
+
+    .dashboard_table_header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
 
 .info-section {
     padding-left: 5px !important;
