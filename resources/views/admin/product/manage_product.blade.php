@@ -11,7 +11,7 @@
             <div style="padding: 20px !important;">
                 <div class="card-title">
                     <h5>All Product</h5>
-                    <a class="btn-success add-btn" href="{{ route('admin/manage-product') }}"><i class="fas fa-plus"></i> Add
+                    <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
                         New</a>
                 </div>
                 <div class="info_card">
@@ -41,9 +41,9 @@
                                             alt="{{ $product->name }}" class="product_tumb"></td>
                                     <td class="action_icon_row">
                                         <a class="btn-primary action-btn"
-                                            href="{{ route('admin/edit-product', $product->id) }}"><i
+                                            href="{{ route('admin.edit.product', $product->id) }}"><i
                                                 class="fas fa-edit"></i></a>
-                                        <form action="{{ route('admin/destory-product', $product->id) }}" method="post">
+                                        <form action="{{ route('admin.destory.product', $product->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn-danger action-btn"><i class="fas fa-trash"></i></button>

@@ -12,12 +12,12 @@
             <div style="padding: 20px !important;">
                 <div class="card-title">
                     <h5>Edit Category</h5>
-                    <a class="btn-warning back-btn" href="{{ route('admin/category') }}"><i class="fas fa-backward"></i> Go
+                    <a class="btn-warning back-btn" href="{{ route('admin.category') }}"><i class="fas fa-backward"></i> Go
                         Back</a>
                 </div>
                 <div class="info_card">
                     <h5 class="mb-4">Category Information</h5>
-                    <form class="admin_form" action="{{ route('admin/update-category', $category->id) }}" method="post"
+                    <form class="admin_form" action="{{ route('admin.update.category', $category->id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="mt-4 mb-4 row">

@@ -19,6 +19,13 @@ class HomeController extends Controller
         return view('site.pages.home', compact('products', 'categories'));
     }
 
+    public function category_product($id)
+    {
+        $categories = Category::all();
+        $products = Product::all();
+        return view('site.pages.product', compact('products', 'categories'));
+    }
+
     public function product()
     {
         $categories = Category::all();

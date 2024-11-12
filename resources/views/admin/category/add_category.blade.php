@@ -12,12 +12,12 @@
         <div class="info-section">
             <div class="card-title">
                 <h5>Add Category</h5>
-                <a class="btn-warning back-btn" href="{{ route('admin/category') }}"><i class="fas fa-backward"></i> Go
+                <a class="btn-warning back-btn" href="{{ route('admin.category') }}"><i class="fas fa-backward"></i> Go
                     Back</a>
             </div>
             <div class="info_card">
                 <h5 class="mb-4">Category Information</h5>
-                <form class="admin_form" action="{{ route('admin/add-category') }}" method="post"
+                <form class="admin_form" action="{{ route('admin.add.category') }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mt-4 mb-4 row">
@@ -58,7 +58,7 @@
                             <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
                     </div> --}}
-                    <button type="submit" class="btn btn-block btn-success mt-3">
+                    <button type="submit" class="btn btn-success mt-3">
                         Save
                     </button>
                 </form>

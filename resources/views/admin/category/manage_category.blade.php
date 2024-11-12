@@ -12,7 +12,7 @@
             <div style="padding: 20px !important;">
                 <div class="card-title">
                     <h5>All Category</h5>
-                    <a class="btn-success add-btn" href="{{ route('admin/manage-category') }}"><i class="fas fa-plus"></i> Add
+                    <a class="btn-success add-btn" href="{{ route('admin.manage.category') }}"><i class="fas fa-plus"></i> Add
                         Category</a>
                 </div>
                 <div class="info_card">
@@ -46,9 +46,9 @@
                                             </form>
                                         @endif
                                         <a class="btn btn-warning edit-btn"
-                                            href="{{ route('admin/edit-category', $category->id) }}"><i
+                                            href="{{ route('admin.edit.category', $category->id) }}"><i
                                                 class="fas fa-edit"></i></a>
-                                        <form action="{{ route('admin/destory-category', $category->id) }}" method="post">
+                                        <form action="{{ route('admin.destory.category', $category->id) }}" method="post">
                                             @method('DELETE')
                                             @csrf
                                             <button class="btn btn-danger delete-btn"><i class="fas fa-trash"></i></button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -37,11 +38,15 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        $orders = DB::table('orders')->count();
-        $categories = DB::table('categories')->count();
-        $users = DB::table('users')->count();
-        $products = DB::table('products')->count();
-        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products'));
+        $orders = Order::all();
+        $total_orders = DB::table('orders')->count();
+        $categories = Category::all();
+        $total_categories = DB::table('categories')->count();
+        $users = User::all();
+        $total_users = DB::table('users')->count();
+        $products = Product::all();
+        $total_products = DB::table('products')->count();
+        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products','total_users','total_categories','total_orders','total_products'));
     }
     public function order()
     {

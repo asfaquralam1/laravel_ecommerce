@@ -11,11 +11,11 @@
         <div style="padding: 20px !important;">
             <div class="card-title">
                 <h5>Create product</h5>
-                <a class="btn-warning back-btn" href="{{ route('admin/product') }}"><i class="fas fa-backward"></i> Go
+                <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
                     Back</a>
             </div>
             <div class="info_card">
-                <form class="admin_form" action="{{ route('admin/add-product') }}" method="post" enctype="multipart/form-data">
+                <form class="admin_form" action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data">
                     <h5 class="mb-4">Product Information</h5>
                     @csrf
                     <div class="mt-4 mb-4 row">
