@@ -15,7 +15,7 @@
                     <a class="btn-success add-btn" href="{{ route('admin.manage.category') }}"><i class="fas fa-plus"></i> Add
                         Category</a>
                 </div>
-                <div class="info_card">
+                <div class="table_area">
                     <table id="table" class="table">
                         <thead>
                             <tr>

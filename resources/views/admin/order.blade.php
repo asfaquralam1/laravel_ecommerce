@@ -13,7 +13,7 @@
                 <div class="card-title">
                     <h5>All Order</h5>
                 </div>
-                <div class="info_card">
+                <div class="table_area">
                     <table id="table" class="table table-bordered">
                         <thead>
                             <tr>

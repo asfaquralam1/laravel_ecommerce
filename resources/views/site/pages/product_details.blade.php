@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="product_image_section">
-                    <a href="{{ route('product_details', $product->id) }}"><img src="/product/{{ $product->image }}"
+                    <a href="{{ route('product.details', $product->id) }}"><img src="/product/{{ $product->image }}"
                             alt="product_deatils_main_img" class="product_deatils_main_img"></a>
                 </div>
                 <div class="row mt-4">

@@ -14,7 +14,7 @@
                 <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
                     Back</a>
             </div>
-            <div class="info_card">
+            <div class="table_area">
                 <form class="admin_form" action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data">
                     <h5 class="mb-4">Product Information</h5>
                     @csrf

@@ -2,7 +2,7 @@
     @foreach ($products as $product)
         <div class="col-md-3 col-sm-12">
             <div class="card">
-                <a href="{{ route('product_details', $product->id) }}"><img src="/product/{{ $product->image }}"
+                <a href="{{ route('product.details', $product->id) }}"><img src="/product/{{ $product->image }}"
                         alt="..." class="product_image"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>

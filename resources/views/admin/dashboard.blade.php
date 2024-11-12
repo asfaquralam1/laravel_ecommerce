@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="dashboard_footer">
-        <div class="dashboard_table_area">
+        <div class="table_area">
             <div class="dashboard_table_header">
                 <h4>Top Selling</h4>
                 <a href="#" class="view-btn">View All</a>
@@ -60,7 +60,7 @@
                 </table>
             </div>
         </div>
-        <div class="dashboard_table_area">
+        <div class="table_area">
             <div class="dashboard_table_header">
                 <h4>Users</h4>
                 <a href="#" class="view-btn">View All</a>

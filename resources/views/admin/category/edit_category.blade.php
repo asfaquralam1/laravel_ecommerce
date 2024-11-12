@@ -15,7 +15,7 @@
                     <a class="btn-warning back-btn" href="{{ route('admin.category') }}"><i class="fas fa-backward"></i> Go
                         Back</a>
                 </div>
-                <div class="info_card">
+                <div class="table_area">
                     <h5 class="mb-4">Category Information</h5>
                     <form class="admin_form" action="{{ route('admin.update.category', $category->id) }}" method="post"
                         enctype="multipart/form-data">

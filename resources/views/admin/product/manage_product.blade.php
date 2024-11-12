@@ -14,7 +14,7 @@
                     <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
                         New</a>
                 </div>
-                <div class="info_card">
+                <div class="table_area">
                     <table id="table"> 
                         <thead>
                             <tr>
