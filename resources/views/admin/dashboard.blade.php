@@ -26,7 +26,7 @@
         <div class="table_area">
             <div class="dashboard_table_header">
                 <h4>Top Selling</h4>
-                <a href="#" class="view-btn">View All</a>
+                <a href="{{ route('admin.order') }}" class="view-btn">View All</a>
             </div>
             <div class="table-responsive">
                 <table id="table" class="table table-bordered">
