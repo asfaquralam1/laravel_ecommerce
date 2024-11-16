@@ -2,7 +2,8 @@
     <nav>
         <ul>
             <img src="{{ asset('image/site_logo.jpg') }}" class="logo" alt="">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> -->
+            <a href="javascript:void(0)" class="closebtn" id="sidebar-toggle">×</a>
             <li class="sidebar-item @yield('dashboard_select')">
                 <a href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
@@ -70,9 +71,9 @@
 </div>
 
 <script>
-    function openNav() {
-        document.getElementById("sidenav").style.width = "250px";
-    }
+    // function openNav() {
+    //     document.getElementById("sidenav").style.width = "250px";
+    // }
 
     function closeNav() {
         document.getElementById("sidenav").style.width = "0";
