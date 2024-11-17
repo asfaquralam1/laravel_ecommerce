@@ -7,8 +7,6 @@
         @include('admin.partials.sidebar')
     </div>
     <div class="col-10">
-        @include('admin.partials.header')
-
         <div class="info-section">
             <div class="card-title">
                 <h5>Add Category</h5>
@@ -65,6 +63,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

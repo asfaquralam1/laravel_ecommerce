@@ -56,10 +56,14 @@
             margin-left: 250px;
             /* Adjust this value according to your sidebar's width */
         }
+        .content-wrapper{
+            padding: 20px !important;
+        }
     </style>
 </head>
 
 <body>
+    @include('admin.partials.header')
     @section('container')
     @show
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -129,6 +133,14 @@
             } else {
                 $('.layout-wrapper').removeClass('sidebar-closed').addClass('sidebar-open');
                 $sidebar.css('width', '250px');
+            }
+        });
+        $('#sidebar-close').on('click', function() {
+            var $sidebar = $('.side-nav');
+            // Toggle the 'sidebar-open' class on layout-wrapper
+            if ($('.layout-wrapper').hasClass('sidebar-open')) {
+                $('.layout-wrapper').removeClass('sidebar-open').addClass('sidebar-closed');
+                $sidebar.css('width', '0px');
             }
         });
     </script>

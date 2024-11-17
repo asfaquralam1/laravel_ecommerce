@@ -2,13 +2,12 @@
 @section('page_title', 'Order')
 @section('order_select', 'active')
 @section('container')
-@include('admin.partials.header')
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="content-wrapper">
         <div class="info-section">
             <div class="card-title">
-                <h5>All Order</h5>
+                <h5>orders</h5>
             </div>
             <div class="table_area">
                 <table id="table" class="table table-bordered">
