@@ -288,9 +288,9 @@ input::placeholder {
 .dashboard_footer {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 10px; */
+    gap: 10px;
     justify-content: space-between;
-    margin: 0 25px;
+    margin: 0 35px;
 }
 
 .table_area {
@@ -363,7 +363,7 @@ h4 {
 
 @media (max-width: 768px) {
     .dashboard_footer {
-        /* gap: 10px; */
+        gap: 10px;
         margin: 0 25px;
     }
     .table_area {
