@@ -13,7 +13,7 @@
         <div class="add-form">
             <form action="{{ route('admin.update.category', $category->id) }}" method="post"
                 enctype="multipart/form-data">
-                <h5 class="mb-4">Category Information</h5>
+                <h5 class="mb-4 text-center">Category Information</h5>
                 @csrf
                 <div class="mt-4 mb-4 row">
                     <div class="col-md-2">
