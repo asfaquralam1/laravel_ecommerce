@@ -6,14 +6,14 @@
     @include('admin.partials.sidebar')
     <div class="content-wrapper">
         <div class="card-title">
-            <h5>Edit Category</h5>
+            <h5 style=" margin-left: 20px;">Edit Category</h5>
             <a class="btn-warning back-btn" href="{{ route('admin.category') }}"><i class="fas fa-backward"></i> Go
                 Back</a>
         </div>
-        <div class="table_area">
-            <h5 class="mb-4">Category Information</h5>
-            <form class="admin_form" action="{{ route('admin.update.category', $category->id) }}" method="post"
+        <div class="add-form">
+            <form action="{{ route('admin.update.category', $category->id) }}" method="post"
                 enctype="multipart/form-data">
+                <h5 class="mb-4">Category Information</h5>
                 @csrf
                 <div class="mt-4 mb-4 row">
                     <div class="col-md-2">

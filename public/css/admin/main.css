@@ -383,6 +383,10 @@ h4 {
     .view-btn {
         font-size: 12px; /* Adjust button font size */
     }
+    .add-form{
+        width: 100%;
+        margin: 0px;
+    }
 
     .table th, .table td {
         padding: 8px; /* Smaller padding for smaller screens */
@@ -481,8 +485,8 @@ td {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding-top: 15px;
-    border: none !important;
+    /* padding-top: 15px;
+    border: none !important; */
 }
 
 .action-btn {

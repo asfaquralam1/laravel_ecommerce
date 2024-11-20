@@ -29,24 +29,24 @@
                             <form action="{{ url('admin/category/status/0') }}/{{ $category->id }}"
                                 method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-success status-btn" id="submit"><i
+                                <button type="submit" class="btn-success action-btn" id="submit"><i
                                         class="fas fa-toggle-on"></i></button>
                             </form>
                             @elseif ($category->status == 0)
                             <form action="{{ url('admin/category/status/1') }}/{{ $category->id }}"
                                 method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-dark status-btn"><i
+                                <button type="submit" class="btn-dark action-btn"><i
                                         class="fas fa-toggle-off"></i></button>
                             </form>
                             @endif
-                            <a class="btn btn-warning edit-btn"
+                            <a class="btn-warning action-btn"
                                 href="{{ route('admin.edit.category', $category->id) }}"><i
                                     class="fas fa-edit"></i></a>
                             <form action="{{ route('admin.destory.category', $category->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-danger delete-btn"><i class="fas fa-trash"></i></button>
+                                <button class="btn-danger action-btn"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
