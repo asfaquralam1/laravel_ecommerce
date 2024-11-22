@@ -40,17 +40,25 @@
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
-                items: 4, // Number of items to display
+                items: 4, // Default number of items for larger screens
                 loop: true,
-                // nav: true,
-                // dots: true,
                 autoplay: true,
-                utoplayTimeout: 1000,
+                autoplayTimeout: 1000,
                 autoplayHoverPause: true,
                 navText: [
                     '<i class="fas fa-chevron-left"></i>',
                     '<i class="fas fa-chevron-right"></i>'
-                ]
+                ],
+                responsive: {
+                    // When screen width is 0 to 599px, show 1 item
+                    0: {
+                        items: 1
+                    },
+                    // When screen width is 600px or greater, show 4 items
+                    600: {
+                        items: 4
+                    }
+                }
             });
         });
     </script>
