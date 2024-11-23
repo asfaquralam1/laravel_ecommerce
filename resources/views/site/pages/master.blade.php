@@ -21,7 +21,6 @@
     <title>Ecommerce Website</title>
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('image/favicon.png') }}" type="image/png">
-
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
 </head>

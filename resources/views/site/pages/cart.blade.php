@@ -26,7 +26,7 @@
                     @php $total = 0 @endphp
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
-                            @php $total += $details['price'] * $details['quantity'] @endphp
+                            @php $total += $details['discount_price'] * $details['quantity'] @endphp
                             <tr data-id="{{ $id }}" style="border-bottom: 1px solid #e5e5e5">
                                 <td data-th="Product">
                                     <a href="#"
@@ -39,12 +39,12 @@
                                     </a>
                                 </td>
                                 <td class="text-center">Size</td>
-                                <td data-th="Price" class="text-center">Tk. {{ $details['price'] }}</td>
+                                <td data-th="Price" class="text-center">Tk. {{ $details['discount_price'] }}</td>
                                 <td data-th="Quantity">
                                     <input type="number" min="1" value="{{ $details['quantity'] }}"
                                         class="form-control quantity update-cart text-center" />
                                 </td>
-                                <td data-th="Subtotal" class="text-center">Tk. {{ $details['price'] * $details['quantity'] }}
+                                <td data-th="Subtotal" class="text-center">Tk. {{ $details['discount_price'] * $details['quantity'] }}
                                 </td>
                                 <td class="actions text-center">
                                     <button class="btn btn-danger btn-sm remove-from-cart"><i
