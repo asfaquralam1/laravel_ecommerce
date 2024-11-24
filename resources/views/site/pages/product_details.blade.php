@@ -41,8 +41,9 @@
         <div class="related-products">
             <h3 class="text-center pb-2"><strong>Related Products</strong></h3>
             <div class="owl-carousel owl-theme">
+                @foreach ($related_products as $product)
                 <div class="item">
-                    <img src="/product/{{ $product->image }}" alt="product_deatils_main_img" class="product_deatils_main_img">
+                    <a href="{{ route('product.details', $product->id) }}"> <img src="/product/{{ $product->image }}" alt="product_deatils_main_img" class="product_deatils_main_img"></a>
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ $product->details }}</p>
                     @if ($product->price > 0)
@@ -50,6 +51,7 @@
                     @endif
                     <p class="card-text">Tk. {{ $product->discount_price }}</p>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

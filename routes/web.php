@@ -52,7 +52,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product/category/{id}', [HomeController::class, 'category_product'])->name('category.product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product.details');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //Authentication
 Route::get('/register', [AuthController::class, 'register_view'])->name('register');
@@ -77,6 +76,7 @@ Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf');
 Route::get('/download-pdf', [PDFController::class, 'downloadPdf'])->name('snappyPdf');

@@ -22,8 +22,10 @@ class HomeController extends Controller
     public function category_product($id)
     {
         $categories = Category::all();
-        $products = Product::all();
-        return view('site.pages.product', compact('products', 'categories'));
+        $category = Category::find($id);
+        $category_name = $category->name;
+        $products = Product::where('category',$category_name)->get();
+        return view('site.pages.category_product', compact('products', 'categories','category_name'));
     }
 
     public function product()
@@ -37,7 +39,10 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $product = Product::find($id);
-        return view('site.pages.product_details', compact('product', 'categories'));
+        $related_products = Product::where('id','!=',1)
+        ->distinct()
+        ->get();
+        return view('site.pages.product_details', compact('product', 'categories','related_products'));
     }
 
     public function checkout_view()
