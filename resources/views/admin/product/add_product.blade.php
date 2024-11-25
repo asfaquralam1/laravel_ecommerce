@@ -14,82 +14,77 @@
             <form action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data">
                 <h5 class="mb-4">Product Information</h5>
                 @csrf
-                <div class="mt-4 mb-4 row">
-                    <div class="col-md-4">
-                        <label for="name" class="control-label mb-1">Product Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="name" class="control-label mb-1">Product Name</label>
+                            <input id="name" name="name" type="text"
+                                class="form-control" aria-required="true" aria-invalid="false" required>
+                        </div>
+                        @error('name')
+                        <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-md-8">
-                        <input id="name" name="name" type="text"
-                            class="form-control" aria-required="true" aria-invalid="false" required>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="category" class="control-label mb-1">Category</label>
+                            <select name="category" class="form-select">
+                                <option value="">Add Category</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    @error('name')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
-                <div class="mb-4 row">
-                    <div class="col-md-4">
-                        <label for="category" class="control-label mb-1">Category</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="details" class="control-label mb-1">Product Details</label>
+                            <input id="details" name="details" type="text"
+                                class="form-control" aria-required="true" aria-invalid="false" required>
+                            @error('details')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <select name="category" class="options">
-                            <option value="">Add Category</option>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->name }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @error('category')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-4 row">
-                    <div class="col-md-4">
-                        <label for="details" class="control-label mb-1">Product Details</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input id="details" name="details" type="text"
-                            class="form-control" aria-required="true" aria-invalid="false" required>
-                    </div>
-                    @error('details')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-4 row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
                         <label for="price" class="control-label mb-1">Product Price</label>
-                    </div>
-                    <div class="col-md-8">
                         <input id="price" name="price" type="text"
                             class="form-control" aria-required="true" aria-invalid="false" required>
+                        @error('price')
+                        <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
+                        </div>
                     </div>
-                    @error('price')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
-                <div class="mb-4 row">
-                    <div class="col-md-4">
-                        <label for="discount_price" class="control-label mb-1">Product Discount
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="discount_price" class="control-label mb-1">Product Discount
+                                Price</label>
+                            <input id="discount_price" name="discount_price"
+                                type="text" class="form-control" aria-required="true" aria-invalid="false" required>
+                        </div>
+                        @error('discount_price')
+                        <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
                             Price</label>
+                            <input id="quantity" name="quantity" type="text"
+                                class="form-control" aria-required="true" aria-invalid="false" required>
+                        </div>
+                        @error('discount_price')
+                        <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="col-md-8">
-                        <input id="discount_price" name="discount_price"
-                            type="text" class="form-control" aria-required="true" aria-invalid="false" required>
-                    </div>
-                    @error('discount_price')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-4 row">
-                    <div class="col-md-4">
-                        <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
-                    </div>
-                    <div class="col-md-8">
-                        <input id="quantity" name="quantity" type="text"
-                            class="form-control" aria-required="true" aria-invalid="false" required>
-                    </div>
-                    @error('quantity')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
                 <div class="avatar-edit">
                     <h6 class="mb-4">Product Image</h6>

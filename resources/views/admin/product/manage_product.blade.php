@@ -16,7 +16,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Details</th>
+                        <th>Description</th>
                         <th>Price</th>
                         <th>Discount Price</th>
                         <th>Quantity</th>
