@@ -55,7 +55,7 @@
     <div class="container">
         <div class="newsletter_area">
             <p>Subscribe for Our newsletters!</p>
-            <div class="newsletter_area">
+            <div class="newsletter_input_area">
                 <input type="text" placeholder="Enter your email" class="newslatter-input">
                 <button type="submit" class="subscribe-btn">Subscribe</button>
             </div>

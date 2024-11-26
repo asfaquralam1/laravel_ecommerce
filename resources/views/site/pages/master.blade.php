@@ -62,10 +62,7 @@
         });
     </script>
     </script>
-
-    @stack('script-lib')
-    @include('site.partials.notify')
-    @stack('script')
+    
 </body>
 
 </html>

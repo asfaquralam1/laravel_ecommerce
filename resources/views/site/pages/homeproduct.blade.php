@@ -6,7 +6,7 @@
                         alt="..." class="product_image"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
+                    <!-- <p class="card-text" style="text-align: justify;">{{ $product->details }}</p> -->
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                     <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                         @csrf

@@ -43,9 +43,10 @@
             <div class="owl-carousel owl-theme">
                 @foreach ($related_products as $product)
                 <div class="item">
-                    <a href="{{ route('product.details', $product->id) }}"> <img src="/product/{{ $product->image }}" alt="product_deatils_main_img" class="product_deatils_main_img"></a>
+                <a href="{{ route('product.details', $product->id) }}"><img src="/product/{{ $product->image }}"
+                alt="product_image" class="product_image"></a>
                     <h5 class="card-title">{{ $product->name }}</h5>
-                    <p class="card-text">{{ $product->details }}</p>
+                    <!-- <p class="card-text">{{ $product->details }}</p> -->
                     @if ($product->price > 0)
                     <p class="card-text">Tk. <del>{{ $product->price }}</del></p>
                     @endif
