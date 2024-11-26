@@ -5,16 +5,17 @@
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="content-wrapper">
-        <div class="card-title">
+    <h5 style="text-align: center;">Create product</h5>
+        <!-- <div class="card-title">
             <h5 style=" margin-left: 20px;">Create product</h5>
             <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
                 Back</a>
-        </div>
+        </div> -->
         <div class="add-form">
             <form action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data">
                 <h5 class="mb-4">Product Information</h5>
                 @csrf
-                <div class="row">
+                <div class="row mx-auto">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="name" class="control-label mb-1">Product Name</label>
