@@ -56,7 +56,8 @@
             margin-left: 250px;
             /* Adjust this value according to your sidebar's width */
         }
-        .content-wrapper{
+
+        .content-wrapper {
             padding: 20px !important;
         }
     </style>
