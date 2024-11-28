@@ -154,6 +154,7 @@ class AdminController extends Controller
             'price' => 'required',
             'discount_price' => 'required',
             'quantity' => 'required',
+            'barcode' => 'string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -170,6 +171,7 @@ class AdminController extends Controller
         $modal->price = $request->price;
         $modal->discount_price = $request->discount_price;
         $modal->quantity = $request->quantity;
+        $modal->barcode = $request->barcode;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
     
@@ -248,6 +250,11 @@ class AdminController extends Controller
         return redirect('admin/product');
     }
 
+    public function printbarcode(){
+        view()->share(['pageTitle' => 'Products', 'subTitle' => 'Print Barcode' ]);
+        $products = Product::all();
+        return view('admin.product.print_barcode',compact('products'));
+    }
     public function delete_product($id)
     {
         $category = Product::find($id);

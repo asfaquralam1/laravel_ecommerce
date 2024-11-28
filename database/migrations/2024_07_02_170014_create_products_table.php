@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('discount_price');
             $table->integer('quantity');
             $table->string('image');
+            $table->string('barcode');
             $table->timestamps();
         });
     }

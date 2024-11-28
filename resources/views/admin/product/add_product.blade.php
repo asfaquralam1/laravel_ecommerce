@@ -15,7 +15,7 @@
             <form action="{{ route('admin.add.product') }}" method="post" enctype="multipart/form-data">
                 <h5 class="mb-4">Product Information</h5>
                 @csrf
-                <div class="row mx-auto">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="name" class="control-label mb-1">Product Name</label>

@@ -40,6 +40,7 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::post('admin/add-product', [AdminController::class, 'add_product'])->name('admin.add.product');
     Route::get('admin/edit-product/{id}', [AdminController::class, 'edit_product'])->name('admin.edit.product');
     Route::post('admin/update-product/{id}', [AdminController::class, 'update_product'])->name('admin.update.product');
+    Route::get('admin/printbarcode/product',[AdminController::class,'printbarcode'])->name('admin.printbarcode.product');
     Route::delete('admin/destory-product/{id}', [AdminController::class, 'delete_product'])->name('admin.destory.product');
     //order
     Route::get('admin/order', [AdminController::class, 'order'])->name('admin.order');
