@@ -41,7 +41,7 @@
                         <td><input type="number" min="1" placeholder="Print Quantity"></td>
                         <td class="action_icon_row">
                             <a class="btn btn-success"
-                                href="{{ route('admin.edit.product', $product->id) }}">Print</a>
+                                href="{{ route('admin.printbarcode.product', $product->id) }}">Print</a>
                         </td>
                     </tr>
                     @endforeach

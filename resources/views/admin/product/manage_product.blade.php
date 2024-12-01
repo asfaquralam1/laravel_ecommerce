@@ -23,7 +23,6 @@
                         <th>Discount Price</th>
                         <th>Quantity</th>
                         <th>Image</th>
-                        <th>Barcode Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -43,11 +42,10 @@
                         <td>{{ $product->quantity }}</td>
                         <td><img src="/product/{{ $product->image }}"
                                 alt="{{ $product->name }}" class="product_tumb"></td>
-                        @php
-                        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-                        @endphp
-                        <td><img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode('000005263635', $generatorPNG::TYPE_CODE_128)) }}"></td>
                         <td class="action_icon_row">
+                        <a class="btn-dark action-btn"
+                                href="{{ route('admin.edit.product', $product->id) }}"><i
+                                    class="fas fa-barcode"></i></a>
                             <a class="btn-primary action-btn"
                                 href="{{ route('admin.edit.product', $product->id) }}"><i
                                     class="fas fa-edit"></i></a>
