@@ -5,12 +5,34 @@
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="content-wrapper">
-        <!-- <div class="card-title">
-            <h5>Print Product Barcode</h5>
-            <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
-                New</a>
-        </div> -->
-        <h5><i class="fa fa-th"></i> {{ $pageTitle }} - {{ $subTitle }}</h5>
+        <div class="card-title">
+            <h5><i class="fa fa-th"></i> {{ $pageTitle }} - {{ $subTitle }}</h5>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <h1>Hello</h1>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="table_area">
             <table id="table">
                 <thead>
@@ -41,7 +63,7 @@
                         <td><input type="number" min="1" placeholder="Print Quantity"></td>
                         <td class="action_icon_row">
                             <a class="btn btn-success"
-                                href="{{ route('admin.printbarcode.product', $product->id) }}">Print</a>
+                                href="{{ route('admin.printbarcode.product', $product->id) }}">Add to Printlist</a>
                         </td>
                     </tr>
                     @endforeach

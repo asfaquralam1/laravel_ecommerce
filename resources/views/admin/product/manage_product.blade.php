@@ -7,8 +7,11 @@
     <div class="content-wrapper">
         <div class="card-title">
             <h5>Products</h5>
-            <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
-                New</a>
+            <div>
+                <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
+                    New</a>
+                <a class="btn-primary add-btn" href="{{ route('admin.printbarcode.product') }}">Print Barcodes</a>
+            </div>
         </div>
         <div class="table_area">
             <table id="table">
@@ -43,9 +46,6 @@
                         <td><img src="/product/{{ $product->image }}"
                                 alt="{{ $product->name }}" class="product_tumb"></td>
                         <td class="action_icon_row">
-                        <a class="btn-dark action-btn"
-                                href="{{ route('admin.edit.product', $product->id) }}"><i
-                                    class="fas fa-barcode"></i></a>
                             <a class="btn-primary action-btn"
                                 href="{{ route('admin.edit.product', $product->id) }}"><i
                                     class="fas fa-edit"></i></a>
