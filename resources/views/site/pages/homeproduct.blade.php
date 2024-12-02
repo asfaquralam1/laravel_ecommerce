@@ -10,7 +10,7 @@
                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                     <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                         @csrf
-                        <button class="add-btn">ADD TO CART </button>
+                        <button class="add-btn">Add to Cart</button>
                     </form>
                 </div>
             </div>
