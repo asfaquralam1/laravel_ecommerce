@@ -4,15 +4,15 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg"
+                    <img src="/image/banner.jpg"
                         class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg"
+                     <img src="/image/banner.jpg"
                         class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://t3.ftcdn.net/jpg/03/16/91/28/360_F_316912806_RCeHVmUx5LuBMi7MKYTY5arkE4I0DcpU.jpg"
+                     <img src="/image/banner.jpg"
                         class="d-block w-100" alt="...">
                 </div>
             </div>

@@ -19,6 +19,7 @@
                 <div class="row mt-4">
                     <div class="owl-carousel owl-theme">
                         <div class="item"><img src="/thumbnail/1728364689.jpg"
+                            {{-- <img src="/thumbnail/1728364689.jpg{{ $image->thumbnail }}" --}}
                                 alt="product_deatils_main_img" class="product_deatils_main_img" onclick="changeImage('/thumbnail/1728364689.jpg')"></div>
                     </div>
                 </div>

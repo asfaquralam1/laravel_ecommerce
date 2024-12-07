@@ -401,7 +401,7 @@ body {
 
 .shopping_btn {
     background-color: #1C305C;
-    color: black;
+    color: white;
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
@@ -414,7 +414,7 @@ body {
 
 .checkout_btn {
     background-color: #1C305C;
-    color: black;
+    color: white;
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
