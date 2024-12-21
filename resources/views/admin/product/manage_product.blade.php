@@ -25,7 +25,6 @@
                         <th>Price</th>
                         <th>Discount Price</th>
                         <th>Quantity</th>
-                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,14 +36,13 @@
                     <tr>
                         <td>{{$id++}}</td>
                         <td>{{ $product->barcode }}</td>
-                        <td>{{ $product->name }}</td>
+                        <td><img src="/product/{{ $product->image }}"
+                        alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
                         <td>{{ $product->category }}</td>
                         <td>{{ $product->details }}</td>
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->discount_price }}</td>
                         <td>{{ $product->quantity }}</td>
-                        <td><img src="/product/{{ $product->image }}"
-                                alt="{{ $product->name }}" class="product_tumb"></td>
                         <td class="action_icon_row">
                             <a class="btn-primary action-btn"
                                 href="{{ route('admin.edit.product', $product->id) }}"><i
