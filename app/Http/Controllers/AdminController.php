@@ -255,6 +255,49 @@ class AdminController extends Controller
         $products = Product::all();
         return view('admin.product.print_barcode',compact('products'));
     }
+    public function generateBarcodePdf($ids)
+    {
+        // Split the ids and quantities (comma separated)
+        $items = explode(',', $ids);  // ["1:10", "2:5", "3:7"]
+
+        // Create an array to store parsed data
+        $parsedItems = [];
+
+        // Create an array to store the IDs for querying the database
+        $productIds = [];
+
+        // Loop through each item and parse id:quantity
+        foreach ($items as $item) {
+            list($id, $quantity) = explode(':', $item);
+
+            // Store parsed items as an array of id and quantity
+            $parsedItems[] = [
+                'id' => (int) $id,
+                'quantity' => (int) $quantity
+            ];
+
+            // Store product IDs to query database
+            $productIds[] = (int) $id;
+        }
+
+        // Retrieve all products based on the collected IDs
+        $products = Product::whereIn('id', $productIds)->get();
+
+        // Map products with their corresponding quantities
+        $productsWithQuantity = $products->map(function ($product) use ($parsedItems) {
+            // Find the corresponding quantity for the product's id
+            $printquantity = collect($parsedItems)->firstWhere('id', $product->id)['quantity'];
+
+            // Add the quantity to the product data
+            return [
+                'product' => $product,
+                'printquantity' => $printquantity
+            ];
+        });
+        $pdf = PDF::loadView('admin.report.pdf.pdfproductbarcode', compact('productsWithQuantity'))
+            ->setPaper('a4', 'potrait');
+        return $pdf->stream('product_barcode.pdf');
+    }
     public function delete_product($id)
     {
         $category = Product::find($id);
