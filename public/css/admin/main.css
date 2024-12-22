@@ -343,6 +343,7 @@ h4 {
 .table th, .table td {
     padding: 12px;
     text-align: left;
+    color: black;
     border: 1px solid #ddd;
 }
 

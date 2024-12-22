@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -294,7 +295,7 @@ class AdminController extends Controller
                 'printquantity' => $printquantity
             ];
         });
-        $pdf = PDF::loadView('admin.report.pdf.pdfproductbarcode', compact('productsWithQuantity'))
+        $pdf = Pdf::loadView('admin.report.pdf.pdfproductbarcode', compact('productsWithQuantity'))
             ->setPaper('a4', 'potrait');
         return $pdf->stream('product_barcode.pdf');
     }
