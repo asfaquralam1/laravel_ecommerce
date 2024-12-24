@@ -66,8 +66,8 @@
             $flag = 0;
         @endphp
 
-        @foreach ($productsWithQuantity as $ingredient)
-            @for ($i = 1; $i <= $ingredient['printquantity']; $i++)
+        @foreach ($productsWithQuantity as $product)
+            @for ($i = 1; $i <= $product['printquantity']; $i++)
                 @php
                     $flag++; // Increment the counter with each iteration
                 @endphp
@@ -76,11 +76,11 @@
                         $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
                     @endphp
                     <h5>{{ config('app.name') }}</h5>
-                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($ingredient['product']->barcode, $generatorPNG::TYPE_CODE_128)) }}"
+                    <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($product['product']->barcode, $generatorPNG::TYPE_CODE_128)) }}"
                         style="width: 100% !important">
-                    <span>{{ $ingredient['product']->barcode }}</span>
-                    <p>{{ $ingredient['product']->name }}</p>
-                    <h4>Tk. {{ $ingredient['product']->price }}</h4>
+                    <span>{{ $product['product']->barcode }}</span>
+                    <p>{{ $product['product']->name }}</p>
+                    <h4>Tk. {{ $product['product']->price }}</h4>
                 </div>
                 @if ($flag % 5 == 0 && $i != 0)
                     <div class="clear_div"></div>
