@@ -80,7 +80,7 @@
                         style="width: 100% !important">
                     <span>{{ $ingredient['product']->barcode }}</span>
                     <p>{{ $ingredient['product']->name }}</p>
-                    <h4>Tk. 335</h4>
+                    <h4>Tk. {{ $ingredient['product']->price }}</h4>
                 </div>
                 @if ($flag % 5 == 0 && $i != 0)
                     <div class="clear_div"></div>
