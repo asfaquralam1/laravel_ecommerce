@@ -45,24 +45,25 @@ body {
 }
 
 .sidebar-item {
-    padding: 15px 0px;
+    padding: 10px 0px;
 }
 
 .sidebar-item:hover {
     background-color: #ced4da;
 }
 
-.dropdown-item-parent {
-    padding: 15px 0px;
-}
-
-nav a {
+.nav-link{
+    text-decoration: none;
+    margin-left: 10px;
     font-size: 18px;
     color: white;
 }
-
-nav a:hover {
+.nav-link:hover{
     color: black;
+}
+
+.dropdown-item-parent {
+    padding: 10px 0px;
 }
 
 nav .fas,
