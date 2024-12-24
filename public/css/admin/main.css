@@ -45,7 +45,7 @@ body {
 }
 
 .sidebar-item {
-    padding: 10px 0px;
+    padding: 5px 0px;
 }
 
 .sidebar-item:hover {
@@ -63,7 +63,7 @@ body {
 }
 
 .dropdown-item-parent {
-    padding: 10px 0px;
+    padding: 5px 0px;
 }
 
 nav .fas,
