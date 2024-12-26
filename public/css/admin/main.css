@@ -75,8 +75,8 @@ body {
 
 .nav-text {
     padding-left: 10px;
-    font-size: 14px;
-    font-weight: 600;
+    /* font-size: 14px;
+    font-weight: 600; */
 }
 
 .dropdown-item {

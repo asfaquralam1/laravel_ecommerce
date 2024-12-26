@@ -93,7 +93,7 @@
                 </div>
                 <div class="avatar-edit">
                     <h6 class="mb-4">Product Image</h6>
-                    <img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="input_image">
+                    <img  id="imagePreview" src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="input_image">
                     <div>
                         <label for="image"><i class="fas fa-pencil-alt"></i></label>
                         <input id="image" name="image" type="file" style="visibility: hidden;">
@@ -109,4 +109,27 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        // Get the file selected by the user
+        const file = event.target.files[0];
+
+        // Check if the file is an image
+        if (file && file.type.startsWith('image')) {
+            const reader = new FileReader();
+
+            // When the file is read successfully, update the image preview
+            reader.onload = function(e) {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = e.target.result; // Set the preview source to the image data
+                imagePreview.style.display = 'block'; // Show the image preview
+            };
+
+            // Read the image file as a data URL
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select a valid image file.');
+        }
+    });
+</script>
 @endsection
