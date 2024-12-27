@@ -26,11 +26,10 @@ class AdminController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
-        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->get('remember'))){
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
             return redirect()->intended(route('admin.dashboard'));
-        }
-        else {
-            return redirect()->back()->withInput($request->only('email','remmember'));
+        } else {
+            return redirect()->back()->withInput($request->only('email', 'remmember'));
         }
     }
     public  function logout()
@@ -48,7 +47,7 @@ class AdminController extends Controller
         $total_users = DB::table('users')->count();
         $products = Product::all();
         $total_products = DB::table('products')->count();
-        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products','total_users','total_categories','total_orders','total_products'));
+        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products', 'total_users', 'total_categories', 'total_orders', 'total_products'));
     }
     public function order()
     {
@@ -99,7 +98,7 @@ class AdminController extends Controller
         // ]);
         // $modal->save();
         Category::create(array_merge($request->only(['name', 'slug'])));
-        return redirect('admin/category')->with('success','Category Added Successfully');
+        return redirect('admin/category')->with('success', 'Category Added Successfully');
     }
 
     public function edit_category($id)
@@ -115,7 +114,7 @@ class AdminController extends Controller
         $modal->slug = $request->post('slug');
         $modal->update();
         // $request->session()->flash('message', 'Category Updated');
-        return redirect('admin/category')->with('success','Category Updated Successfully');
+        return redirect('admin/category')->with('success', 'Category Updated Successfully');
     }
 
     public function delete_category($id)
@@ -123,7 +122,7 @@ class AdminController extends Controller
         $category = Category::find($id);
         $category->delete();
         //$request->session()->flash('warning', 'Category Deleted');
-        return redirect('admin/category')->with('warning','Category Deleted');
+        return redirect('admin/category')->with('warning', 'Category Deleted');
     }
 
     public function status(Request $request, $status, $id)
@@ -134,7 +133,7 @@ class AdminController extends Controller
         $request->session()->flash('message', 'Category Status updated');
         return redirect('admin/category');
     }
-    
+
     public function product()
     {
         $products = Product::all();
@@ -175,28 +174,47 @@ class AdminController extends Controller
         $modal->barcode = $request->barcode;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-    
+
             // Generate a unique file name
             $imagename = time() . '.' . $image->getClientOriginalExtension();
-            
+
             // Resize the image (you can adjust the dimensions as needed)
             $img = Image::make($image);
-            
+
             // Resize the image to fit within a width of 800px, preserving aspect ratio
             $img->resize(800, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();  // Prevent upsizing the image
             });
-            
+
             // Save the resized image to the 'product' directory
             $img->save(public_path('product/' . $imagename));
-            
+
             // Update the model with the image name
             $modal->image = $imagename;
         }
+
+        if ($request->hasFile('thumbs')) {
+            foreach ($request->file('thumbs') as $image) {
+                // // Store the image in the public disk and get the file path
+                // $imagePath = $image->store('product', 'public');
+
+                // // Save the image data into the database
+                // Image::create([
+                //     'image_name' => $image->getClientOriginalName(),
+                //     'image_path' => $imagePath,
+                // ]);
+                $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
+                // Save the resized image to the 'product' directory
+                $img->save(public_path('product/' .'thumb-'. $thumbimagename));
+
+                // Update the model with the image name
+                $modal->thumbline = $thumbimagename;
+            }
+        }
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
-        return redirect('admin/product')->with('success','Product Added Successfully');
+        return redirect('admin/product')->with('success', 'Product Added Successfully');
     }
 
     public function edit_product($id)
@@ -215,46 +233,47 @@ class AdminController extends Controller
         $modal->price = $request->post('price');
         $modal->discount_price = $request->post('discount_price');
         $modal->quantity = $request->post('quantity');
-        
+
         if ($request->hasFile('image')) {
             // Get the old image path and delete it if it exists
             $destination = 'product/' . $modal->image;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
-        
+
             // Get the new uploaded file
             $file = $request->file('image');
-            
+
             // Get file extension and generate a new filename
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            
+
             // Create an image instance from the uploaded file
             $img = Image::make($file);
-        
+
             // Resize the image (adjust width and height as needed)
             $img->resize(800, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();  // Prevent upsizing the image
             });
-        
+
             // Save the resized image to the 'product' folder
             $img->save(public_path('product/' . $filename));
-            
+
             // Update the model with the new image filename
             $modal->image = $filename;
         }
-        
+
         $modal->update();
         $request->session()->flash('message', 'Product Updated');
         return redirect('admin/product');
     }
 
-    public function printbarcode(){
-        view()->share(['pageTitle' => 'Products', 'subTitle' => 'Print Barcode' ]);
+    public function printbarcode()
+    {
+        view()->share(['pageTitle' => 'Products', 'subTitle' => 'Print Barcode']);
         $products = Product::all();
-        return view('admin.product.print_barcode',compact('products'));
+        return view('admin.product.print_barcode', compact('products'));
     }
     public function generateBarcodePdf($ids)
     {

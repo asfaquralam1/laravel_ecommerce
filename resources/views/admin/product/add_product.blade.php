@@ -106,6 +106,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- main image -->
                 <div class="avatar-edit">
                     <h6 class="mb-4">Product Image</h6>
                     <img id="imagePreview" src="/product/1719988391.png" alt="Image Preview" class="input_image">
@@ -118,8 +119,9 @@
                     @enderror
                 </div>
 
+                 <!-- image gallery-->
                 <label for="images">Select Images</label>
-                <input type="file" name="images[]" id="image-upload" multiple><br><br>
+                <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
 
                 <!-- Preview Container -->
                 <div id="image-preview-container"></div>
