@@ -10,9 +10,9 @@
             <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
                 Back</a>
         </div>
-        <div class="table_area">
+        <div class="add-form">
             <h5 class="mb-4">Product Information</h5>
-            <form class="admin_form" action="{{ route('admin.update.product', $product->id) }}" method="post"
+            <form action="{{ route('admin.update.product', $product->id) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="mt-4 mb-4 row">
