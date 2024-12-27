@@ -11,7 +11,7 @@
                 Back</a>
         </div>
         <div class="add-form">
-            <h5 class="mb-4">Product Information</h5>
+            <h3 class="mb-4">Product Information</h3>
             <form action="{{ route('admin.update.product', $product->id) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
