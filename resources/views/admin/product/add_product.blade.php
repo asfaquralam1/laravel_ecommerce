@@ -120,8 +120,10 @@
                 </div>
 
                 <!-- image gallery-->
-                <label for="images">Select Images</label>
-                <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
+                <div>
+                    <h6 class="mb-4">Thumbline Images</h6>
+                    <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
+                </div>
 
                 <!-- Preview Container -->
                 <div id="image-preview-container"></div>
@@ -195,8 +197,8 @@
                     const img = document.createElement('img');
                     img.src = imgDataUrl;
                     img.classList.add('image-preview');
-                    img.style.maxWidth = '150px'; // Optional: Set max width of preview images
-                    img.style.maxHeight = '150px';
+                    img.style.width = '280px'; // Optional: Set max width of preview images
+                    img.style.height = '150px';
                     img.style.marginRight = '10px'; // Optional: Add some space between images
 
                     // Create the edit icon
@@ -205,7 +207,7 @@
                     editIcon.innerHTML = '&#9998;'; // Edit icon (pencil)
                     editIcon.style.position = 'absolute';
                     editIcon.style.top = '5px';
-                    editIcon.style.right = '100px'; // Adjust position so it doesn't overlap with delete icon
+                    editIcon.style.right = '130px'; // Adjust position so it doesn't overlap with delete icon
                     editIcon.style.fontSize = '17px';
                     editIcon.style.color = 'white';
                     editIcon.style.cursor = 'pointer';
