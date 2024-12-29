@@ -593,7 +593,7 @@ select:active {
 .edit-icon {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 55%;
-    padding: 6px;
+    padding: 0px 5px;
     color: white;
     cursor: pointer;
     font-size: 15px;

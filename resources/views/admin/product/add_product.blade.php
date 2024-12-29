@@ -155,7 +155,6 @@
             }
         });
 
-
         function generateBarcode() {
             let barcode = Date.now() + (Math.floor(Math
                 .random() * (99 - 10 + 1)) + 10);
@@ -165,130 +164,112 @@
     </script>
 
     <script>
-        document.getElementById('image-upload').addEventListener('change', function(event) {
-            const previewContainer = document.getElementById('image-preview-container');
+       document.getElementById('image-upload').addEventListener('change', function(event) {
+    const previewContainer = document.getElementById('image-preview-container');
 
-            // Create an array to store the data URLs of the images that have been uploaded
-            const uploadedImages = [];
+    // Create an array to store the data URLs of uploaded images
+    const uploadedImageUrls = [];
 
-            const files = event.target.files;
+    const files = event.target.files;
 
-            // Loop through each file and create an image preview
-            Array.from(files).forEach((file, index) => {
-                if (file && file.type.startsWith('image/')) {
-                    const reader = new FileReader();
+    // Loop through each file and create an image preview
+    Array.from(files).forEach((file) => {
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
 
-                    reader.onload = function(e) {
-                        const imgDataUrl = e.target.result;
+            reader.onload = function(e) {
+                const imgDataUrl = e.target.result;
 
-                        // Check if the image data URL is already in the uploaded images array
-                        if (uploadedImages.includes(imgDataUrl)) {
-                            // If the image is already uploaded, remove the existing image from the preview
-                            const existingImageDiv = Array.from(previewContainer.getElementsByClassName(
-                                'image-preview-container')).find(container => {
-                                const img = container.querySelector('img');
-                                return img && img.src === imgDataUrl;
-                            });
-
-                            if (existingImageDiv) {
-                                // Remove the existing image container
-                                previewContainer.removeChild(existingImageDiv);
-                            }
-
-                            // Optionally, remove the image data URL from the uploadedImages array (to allow replacing)
-                            const indexToRemove = uploadedImages.indexOf(imgDataUrl);
-                            if (indexToRemove !== -1) {
-                                uploadedImages.splice(indexToRemove, 1);
-                            }
-                        }
-
-                        // Create a container div for each image
-                        const imageDiv = document.createElement('div');
-                        imageDiv.classList.add('image-preview-container');
-                        imageDiv.style.position = 'relative';
-
-                        // Create the image element
-                        const img = document.createElement('img');
-                        img.src = imgDataUrl;
-                        img.classList.add('image-preview');
-                        img.style.maxWidth = '150px'; // Optional: Set max width of preview images
-                        img.style.marginRight = '10px'; // Optional: Add some space between images
-
-                        // Create the edit icon
-                        const editIcon = document.createElement('span');
-                        editIcon.classList.add('edit-icon');
-                        editIcon.innerHTML = '&#9998;'; // Edit icon (pencil)
-                        editIcon.style.position = 'absolute';
-                        editIcon.style.top = '5px';
-                        editIcon.style.right =
-                        '30px'; // Adjust position so it doesn't overlap with delete icon
-                        editIcon.style.fontSize = '20px';
-                        editIcon.style.color = 'white';
-                        editIcon.style.cursor = 'pointer';
-
-                        // Create the delete icon
-                        const deleteIcon = document.createElement('span');
-                        deleteIcon.classList.add('delete-icon');
-                        deleteIcon.innerHTML = '&#10060;'; // Delete icon (cross)
-                        deleteIcon.style.position = 'absolute';
-                        deleteIcon.style.top = '5px';
-                        deleteIcon.style.right = '5px';
-                        deleteIcon.style.fontSize = '20px';
-                        deleteIcon.style.color = 'white';
-                        deleteIcon.style.cursor = 'pointer';
-
-                        // Append the image, edit icon, and delete icon to the container
-                        imageDiv.appendChild(img);
-                        imageDiv.appendChild(editIcon);
-                        imageDiv.appendChild(deleteIcon);
-
-                        // Append the container to the preview container
-                        previewContainer.appendChild(imageDiv);
-
-                        // Handle image replacement when the edit icon is clicked
-                        editIcon.addEventListener('click', function() {
-                            // Open the file input dialog to choose a new image
-                            const newInput = document.createElement('input');
-                            newInput.type = 'file';
-                            newInput.accept = 'image/*';
-
-                            // When a new file is selected, replace the image and update the preview
-                            newInput.addEventListener('change', function(e) {
-                                const newFile = e.target.files[0];
-                                if (newFile && newFile.type.startsWith('image/')) {
-                                    const reader = new FileReader();
-
-                                    reader.onload = function(event) {
-                                        img.src = event.target
-                                        .result; // Update the preview image
-                                    };
-
-                                    reader.readAsDataURL(newFile); // Read the new image
-                                }
-                            });
-
-                            newInput.click(); // Open the file input dialog
-                        });
-
-                        // Handle image deletion when the delete icon is clicked
-                        deleteIcon.addEventListener('click', function() {
-                            previewContainer.removeChild(
-                            imageDiv); // Remove the image preview container
-                            // Optionally remove the data URL from the uploadedImages array (if deleting)
-                            const indexToRemove = uploadedImages.indexOf(imgDataUrl);
-                            if (indexToRemove !== -1) {
-                                uploadedImages.splice(indexToRemove, 1);
-                            }
-                        });
-
-                        // Add the image data URL to the array (so we can check for duplicates)
-                        uploadedImages.push(imgDataUrl);
-                    };
-
-                    reader.readAsDataURL(file); // Read the image file as a data URL
+                // Check if the image with the same data URL is already uploaded
+                if (uploadedImageUrls.includes(imgDataUrl)) {
+                    return; // Skip if the image is already uploaded
                 }
-            });
-        });
+
+                // Create a container div for each image
+                const imageDiv = document.createElement('div');
+                imageDiv.classList.add('image-preview-container');
+                imageDiv.style.position = 'relative';
+
+                // Create the image element
+                const img = document.createElement('img');
+                img.src = imgDataUrl;
+                img.classList.add('image-preview');
+                img.style.maxWidth = '150px'; // Optional: Set max width of preview images
+                img.style.marginRight = '10px'; // Optional: Add some space between images
+
+                // Create the edit icon
+                const editIcon = document.createElement('span');
+                editIcon.classList.add('edit-icon');
+                editIcon.innerHTML = '&#9998;'; // Edit icon (pencil)
+                editIcon.style.position = 'absolute';
+                editIcon.style.top = '5px';
+                editIcon.style.right = '125px'; // Adjust position so it doesn't overlap with delete icon
+                editIcon.style.fontSize = '20px';
+                editIcon.style.color = 'white';
+                editIcon.style.cursor = 'pointer';
+
+                // Create the delete icon
+                const deleteIcon = document.createElement('span');
+                deleteIcon.classList.add('delete-icon');
+                deleteIcon.innerHTML = '&#10060;'; // Delete icon (cross)
+                deleteIcon.style.position = 'absolute';
+                deleteIcon.style.top = '5px';
+                deleteIcon.style.right = '5px';
+                deleteIcon.style.fontSize = '20px';
+                deleteIcon.style.color = 'white';
+                deleteIcon.style.cursor = 'pointer';
+
+                // Append the image, edit icon, and delete icon to the container
+                imageDiv.appendChild(img);
+                imageDiv.appendChild(editIcon);
+                imageDiv.appendChild(deleteIcon);
+
+                // Append the container to the preview container
+                previewContainer.appendChild(imageDiv);
+
+                // Handle image replacement when the edit icon is clicked
+                editIcon.addEventListener('click', function() {
+                    // Open the file input dialog to choose a new image
+                    const newInput = document.createElement('input');
+                    newInput.type = 'file';
+                    newInput.accept = 'image/*';
+
+                    // When a new file is selected, replace the image and update the preview
+                    newInput.addEventListener('change', function(e) {
+                        const newFile = e.target.files[0];
+                        if (newFile && newFile.type.startsWith('image/')) {
+                            const reader = new FileReader();
+
+                            reader.onload = function(event) {
+                                img.src = event.target.result; // Update the preview image
+                            };
+
+                            reader.readAsDataURL(newFile); // Read the new image
+                        }
+                    });
+
+                    newInput.click(); // Open the file input dialog
+                });
+
+                // Handle image deletion when the delete icon is clicked
+                deleteIcon.addEventListener('click', function() {
+                    previewContainer.removeChild(imageDiv); // Remove the image preview container
+                    // Remove the image URL from the uploadedImageUrls array (if deleting)
+                    const indexToRemove = uploadedImageUrls.indexOf(imgDataUrl);
+                    if (indexToRemove !== -1) {
+                        uploadedImageUrls.splice(indexToRemove, 1);
+                    }
+                });
+
+                // Add the image data URL to the array (so we can check for duplicates)
+                uploadedImageUrls.push(imgDataUrl);
+            };
+
+            reader.readAsDataURL(file); // Read the image file as a data URL
+        }
+    });
+});
+
     </script>
 
 @endsection
