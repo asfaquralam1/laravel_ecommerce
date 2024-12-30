@@ -36,8 +36,7 @@
                     <tr>
                         <td>{{$id++}}</td>
                         <td>{{ $product->barcode }}</td>
-                        <td><img src="/product/{{ $product->image }}"
-                        alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
+                        <td><img src="/product/{{ $product->image }}"alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
                         <td>{{ $product->category }}</td>
                         <td>{{ $product->details }}</td>
                         <td>{{ $product->price }}</td>
