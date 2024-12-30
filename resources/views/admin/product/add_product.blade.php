@@ -174,10 +174,20 @@
 
     <script>
         const uploadedImageUrls = new Set(); // Initialize the Set outside the event listener
+        const maxImageCount = 4; // Maximum number of images allowed
 
         document.getElementById('image-upload').addEventListener('change', function(event) {
             const previewContainer = document.getElementById('image-preview-container');
             const files = event.target.files;
+
+            // Check how many images are already uploaded
+            const currentUploadedCount = uploadedImageUrls.size;
+
+            // If the current number of uploaded images is already 5, do not allow further uploads
+            if (currentUploadedCount = maxImageCount) {
+                alert('You can only upload up to 4 images.');
+                return; // Stop further processing if the limit is reached
+            }
 
             // Loop through each file and create an image preview
             Array.from(files).forEach((file) => {
@@ -215,7 +225,7 @@
                         editIcon.style.position = 'absolute';
                         editIcon.style.top = '5px';
                         editIcon.style.right =
-                            '130px'; // Adjust position so it doesn't overlap with delete icon
+                        '130px'; // Adjust position so it doesn't overlap with delete icon
                         editIcon.style.fontSize = '17px';
                         editIcon.style.color = 'white';
                         editIcon.style.cursor = 'pointer';
@@ -254,7 +264,7 @@
 
                                     reader.onload = function(event) {
                                         img.src = event.target
-                                            .result; // Update the preview image
+                                        .result; // Update the preview image
                                         // Remove the old image data URL from the Set and add the new one
                                         uploadedImageUrls.delete(imgDataUrl);
                                         uploadedImageUrls.add(event.target.result);
@@ -270,7 +280,7 @@
                         // Handle image deletion when the delete icon is clicked
                         deleteIcon.addEventListener('click', function() {
                             previewContainer.removeChild(
-                                imageDiv); // Remove the image preview container
+                            imageDiv); // Remove the image preview container
                             // Remove the image URL from the uploadedImageUrls Set (if deleting)
                             uploadedImageUrls.delete(imgDataUrl);
                         });
