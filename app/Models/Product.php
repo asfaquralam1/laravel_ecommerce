@@ -17,5 +17,6 @@ class Product extends Model
         'discount_price',
         'quantity',
         'image',
+        'thumbs',
     ];
 }

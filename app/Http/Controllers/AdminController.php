@@ -156,14 +156,9 @@ class AdminController extends Controller
             'quantity' => 'required',
             'barcode' => 'string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'thumbs.*' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
-        // $modal = new Product([
-        //     'name' => $request->post('name'),
-        //     'category' => $request->post('category'),
-        //     'details' => $request->post('details'),
-        //     'price' => $request->post('price'),
-        // ]);
         $modal = new Product;
         $modal->name = $request->name;
         $modal->category = $request->category;
@@ -196,23 +191,19 @@ class AdminController extends Controller
 
         if ($request->hasFile('thumbs')) {
             foreach ($request->file('thumbs') as $image) {
-                // // Store the image in the public disk and get the file path
-                // $imagePath = $image->store('product', 'public');
-
-                // // Save the image data into the database
-                // Image::create([
-                //     'image_name' => $image->getClientOriginalName(),
-                //     'image_path' => $imagePath,
-                // ]);
                 $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
+
+                $img = Image::make($image)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio(); // Maintain aspect ratio
+                });
                 // Save the resized image to the 'product' directory
-                $img->save(public_path('product/' .'thumb-'. $thumbimagename));
+                $img->save(public_path('product/' . $thumbimagename));
 
                 // Update the model with the image name
-                $modal->thumbline = $thumbimagename;
+                $modal->thumbnail = $thumbimagename;
+                $modal->save();
             }
         }
-        $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success', 'Product Added Successfully');
     }
@@ -265,8 +256,8 @@ class AdminController extends Controller
         }
 
         $modal->update();
-        $request->session()->flash('message', 'Product Updated');
-        return redirect('admin/product');
+        //$request->session()->flash('message', 'Product Updated');
+        return redirect('admin/product')->with('success', 'Product Updated Successfully');;
     }
 
     public function printbarcode()
