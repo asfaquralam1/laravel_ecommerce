@@ -18,13 +18,14 @@
                     </div>
                     <div class="row mt-4">
                         <div class="owl-carousel owl-theme">
-                            {{-- @foreach ($product as $product) --}}
-                                <div class="item">
-                                    {{-- <img src="/thumbnail/1728364689.jpg" --}}
-                                    <img src="/product/{{ $product->thumbnail }}" alt="product_deatils_main_img"
-                                        class="product_deatils_main_img" onclick="changeImage('/thumbnail/1728364689.jpg')">
-                                </div>
-                            {{-- @endforeach --}}
+                            @php
+                               $items = $product->thumbnail
+                            @endphp
+                            {{-- {{ var_dump($items) }} --}}
+                            @foreach ($items as $item)
+                                <img src="/product/{{ $item }}" alt="product_deatils_main_img"
+                                    class="product_deatils_main_img" onclick="changeImage('/product/{{ $item }}')">
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -190,6 +190,7 @@ class AdminController extends Controller
         }
 
         if ($request->hasFile('thumbs')) {
+            $thumbnails = [];
             foreach ($request->file('thumbs') as $image) {
                 $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
 
@@ -200,10 +201,11 @@ class AdminController extends Controller
                 $img->save(public_path('product/' . $thumbimagename));
 
                 // Update the model with the image name
-                $modal->thumbnail = $thumbimagename;
-                $modal->save();
+                $thumbnails[] = $thumbimagename;
             }
         }
+        $modal->thumbnail = json_encode($thumbnails);
+        $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success', 'Product Added Successfully');
     }
