@@ -41,7 +41,8 @@ class AuthController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'phone' => ['required','regex:/^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/'],
-            'password' => 'required|confirmed'
+            'password' => 'required|string|min:4|confirmed',  // "confirmed" automatically checks password_confirmation
+            'password_confirmation' => 'required'
         ]);
         if ($validator->fails()) {
             return redirect()->back()

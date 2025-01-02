@@ -13,10 +13,10 @@
             </div>
             <table id="cart-table">
                 <thead>
-                    <tr style="background-color: orange;">
+                    <tr style="background-color: #1C305C;">
                         <th style="width: 25%" class="table_header">Product</th>
                         <th style="width: 25%" class="table_header">Variant</th>
-                        <th style="width: 8%" class="table_header">Price</th>
+                        <th style="width: 8%"  class="table_header">Price</th>
                         <th style="width: 10%" class="table_header">Quantity</th>
                         <th style="width: 16%" class="table_header">Subtotal</th>
                         <th style="width: 16%" class="table_header">Action</th>
