@@ -42,6 +42,8 @@ class HomeController extends Controller
         $related_products = Product::where('id','!=',1)
         ->distinct()
         ->get();
+        $product->thumbnail = json_decode($product->thumbnail);
+
         return view('site.pages.product_details', compact('product', 'categories','related_products'));
     }
 
@@ -76,8 +78,10 @@ class HomeController extends Controller
         //     return redirect()->route('login');
         // }
         $shipping_cost = (float)config('settings.delivery_charge');
-        $sub_total = Cart::calculateSubtotal();
-        $vat = $sub_total * (config('settings.tax_percentage') / 100);
+        // $sub_total = Cart::calculateSubtotal();
+        $sub_total = $request->subtotal;
+        // $vat = $sub_total * (config('settings.tax_percentage') / 100);
+        $vat = $sub_total * (15 / 100);
         $grand_total = $sub_total + $shipping_cost + $vat;
 
         // finding last order id: we use it for customer order id (customized) for billing purpose
@@ -97,7 +101,8 @@ class HomeController extends Controller
         $order->status = 'pending';
         $order->payment_status = 0;
         $order->grand_total = $grand_total;
-        $order->item_count = Cart::totalItems();
+        //$order->item_count = Cart::totalItems();
+        $order->item_count = 1;
         //user
         $order->name = $request->name;
         $order->email = $request->email;
@@ -106,10 +111,10 @@ class HomeController extends Controller
         $order->apartment = $request->apartment;
         $order->city = $request->city;
         $order->district = $request->district;
-        $order->zip = $request->zip;
-        $order->country = $request->country;
-        $order->delivery_date = $request->delivery_timings;
-        $order->order_date = \Carbon\Carbon::now()->toDateTimeString();
+        // $order->zip = $request->zip;
+        //$order->country = $request->country;
+        //$order->delivery_date = $request->delivery_timings;
+        //$order->order_date = \Carbon\Carbon::now()->toDateTimeString();
         $order->save();
         // when order is placed we set order_id to cart for that cart and set cart ip_address to null as it is used
         // for guest only.
