@@ -102,7 +102,8 @@ class HomeController extends Controller
         $order->payment_status = 0;
         $order->grand_total = $grand_total;
         //$order->item_count = Cart::totalItems();
-        $order->item_count = 1;
+        $item_count = count(session('cart'));
+        $order->item_count = $item_count;
         //user
         $order->name = $request->name;
         $order->email = $request->email;
