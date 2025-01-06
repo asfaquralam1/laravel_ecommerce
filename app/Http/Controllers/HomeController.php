@@ -81,7 +81,7 @@ class HomeController extends Controller
         // $sub_total = Cart::calculateSubtotal();
         $sub_total = $request->subtotal;
         // $vat = $sub_total * (config('settings.tax_percentage') / 100);
-        $vat = $sub_total * (15 / 100);
+        $vat = $sub_total * (5 / 100);
         $grand_total = $sub_total + $shipping_cost + $vat;
 
         // finding last order id: we use it for customer order id (customized) for billing purpose

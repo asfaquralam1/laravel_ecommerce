@@ -81,8 +81,6 @@ class SslCommerzPaymentController extends Controller
 
         $sslc = new SslCommerzNotification();
 
-        dd($post_data);
-
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
 
@@ -166,6 +164,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
+        dd($request->all());
         echo "Transaction is Successful";
 
         $tran_id = $request->input('tran_id');
@@ -252,6 +251,7 @@ class SslCommerzPaymentController extends Controller
 
     public function ipn(Request $request)
     {
+        dd($request->all());
         #Received all the payement information from the gateway
         if ($request->input('tran_id')) #Check transation id is posted or not.
         {

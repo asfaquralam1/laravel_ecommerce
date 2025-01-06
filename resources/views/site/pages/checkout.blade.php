@@ -95,7 +95,7 @@
                     </div>
                     <div class="col-3">
                         <h4 class="text-center">Order Summery</h4>
-                        <div class="order-card" style="background-color: rgb(221, 219, 219);padding: 20px;margin: 20px">
+                        <div class="order-summery">
                             @php $total = 0 @endphp
                             @if (session('cart'))
                                 @foreach (session('cart') as $id => $details)
@@ -118,11 +118,14 @@
                                         <h6><strong>Shipping 70</strong></h6>
                                         <input type="hidden" name="shipping" id="" value="{{ 70 }}">
                                     </td>
+                                    <td>
+                                        <h6><strong>Vat {{ $total * (5 / 100) }}</strong></h6>
+                                        <input type="hidden" name="shipping" id="" value="{{ 70 }}">
+                                    </td>
                                     <hr>
                                     <td>
-                                        <h5><strong>Total {{ $total + 70 }}</strong></h5>
-                                        <input type="hidden" name="grand_total" id=""
-                                            value="{{ $total + 70 }}">
+                                        <h5><strong>Total {{ $total + 70 + $total * (5 / 100) }}</strong></h5>
+                                        <input type="hidden" name="grand_total" value="{{ $total + 70 }}">
                                     </td>
                                 </tr>
                             @endif

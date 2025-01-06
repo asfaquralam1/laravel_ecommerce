@@ -36,17 +36,23 @@
                             <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                     </ul>
-                    <div class="navbar-text mobile-cart">
-                        <a class="nav-link" href="#">
+                    <div class="navbar-cart mobile-cart">
+                        @if (Auth::user())
+                        <a class="nav-link" href="{{ route('profile') }}">
                             <i class="fas fa-user"></i>
                         </a>
+                        @else
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        @endif
                         <a class="nav-link" href="{{ route('cart') }}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span class="text-danger">{{ count((array) session('cart')) }}</span>
                         </a>
                     </div>
                 </div>
-                <div class="navbar-text large-cart">
+                <div class="navbar-cart large-cart">
                     @if (Auth::user())
                     <a class="nav-link" href="{{ route('profile') }}">
                         <i class="fas fa-user"></i>
