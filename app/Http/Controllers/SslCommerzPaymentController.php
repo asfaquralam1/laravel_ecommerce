@@ -208,6 +208,7 @@ class SslCommerzPaymentController extends Controller
 
     public function fail(Request $request)
     {
+        dd($request->all());
         $tran_id = $request->input('tran_id');
 
         $order_details = DB::table('orders')
@@ -229,6 +230,7 @@ class SslCommerzPaymentController extends Controller
 
     public function cancel(Request $request)
     {
+        dd($request->all());
         $tran_id = $request->input('tran_id');
 
         $order_details = DB::table('orders')
