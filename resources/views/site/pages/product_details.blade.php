@@ -57,7 +57,7 @@
                             @if ($product->price > 0)
                                 <p class="card-text">Tk. <del>{{ $product->price }}</del></p>
                             @endif
-                            <p class="card-text">Tk. {{ $product->discount_price }}</p>
+                            <!-- <p class="card-text">Tk. {{ $product->discount_price }}</p> -->
                         </div>
                     @endforeach
                 </div>

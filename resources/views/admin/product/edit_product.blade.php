@@ -102,6 +102,17 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- image gallery-->
+                    <div>
+                        <h6 class="mb-4">Thumbline Images</h6>
+                        <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
+                        @error('thumbnail')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <!-- Preview Container -->
+                    <div id="image-preview-container"></div>
                     <button type="submit" class="btn btn-success mt-3">
                         Update
                     </button>
