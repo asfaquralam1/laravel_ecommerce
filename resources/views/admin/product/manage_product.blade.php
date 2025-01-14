@@ -17,15 +17,15 @@
             <table id="table">
                 <thead>
                     <tr>
-                        <td>#</td>
-                        <th>Barcode</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Discount Price</th>
-                        <th>Quantity</th>
-                        <th>Action</th>
+                        <td class="text-center">#</td>
+                        <th class="text-center">Barcode</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Discount Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,14 +34,14 @@
                     @endphp
                     @foreach ($products as $product)
                     <tr>
-                        <td>{{$id++}}</td>
-                        <td>{{ $product->barcode }}</td>
-                        <td><img src="/product/{{ $product->image }}"alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
-                        <td>{{ $product->category }}</td>
-                        <td>{{ $product->details }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->discount_price }}</td>
-                        <td>{{ $product->quantity }}</td>
+                        <td class="text-center">{{$id++}}</td>
+                        <td class="text-center">{{ $product->barcode }}</td>
+                        <td class="text-center"><img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
+                        <td class="text-center">{{ $product->category }}</td>
+                        <td class="text-center">{{ $product->details }}</td>
+                        <td class="text-center">{{ $product->price }}</td>
+                        <td class="text-center">{{ $product->discount_price }}</td>
+                        <td class="text-center">{{ $product->quantity }}</td>
                         <td class="action_icon_row">
                             <a class="btn-primary action-btn"
                                 href="{{ route('admin.edit.product', $product->id) }}"><i
