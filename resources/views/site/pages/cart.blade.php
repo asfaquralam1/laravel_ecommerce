@@ -1,22 +1,22 @@
 @extends('site.pages.master')
 @section('content')
     <section id="cart-page">
-        <div class="container">
         <div class="breadcrumb-section pt-4 py-4">
-                <div class="breadcrumb">
-                    <ul>
-                        <li><a href="{{route('home')}}">Home</a></li>
-                        <li><a href="{{route('product')}}">Products</a></li>
-                        <li>My Cart</li>
-                    </ul>
-                </div>
+            <div class="breadcrumb">
+                <ul>
+                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('product') }}">Products</a></li>
+                    <li>My Cart</li>
+                </ul>
             </div>
+        </div>
+        <div class="container">
             <table id="cart-table">
                 <thead>
                     <tr style="background-color: #1C305C;">
                         <th style="width: 25%" class="table_header">Product</th>
                         <th style="width: 25%" class="table_header">Variant</th>
-                        <th style="width: 8%"  class="table_header">Price</th>
+                        <th style="width: 8%" class="table_header">Price</th>
                         <th style="width: 10%" class="table_header">Quantity</th>
                         <th style="width: 16%" class="table_header">Subtotal</th>
                         <th style="width: 16%" class="table_header">Action</th>
@@ -44,7 +44,8 @@
                                     <input type="number" min="1" value="{{ $details['quantity'] }}"
                                         class="form-control quantity update-cart text-center" />
                                 </td>
-                                <td data-th="Subtotal" class="text-center">Tk. {{ $details['discount_price'] * $details['quantity'] }}
+                                <td data-th="Subtotal" class="text-center">Tk.
+                                    {{ $details['discount_price'] * $details['quantity'] }}
                                 </td>
                                 <td class="actions text-center">
                                     <button class="btn btn-danger btn-sm remove-from-cart"><i
@@ -57,7 +58,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="6" class="text-end" style="background: #f8f8f8;padding: 20px;">
-                            <h5>Subtotal : Tk.{{ number_format($total,2) }}</h5>
+                            <h5>Subtotal : Tk.{{ number_format($total, 2) }}</h5>
                         </td>
                     </tr>
                 </tfoot>

@@ -380,9 +380,13 @@ body {
 
 /* cart-page */
 #cart-page {
-    min-height: 560px !important;
+    min-height: 560px;
 }
-
+@media (max-width: 1600px) { 
+    #cart-page {
+        min-height: 345px;
+    }
+ }
 #cart-table {
     width: 100%;
     border: none !important;
@@ -402,6 +406,7 @@ body {
     padding-top: 20px;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .shopping_btn {
@@ -410,7 +415,7 @@ body {
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .shopping_btn:hover {

@@ -113,7 +113,7 @@ class AdminController extends Controller
         $modal->name = $request->post('name');
         $modal->slug = $request->post('slug');
         $modal->update();
-        // $request->session()->flash('message', 'Category Updated');
+        //$request->session()->flash('message', 'Category Updated');
         return redirect('admin/category')->with('success', 'Category Updated Successfully');
     }
 

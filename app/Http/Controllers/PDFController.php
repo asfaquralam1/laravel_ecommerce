@@ -6,15 +6,16 @@ use App\Models\Order;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PDFController extends Controller
 {
     public function generatePDF()
     {
-        $orders = Order::get();
+        $orders = Order::all()->where('id', Auth::id());
 
         $data = [
-            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'title' => 'Order Deatils',
             'date' => date('m/d/Y'),
             'orders' => $orders
         ];
