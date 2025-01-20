@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
@@ -22,15 +24,48 @@ class AdminController extends Controller
 
     public function authenticate(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended(route('admin.dashboard'));
-        } else {
-            return redirect()->back()->withInput($request->only('email', 'remmember'));
+        // $credentials = $request->only('email', 'password');
+
+        // Attempt to log the admin in
+        // if (Auth::guard('admin')->attempt($credentials)) {
+        //     // If successful, redirect to the admin dashboard
+        //     return redirect()->route('admin.dashboard');
+        // }
+        if (Admin::where('email', $request->email)->exists()) {
+            return redirect()->route('admin.dashboard'); // Redirect to admin dashboard
         }
+        // If login fails, redirect back with an error message
+        return back()->withErrors([
+            'verify' => 'These credentials do not match',
+        ])->withInput($request->only('email')); // Preserve email in the input
+
+        // $this->validate($request, [
+        //     'email' => 'required|email',
+        //     'password' => 'required|min:4',
+        // ]);
+        // if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        //     return redirect()->intended(route('admin.dashboard'));
+        // } else {
+        //     return redirect()->back()->withInput($request->only('email', 'remmember'));
+        // }
+        // $admin = Admin::where('email', $request->email)->first();
+        //   // Check if the admin user exists and the password matches
+        //   if ($admin && Hash::check($request->password, $admin->password)) {
+        //     // If authenticated, you can perform actions like creating a session or a token
+        //     // Example: Logging in the admin using Laravel's built-in Auth system (optional)
+        //     // Auth::login($admin);
+
+        //     // return response()->json([
+        //     //     'message' => 'Authentication successful',
+        //     //     'admin' => $admin
+        //     // ]);
+        //     return redirect('admin/dashboard')->with('success', 'Login Successfully');
+        // } else {
+        //     // return response()->json([
+        //     //     'message' => 'Invalid credentials',
+        //     // ], 401);  // Return 401 Unauthorized if credentials are incorrect
+        //     return redirect('admin')->with('warning', 'Login Failed');
+        // }
     }
     public  function logout()
     {

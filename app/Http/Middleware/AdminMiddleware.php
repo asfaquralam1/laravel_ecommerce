@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Admin;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,18 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
-            return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('login'); // Redirect if not authenticated
         }
-        abort(401);
+
+        // Check if user is admin
+        $user = Auth::user();
+        $admin = Admin::where('email', $user->email)->first();
+
+        if ($admin) {
+            return $next($request); // Allow access if the user is an admin
+        }
+
+        return redirect()->route('home')->with('error', 'You do not have admin access.'); // Redirect if not admin
     }
 }

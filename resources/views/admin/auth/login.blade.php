@@ -45,6 +45,11 @@
                     <p>{{ $message }}</p>
                 @enderror
             </div>
+            @if ($errors->has('verify'))
+            <div class="mb-4 text-center">
+                <span class="text-danger">{{ $errors->first('verify') }}</span>
+            </div>
+            @endif
             <div class="mb-3 form-check" style="display: flex;justify-content:space-between">
                 <div>
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: white">
