@@ -8,7 +8,7 @@ Route::post('/authenticate', [AdminController::class, 'authenticate'])->name('ad
 Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 // Route::group(['middleware' => ['auth:admin']], function () {
-    Route::middleware(['auth', 'admin'])->group(function () {
+    Route::middleware(['admin'])->group(function () {
         Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     });
     //Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
