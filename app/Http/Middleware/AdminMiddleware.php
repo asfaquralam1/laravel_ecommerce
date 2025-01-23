@@ -18,11 +18,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            $admin = Admin::where('email', $request->email)->first();
-            if ($admin) {
-                return $next($request); // Allow access if the user is an admin
-            }
+        // if (!Auth::check()) {
+        //     $admin = Admin::where('email', $request->email)->first();
+        //     if ($admin) {
+        //         return $next($request); // Allow access if the user is an admin
+        //     }
+        // }
+        if (Auth::guard('admin')->check()) {
+            return $next($request);
         }
         return redirect()->route('admin.login'); // Redirect if not authenticated
     }
