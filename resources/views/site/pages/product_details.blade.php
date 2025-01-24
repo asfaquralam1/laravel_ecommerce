@@ -23,8 +23,7 @@
                                    $items = $product->thumbnail
                                 @endphp
                                 @foreach ($items as $item)
-                                    <img src="/product/{{ $item }}" alt="product_deatils_main_img" class=""
-                                        style="width: 200px;height:200px;" onclick="changeImage('/product/{{ $item }}')"/>
+                                <img src="/product/{{ $item }}" alt="thumb_img" style="height: 200px;width: 200px;" class="thumb_img" onclick="changeImage('/product/{{ $item }}')" />
                                 @endforeach
                             </div>
                         </div>
