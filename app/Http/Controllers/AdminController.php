@@ -31,13 +31,29 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:3',
         ]);
-        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->get('remember'))){
-            // if successful, then redirect to their intended location.
-            // here intended method is used to redirect the page is requested by admin user after successful login. 
-            return redirect()->intended(route('admin.dashboard'));
-        } 
+        // if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->get('remember'))){
+        //     // if successful, then redirect to their intended location.
+        //     // here intended method is used to redirect the page is requested by admin user after successful login. 
+        //     return redirect()->intended(route('admin.dashboard'));
+        // } 
+        $admin = Admin::where('email', $request->email)->first();
+        if ($admin && Hash::check($request->password, $admin->password)) {
+            // Password is correct, log in the admin
+            //Auth::guard('admin')->login($admin, $request->get('remember'));
+            //dd('hi');
+    
+            // Redirect to the intended location
+            //return redirect()->intended(route('admin.dashboard'));
+            $total_users = User::all()->count();
+            $users = User::all();
+            $total_products = Product::all()->count();
+            $total_orders = Order::all()->count();
+            $orders = Order::all();
+            $total_categories = Category::all()->count();
+            return view('admin.dashboard',compact('total_users','total_products','total_orders','total_categories','orders','users'));
+        }
         // If login fails, redirect back with an error message
         return back()->withErrors([
             'verify' => 'These credentials do not match',

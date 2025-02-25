@@ -19,6 +19,12 @@ class HomeController extends Controller
         return view('site.pages.home', compact('products', 'categories'));
     }
 
+    public function pagenotfound(){
+        $categories = Category::all();
+        $products = Product::all();
+        return view('site.pages.errors.404',compact('products', 'categories'));        
+      }
+
     public function category_product($id)
     {
         $categories = Category::all();

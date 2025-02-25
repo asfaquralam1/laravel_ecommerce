@@ -108,12 +108,12 @@
                     </div>
                     <!-- main image -->
                     <div class="avatar-edit" id="imageContainer">
-                        <h6 class="mb-4">Product Image</h6>
-                        <div>
-                            <img id="imagePreview" src="/product/1719988391.png" alt="Main Image" class="input_image">
-                            <label for="image" id="editIcon"><i class="fas fa-pencil-alt"></i></label>
-                            <input id="mainImage" name="image" type="file" style="display: none;">
-                        </div>
+                        <!-- Display existing image or default placeholder -->
+                        <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image" class="input_image" style="max-width: 200px; margin-bottom: 10px;">
+                        <label id="editIcon" class="btn btn-secondary" for="image">
+                            <i class="fas fa-pencil-alt"></i> Choose Image
+                        </label>
+                        <input id="mainImage" name="image" type="file" style="visibility: hidden;">
                         @error('image')
                             <div class="text-center text-danger">{{ $message }}</div>
                         @enderror

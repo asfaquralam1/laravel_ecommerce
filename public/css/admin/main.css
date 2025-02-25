@@ -462,6 +462,7 @@ h4 {
 .card-title {
     display: flex;
     justify-content: space-between;
+    margin: 0px 15px;
 }
 
 .view-btn {
@@ -514,7 +515,7 @@ td {
 .action_icon_row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .action-btn {
@@ -554,13 +555,13 @@ select:active {
 
 .avatar-edit label {
     position: absolute;
-    bottom: 2%;
+    bottom: 17%;
     left: 0%;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     text-align: center;
-    line-height: 45px;
+    line-height: 30px;
     border: 2px solid #fff;
     font-size: 18px;
     cursor: pointer;

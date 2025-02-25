@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Arr;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -33,5 +36,34 @@ class Handler extends ExceptionHandler
     public function register()
     {
         //
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        //defining error page
+        if($this->isHttpException($exception))
+        {
+            if($exception->getStatusCode() == 404)
+                return redirect()->route('notfound');
+        }
+        return parent::render($request, $exception);
+    }
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $exception->getMessage()], 401);
+        }
+        // this Arr::get() looks for config/auth.php gaurds and get the value.
+        $guard = Arr::get($exception->guards(), 0);
+
+        switch($guard){
+            case 'admin':
+                $login = 'admin.login';
+                break;
+            default:
+                $login = 'login';
+                break;
+        }
+        return redirect()->guest(route($login));
     }
 }

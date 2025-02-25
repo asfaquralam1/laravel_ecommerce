@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 //Frontend
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/pagenotfound', [HomeController::class, 'pagenotfound'])->name('notfound');
 //product
 Route::get('/products', [HomeController::class, 'product'])->name('product');
 Route::get('/product/category/{id}', [HomeController::class, 'category_product'])->name('category.product');
