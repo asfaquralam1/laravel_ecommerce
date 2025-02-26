@@ -42,7 +42,6 @@ class AdminController extends Controller
         if ($admin && Hash::check($request->password, $admin->password)) {
             // Password is correct, log in the admin
             //Auth::guard('admin')->login($admin, $request->get('remember'));
-            //dd('hi');
     
             // Redirect to the intended location
             //return redirect()->intended(route('admin.dashboard'));
@@ -55,7 +54,7 @@ class AdminController extends Controller
             return view('admin.dashboard',compact('total_users','total_products','total_orders','total_categories','orders','users'));
         }
         // If login fails, redirect back with an error message
-        return back()->withErrors([
+        return redirect()->back()->withErrors([
             'verify' => 'These credentials do not match',
         ])->withInput($request->only('email')); // Preserve email in the input
     }
