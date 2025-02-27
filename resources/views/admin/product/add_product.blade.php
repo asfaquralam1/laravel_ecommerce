@@ -7,7 +7,7 @@
         <div class="content-wrapper">
             <!-- <h5 style="text-align: center;">Create product</h5> -->
             <div class="card-title">
-                <h5 style=" margin-left: 20px;">Create product</h5>
+                <h5>Create product</h5>
                 <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
                     Back</a>
             </div>
@@ -16,7 +16,7 @@
                     <h3 class="mb-4">Product Information</h3>
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="name" class="control-label mb-1">Product Name</label>
                                 <input id="name" name="name" type="text" class="form-control"
@@ -26,7 +26,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="category" class="control-label mb-1">Category</label>
                                 <select name="category" class="form-select">
@@ -40,9 +40,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="details" class="control-label mb-1">Product Details</label>
                                 <input id="details" name="details" type="text" class="form-control"
@@ -52,7 +50,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="price" class="control-label mb-1">Product Price</label>
                                 <input id="price" name="price" type="text" class="form-control"
@@ -62,9 +62,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="discount_price" class="control-label mb-1">Product Discount
                                     Price</label>
@@ -75,7 +73,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
                                 Price</label>
@@ -88,7 +86,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="barcode" class="control-label mb-1">Enter Barcode</label>
                                 <input id="barcode" name="barcode" type="text" class="form-control"
@@ -98,7 +96,7 @@
                                 <div class="text-center text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="name">Barcode Generator</label>
                                 <button type="button" onclick="generateBarcode()" class="btn btn-success"

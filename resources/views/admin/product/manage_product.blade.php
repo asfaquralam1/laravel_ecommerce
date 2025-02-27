@@ -8,13 +8,13 @@
         <div class="card-title">
             <h5>Products</h5>
             <div>
-                <a class="btn-success add-btn" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
+                <a class="btn btn-success" href="{{ route('admin.manage.product') }}"><i class="fas fa-plus"></i> Add
                     New</a>
-                <a class="btn-primary add-btn" href="{{ route('admin.printbarcode.product') }}">Print Barcodes</a>
+                <a class="btn btn-primary" href="{{ route('admin.printbarcode.product') }}">Print Barcodes</a>
             </div>
         </div>
         <div class="table_area">
-            <table id="table">
+            <table id="table" class="table">
                 <thead>
                     <tr>
                         <td class="text-center">#</td>
@@ -43,13 +43,13 @@
                         <td class="text-center">{{ $product->discount_price }}</td>
                         <td class="text-center">{{ $product->quantity }}</td>
                         <td class="action_icon_row">
-                            <a class="btn-primary action-btn"
+                            <a class="btn btn-primary"
                                 href="{{ route('admin.edit.product', $product->id) }}"><i
                                     class="fas fa-edit"></i></a>
                             <form action="{{ route('admin.destory.product', $product->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn-danger action-btn"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

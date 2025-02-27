@@ -17,23 +17,16 @@
                 @csrf
                 <!-- Category Name -->
                 <div class="mb-4 row">
-                    <div class="col-md-2">
+                    <div class="col-md-6">
                         <label for="category_name" class="control-label mb-1">Category Name</label>
-                    </div>
-                    <div class="col-md-10">
                         <input id="category_name" name="name" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                         @error('name')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
-
-                <!-- Category Slug -->
-                <div class="mb-4 row">
-                    <div class="col-md-2">
+                    <!-- Category Slug -->
+                    <div class="col-md-6">
                         <label for="category_slug" class="control-label mb-1">Category Slug</label>
-                    </div>
-                    <div class="col-md-10">
                         <input id="category_slug" name="slug" type="text" class="form-control" aria-required="true" aria-invalid="false" required>
                         @error('slug')
                             <div class="text-danger mt-2">{{ $message }}</div>

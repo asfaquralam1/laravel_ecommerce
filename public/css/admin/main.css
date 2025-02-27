@@ -306,7 +306,7 @@ input::placeholder {
 .table_area {
     flex: 0 0 75%;
     /* First element: 70% width */
-    margin-bottom: 20px;
+    margin: 20px;
     padding: 20px;
     background-color: #FFFFFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -368,7 +368,7 @@ h4 {
 
 .add-form {
     /* width: 1000px; */
-    margin: 0 auto;
+    margin: 0px 20px;
     background-color: #FFFFFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
@@ -462,7 +462,7 @@ h4 {
 .card-title {
     display: flex;
     justify-content: space-between;
-    margin: 0px 15px;
+    margin: 0px 20px;
 }
 
 .view-btn {
@@ -478,7 +478,6 @@ h4 {
 
 .add-btn {
     padding: 7px 15px !important;
-    margin-bottom: 20px !important;
     border-radius: 5px;
     font-size: 13px;
 }
