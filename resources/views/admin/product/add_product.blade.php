@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('page_title', 'Add Product')
 @section('product_select', 'active')
-@section('container')
+@section('content')
     <div class="layout-wrapper">
         @include('admin.partials.sidebar')
         <div class="content-wrapper">
@@ -127,7 +127,7 @@
                     </div>
 
                     <!-- Preview Container -->
-                    <div id="image-preview-container"></div>
+                    <div id="image-preview-content"></div>
                     <button type="submit" class="btn btn-success mt-3">
                         Save
                     </button>

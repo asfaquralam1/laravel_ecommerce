@@ -1,7 +1,7 @@
 {{-- @extends('admin.master')
 @section('page_title', 'Category')
 @section('category_select', 'active')
-@section('container')
+@section('content')
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="content-wrapper">
@@ -61,7 +61,7 @@
 @extends('admin.master')
 @section('page_title', 'Category')
 @section('category_select', 'active')
-@section('container')
+@section('content')
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="content-wrapper">

@@ -306,7 +306,7 @@ input::placeholder {
 .table_area {
     flex: 0 0 75%;
     /* First element: 70% width */
-    margin: 20px;
+    /* margin: 20px; */
     padding: 20px;
     background-color: #FFFFFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

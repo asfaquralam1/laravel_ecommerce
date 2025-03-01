@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('page_title', 'Dashboard')
 @section('dashboard_select', 'active')
-@section('container')
+@section('content')
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
     <div class="dashboard-content">
