@@ -36,7 +36,10 @@
                     <tr>
                         <td class="text-center">{{$id++}}</td>
                         <td class="text-center">{{ $product->barcode }}</td>
-                        <td class="text-center"><img src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="product_tumb">{{ $product->name }}</td>
+                        <td class="text-center">
+                            {{-- <img src="/product/{{ $product->image }}" alt="" class="product_tumb"> --}}
+                            {{ $product->name }}
+                        </td>
                         <td class="text-center">{{ $product->category }}</td>
                         <td class="text-center">{{ $product->details }}</td>
                         <td class="text-center">{{ $product->price }}</td>

@@ -58,7 +58,6 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf');
 Route::get('/download-pdf', [PDFController::class, 'downloadPdf'])->name('snappyPdf');
 
-
 // SSLCOMMERZ Start
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
@@ -70,7 +69,3 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::get('/task',function(){
     return view('site.pages.task');
 });
-
-Route::get('/basic_response', function () {
-    return 'Hello World';
- });

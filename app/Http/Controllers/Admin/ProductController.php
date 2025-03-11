@@ -1,105 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Order;
 use App\Models\Product;
-use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
-class AdminController extends Controller
+class ProductController extends Controller
 {
-    public function __construct()
-    {
-        // Admin guest [the people who are not logged in as admin, will be redirecting to admin login.          
-        $this->middleware('guest:admin')->except('logout');
-    }
-    public function index()
-    {
-        return view('admin.auth.login');
-    }
-
-    public function authenticate(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:3',
-        ]);
-        // if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->get('remember'))){
-        //     // if successful, then redirect to their intended location.
-        //     // here intended method is used to redirect the page is requested by admin user after successful login. 
-        //     return redirect()->intended(route('admin.dashboard'));
-        // } 
-        $admin = Admin::where('email', $request->email)->first();
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            // Password is correct, log in the admin
-            //Auth::guard('admin')->login($admin, $request->get('remember'));
-    
-            // Redirect to the intended location
-            //return redirect()->intended(route('admin.dashboard'));
-            $total_users = User::all()->count();
-            $users = User::all();
-            $total_products = Product::all()->count();
-            $total_orders = Order::all()->count();
-            $orders = Order::all();
-            $total_categories = Category::all()->count();
-            return view('admin.dashboard',compact('total_users','total_products','total_orders','total_categories','orders','users'));
-        }
-        // If login fails, redirect back with an error message
-        return redirect()->back()->withErrors([
-            'verify' => 'These credentials do not match',
-        ])->withInput($request->only('email')); // Preserve email in the input
-    }
-    public  function logout(Request $request)
-    {
-        Auth::guard('admin')->logout();
-        $request->session()->invalidate();
-        return redirect()->route('admin.login');
-    }
-    public function dashboard()
-    {
-        $orders = Order::all();
-        $total_orders = DB::table('orders')->count();
-        $categories = Category::all();
-        $total_categories = DB::table('categories')->count();
-        $users = User::all();
-        $total_users = DB::table('users')->count();
-        $products = Product::all();
-        $total_products = DB::table('products')->count();
-        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products', 'total_users', 'total_categories', 'total_orders', 'total_products'));
-    }
-    public function order()
-    {
-        $orders = Order::all();
-        return view('admin.order', compact('orders'));
-    }
-
-    public function add_order(Request $request)
-    {
-        $order = new Order;
-        $order->category_id = $request->category_id;
-        $order->order_name = $request->order_name;
-        $result = $order->save();
-        // if ($result) {
-        //     return response()->json([
-        //         "message" => "Category Inserted",
-        //         "code" => 200
-        //     ]);
-        // } else {
-        //     return response()->json([
-        //         "message" => "Internal Server Error",
-        //         "code" => 500
-        //     ]);
-        // }
-    }
     public function product()
     {
         $products = Product::all();
