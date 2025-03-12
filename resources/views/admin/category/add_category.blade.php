@@ -35,7 +35,7 @@
                 </div>
 
                 <!-- Category Details (CKEditor) -->
-                <div class="mb-4 row">
+                {{-- <div class="mb-4 row">
                     <div class="col-md-2">
                         <label for="editor1" class="control-label mb-1">Category Details</label>
                     </div>
@@ -45,10 +45,10 @@
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Category Image Upload -->
-                <div class="mb-4 row">
+                {{-- <div class="mb-4 row">
                     <div class="col-md-2">
                         <label for="image" class="control-label mb-1">Category Image</label>
                     </div>
@@ -71,7 +71,7 @@
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Submit Button -->
                 <div>

@@ -13,12 +13,12 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 //     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // });
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('admin/categories', [CategoryController::class, 'category'])->name('admin.category');
-Route::get('admin/manage-category', [CategoryController::class, 'manage_category'])->name('admin.manage.category');
-Route::post('admin/add-category', [CategoryController::class, 'add_category'])->name('admin.add.category');
-Route::get('admin/edit-category/{id}', [CategoryController::class, 'edit_category'])->name('admin.edit.category');
-Route::post('admin/update-category/{id}', [CategoryController::class, 'update_category'])->name('admin.update.category');
-Route::delete('admin/destory-category/{id}', [CategoryController::class, 'delete_category'])->name('admin.destory.category');
+Route::get('admin/categories', [CategoryController::class, 'index'])->name('admin.category');
+Route::get('admin/manage-category', [CategoryController::class, 'create'])->name('admin.manage.category');
+Route::post('admin/add-category', [CategoryController::class, 'store'])->name('admin.add.category');
+Route::get('admin/edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.edit.category');
+Route::post('admin/update-category/{id}', [CategoryController::class, 'update'])->name('admin.update.category');
+Route::delete('admin/destory-category/{id}', [CategoryController::class, 'delete'])->name('admin.destory.category');
 Route::post('admin/category/status/{status}/{id}', [CategoryController::class, 'status'])->name('admin.status.category');
 //product
 Route::get('admin/products', [ProductController::class, 'product'])->name('admin.product');
