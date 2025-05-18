@@ -18,12 +18,8 @@
                                     alt="product_image" class="product_image"></a>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $product->name }}</h5>
-                                <!-- <p class="card-text" style="text-align: justify;">{{ $product->details }}</p> -->
-                                @if ($product->discount_price > 0)
-                                    <p class="card-text" style="text-align: justify;">Tk. {{ $product->discount_price }}
-                                    </p>
-                                    <p class="card-text" style="text-align: justify;">Tk.
-                                        <del>{{ $product->price }}</del>
+                                @if ($product->discount_price != 0)
+                                    <p class="card-text" style="text-align: justify;">Tk. <del>{{ $product->price }}</del> {{ $product->discount_price }}
                                     </p>
                                 @elseif ($product->discount_price == 0)
                                     <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>

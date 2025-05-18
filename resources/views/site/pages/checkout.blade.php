@@ -99,11 +99,14 @@
                             @php $total = 0 @endphp
                             @if (session('cart'))
                                 @foreach (session('cart') as $id => $details)
-                                    @php $total += $details['price'] * $details['quantity'] @endphp
+                                   @php
+                                   $price = isset($details['discount_price']) ? $details['discount_price'] : $details['price'];
+                                   $total += $price * $details['quantity'];
+                                @endphp
                                     <tr>
-                                        <td class="text-center">{{ $details['name'] }}X{{ $details['quantity'] }}
+                                        <td class="text-center">{{ $details['name'] }} X {{ $details['quantity'] }}
                                         </td>
-                                        <td class="text-center">{{ $details['quantity'] * $details['price'] }}
+                                        <td class="text-center">{{ $details['quantity'] * $price }}
                                         </td>
                                         <br>
                                     </tr>

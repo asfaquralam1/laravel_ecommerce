@@ -6,8 +6,12 @@
                         alt="..." class="product_image"></a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
-                    <!-- <p class="card-text" style="text-align: justify;">{{ $product->details }}</p> -->
-                    <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
+                    @if ($product->discount_price != 0)
+                        <p class="card-text" style="text-align: justify;">Tk. {{ $product->discount_price }}
+                        </p>
+                    @elseif ($product->discount_price == 0)
+                        <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
+                    @endif
                     <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                         @csrf
                         <button class="add-btn">Add to Cart</button>

@@ -20,10 +20,12 @@
                         <div class="row mt-4">
                             <div class="owl-carousel owl-theme">
                                 @php
-                                   $items = $product->thumbnail
+                                    $items = $product->thumbnail;
                                 @endphp
                                 @foreach ($items as $item)
-                                <img src="/product/{{ $item }}" alt="thumb_img" style="height: 200px;width: 200px;" class="thumb_img" onclick="changeImage('/product/{{ $item }}')" />
+                                    <img src="/product/{{ $item }}" alt="thumb_img"
+                                        style="height: 200px;width: 200px;" class="thumb_img"
+                                        onclick="changeImage('/product/{{ $item }}')" />
                                 @endforeach
                             </div>
                         </div>
@@ -32,10 +34,13 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
-                            @if ($product->price > 0)
-                                <p class="card-text">Tk. <del>{{ $product->price }}</del></p>
+                            @if ($product->discount_price != 0)
+                                <p class="card-text" style="text-align: justify;">Tk. <del>{{ $product->price }}</del>
+                                    {{ $product->discount_price }}
+                                </p>
+                            @elseif ($product->discount_price == 0)
+                                <p class="card-text" style="text-align: justify;">Tk. {{ $product->price }}</p>
                             @endif
-                            <p class="card-text">Tk. {{ $product->discount_price }}</p>
                             <form action="{{ route('add.to.cart', $product->id) }}" method="post">
                                 @csrf
                                 <button class="add-btn">ADD TO CART</button>
@@ -52,11 +57,13 @@
                             <a href="{{ route('product.details', $product->id) }}"><img
                                     src="/product/{{ $product->image }}" alt="product_image" class="product_image"></a>
                             <h5 class="card-title">{{ $product->name }}</h5>
-                            <!-- <p class="card-text">{{ $product->details }}</p> -->
-                            @if ($product->price > 0)
-                                <p class="card-text">Tk. <del>{{ $product->price }}</del></p>
+                            @if ($product->discount_price != 0)
+                                <p class="card-text">Tk. <del>{{ $product->price }}</del>
+                                    {{ $product->discount_price }}
+                                </p>
+                            @elseif ($product->discount_price == 0)
+                                <p class="card-text">Tk. {{ $product->price }}</p>
                             @endif
-                            <!-- <p class="card-text">Tk. {{ $product->discount_price }}</p> -->
                         </div>
                     @endforeach
                 </div>
