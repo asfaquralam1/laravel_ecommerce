@@ -91,7 +91,7 @@
                     @enderror
                 </div>
 
-                <div>
+            
                     <div class="avatar-edit">
                         <h6 class="mb-4">Product Image</h6>
                         <img id="imagePreview" src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="input_image">
@@ -101,7 +101,7 @@
                         <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
+
                 <!-- image gallery-->
                 <div>
                     <h6 class="mb-4">Thumbline Images</h6>

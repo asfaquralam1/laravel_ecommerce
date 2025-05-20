@@ -27,21 +27,16 @@
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
                             @php
-                                $price =
-                                    isset($details['discount_price']) && $details['discount_price'] > 0
+                                $price = isset($details['discount_price']) && $details['discount_price'] > 0
                                         ? $details['discount_price']
                                         : $details['price'];
                                 $total += $price * $details['quantity'];
                             @endphp
                             <tr data-id="{{ $id }}" style="border-bottom: 1px solid #e5e5e5">
                                 <td data-th="Product">
-                                    <a href="#"
-                                        style="display: flex;flex-direction: row;justify-content: center;align-items: center;"
-                                        class="nav-link">
-                                        <img src="/product/{{ $details['image'] }}" width="100" height="100"
-                                            class="img-responsive" style="border-radius: 3px;border: 1px solid #e5e5e5;" />
-                                        <h5 style="margin-left: 20px;color: black;font-weight: bold;">{{ $details['name'] }}
-                                        </h5>
+                                    <a href="{{ route('product.details', $id) }}" class="cart-item">
+                                        <img src="/product/{{ $details['image'] }}" class="cart-image"/>
+                                        <h6>{{ $details['name'] }}</h6>
                                     </a>
                                 </td>
                                 <td class="text-center">Size</td>

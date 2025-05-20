@@ -105,9 +105,10 @@
                         </div>
                     </div>
                     <!-- main image -->
-                    <div class="avatar-edit" id="imageContainer">
+                    {{-- <div class="avatar-edit" id="imageContainer">
                         <!-- Display existing image or default placeholder -->
-                        <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image" class="input_image" style="max-width: 200px; margin-bottom: 10px;">
+                        <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
+                            class="input_image" style="max-width: 200px; margin-bottom: 10px;">
                         <label id="editIcon" class="btn btn-secondary" for="image">
                             <i class="fas fa-pencil-alt"></i> Choose Image
                         </label>
@@ -115,15 +116,34 @@
                         @error('image')
                             <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
+                    </div> --}}
+
+                    <div class="avatar-edit" id="imageContainer">
+                        <h6 class="mb-4">Product Image</h6>
+                        <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
+                            class="input_image">
+                        <label for="image" id="editIcon"><i class="fas fa-pencil-alt"></i></label>
+                        <input id="mainImage" name="image" type="file" style="display: none;">
+                        @error('image')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- image gallery-->
-                    <div>
+                    {{-- <div>
                         <h6 class="mb-4">Thumbline Images</h6>
                         <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
                         @error('thumbnail')
                             <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
+                    </div> --}}
+
+                    <div class="input-field">
+                        <h6 class="mb-4">Thumbline</h6>
+                        <div class="input-images"></div>
+                        <small class="form-text text-muted">
+                            <i class="las la-info-circle"></i> @lang('You can only upload a maximum of 6 images')</label>
+                        </small>
                     </div>
 
                     <!-- Preview Container -->
@@ -136,6 +156,29 @@
         </div>
     </div>
     <script>
+        (function($) {
+            var dropdownParent = $('.has-select2');
+
+            @if (isset($images))
+                let preloaded = @json($images);
+            @else
+                let preloaded = [];
+            @endif
+
+            $('.input-images').imageUploader({
+                preloaded: preloaded,
+                imagesInputName: 'photos',
+                preloadedInputName: 'old',
+                maxFiles: 6
+            });
+
+            $(document).on('input', 'input[name="images[]"]', function() {
+                var fileUpload = $("input[type='file']");
+                if (parseInt(fileUpload.get(0).files.length) > 6) {
+                    $('#errorModal').modal('show');
+                }
+            });
+        })
         // Get the image, file input, and edit icon elements
         const imageUpload = document.getElementById('mainImage');
         const previewImage = document.getElementById('imagePreview');
@@ -173,7 +216,7 @@
         }
     </script>
 
-    <script>
+    {{-- <script>
         const MAX_IMAGE_COUNT = 4; // Define the maximum number of images allowed
         const uploadedImageUrls = new Set(); // Set to store unique image URLs
 
@@ -288,6 +331,6 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
 @endsection

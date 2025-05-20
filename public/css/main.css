@@ -13,7 +13,7 @@
 body {
     background-color: var(--color-background);
     color: var(--color-text);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins';
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -35,7 +35,7 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: var(--color-primary);
 }
 
@@ -78,6 +78,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 1rem;
+    text-decoration: none;
 }
 
 .auth-btn:hover,
@@ -247,7 +248,8 @@ body {
     outline: none;
 }
 
-@media (max-width: 414px), (max-width: 376px) {
+@media (max-width: 414px),
+(max-width: 376px) {
     .newslatter-input {
         width: 65%;
     }
@@ -280,7 +282,7 @@ body {
     margin-left: 15px;
 }
 
-.social-icon > .nav-link > i {
+.social-icon>.nav-link>i {
     background-color: white;
     color: var(--color-accent);
     padding: 10px;
@@ -387,6 +389,29 @@ body {
     min-height: 560px;
 }
 
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.cart-item h6{
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    margin-left: 20px;
+}
+
+.cart-image {
+    width: 80px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+    border: 1px solid #e5e5e5;
+}
+
 @media (max-width: 1600px) {
     #cart-page {
         min-height: 345px;
@@ -415,32 +440,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* .shopping_btn {
-    background-color: #1C305C;
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none
-}
-
-.shopping_btn:hover {
-    color: white;
-} */
-
-/* .checkout_btn {
-    background-color: #1C305C;
-    color: white;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.checkout_btn:hover {
-    color: white;
-} */
-
 /* checkout page*/
 .checkout {
     border-top: 1px solid #d2d2d2;
@@ -463,19 +462,6 @@ body {
     border-radius: 50px;
     height: 50px;
 }
-
-/* .order-btn {
-    padding: 10px 70px 10px 70px;
-    margin: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.order-btn:hover {
-    background-color: white;
-    border: 1px solid green;
-    color: green;
-} */
 
 .mycart .paycard {
     border: 1px solid #e5e5e5;

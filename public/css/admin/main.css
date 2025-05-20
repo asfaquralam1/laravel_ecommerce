@@ -554,10 +554,10 @@ select:active {
 
 .avatar-edit label {
     position: absolute;
-    bottom: 17%;
+    bottom: 0%;
     left: 0%;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     text-align: center;
     line-height: 30px;

@@ -30,13 +30,13 @@
                     <h4>Contact Us</h4>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <p class="nav-link">House 27, Road 2, Sector 9, Uttara</p>
+                            <p class="nav-link">H:27, R:2, Sec:9, Uttara</p>
                         </li>
                         <li class="nav-item">
-                            <p class="nav-link">01111111111</p>
+                            <p class="nav-link">01843538411</p>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">asfaquralam01@gmail.com</a>
+                            <a href="mailto:asfaquralam01@gmail.com" class="nav-link">asfaquralam01@gmail.com</a>
                         </li>
                     </ul>
                 </div>
