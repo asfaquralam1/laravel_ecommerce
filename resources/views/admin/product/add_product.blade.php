@@ -155,30 +155,53 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="close ml-auto m-3" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body text-center">
+                <i class="las la-times-circle f-size--100 text--danger mb-15"></i>
+                <h3 class="text--danger mb-15">@lang('Error: Cannot process your entry!')</h3>
+                <p class="mb-15">@lang('You can\'t add more than 6 image')</p>
+                <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Continue')</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <link rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
+    <script src="{{ asset('js/image-uploader.min.js') }}"></script>
+
     <script>
-        (function($) {
-            var dropdownParent = $('.has-select2');
+    (function($){
+        var dropdownParent = $('.has-select2');
 
-            @if (isset($images))
-                let preloaded = @json($images);
-            @else
-                let preloaded = [];
-            @endif
+        @if(isset($images))
+            let preloaded = @json($images);
+        @else
+            let preloaded = [];
+        @endif
 
-            $('.input-images').imageUploader({
-                preloaded: preloaded,
-                imagesInputName: 'photos',
-                preloadedInputName: 'old',
-                maxFiles: 6
-            });
+        $('.input-images').imageUploader({
+            preloaded: preloaded,
+            imagesInputName: 'photos',
+            preloadedInputName: 'old',
+            maxFiles: 6
+        });
 
-            $(document).on('input', 'input[name="images[]"]', function() {
-                var fileUpload = $("input[type='file']");
-                if (parseInt(fileUpload.get(0).files.length) > 6) {
-                    $('#errorModal').modal('show');
-                }
-            });
-        })
+        $(document).on('input', 'input[name="images[]"]', function(){
+            var fileUpload = $("input[type='file']");
+            if (parseInt(fileUpload.get(0).files.length) > 6){
+                $('#errorModal').modal('show');
+            }
+        });
+    })(jQuery)
+    </script>
+
+    <script>
         // Get the image, file input, and edit icon elements
         const imageUpload = document.getElementById('mainImage');
         const previewImage = document.getElementById('imagePreview');
