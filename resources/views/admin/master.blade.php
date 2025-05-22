@@ -21,7 +21,8 @@
     
     <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
 
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
