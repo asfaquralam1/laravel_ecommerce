@@ -170,6 +170,21 @@ class AdminController extends Controller
                 $thumbnails[] = $thumbimagename;
             }
         }
+
+        // if ($request->hasFile('photos')) {
+        //     foreach($request->photos as $image){
+        //         try {
+        //             $product_img = uploadImage($image, imagePath()['product']['path'], imagePath()['product']['size'],null, imagePath()['product']['thumb']);
+        //         }catch (\Exception $exp) {
+        //             return response()->json(['status'=>'error', 'message'=>'Could not upload additional images']);
+        //         }
+        //         $productImage = new ProductImage();
+        //         $productImage->product_id   = $product->id;
+        //         $productImage->image        = $product_img;
+        //         $productImage->save();
+        //     }
+        // }
+        
         $modal->thumbnail = json_encode($thumbnails);
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');

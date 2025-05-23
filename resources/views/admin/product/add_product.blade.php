@@ -172,7 +172,6 @@
     </div>
 </div>
     
-    <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
     <script src="{{ asset('js/image-uploader.min.js') }}"></script>
 

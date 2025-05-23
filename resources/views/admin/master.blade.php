@@ -21,9 +21,11 @@
     
     <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css"> -->
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+     <!-- <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" > -->
 
 
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
