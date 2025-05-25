@@ -42,7 +42,7 @@ class AdminController extends Controller
         if ($admin && Hash::check($request->password, $admin->password)) {
             // Password is correct, log in the admin
             //Auth::guard('admin')->login($admin, $request->get('remember'));
-    
+
             // Redirect to the intended location
             //return redirect()->intended(route('admin.dashboard'));
             $total_users = User::all()->count();
@@ -51,7 +51,7 @@ class AdminController extends Controller
             $total_orders = Order::all()->count();
             $orders = Order::all();
             $total_categories = Category::all()->count();
-            return view('admin.dashboard',compact('total_users','total_products','total_orders','total_categories','orders','users'));
+            return view('admin.dashboard', compact('total_users', 'total_products', 'total_orders', 'total_categories', 'orders', 'users'));
         }
         // If login fails, redirect back with an error message
         return redirect()->back()->withErrors([
@@ -117,12 +117,12 @@ class AdminController extends Controller
             'name' => 'required',
             'category' => 'required',
             'details' => 'required',
-            'price' => 'required',
-            'discount_price' => 'required',
-            'quantity' => 'required',
-            'barcode' => 'string|max:255',
+            'price' => 'required|numeric',
+            'discount_price' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'barcode' => 'nullable|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'thumbs.*' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $modal = new Product;
@@ -133,63 +133,47 @@ class AdminController extends Controller
         $modal->discount_price = $request->discount_price;
         $modal->quantity = $request->quantity;
         $modal->barcode = $request->barcode;
+
+        // Save main image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-
-            // Generate a unique file name
             $imagename = time() . '.' . $image->getClientOriginalExtension();
 
-            // Resize the image (you can adjust the dimensions as needed)
             $img = Image::make($image);
-
-            // Resize the image to fit within a width of 800px, preserving aspect ratio
             $img->resize(800, null, function ($constraint) {
                 $constraint->aspectRatio();
-                $constraint->upsize();  // Prevent upsizing the image
+                $constraint->upsize();
             });
 
-            // Save the resized image to the 'product' directory
             $img->save(public_path('product/' . $imagename));
-
-            // Update the model with the image name
             $modal->image = $imagename;
         }
 
-        if ($request->hasFile('thumbs')) {
-            $thumbnails = [];
-            foreach ($request->file('thumbs') as $image) {
-                $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
+        $thumbnails = [];
 
-                $img = Image::make($image)->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio(); // Maintain aspect ratio
+        // Save thumbnail images (from `photos[]`)
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+                $img = Image::make($photo);
+                $img->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
                 });
-                // Save the resized image to the 'product' directory
-                $img->save(public_path('product/' . $thumbimagename));
 
-                // Update the model with the image name
-                $thumbnails[] = $thumbimagename;
+                $thumbPath = public_path('product/thumbs/' . $photoname);
+                $img->save($thumbPath);
+                $thumbnails[] = $photoname;
+                $modal->thumbnail = json_encode($thumbnails);
             }
         }
-
-        // if ($request->hasFile('photos')) {
-        //     foreach($request->photos as $image){
-        //         try {
-        //             $product_img = uploadImage($image, imagePath()['product']['path'], imagePath()['product']['size'],null, imagePath()['product']['thumb']);
-        //         }catch (\Exception $exp) {
-        //             return response()->json(['status'=>'error', 'message'=>'Could not upload additional images']);
-        //         }
-        //         $productImage = new ProductImage();
-        //         $productImage->product_id   = $product->id;
-        //         $productImage->image        = $product_img;
-        //         $productImage->save();
-        //     }
-        // }
-        
-        $modal->thumbnail = json_encode($thumbnails);
         $modal->save();
-        // $request->session()->flash('message', 'Product Inserted');
+
         return redirect('admin/product')->with('success', 'Product Added Successfully');
     }
+
+
 
     public function edit_product($id)
     {
