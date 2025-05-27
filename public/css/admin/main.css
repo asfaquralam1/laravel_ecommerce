@@ -51,6 +51,42 @@ body {
     color: black;
 }
 
+.side-nav.sidebar-open {
+    width: 250px;
+    /* Set to the desired width when the sidebar is open */
+    transition: width 0.3s ease;
+    /* Smooth transition for width change */
+}
+
+.side-nav.sidebar-close {
+    width: 0px;
+    /* Set to the desired width when the sidebar is open */
+    transition: width 0.3s ease;
+    /* Smooth transition for width change */
+}
+
+/* Default layout wrapper width (assuming sidebar is open) */
+.layout-wrapper {
+    transition: margin-left 0.3s ease;
+    /* Smooth transition when sidebar opens/closes */
+}
+
+/* Layout wrapper with sidebar closed */
+.layout-wrapper.sidebar-closed {
+    margin-left: 0;
+    /* or any custom value */
+}
+
+/* Layout wrapper with sidebar open */
+.layout-wrapper.sidebar-open {
+    margin-left: 250px;
+    /* Adjust this value according to your sidebar's width */
+}
+
+.content-wrapper {
+    padding: 20px 40px 0px 40px !important;
+}
+
 .nav-link {
     text-decoration: none;
     padding: 10px;
@@ -306,8 +342,7 @@ input::placeholder {
 .table_area {
     flex: 0 0 75%;
     /* First element: 70% width */
-    /* margin: 20px; */
-    padding: 20px;
+    padding: 30px;
     background-color: #FFFFFF;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
@@ -462,7 +497,7 @@ h4 {
 .card-title {
     display: flex;
     justify-content: space-between;
-    margin: 0px 20px;
+    margin: 0px 0px 20px 0px;
 }
 
 .view-btn {
@@ -547,7 +582,7 @@ select:active {
     outline: 0;
 }
 
-.avatar-edit{
+.avatar-edit {
     position: relative;
     display: inline-block;
 }
@@ -590,7 +625,8 @@ select:active {
     padding: 5px;
     border-radius: 5px;
     margin-right: 10px;
-    max-width: 150px;  /* Optional: Max width for image previews */
+    max-width: 150px;
+    /* Optional: Max width for image previews */
 }
 
 .image-preview-container {

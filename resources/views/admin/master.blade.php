@@ -18,14 +18,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <link rel="stylesheet" href="{{ asset('css/line-awesome.min.css') }}">
 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css"> -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
 
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-     <!-- <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" > -->
+    <!-- <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" > -->
 
 
     <link rel="icon" href="{{ asset('image/favicon.png') }}" type="image/png">
@@ -33,43 +34,6 @@
     <link rel="stylesheet" href="{{ asset('css/admin/main.css') }}">
 
     <title>@yield('page_title')</title>
-    <style>
-        .side-nav.sidebar-open {
-            width: 250px;
-            /* Set to the desired width when the sidebar is open */
-            transition: width 0.3s ease;
-            /* Smooth transition for width change */
-        }
-
-        .side-nav.sidebar-close {
-            width: 0px;
-            /* Set to the desired width when the sidebar is open */
-            transition: width 0.3s ease;
-            /* Smooth transition for width change */
-        }
-
-        /* Default layout wrapper width (assuming sidebar is open) */
-        .layout-wrapper {
-            transition: margin-left 0.3s ease;
-            /* Smooth transition when sidebar opens/closes */
-        }
-
-        /* Layout wrapper with sidebar closed */
-        .layout-wrapper.sidebar-closed {
-            margin-left: 0;
-            /* or any custom value */
-        }
-
-        /* Layout wrapper with sidebar open */
-        .layout-wrapper.sidebar-open {
-            margin-left: 250px;
-            /* Adjust this value according to your sidebar's width */
-        }
-
-        .content-wrapper {
-            padding: 20px !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -100,37 +64,37 @@
         });
     </script>
     @if (Session::has('success'))
-    <script>
-        toastr.options = {
-            "progressBar": true,
-            "closeButton": true,
-        }
-        toastr.success("{{ Session::get('success') }}", 'Success!', {
-            timeout: 12000
-        });
-    </script>
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+            }
+            toastr.success("{{ Session::get('success') }}", 'Success!', {
+                timeout: 12000
+            });
+        </script>
     @endif
     @if (Session::has('error'))
-    <script>
-        toastr.options = {
-            "progressBar": true,
-            "closeButton": true,
-        }
-        toastr.error("{{ Session::get('error') }}", 'Error!', {
-            timeout: 12000
-        });
-    </script>
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+            }
+            toastr.error("{{ Session::get('error') }}", 'Error!', {
+                timeout: 12000
+            });
+        </script>
     @endif
     @if (Session::has('warning'))
-    <script>
-        toastr.options = {
-            "progressBar": true,
-            "closeButton": true,
-        }
-        toastr.warning("{{ Session::get('warning') }}", 'Warning!', {
-            timeout: 12000
-        });
-    </script>
+        <script>
+            toastr.options = {
+                "progressBar": true,
+                "closeButton": true,
+            }
+            toastr.warning("{{ Session::get('warning') }}", 'Warning!', {
+                timeout: 12000
+            });
+        </script>
     @endif
     <script>
         $('#sidebar-toggle').on('click', function() {

@@ -118,7 +118,7 @@
                         @enderror
                     </div> --}}
 
-                    <div class="avatar-edit" id="imageContainer">
+                    <div class="avatar-edit mb-4" id="imageContainer">
                         <h6 class="mb-4">Product Image</h6>
                         <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
                             class="input_image">
@@ -139,7 +139,7 @@
                     </div> --}}
 
                     <div class="input-field">
-                        <h6 class="mb-4">Thumbline</h6>
+                        <h6 class="mb-4">Additional Images</h6>
                         <div class="input-images"></div>
                         <small class="form-text text-muted">
                             <i class="las la-info-circle"></i> @lang('You can only upload a maximum of 6 images')</label>
