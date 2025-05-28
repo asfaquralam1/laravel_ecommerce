@@ -67,22 +67,44 @@ class ProductController extends Controller
             $modal->image = $imagename;
         }
 
-        if ($request->hasFile('thumbs')) {
-            $thumbnails = [];
-            foreach ($request->file('thumbs') as $image) {
-                $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
 
-                $img = Image::make($image)->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio(); // Maintain aspect ratio
+        $thumbnails = [];
+
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+                $img = Image::make($photo);
+                $img->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
                 });
-                // Save the resized image to the 'product' directory
-                $img->save(public_path('product/' . $thumbimagename));
 
-                // Update the model with the image name
-                $thumbnails[] = $thumbimagename;
+                $thumbPath = public_path('thumbnail/' . $photoname);
+                $img->save($thumbPath);
+                $thumbnails[] = $photoname;
             }
+
+            // Save all thumbnails at once
+            $modal->thumbnail = json_encode($thumbnails);
         }
-        $modal->thumbnail = json_encode($thumbnails);
+
+        // if ($request->hasFile('thumbs')) {
+        //     $thumbnails = [];
+        //     foreach ($request->file('thumbs') as $image) {
+        //         $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
+
+        //         $img = Image::make($image)->resize(300, null, function ($constraint) {
+        //             $constraint->aspectRatio(); // Maintain aspect ratio
+        //         });
+        //         // Save the resized image to the 'product' directory
+        //         $img->save(public_path('product/' . $thumbimagename));
+
+        //         // Update the model with the image name
+        //         $thumbnails[] = $thumbimagename;
+        //     }
+        // }
+        // $modal->thumbnail = json_encode($thumbnails);
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success', 'Product Added Successfully');
@@ -135,24 +157,51 @@ class ProductController extends Controller
             $modal->image = $filename;
         }
 
-        if ($request->hasFile('thumbs')) {
-            $thumbnails = [];
-            foreach ($request->file('thumbs') as $image) {
-                $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
+        //thbline image
+        $thumbnails = [];
 
-                $img = Image::make($image)->resize(300, null, function ($constraint) {
-                    $constraint->aspectRatio(); // Maintain aspect ratio
-                });
-                // Save the resized image to the 'product' directory
-                $img->save(public_path('product/' . $thumbimagename));
+        // Get existing stored image list
+        $existing = json_decode($modal->thumbnail, true) ?? [];
 
-                // Update the model with the image name
-                $thumbnails[] = $thumbimagename;
+        // Get kept images (from preloaded UI)
+        $kept = $request->input('old', []);
+
+        // Find removed images
+        $toDelete = array_diff($existing, $kept);
+
+        // Delete removed images from disk
+        foreach ($toDelete as $filename) {
+            $path = public_path('thumbnail/' . $filename);
+            if (file_exists($path)) {
+                unlink($path);
             }
         }
+
+        // Start with kept images
+        $thumbnails = $kept;
+
+        // Handle new uploads
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+                $img = Image::make($photo)->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+
+                $img->save(public_path('thumbnail/' . $photoname));
+                $thumbnails[] = $photoname;
+            }
+        }
+
+        // Save image data to database
+        $modal->thumbnail = json_encode($thumbnails);
+        $modal->save();
+
         $modal->update();
         //$request->session()->flash('message', 'Product Updated');
-        return redirect('admin/product')->with('success', 'Product Updated Successfully');;
+        return redirect()->route('admin.product')->with('success', 'Product Updated Successfully');
     }
 
     public function printbarcode()

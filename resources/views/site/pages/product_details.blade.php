@@ -18,14 +18,14 @@
                                     alt="product_deatils_main_img" id="mainImage" class="product_deatils_main_img"></a>
                         </div>
                         <div class="row mt-4">
-                            <div class="owl-carousel owl-theme">
+                            <div>
                                 @php
                                     $items = $product->thumbnail;
                                 @endphp
                                 @foreach ($items as $item)
-                                    <img src="/product/{{ $item }}" alt="thumb_img"
+                                    <img src="/thumbnail/{{ $item }}" alt="thumb_img"
                                         style="height: 200px;width: 200px;" class="thumb_img"
-                                        onclick="changeImage('/product/{{ $item }}')" />
+                                        onclick="changeImage('/thumbnail/{{ $item }}')" />
                                 @endforeach
                             </div>
                         </div>

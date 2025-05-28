@@ -151,7 +151,6 @@ class AdminController extends Controller
 
         $thumbnails = [];
 
-        // Save thumbnail images (from `photos[]`)
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
@@ -162,11 +161,13 @@ class AdminController extends Controller
                     $constraint->upsize();
                 });
 
-                $thumbPath = public_path('product/thumbs/' . $photoname);
+                $thumbPath = public_path('thumbnail/' . $photoname);
                 $img->save($thumbPath);
                 $thumbnails[] = $photoname;
-                $modal->thumbnail = json_encode($thumbnails);
             }
+
+            // Save all thumbnails at once
+            $modal->thumbnail = json_encode($thumbnails);
         }
         $modal->save();
 

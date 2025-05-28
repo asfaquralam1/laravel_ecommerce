@@ -55,7 +55,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="price" class="control-label mb-1">Product Price</label>
-                                <input id="price" name="price" type="text" class="form-control"
+                                <input id="price" type="number" name="price" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
                                 @error('price')
                                     <div class="text-center text-danger">{{ $message }}</div>
@@ -66,8 +66,8 @@
                             <div class="mb-3">
                                 <label for="discount_price" class="control-label mb-1">Product Discount
                                     Price</label>
-                                <input id="discount_price" name="discount_price" type="text" class="form-control"
-                                    aria-required="true" aria-invalid="false" required>
+                                <input id="discount_price" type="number" name="discount_price" type="text"
+                                    class="form-control" aria-required="true" aria-invalid="false" required>
                             </div>
                             @error('discount_price')
                                 <div class="text-center text-danger">{{ $message }}</div>
@@ -77,7 +77,7 @@
                             <div class="mb-3">
                                 <label for="quantity" class="control-label mb-1">Product Stock Quantity</label>
                                 Price</label>
-                                <input id="quantity" name="quantity" type="text" class="form-control"
+                                <input id="quantity" type="number" name="quantity" type="text" class="form-control"
                                     aria-required="true" aria-invalid="false" required>
                             </div>
                             @error('discount_price')
@@ -104,20 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- main image -->
-                    {{-- <div class="avatar-edit" id="imageContainer">
-                        <!-- Display existing image or default placeholder -->
-                        <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
-                            class="input_image" style="max-width: 200px; margin-bottom: 10px;">
-                        <label id="editIcon" class="btn btn-secondary" for="image">
-                            <i class="fas fa-pencil-alt"></i> Choose Image
-                        </label>
-                        <input id="mainImage" name="image" type="file" style="visibility: hidden;">
-                        @error('image')
-                            <div class="text-center text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
+                    
                     <div class="avatar-edit mb-4" id="imageContainer">
                         <h6 class="mb-4">Product Image</h6>
                         <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
@@ -128,15 +115,6 @@
                             <div class="text-center text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <!-- image gallery-->
-                    {{-- <div>
-                        <h6 class="mb-4">Thumbline Images</h6>
-                        <input type="file" name="thumbs[]" id="image-upload" multiple><br><br>
-                        @error('thumbnail')
-                            <div class="text-center text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
 
                     <div class="input-field">
                         <h6 class="mb-4">Additional Images</h6>
@@ -157,48 +135,48 @@
     </div>
 
     <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <button type="button" class="close ml-auto m-3" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="modal-body text-center">
-                <i class="las la-times-circle f-size--100 text--danger mb-15"></i>
-                <h3 class="text--danger mb-15">@lang('Error: Cannot process your entry!')</h3>
-                <p class="mb-15">@lang('You can\'t add more than 6 image')</p>
-                <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Continue')</button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="close ml-auto m-3" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body text-center">
+                    <i class="las la-times-circle f-size--100 text--danger mb-15"></i>
+                    <h3 class="text--danger mb-15">@lang('Error: Cannot process your entry!')</h3>
+                    <p class="mb-15">@lang('You can\'t add more than 6 image')</p>
+                    <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Continue')</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    
+
     <link rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
     <script src="{{ asset('js/image-uploader.min.js') }}"></script>
 
     <script>
-    (function($){
-        var dropdownParent = $('.has-select2');
+        (function($) {
+            var dropdownParent = $('.has-select2');
 
-        @if(isset($images))
-            let preloaded = @json($images);
-        @else
-            let preloaded = [];
-        @endif
+            @if (isset($images))
+                let preloaded = @json($images);
+            @else
+                let preloaded = [];
+            @endif
 
-        $('.input-images').imageUploader({
-            preloaded: preloaded,
-            imagesInputName: 'photos',
-            preloadedInputName: 'old',
-            maxFiles: 6
-        });
+            $('.input-images').imageUploader({
+                preloaded: preloaded,
+                imagesInputName: 'photos',
+                preloadedInputName: 'old',
+                maxFiles: 6
+            });
 
-        $(document).on('input', 'input[name="images[]"]', function(){
-            var fileUpload = $("input[type='file']");
-            if (parseInt(fileUpload.get(0).files.length) > 6){
-                $('#errorModal').modal('show');
-            }
-        });
-    })(jQuery)
+            $(document).on('input', 'input[name="photos[]"]', function() {
+                var fileUpload = $("input[type='file']");
+                if (parseInt(fileUpload.get(0).files.length) > 6) {
+                    $('#errorModal').modal('show');
+                }
+            });
+        })(jQuery)
     </script>
 
     <script>
