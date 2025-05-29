@@ -143,7 +143,7 @@
             <div class="modal-body text-center">
                 <i class="las la-times-circle f-size--100 text--danger mb-15"></i>
                 <h3 class="text--danger mb-15">@lang('Error: Cannot process your entry!')</h3>
-                <p class="mb-15">@lang('You can\'t add more than 6 image')</p>
+                <p class="mb-15">@lang('You can\'t add more than 4 image')</p>
                 <button type="button" class="btn btn--danger" data-dismiss="modal">@lang('Continue')</button>
             </div>
         </div>
@@ -169,13 +169,13 @@
             preloaded: preloaded,
             imagesInputName: 'photos',
             preloadedInputName: 'old',
-            maxFiles: 6
+            maxFiles: 4
         });
 
         // Limit file uploads to 6 files
         $(document).on('input', 'input[name="photos[]"]', function() {
             var fileUpload = $("input[type='file']");
-            if (parseInt(fileUpload.get(0).files.length) > 6) {
+            if (parseInt(fileUpload.get(0).files.length) > 4) {
                 $('#errorModal').modal('show');
             }
         });

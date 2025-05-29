@@ -141,7 +141,7 @@
                 preloaded: preloaded,
                 imagesInputName: 'photos',
                 preloadedInputName: 'old',
-                maxFiles: 6
+                maxFiles: 4
             });
         })(jQuery);
     </script>
