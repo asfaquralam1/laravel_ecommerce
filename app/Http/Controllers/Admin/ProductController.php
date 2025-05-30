@@ -88,23 +88,6 @@ class ProductController extends Controller
             // Save all thumbnails at once
             $modal->thumbnail = json_encode($thumbnails);
         }
-
-        // if ($request->hasFile('thumbs')) {
-        //     $thumbnails = [];
-        //     foreach ($request->file('thumbs') as $image) {
-        //         $thumbimagename = time() . '.' . $image->getClientOriginalExtension();
-
-        //         $img = Image::make($image)->resize(300, null, function ($constraint) {
-        //             $constraint->aspectRatio(); // Maintain aspect ratio
-        //         });
-        //         // Save the resized image to the 'product' directory
-        //         $img->save(public_path('product/' . $thumbimagename));
-
-        //         // Update the model with the image name
-        //         $thumbnails[] = $thumbimagename;
-        //     }
-        // }
-        // $modal->thumbnail = json_encode($thumbnails);
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success', 'Product Added Successfully');
