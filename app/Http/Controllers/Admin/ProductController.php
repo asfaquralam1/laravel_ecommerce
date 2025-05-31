@@ -97,7 +97,21 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $categories = Category::all();
-        return view('admin.product.edit_product', compact('product', 'categories'));
+
+        // Prepare preloaded images for the imageUploader plugin
+        $preloadedImages = [];
+
+        if (!empty($product->thumbnail)) {
+            $thumbnails = json_decode($product->thumbnail, true);
+            foreach ($thumbnails as $index => $filename) {
+                $preloadedImages[] = [
+                    'id' => $index,
+                    'src' => asset('thumbnail/' . $filename)
+                ];
+            }
+        }
+
+        return view('admin.product.edit_product', compact('product', 'categories', 'preloadedImages'));
     }
 
     public function update_product(Request $request, $id)
@@ -186,70 +200,76 @@ class ProductController extends Controller
 
         $modal = Product::findOrFail($id);
 
-    // Update basic fields
-    $modal->name = $request->post('name');
-    $modal->category = $request->post('category');
-    $modal->details = $request->post('details');
-    $modal->price = $request->post('price');
-    $modal->discount_price = $request->post('discount_price');
-    $modal->quantity = $request->post('quantity');
+        // Update basic fields
+        $modal->name = $request->post('name');
+        $modal->category = $request->post('category');
+        $modal->details = $request->post('details');
+        $modal->price = $request->post('price');
+        $modal->discount_price = $request->post('discount_price');
+        $modal->quantity = $request->post('quantity');
 
-    // Handle main image
-    if ($request->hasFile('image')) {
-        $oldImagePath = public_path('product/' . $modal->image);
-        if (File::exists($oldImagePath)) {
-            File::delete($oldImagePath);
-        }
+        // Handle main image
+        if ($request->hasFile('image')) {
+            $oldImagePath = public_path('product/' . $modal->image);
+            if (File::exists($oldImagePath)) {
+                File::delete($oldImagePath);
+            }
 
-        $file = $request->file('image');
-        $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
 
-        $img = Image::make($file)->resize(800, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-
-        $img->save(public_path('product/' . $filename));
-        $modal->image = $filename;
-    }
-
-    // Handle thumbnails (multiple images)
-    $existing = json_decode($modal->thumbnail, true) ?? [];
-    $kept = $request->input('old', []);
-    $removed = array_diff($existing, $kept);
-
-    // Remove deleted thumbnails from storage
-    foreach ($removed as $filename) {
-        $path = public_path('thumbnail/' . $filename);
-        if (file_exists($path)) {
-            unlink($path);
-        }
-    }
-
-    // Start with kept thumbnails
-    $thumbnails = $kept;
-
-    // Add newly uploaded thumbnails
-    if ($request->hasFile('photos')) {
-        foreach ($request->file('photos') as $photo) {
-            $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
-
-            $img = Image::make($photo)->resize(400, null, function ($constraint) {
+            $img = Image::make($file)->resize(800, null, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
 
-            $img->save(public_path('thumbnail/' . $photoname));
-            $thumbnails[] = $photoname;
+            $img->save(public_path('product/' . $filename));
+            $modal->image = $filename;
         }
-    }
 
-    // Save updated thumbnail list
-    $modal->thumbnail = json_encode($thumbnails);
+        // ✅ FIX STARTS HERE
 
-    // Save model changes
-    $modal->save();
-        //$request->session()->flash('message', 'Product Updated');
+        // Decode current stored thumbnails
+        $existing = json_decode($modal->thumbnail, true) ?? [];
+
+        // Get the list of images the user *kept* (these are filenames only)
+        $kept = $request->input('old', []);
+
+        // Determine which images were removed
+        $removed = array_diff($existing, $kept);
+
+        // Delete the removed files from disk
+        foreach ($removed as $filename) {
+            $path = public_path('thumbnail/' . $filename);
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+
+        // Start with kept thumbnails
+        $thumbnails = $kept;
+
+        // Add newly uploaded images
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+                $img = Image::make($photo)->resize(400, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+
+                $img->save(public_path('thumbnail/' . $photoname));
+                $thumbnails[] = $photoname;
+            }
+        }
+
+        // Save final thumbnails list
+        $modal->thumbnail = json_encode($thumbnails);
+
+        // Save changes
+        $modal->update(); // OR $modal->update() – both are fine here
+
         return redirect()->route('admin.product')->with('success', 'Product Updated Successfully');
     }
 
