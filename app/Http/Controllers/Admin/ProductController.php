@@ -98,14 +98,13 @@ class ProductController extends Controller
         $product = Product::find($id);
         $categories = Category::all();
 
-        // Prepare preloaded images for the imageUploader plugin
         $preloadedImages = [];
 
         if (!empty($product->thumbnail)) {
             $thumbnails = json_decode($product->thumbnail, true);
-            foreach ($thumbnails as $index => $filename) {
+            foreach ($thumbnails as $filename) {
                 $preloadedImages[] = [
-                    'id' => $index,
+                    'id' => $filename, // 🔥 important: use filename as ID
                     'src' => asset('thumbnail/' . $filename)
                 ];
             }
@@ -227,18 +226,15 @@ class ProductController extends Controller
             $modal->image = $filename;
         }
 
-        // ✅ FIX STARTS HERE
-
-        // Decode current stored thumbnails
         $existing = json_decode($modal->thumbnail, true) ?? [];
 
-        // Get the list of images the user *kept* (these are filenames only)
+        // `old[]` should now be a list of filenames to keep
         $kept = $request->input('old', []);
 
-        // Determine which images were removed
+        // Images to remove are those not in the kept list
         $removed = array_diff($existing, $kept);
 
-        // Delete the removed files from disk
+        // Delete removed files
         foreach ($removed as $filename) {
             $path = public_path('thumbnail/' . $filename);
             if (file_exists($path)) {
@@ -246,10 +242,10 @@ class ProductController extends Controller
             }
         }
 
-        // Start with kept thumbnails
+        // Start with kept
         $thumbnails = $kept;
 
-        // Add newly uploaded images
+        // Add new ones
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
@@ -264,11 +260,10 @@ class ProductController extends Controller
             }
         }
 
-        // Save final thumbnails list
+        // Save
         $modal->thumbnail = json_encode($thumbnails);
+        $modal->update();
 
-        // Save changes
-        $modal->update(); // OR $modal->update() – both are fine here
 
         return redirect()->route('admin.product')->with('success', 'Product Updated Successfully');
     }

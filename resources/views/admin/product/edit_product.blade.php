@@ -130,13 +130,13 @@
         let preloaded = [];
 
         @if(!empty($preloadedImages))
-        preloaded = @json($preloadedImages);
+        preloaded = @json($preloadedImages); // must be array of { id: 'image1.jpg', src: '...' }
         @endif
 
         $('.input-images').imageUploader({
             preloaded: preloaded,
             imagesInputName: 'photos',
-            preloadedInputName: 'old',
+            preloadedInputName: 'old', // will submit array of `id`s (which should be filenames)
             maxFiles: 6
         });
     })(jQuery);
