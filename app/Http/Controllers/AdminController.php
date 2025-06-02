@@ -58,15 +58,22 @@ class AdminController extends Controller
         //     'verify' => 'These credentials do not match',
         // ])->withInput($request->only('email')); // Preserve email in the input
 
-        $this->validate($request, [
+        // Validate login input
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::guard('admin')->attempt([
+        // Attempt login using the 'admin' guard
+        $credentials = [
             'email' => $request->email,
-            'password' => $request->password
-        ], $request->remember)) {
+            'password' => $request->password,
+        ];
+
+        $remember = $request->filled('remember'); // true if "remember me" is checked
+
+        if (Auth::guard('admin')->attempt($credentials, $remember)) {
+            // Fetch dashboard data
             $users = User::all();
             $orders = Order::all();
 
@@ -80,14 +87,16 @@ class AdminController extends Controller
             ]);
         }
 
+        // Failed login
         return redirect()->back()->withErrors([
             'email' => 'Invalid email or password',
-        ]);
+        ])->withInput($request->only('email'));
     }
     public  function logout(Request $request)
     {
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('admin.login');
     }
     public function dashboard()

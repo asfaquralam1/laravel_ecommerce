@@ -52,8 +52,8 @@
             @endif
             <div class="mb-3 form-check" style="display: flex;justify-content:space-between">
                 <div>
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" style="background-color: white">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <label class="form-check-label" >Remember Me</label>
+                    <input type="checkbox" class="form-check-input" value="1" id="exampleCheck1" style="background-color: white">
                 </div>
                 <a href="" style="color: white;">Forget Password</a>
             </div>
