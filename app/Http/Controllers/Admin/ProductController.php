@@ -143,6 +143,7 @@ class ProductController extends Controller
             $modal->image = $filename;
         }
 
+        // Decode current stored thumbnails
         $existing = json_decode($modal->thumbnail, true) ?? [];
 
         // `old[]` should now be a list of filenames to keep
