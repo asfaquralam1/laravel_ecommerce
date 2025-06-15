@@ -108,7 +108,7 @@
                     <h6 class="mb-4">Additional Images</h6>
                     <div class="input-images"></div>
                     <small class="form-text text-muted">
-                        <i class="las la-info-circle"></i> @lang('You can only upload a maximum of 6 images')</label>
+                        <i class="las la-info-circle"></i> @lang('You can only upload a maximum of 4 images')</label>
                     </small>
                 </div>
 
@@ -130,20 +130,17 @@
         let preloaded = [];
 
         @if(!empty($preloadedImages))
-        preloaded = @json($preloadedImages);
+        preloaded = @json($preloadedImages); // must be array of { id: 'image1.jpg', src: '...' }
         @endif
 
         $('.input-images').imageUploader({
             preloaded: preloaded,
             imagesInputName: 'photos',
-            preloadedInputName: 'old',
-            maxFiles: 6
+            preloadedInputName: 'old', // will submit array of `id`s (which should be filenames)
+            maxFiles: 4
         });
-    })(jQuery);
-</script>
 
-<script>
-    // Get the image, file input, and edit icon elements
+         // Get the image, file input, and edit icon elements
     const imageUpload = document.getElementById('mainImage');
     const previewImage = document.getElementById('imagePreview');
     const editIcon = document.getElementById('editIcon');
@@ -170,6 +167,7 @@
             reader.readAsDataURL(file); // Read the file as a data URL
         }
     });
+    })(jQuery);
 </script>
 
 @endsection
