@@ -38,7 +38,7 @@ class CategoryController extends Controller
         // $modal->save();
         // Category::create(array_merge($request->only(['name', 'slug'])));
         $this->categoryRepository->store($data);
-        return redirect('admin.category')->with('success', 'Category Added Successfully');
+        return redirect()->route('admin.category')->with('success', 'Category Added Successfully');
     }
 
     public function edit($id)
@@ -52,7 +52,7 @@ class CategoryController extends Controller
         //$request->session()->flash('message', 'Category Updated');
         
         $this->categoryRepository->update($request->all(),$id);
-        return redirect('admin/category')->with('success', 'Category Updated Successfully');
+        return redirect()->route('admin.category')->with('success', 'Category Updated Successfully');
     }
 
     public function delete($id)
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         //$request->session()->flash('warning', 'Category Deleted');
 
         $this->categoryRepository->delete($id);
-        return redirect('admin/category')->with('warning', 'Category Deleted');
+        return redirect()->route('admin.category')->with('warning', 'Category Deleted');
     }
 
     public function status(Request $request, $status, $id)
@@ -69,6 +69,6 @@ class CategoryController extends Controller
         $category->status = $status;
         $category->save();
         $request->session()->flash('message', 'Category Status updated');
-        return redirect('admin/category');
+        return redirect()->route('admin.category');
     }
 }

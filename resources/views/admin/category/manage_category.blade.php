@@ -95,7 +95,7 @@
                         </td>
                         <td class="action_icon_row">
                             <!-- Toggle Status Form -->
-                            <form action="{{ url('admin/category/status/' . ($category->status == 1 ? '0' : '1')) }}/{{ $category->id }}" method="post" class="d-inline">
+                            <form action="{{ route('admin.status.category', ['status' => $category->status == 1 ? 0 : 1, 'id' => $category->id]) }}" method="post" class="d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-sm {{ $category->status == 1 ? 'btn-success' : 'btn-dark' }}" aria-label="Toggle Status">
                                     <i class="fas {{ $category->status == 1 ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>

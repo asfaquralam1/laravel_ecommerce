@@ -90,7 +90,7 @@ class ProductController extends Controller
         }
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
-        return redirect('admin.product')->with('success', 'Product Added Successfully');
+        return redirect('admin/product')->with('success', 'Product Added Successfully');
     }
 
     public function edit_product($id)
@@ -98,13 +98,14 @@ class ProductController extends Controller
         $product = Product::find($id);
         $categories = Category::all();
 
+        // Prepare preloaded images for the imageUploader plugin
         $preloadedImages = [];
 
         if (!empty($product->thumbnail)) {
             $thumbnails = json_decode($product->thumbnail, true);
-            foreach ($thumbnails as $filename) {
+            foreach ($thumbnails as $index => $filename) {
                 $preloadedImages[] = [
-                    'id' => $filename, // 🔥 important: use filename as ID
+                    'id' => $index,
                     'src' => asset('thumbnail/' . $filename)
                 ];
             }
@@ -115,8 +116,91 @@ class ProductController extends Controller
 
     public function update_product(Request $request, $id)
     {
+        // $modal = Product::find($id);
+        // $modal->name = $request->post('name');
+        // $modal->category = $request->post('category');
+        // $modal->details = $request->post('details');
+        // $modal->price = $request->post('price');
+        // $modal->discount_price = $request->post('discount_price');
+        // $modal->quantity = $request->post('quantity');
+
+        // if ($request->hasFile('image')) {
+        //     // Get the old image path and delete it if it exists
+        //     $destination = 'product/' . $modal->image;
+        //     if (File::exists($destination)) {
+        //         File::delete($destination);
+        //     }
+
+        //     // Get the new uploaded file
+        //     $file = $request->file('image');
+
+        //     // Get file extension and generate a new filename
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time() . '.' . $extension;
+
+        //     // Create an image instance from the uploaded file
+        //     $img = Image::make($file);
+
+        //     // Resize the image (adjust width and height as needed)
+        //     $img->resize(800, null, function ($constraint) {
+        //         $constraint->aspectRatio();
+        //         $constraint->upsize();  // Prevent upsizing the image
+        //     });
+
+        //     // Save the resized image to the 'product' folder
+        //     $img->save(public_path('product/' . $filename));
+
+        //     // Update the model with the new image filename
+        //     $modal->image = $filename;
+        // }
+
+        // //thbline image
+        // $thumbnails = [];
+
+        // // Get existing stored image list
+        // $existing = json_decode($modal->thumbnail, true) ?? [];
+
+        // // Get kept images (from preloaded UI)
+        // $kept = $request->input('old', []);
+
+        // // Find removed images
+        // $toDelete = array_diff($existing, $kept);
+
+        // // Delete removed images from disk
+        // foreach ($toDelete as $filename) {
+        //     $path = public_path('thumbnail/' . $filename);
+        //     if (file_exists($path)) {
+        //         unlink($path);
+        //     }
+        // }
+
+        // // Start with kept images
+        // $thumbnails = $kept;
+
+        // // Handle new uploads
+        // if ($request->hasFile('photos')) {
+        //     foreach ($request->file('photos') as $photo) {
+        //         $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+        //         $img = Image::make($photo)->resize(400, null, function ($constraint) {
+        //             $constraint->aspectRatio();
+        //             $constraint->upsize();
+        //         });
+
+        //         $img->save(public_path('thumbnail/' . $photoname));
+        //         $thumbnails[] = $photoname;
+        //     }
+        // }
+
+        // // Save image data to database
+        // $modal->thumbnail = json_encode($thumbnails);
+        // $modal->save();
+
+        // $modal->update();
+
         $modal = Product::findOrFail($id);
 
+        // Update basic fields
         $modal->name = $request->post('name');
         $modal->category = $request->post('category');
         $modal->details = $request->post('details');
@@ -146,13 +230,13 @@ class ProductController extends Controller
         // Decode current stored thumbnails
         $existing = json_decode($modal->thumbnail, true) ?? [];
 
-        // `old[]` should now be a list of filenames to keep
+        // Get the list of images the user *kept* (these are filenames only)
         $kept = $request->input('old', []);
 
-        // Images to remove are those not in the kept list
+        // Determine which images were removed
         $removed = array_diff($existing, $kept);
 
-        // Delete removed files
+        // Delete the removed files from disk
         foreach ($removed as $filename) {
             $path = public_path('thumbnail/' . $filename);
             if (file_exists($path)) {
@@ -160,10 +244,10 @@ class ProductController extends Controller
             }
         }
 
-        // Start with kept
+        // Start with kept thumbnails
         $thumbnails = $kept;
 
-        // Add new ones
+        // Add newly uploaded images
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
@@ -178,10 +262,11 @@ class ProductController extends Controller
             }
         }
 
-        // Save
+        // Save final thumbnails list
         $modal->thumbnail = json_encode($thumbnails);
-        $modal->update();
 
+        // Save changes
+        $modal->update(); // OR $modal->update() – both are fine here
 
         return redirect()->route('admin.product')->with('success', 'Product Updated Successfully');
     }

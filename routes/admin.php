@@ -12,7 +12,9 @@ Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
-//Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+// Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
 Route::get('admin/categories', [CategoryController::class, 'index'])->name('admin.category');
 Route::get('admin/manage-category', [CategoryController::class, 'create'])->name('admin.manage.category');
 Route::post('admin/add-category', [CategoryController::class, 'store'])->name('admin.add.category');
