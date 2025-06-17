@@ -18,17 +18,32 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        // $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
+            \Log::info("Checking guard: $guard");
             if (Auth::guard($guard)->check()) {
+                \Log::info("Redirecting logged-in $guard");
                 if ($guard == 'admin') {
                     return redirect(RouteServiceProvider::ADMIN);
                 }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
-
         return $next($request);
     }
+
+    // public function handle($request, Closure $next, ...$guards)
+    // {
+    //     // $guards = empty($guards) ? [null] : $guards;
+    //     foreach ($guards as $guard) {
+    //          \Log::info("Checking guard: $guard");
+    //         if (Auth::guard($guard)->check()) {
+    //             if ($guard == 'admin') {
+    //                 return redirect(RouteServiceProvider::ADMIN);
+    //             }
+    //             return redirect(RouteServiceProvider::HOME);
+    //         }
+    //     }
+
+    //     return $next($request);
+    // }
 }

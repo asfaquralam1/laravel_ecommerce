@@ -31,6 +31,9 @@ class SslCommerzPaymentController extends Controller
         $post_data['total_amount'] = $order->grand_total; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $order->id; // tran_id must be unique
+        $post_data['success_url'] = 'http://127.0.0.1:8000/success';
+        $post_data['fail_url'] = 'http://127.0.0.1:8000/fail';
+        $post_data['cancel_url'] = 'http://127.0.0.1:8000/cancel';
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $order->name;
@@ -218,7 +221,7 @@ class SslCommerzPaymentController extends Controller
 
             if ($validation) {
                 DB::table('orders')
-                    ->where('transaction_id', $tran_id)
+                    ->where('tran_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
                 // ✅ Redirect to the view: site.pages.paynotify
