@@ -46,7 +46,7 @@ class CreateOrdersTable extends Migration
              $table->string('store_amount')->nullable(); 
              $table->string('bank_tran_id')->nullable();             
              $table->string('currency_type')->nullable();
-             $table->string('currency_amount')->nullable();
+             $table->string('currency')->nullable();
              $table->string('error')->nullable();
              // card details
              $table->string('card_type')->nullable();
