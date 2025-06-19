@@ -5,10 +5,10 @@
 // $apiDomain = env('SSLCZ_TESTMODE') ? "https://sandbox.sslcommerz.com" : "https://securepay.sslcommerz.com";
 return [
 	'projectPath' => env('PROJECT_PATH'),
-	'apiDomain' => env("API_DOMAIN_URL", "https://securepay.sslcommerz.com"),
+	'apiDomain' => env("API_DOMAIN_URL", "https://sandbox.sslcommerz.com"),
 	'apiCredentials' => [
-		'store_id' => env("SSLCZ_STORE_ID"),
-		'store_password' => env("SSLCZ_STORE_PASSWORD"),
+		'store_id' => env("SSLCZ_STORE_ID",'SSLCZ_STORE_ID'),
+		'store_password' => env("SSLCZ_STORE_PASSWORD",'SSLCZ_STORE_PASSWORD'),
 	],
 	'apiUrl' => [
 		'make_payment' => "/gwprocess/v4/api.php",
