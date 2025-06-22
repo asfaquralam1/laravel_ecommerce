@@ -160,6 +160,7 @@ class SslCommerzPaymentController extends Controller
 
         if (!is_array($payment_options)) {
             print_r($payment_options);
+
             $payment_options = array();
         }
     }
