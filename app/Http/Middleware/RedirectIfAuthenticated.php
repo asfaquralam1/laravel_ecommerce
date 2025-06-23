@@ -13,12 +13,12 @@ class RedirectIfAuthenticated
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string[]|null  ...$guards
+     * @param  string|null  $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
-       switch($guard){
+        switch($guard){
             //Redirecting Authenticated Admin To Dashboard Page
             case 'admin':
                 if (Auth::guard($guard)->check()) {
@@ -32,22 +32,7 @@ class RedirectIfAuthenticated
                 }
                 break;
         }
+
         return $next($request);
     }
-
-    // public function handle($request, Closure $next, ...$guards)
-    // {
-    //     // $guards = empty($guards) ? [null] : $guards;
-    //     foreach ($guards as $guard) {
-    //          \Log::info("Checking guard: $guard");
-    //         if (Auth::guard($guard)->check()) {
-    //             if ($guard == 'admin') {
-    //                 return redirect(RouteServiceProvider::ADMIN);
-    //             }
-    //             return redirect(RouteServiceProvider::HOME);
-    //         }
-    //     }
-
-    //     return $next($request);
-    // }
 }
