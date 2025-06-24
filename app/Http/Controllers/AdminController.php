@@ -35,34 +35,18 @@ class AdminController extends Controller
             'password' => 'required',
         ]);
 
-        // Attempt login using the 'admin' guard
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-
-        $remember = $request->filled('remember'); // true if "remember me" is checked
-
-        if (Auth::guard('admin')->attempt($credentials, $remember)) {
-            // Fetch dashboard data
-            $users = User::all();
-            $orders = Order::all();
-
-            return view('admin.dashboard', [
-                'total_users' => $users->count(),
-                'users' => $users,
-                'total_products' => Product::count(),
-                'total_orders' => $orders->count(),
-                'orders' => $orders,
-                'total_categories' => Category::count(),
-            ]);
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+            // if successful, then redirect to their intended location.
+            // here intended method is used to redirect the page is requested by admin user after successful login. 
+            return redirect()->intended(route('admin.dashboard'));
         }
 
-        // Failed login
-        return redirect()->back()->withErrors([
-            'email' => 'Invalid email or password',
-        ])->withInput($request->only('email'));
+        // If login fails, redirect back with error
+        return back()->withErrors([
+            'email' => 'Invalid credentials provided.',
+        ])->onlyInput('email');
     }
+
     public  function logout(Request $request)
     {
         Auth::guard('admin')->logout();
@@ -72,16 +56,23 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        $orders = Order::all();
-        $total_orders = DB::table('orders')->count();
-        $categories = Category::all();
-        $total_categories = DB::table('categories')->count();
         $users = User::all();
-        $total_users = DB::table('users')->count();
+        $orders = Order::all();
+        $categories = Category::all();
         $products = Product::all();
-        $total_products = DB::table('products')->count();
-        return view('admin.dashboard', compact('users', 'categories', 'orders', 'products', 'total_users', 'total_categories', 'total_orders', 'total_products'));
+
+        return view('admin.dashboard', [
+            'total_users' => $users->count(),
+            'users' => $users,
+            'products' => $products,
+            'total_products' => Product::count(),
+            'total_orders' => $orders->count(),
+            'orders' => $orders,
+            'categories' => $categories,
+            'total_categories' => Category::count(),
+        ]);
     }
+
     public function order()
     {
         $orders = Order::all();
