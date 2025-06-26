@@ -107,7 +107,7 @@ class HomeController extends Controller
         $order->status = 'pending';
         $order->payment_status = 0;
         $order->grand_total = $grand_total;
-        $order->tran_id = uniqid();
+        // $order->tran_id = uniqid();
         //$order->item_count = Cart::totalItems();
         $item_count = count(session('cart'));
         $order->item_count = $item_count;
