@@ -32,9 +32,9 @@ class SslCommerzPaymentController extends Controller
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = $order->id; // tran_id must be unique
         // dd($post_data);
-        $post_data['success_url'] = 'http://127.0.0.1:8000/success';
-        $post_data['fail_url'] = 'http://127.0.0.1:8000/fail';
-        $post_data['cancel_url'] = 'http://127.0.0.1:8000/cancel';
+        // $post_data['success_url'] = 'http://127.0.0.1:8000/success';
+        // $post_data['fail_url'] = 'http://127.0.0.1:8000/fail';
+        // $post_data['cancel_url'] = 'http://127.0.0.1:8000/cancel';
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $order->name;

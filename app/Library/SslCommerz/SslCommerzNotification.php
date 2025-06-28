@@ -41,6 +41,7 @@ class SslCommerzNotification extends AbstractSslCommerz
         # MERCHANT SYSTEM INFO
         if (!empty($merchant_trans_id) && !empty($merchant_trans_amount)) {
 
+            $post_data = [];
             # CALL THE FUNCTION TO CHECK THE RESULT
             $post_data['store_id'] = $this->getStoreId();
             $post_data['store_pass'] = $this->getStorePassword();
