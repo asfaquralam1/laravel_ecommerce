@@ -9,6 +9,12 @@
                 <span class="nav-text">Dashboard</span>
             </a>
         </li>
+         <li class="sidebar-item @yield('dashboard_select')">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Banner</span>
+            </a>
+        </li>
         <li class="sidebar-item">
             <a class="nav-link" href="{{ route('admin.order') }}">
                 <i class="fas fa-users"></i>

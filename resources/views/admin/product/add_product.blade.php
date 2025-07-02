@@ -105,10 +105,10 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="mb-3">
                             <label for="" class="control-label mb-1">Product Description</label>
-                            <textarea id="product_description" name="product_description" rows="6" cols="50" placeholder="Enter detailed product description..."></textarea>
+                            <textarea class="form-control" id="product_description" name="product_description" rows="6" cols="50" placeholder="Enter detailed product description..."></textarea>
                         </div>
                     </div>
                 </div>
