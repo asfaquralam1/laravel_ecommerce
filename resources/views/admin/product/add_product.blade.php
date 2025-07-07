@@ -103,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
@@ -112,7 +111,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="avatar-edit mb-4" id="imageContainer">
                     <h6 class="mb-4">Product Image</h6>
                     <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
