@@ -115,27 +115,33 @@
                     </div>
                 </div>
 
-                <div class="avatar-edit mb-4" id="imageContainer">
-                    <h6 class="mb-3">Product Image</h6>
-                    <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
-                        class="input_image">
-                    <label for="mainImage" id="editIcon"><i class="fas fa-pencil-alt"></i></label>
-                    <input id="mainImage" name="image" type="file" accept="image/*" style="display: none;">
-                    @error('image')
-                    <div class="text-center text-danger">{{ $message }}</div>
-                    @enderror
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="avatar-edit mb-4" id="imageContainer">
+                            <h6 class="mb-3">Product Image</h6>
+                            <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
+                                class="input_image">
+                            <label for="mainImage" id="editIcon"><i class="fas fa-pencil-alt"></i></label>
+                            <input id="mainImage" name="image" type="file" accept="image/*" style="display: none;">
+                            @error('image')
+                            <div class="text-center text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-field">
+                            <h6 class="mb-3">Additional Images</h6>
+                            <div class="input-images"></div>
+                            <small class="form-text text-muted">
+                                <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
+                            </small>
+                        </div>
+
+                        <!-- Preview Container -->
+                        <div id="image-preview-content"></div>
+                    </div>
                 </div>
 
-                <div class="input-field col-8">
-                    <h6 class="mb-3">Additional Images</h6>
-                    <div class="input-images"></div>
-                    <small class="form-text text-muted">
-                        <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
-                    </small>
-                </div>
-
-                <!-- Preview Container -->
-                <div id="image-preview-content"></div>
                 <button type="submit" class="btn btn-success mt-3">
                     Save
                 </button>
