@@ -640,3 +640,15 @@ select:active {
     cursor: pointer;
     font-size: 15px;
 }
+
+.image-uploader .uploaded-image:nth-child(n+6) {
+    display: none !important;
+}
+
+.input-field{
+    width: 100%;
+}
+
+.input-images{
+     width: 80%;
+}
