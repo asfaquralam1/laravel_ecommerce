@@ -153,7 +153,7 @@
                         </div>
                         <div class="input-field">
                             <h6 class="mb-3">Additional Images</h6>
-                            <div class="input-images"></div>
+                            <div id="input-images"></div>
                             <small class="form-text text-muted">
                                 <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
                             </small>
@@ -175,7 +175,7 @@
                 <div class="modal-body text-center">
                     <i class="las la-times-circle f-size--100 text--danger mb-3"></i>
                     <h3 class="text--danger mb-3">@lang('Error: Cannot process your entry!')</h3>
-                    <p class="mb-3">@lang('You can\'t add more than 5 images')</p>
+                    <p class="mb-3">@lang('You can\'t add more than 4 images')</p>
                     <button type="button" class="btn btn--danger" data-bs-dismiss="modal">@lang('Continue')</button>
                 </div>
             </div>
@@ -192,11 +192,12 @@
                 preloaded = @json($images);
             @endif
 
-            $('.input-images').imageUploader({
+            $('#input-images').imageUploader({
                 preloaded: preloaded,
+                maxSize: 2 * 1024 * 1024, // 2MB
                 imagesInputName: 'photos',
                 preloadedInputName: 'old',
-                maxFiles: 5
+                maxFiles: 4
             });
 
             const imageUpload = document.getElementById('mainImage');
