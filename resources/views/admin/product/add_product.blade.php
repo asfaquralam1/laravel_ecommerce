@@ -173,9 +173,9 @@
                 <button type="button" class="btn-close position-absolute end-0 m-3" data-bs-dismiss="modal"
                     aria-label="Close"></button>
                 <div class="modal-body text-center">
-                    <i class="las la-times-circle f-size--100 text--danger mb-3"></i>
+                    {{-- <i class="las la-times-circle f-size--100 text--danger mb-3"></i> --}}
                     <h3 class="text--danger mb-3">@lang('Error: Cannot process your entry!')</h3>
-                    <p class="mb-3">@lang('You can\'t add more than 4 images')</p>
+                    <p class="mb-3">@lang('You can\'t add more than 5 images')</p>
                     <button type="button" class="btn btn--danger" data-bs-dismiss="modal">@lang('Continue')</button>
                 </div>
             </div>
@@ -194,10 +194,9 @@
 
             $('#input-images').imageUploader({
                 preloaded: preloaded,
-                maxSize: 2 * 1024 * 1024, // 2MB
                 imagesInputName: 'photos',
                 preloadedInputName: 'old',
-                maxFiles: 4
+                maxFiles: 5
             });
 
             const imageUpload = document.getElementById('mainImage');
