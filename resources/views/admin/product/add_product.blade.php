@@ -118,8 +118,8 @@
                             </div>
                         </div>
 
-                        {{-- <div class="row">
-                        <div class="col-md-4">
+                        <div class="row">
+                        <div class="col-md-3">
                             <div class="avatar-edit mb-4" id="imageContainer">
                                 <h6 class="mb-3">Product Image</h6>
                                 <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image" class="input_image">
@@ -128,19 +128,18 @@
                                 @error('image')<div class="text-danger small">{{ $message }}</div>@enderror
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="input-field">
-                                <h6 class="mb-3">Additional Images</h6>
-                                <div class="input-images"></div>
-                                <small class="form-text text-muted">
-                                    <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
-                                </small>
-                            </div>
-                            <div id="image-preview-content"></div>
+                        <div class="col-md-9">
+                           <div class="input-field">
+                            <h6 class="mb-3">Additional Images</h6>
+                            <div id="input-images"></div>
+                            <small class="form-text text-muted">
+                                <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
+                            </small>
                         </div>
-                    </div> --}}
+                        </div>
+                    </div>
 
-                        <div class="avatar-edit mb-4" id="imageContainer">
+                        {{-- <div class="avatar-edit mb-4" id="imageContainer">
                             <h6 class="mb-3">Product Image</h6>
                             <img id="imagePreview" src="{{ asset('image/upload.png') }}" alt="Default Image"
                                 class="input_image">
@@ -157,7 +156,7 @@
                             <small class="form-text text-muted">
                                 <i class="las la-info-circle"></i> You can only upload a maximum of 4 images
                             </small>
-                        </div>
+                        </div> --}}
 
                         <button type="submit" class="btn btn-success mt-3">Save</button>
                     </form>
