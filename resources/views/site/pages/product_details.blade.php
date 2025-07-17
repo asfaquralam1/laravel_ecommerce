@@ -12,7 +12,7 @@
         <div class="container">
             <div class="product_deatils">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="product_image_section">
                             <a href="{{ route('product.details', $product->id) }}"><img src="/product/{{ $product->image }}"
                                     alt="product_deatils_main_img" id="mainImage" class="product_deatils_main_img"></a>
@@ -23,14 +23,13 @@
                                     $items = $product->thumbnail;
                                 @endphp
                                 @foreach ($items as $item)
-                                    <img src="/thumbnail/{{ $item }}" alt="thumb_img"
-                                        style="height: 200px;width: 200px;" class="thumb_img"
+                                    <img src="/thumbnail/{{ $item }}" alt="thumb_img" class="thumb_img"
                                         onclick="changeImage('/thumbnail/{{ $item }}')" />
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text" style="text-align: justify;">{{ $product->details }}</p>
