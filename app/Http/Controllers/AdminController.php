@@ -57,7 +57,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $users = User::all();
-        $orders = Order::all();
+        $orders = Order::latest()->get();
         $categories = Category::all();
         $products = Product::all();
 
