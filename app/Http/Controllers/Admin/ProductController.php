@@ -88,6 +88,7 @@ class ProductController extends Controller
             // Save all thumbnails at once
             $modal->thumbnail = json_encode($thumbnails);
         }
+
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
         return redirect('admin/product')->with('success', 'Product Added Successfully');
