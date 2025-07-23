@@ -1,6 +1,6 @@
 @extends('admin.master')
-@section('page_title', 'Add Product')
-@section('product_select', 'active')
+{{-- @section('page_title', 'Add Product')
+@section('product_select', 'active') --}}
 @section('content')
     <div class="layout-wrapper">
         @include('admin.partials.sidebar')
@@ -34,7 +34,7 @@
                                     <select name="category" class="form-select" required>
                                         <option value="">Add Category</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')

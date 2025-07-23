@@ -27,7 +27,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category' => 'required',
+            'categories_id' => 'required',
             'details' => 'required',
             'price' => 'required',
             'discount_price' => 'required',
@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         $modal = new Product;
         $modal->name = $request->name;
-        $modal->category = $request->category;
+        $modal->categories_id = $request->categories_id;
         $modal->details = $request->details;
         $modal->price = $request->price;
         $modal->discount_price = $request->discount_price;
@@ -202,7 +202,7 @@ class ProductController extends Controller
 
         // Update basic fields
         $modal->name = $request->post('name');
-        $modal->category = $request->post('category');
+        $modal->categories_id = $request->post('categories_id');
         $modal->details = $request->post('details');
         $modal->price = $request->post('price');
         $modal->discount_price = $request->post('discount_price');
