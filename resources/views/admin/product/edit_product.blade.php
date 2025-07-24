@@ -172,7 +172,7 @@
 
             $('.input-images').imageUploader({
                 preloaded: preloaded,
-                imagesInputName: 'photos',
+                imagesInputName: 'thumbs',
                 preloadedInputName: 'old', // will submit array of `id`s (which should be filenames)
                 maxFiles: 5
             });

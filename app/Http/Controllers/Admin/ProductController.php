@@ -70,8 +70,8 @@ class ProductController extends Controller
 
         $thumbnails = [];
 
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $photo) {
+        if ($request->hasFile('thumbs')) {
+            foreach ($request->file('thumbs') as $photo) {
                 $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
 
                 $img = Image::make($photo);
@@ -91,7 +91,7 @@ class ProductController extends Controller
 
         $modal->save();
         // $request->session()->flash('message', 'Product Inserted');
-        return redirect('admin/product')->with('success', 'Product Added Successfully');
+        return redirect('admin.product')->with('success', 'Product Added Successfully');
     }
 
     public function edit_product($id)
@@ -249,8 +249,8 @@ class ProductController extends Controller
         $thumbnails = $kept;
 
         // Add newly uploaded images
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $photo) {
+        if ($request->hasFile('thumbs')) {
+            foreach ($request->file('thumbs') as $photo) {
                 $photoname = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
 
                 $img = Image::make($photo)->resize(400, null, function ($constraint) {

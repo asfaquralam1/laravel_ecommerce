@@ -40,7 +40,7 @@
                             {{-- <img src="/product/{{ $product->image }}" alt="" class="product_tumb"> --}}
                             {{ $product->name }}
                         </td>
-                        <td class="text-center">{{ $product->category }}</td>
+                        <td class="text-center">{{ $product->category->name }}</td>
                         <td class="text-center">{{ $product->details }}</td>
                         <td class="text-center">{{ $product->price }}</td>
                         <td class="text-center">{{ $product->discount_price }}</td>

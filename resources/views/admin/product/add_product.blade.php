@@ -31,7 +31,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="category" class="form-label">Category</label>
-                                    <select name="category" class="form-select" required>
+                                    <select name="categories_id" class="form-select" required>
                                         <option value="">Add Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="product_description" class="form-label">Product Description</label>
@@ -116,7 +116,7 @@
                                         placeholder="Enter detailed product description..."></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-md-3">
@@ -197,7 +197,7 @@
 
             $('#input-images').imageUploader({
                 preloaded: preloaded,
-                imagesInputName: 'photos',
+                imagesInputName: 'thumbs',
                 preloadedInputName: 'old',
                 maxFiles: 5
             });
