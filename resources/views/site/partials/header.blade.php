@@ -25,7 +25,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($categories as $category)
-                                    <li><a class="dropdown-item" href="{{ route('category.product', $category->id) }}">{{ $category->name }}</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('category.product', $category->id) }}">{{ $category->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -37,14 +39,32 @@
                         </li>
                     </ul>
                     <div class="navbar-cart mobile-cart">
+
+                        {{-- <form class="d-flex me-3" action="{{ route('search') }}" method="GET">
+                            <input class="form-control me-2" type="search" name="query"
+                                placeholder="Search products..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form> --}}
+                        <input type="text" id="search" placeholder="Search products...">
+                        <select id="category">
+                            <option value="">All Categories</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+
+                        <div id="product-list">
+                            @include('site.partials.product-list', ['products' => $products])
+                        </div>
+
                         @if (Auth::user())
-                        <a class="nav-link" href="{{ route('profile') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                            <a class="nav-link" href="{{ route('profile') }}">
+                                <i class="fas fa-user"></i>
+                            </a>
                         @else
-                        <a class="nav-link" href="{{ route('login') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="fas fa-user"></i>
+                            </a>
                         @endif
                         <a class="nav-link" href="{{ route('cart') }}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -53,14 +73,32 @@
                     </div>
                 </div>
                 <div class="navbar-cart large-cart">
+
+                    {{-- <form class="d-flex me-3" action="{{ route('search') }}" method="GET">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search products..."
+                            aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form> --}}
+                    <input type="text" id="search" placeholder="Search products...">
+                    <select id="category">
+                        <option value="">All Categories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <div id="product-list">
+                        @include('site.partials.product-list', ['products' => $products])
+                    </div>
+
                     @if (Auth::user())
-                    <a class="nav-link" href="{{ route('profile') }}">
-                        <i class="fas fa-user"></i>
-                    </a>
+                        <a class="nav-link" href="{{ route('profile') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
                     @else
-                    <a class="nav-link" href="{{ route('login') }}">
-                        <i class="fas fa-user"></i>
-                    </a>
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
                     @endif
                     <a class="nav-link" href="{{ route('cart') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -71,3 +109,32 @@
         </nav>
     </div>
 </header>
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            // function fetchProducts() {
+                let search = $('#search').val();
+                let category = $('#category').val();
+                console.log('hello', search);
+
+                $.ajax({
+                    url: "{{ route('products.filter') }}",
+                    type: 'GET',
+                    data: {
+                        search: search,
+                        category: category,
+                    },
+                    success: function(data) {
+                        $('#product-list').html(data);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            // }
+
+            $('#search, #category').on('input change', fetchProducts);
+        });
+    </script>
+@endpush

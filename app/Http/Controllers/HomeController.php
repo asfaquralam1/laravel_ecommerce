@@ -19,19 +19,38 @@ class HomeController extends Controller
         return view('site.pages.home', compact('products', 'categories'));
     }
 
-    public function pagenotfound(){
+    public function pagenotfound()
+    {
         $categories = Category::all();
         $products = Product::all();
-        return view('site.pages.errors.404',compact('products', 'categories'));        
-      }
+        return view('site.pages.errors.404', compact('products', 'categories'));
+    }
+
+    public function filter(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->category) {
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query->latest()->get();
+
+        return view('site.partials.product-list', compact('products'))->render();
+    }
+
 
     public function category_product($id)
     {
         $categories = Category::all();
         $category = Category::find($id);
         $category_name = $category->name;
-        $products = Product::where('category',$category_name)->get();
-        return view('site.pages.category_product', compact('products', 'categories','category_name'));
+        $products = Product::where('category', $category_name)->get();
+        return view('site.pages.category_product', compact('products', 'categories', 'category_name'));
     }
 
     public function product()
@@ -45,12 +64,12 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $product = Product::find($id);
-        $related_products = Product::where('id','!=',1)
-        ->distinct()
-        ->get();
+        $related_products = Product::where('id', '!=', 1)
+            ->distinct()
+            ->get();
         $product->thumbnail = json_decode($product->thumbnail);
 
-        return view('site.pages.product_details', compact('product', 'categories','related_products'));
+        return view('site.pages.product_details', compact('product', 'categories', 'related_products'));
     }
 
     public function checkout_view()
