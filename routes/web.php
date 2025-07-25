@@ -25,7 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/pagenotfound', [HomeController::class, 'pagenotfound'])->name('notfound');
 
-Route::get('/products/filter', [HomeController::class, 'filter'])->name('products.filter');
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 //product
 Route::get('/products', [HomeController::class, 'product'])->name('product');

@@ -61,8 +61,9 @@
             });
         });
     </script>
-    </script>
-    
+
+     @stack('scripts')
+
 </body>
 
 </html>

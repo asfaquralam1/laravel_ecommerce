@@ -26,22 +26,16 @@ class HomeController extends Controller
         return view('site.pages.errors.404', compact('products', 'categories'));
     }
 
-    public function filter(Request $request)
+    public function search(Request $request)
     {
-        $query = Product::query();
+        $query = $request->input('query');
 
-        if ($request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%');
-        }
+        $products = Product::where('name', 'like', "%$query%")->get();
 
-        if ($request->category) {
-            $query->where('category_id', $request->category);
-        }
-
-        $products = $query->latest()->get();
-
-        return view('site.partials.product-list', compact('products'))->render();
+        return view('site.partials.product-list', compact('products', 'query'));
     }
+
+
 
 
     public function category_product($id)
