@@ -399,7 +399,7 @@ body {
     text-decoration: none;
 }
 
-.cart-item h6{
+.cart-item h6 {
     font-size: 20px;
     font-weight: 700;
     color: black;
@@ -490,4 +490,53 @@ body {
     text-decoration: none;
     font-weight: 700;
     font-size: 12px;
+}
+
+
+.not-found-container {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.not-found-container img {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.not-found-container h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.not-found-container p {
+    color: #6c757d;
+}
+
+.input-group .form-control {
+    border-right: none;
+    box-shadow: none;
+}
+
+
+.input-group .input-group-text {
+    background-color: #1C305C;
+    border-left: none;
+    color: white;
+    cursor: pointer;
+}
+
+.input-group .input-group-text i {
+    color: white;
+}
+
+.back-btn {
+    background-color: #1C305C;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    color: white;
 }

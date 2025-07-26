@@ -28,12 +28,16 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
+        $query = $request->input('q');
 
-        $products = Product::where('name', 'like', "%$query%")->get();
+        // Example: search in product names
+        $products = Product::where('name', 'like', '%' . $query . '%')->get();
 
-        return view('site.partials.product-list', compact('products', 'query'));
+        $categories = Category::all();
+
+        return view('site.partials.product-list', compact('products','categories','query'));
     }
+
 
 
 

@@ -2,9 +2,10 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}"><img
-                        src="https://marketplace.canva.com/EAFYecj_1Sc/1/0/1600w/canva-cream-and-black-simple-elegant-catering-food-logo-2LPev1tJbrg.jpg"
-                        alt="img" width="50" height="50"></a>
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="https://marketplace.canva.com/EAFYecj_1Sc/1/0/1600w/canva-cream-and-black-simple-elegant-catering-food-logo-2LPev1tJbrg.jpg"
+                        alt="img" width="50" height="50">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -15,9 +16,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -25,9 +23,9 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @foreach ($categories as $category)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('category.product', $category->id) }}">{{ $category->name }}</a>
-                                </li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('category.product', $category->id) }}">{{ $category->name }}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>
@@ -40,16 +38,22 @@
                     </ul>
                     <div class="navbar-cart mobile-cart">
 
-                        <input type="text" id="search" placeholder="Search products...">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control search-input"
+                                placeholder="Search products..." value="{{ request('q') }}">
+                            <span class="input-group-text" id="search-icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
 
                         @if (Auth::user())
-                        <a class="nav-link" href="{{ route('profile') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                            <a class="nav-link" href="{{ route('profile') }}">
+                                <i class="fas fa-user"></i>
+                            </a>
                         @else
-                        <a class="nav-link" href="{{ route('login') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="fas fa-user"></i>
+                            </a>
                         @endif
                         <a class="nav-link" href="{{ route('cart') }}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -59,16 +63,22 @@
                 </div>
                 <div class="navbar-cart large-cart">
 
-                    <input type="text" id="search" placeholder="Search products...">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control search-input"
+                            placeholder="Search products..." value="{{ request('q') }}">
+                        <span class="input-group-text" id="search-icon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
 
                     @if (Auth::user())
-                    <a class="nav-link" href="{{ route('profile') }}">
-                        <i class="fas fa-user"></i>
-                    </a>
+                        <a class="nav-link" href="{{ route('profile') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
                     @else
-                    <a class="nav-link" href="{{ route('login') }}">
-                        <i class="fas fa-user"></i>
-                    </a>
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
                     @endif
                     <a class="nav-link" href="{{ route('cart') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -81,46 +91,19 @@
 </header>
 
 @push('scripts')
-<!-- <script>
-    $(document).ready(function() {
-        function fetchProducts() {
-            let search = $('#search').val();
+    <script>
+        let timer;
+        $(document).ready(function() {
+            $('.search-input').on('input', function() {
+                clearTimeout(timer);
+                const query = $(this).val();
 
-            $.ajax({
-                url: "{{ route('search') }}",
-                type: 'GET',
-                data: {
-                    search: search
-                },
-                success: function(response) {
-                    if (response.redirect) {
-                        window.location.href = response.redirect;
-                    } else {
-                        $('#product-list').html(response.html);
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
+                if (query.length > 2) {
+                    timer = setTimeout(function() {
+                        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                    }, 1000);
                 }
             });
-        }
-
-        $('#search').on('input change', fetchProducts);
-    });
-</script> -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.getElementById('search');
-
-        searchInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                const query = searchInput.value.trim();
-                if (query !== '') {
-                    window.location.href = `/search?query=${encodeURIComponent(query)}`;
-                }
-            }
         });
-    });
-</script>
-
+    </script>
 @endpush
