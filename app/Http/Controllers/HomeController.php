@@ -35,19 +35,44 @@ class HomeController extends Controller
 
         $categories = Category::all();
 
-        return view('site.partials.product-list', compact('products','categories','query'));
+        return view('site.partials.product-list', compact('products', 'categories', 'query'));
+    }
+
+    public function filter(Request $request)
+    {
+        $query = Product::query();
+
+        if ($request->filled('min_price') && $request->filled('max_price')) {
+            $query->whereBetween('price', [
+                $request->min_price,
+                $request->max_price
+            ]);
+        }
+
+        if ($request->filled('q')) {
+            $query->where('name', 'like', '%' . $request->q . '%');
+        }
+
+        $categories = Category::all();
+
+        $products = $query->paginate(12);
+        return view('site.pages.product', compact('products', 'categories'));
     }
 
 
-
-
-
-    public function category_product($id)
+    public function category_product($name)
     {
+        $category_name = $name;
         $categories = Category::all();
-        $category = Category::find($id);
-        $category_name = $category->name;
-        $products = Product::where('category', $category_name)->get();
+        $category = Category::where('name', $name)->first();
+
+        if (!$category) {
+            abort(404, 'Category not found');
+        }
+
+        $category_id = $category->id;
+        $products = Product::where('category_id', $category_id)->get();
+
         return view('site.pages.category_product', compact('products', 'categories', 'category_name'));
     }
 
@@ -55,6 +80,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
+        // $products = $query->paginate(12);
         return view('site.pages.product', compact('products', 'categories'));
     }
 
@@ -88,18 +114,6 @@ class HomeController extends Controller
 
     public function place_order(Request $request)
     {
-        // //if cart is empty redirect to cart page
-        // if (Cart::count() == 0) {
-        //     return redirect()->route('login');
-        // }
-        // //--if user is not logged in then
-        // if (Auth::check() == false) {
-        //     //--get back to last page
-        //     if (!session()->has('url.intended')) {
-        //         session(['url.intended' => url()->current()]);
-        //     }
-        //     return redirect()->route('login');
-        // }
         $shipping_cost = (float)config('settings.delivery_charge');
         // $sub_total = Cart::calculateSubtotal();
         $sub_total = $request->subtotal;
@@ -124,7 +138,7 @@ class HomeController extends Controller
         $order->status = 'pending';
         $order->payment_status = 0;
         $order->grand_total = $grand_total;
-        // $order->tran_id = uniqid();
+        //$order->tran_id = uniqid();
         //$order->item_count = Cart::totalItems();
         $item_count = count(session('cart'));
         $order->item_count = $item_count;
@@ -136,7 +150,7 @@ class HomeController extends Controller
         $order->apartment = $request->apartment;
         $order->city = $request->city;
         $order->district = $request->district;
-        // $order->zip = $request->zip;
+        //$order->zip = $request->zip;
         //$order->country = $request->country;
         //$order->delivery_date = $request->delivery_timings;
         //$order->order_date = \Carbon\Carbon::now()->toDateTimeString();

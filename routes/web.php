@@ -27,10 +27,11 @@ Route::get('/pagenotfound', [HomeController::class, 'pagenotfound'])->name('notf
 
 // Route::view('/search', 'search');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::get('/filter', [HomeController::class, 'filter'])->name('filter');
 
 //product
 Route::get('/products', [HomeController::class, 'product'])->name('product');
-Route::get('/product/category/{id}', [HomeController::class, 'category_product'])->name('category.product');
+Route::get('/product/category/{name}', [HomeController::class, 'category_product'])->name('category.product');
 Route::get('/product_details/{id}', [HomeController::class, 'product_details'])->name('product.details');
 
 //Authentication

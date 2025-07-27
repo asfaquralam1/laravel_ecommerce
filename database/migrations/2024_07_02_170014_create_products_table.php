@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('categories_id')->index();
+            $table->unsignedBigInteger('category_id')->index();
             $table->string('name')->nullable();
             $table->string('details');
             $table->integer('price');
@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->json('thumbnail');
             $table->string('barcode')->unique();
 
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->timestamps();
         });

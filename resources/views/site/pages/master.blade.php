@@ -36,6 +36,11 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- jQuery & jQuery UI JS -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
@@ -62,7 +67,7 @@
         });
     </script>
 
-     @stack('scripts')
+    @stack('scripts')
 
 </body>
 

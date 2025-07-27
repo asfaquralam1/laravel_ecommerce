@@ -16,7 +16,7 @@
             {{-- Sidebar Filter --}}
             <div class="col-md-3">
                 <div style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
-                    <form method="GET" action="#">
+                    <form method="GET" action="{{ route('filter') }}">
                         <h5 class="mb-3">Filter Products</h5>
 
                         {{-- Category Filter --}}
@@ -56,7 +56,7 @@
                 <div class="row">
                     @forelse($products as $product)
                     <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="card h-100">
+                        <div class="h-100">
                             <a href="{{ route('product.details', $product->id) }}">
                                 <img src="/product/{{ $product->image }}" alt="product_image" class="product_image card-img-top">
                             </a>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/product/printbarcode/pdf/{id}', [ProductController::class, 'generateBarcodePdf'])->name('product.barcode.pdf');
         Route::delete('/destory-product/{id}', [ProductController::class, 'delete_product'])->name('destory.product');
         //order
-        Route::get('/orders', [AdminController::class, 'order'])->name('order');
+        Route::get('/orders', [OrderController::class, 'index'])->name('order');
     });
 });

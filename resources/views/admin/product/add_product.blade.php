@@ -31,7 +31,7 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="category" class="form-label">Category</label>
-                                    <select name="categories_id" class="form-select" required>
+                                    <select name="category_id" class="form-select" required>
                                         <option value="">Add Category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
