@@ -564,3 +564,41 @@ body {
 #menu li a:hover{
     color: #cf6b1c;
 }
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(28, 48, 92, 0.6); /* semi-transparent overlay */
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.image-wrapper:hover .add-to-cart-form {
+    opacity: 1;
+}
+
+.product_image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.add-btn {
+    background-color: #1C305C;
+    color: white;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+}

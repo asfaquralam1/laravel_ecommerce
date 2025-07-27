@@ -70,7 +70,7 @@
                                 <div class="mb-3">
                                     <label for="discount_price" class="form-label">Discount Price</label>
                                     <input id="discount_price" name="discount_price" type="number" step="0.01"
-                                        class="form-control" required>
+                                        class="form-control">
                                     @error('discount_price')
                                         <div class="text-danger small">{{ $message }}</div>
                                     @enderror

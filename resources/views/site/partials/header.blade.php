@@ -100,7 +100,7 @@
             </li>
             @foreach ($categories as $category)
                 <li class="nav-item">
-                    <a href="{{ route('category.product', $category->name) }}">{{ $category->name }}</a>
+                    <a href="{{ route('category.product', $category->name) }}">{{ ucfirst($category->name) }}</a>
                 </li>
             @endforeach
         </ul>
