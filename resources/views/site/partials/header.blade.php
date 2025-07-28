@@ -65,13 +65,19 @@
                     </div>
                 </div>
 
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <input type="text" name="search" class="form-control search-input"
                         placeholder="Search products..." value="{{ request('q') }}">
                     <span class="input-group-text" id="search-icon">
                         <i class="fas fa-search"></i>
                     </span>
+                </div> --}}
+                <div style="position: relative;border-radius: 10px;">
+                    <input type="text" name="search" placeholder="Search..." value="{{ request('q') }}" class="form-control" style="border-radius: 25px;">
+                    <i class="fas fa-search"
+                        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: gray;"></i>
                 </div>
+
 
                 <div class="navbar-cart large-cart">
 
@@ -96,7 +102,7 @@
 
         <ul id="menu">
             <li class="nav-item">
-                <a  aria-current="page" href="{{ route('home') }}">Home</a>
+                <a aria-current="page" href="{{ route('home') }}">Home</a>
             </li>
             @foreach ($categories as $category)
                 <li class="nav-item">
