@@ -2,16 +2,15 @@
 @section('title', 'Checkout')
 @section('content')
 <!-- Breadcrumb Start -->
-<div class="bread-crumb">
+{{-- <div class="bread-crumb">
     <div class="container">
         <div class="matter">
             <ul class="list-inline">
-                {{-- <li class="list-inline-item"><a href="{{ route('/')}}">HOME</a></li> --}}
                 <li class="list-inline-item"><a href="{{ url('/checkout') }}">Checkout</a></li>
             </ul>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- Breadcrumb End -->
 <div class="mycart">
     <div class="container paycard">

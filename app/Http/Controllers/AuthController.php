@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -19,12 +21,11 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required',
-            'password' => 'required',
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
-        }  
+        }
         return back()->withErrors([
             'verify' => 'These credentials do not match',
         ])->withInput($request->only('email')); // Preserve email in the input
@@ -40,7 +41,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'phone' => ['required','regex:/^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/'],
+            'phone' => ['required', 'regex:/^(?:\+8801[3-9]\d{8}|01[3-9]\d{8})$/'],
             'password' => 'required|string|min:4|confirmed',  // "confirmed" automatically checks password_confirmation
             'password_confirmation' => 'required'
         ]);
@@ -57,7 +58,7 @@ class AuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
             //session()->flash('success','You Have Register successfully');
-            return redirect('login')->with('success','You Have Register successfully');
+            return redirect('login')->with('success', 'You Have Register successfully');
         } else {
             return response()->json([
                 'status' => false,
@@ -66,9 +67,56 @@ class AuthController extends Controller
         }
     }
 
+    public function sendOtp(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $otpCode = rand(100000, 999999);
+        $email = $request->email;
+
+        Otp::updateOrCreate(
+            ['identifier' => $email],
+            ['otp' => $otpCode, 'expires_at' => Carbon::now()->addMinutes(5)]
+        );
+
+        // Send email using SendGrid
+        Mail::raw("Your OTP is: $otpCode", function ($message) use ($email) {
+            $message->to($email)->subject('Your OTP Code');
+        });
+
+        return redirect()->route('otp.verify.form')->with('email', $email);
+    }
+    public function verifyForm() {
+        return view('site.auth.otp-verify');
+    }
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'otp' => 'required|digits:6',
+        ]);
+
+        $otp = Otp::where('identifier', $request->email)
+            ->where('otp', $request->otp)
+            ->where('expires_at', '>', now())
+            ->first();
+
+        if (!$otp) {
+            return back()->withErrors(['otp' => 'Invalid or expired OTP']);
+        }
+
+        $user = User::firstOrCreate(['email' => $request->email]);
+
+        Auth::login($user);
+        $otp->delete();
+
+        return redirect()->route('home');
+    }
+
+
     public function forgotpass()
     {
-       return view('site.auth.change_password');
+        return view('site.auth.change_password');
     }
 
     public  function logout()

@@ -1,14 +1,14 @@
 @extends('site.pages.master')
 @section('content')
 <section id="contact">
-    <div class="breadcrumb-section pt-4 py-4">
+    {{-- <div class="breadcrumb-section pt-4 py-4">
         <div class="breadcrumb">
             <ul>
                 <li><a href="{{route('home')}}">Home</a></li>
                 <li>Contact Us</li>
             </ul>
         </div>
-    </div>
+    </div> --}}
     <div class="container">
         <div class="contact_area">
             <div class="row">
