@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div style="position: relative;border-radius: 10px;">
+                <div style="position: relative;border-radius: 10px;width:400px;">
                     <input type="text" name="search" placeholder="Search..." value="{{ request('q') }}"
                         class="form-control" style="border-radius: 25px;">
                     <i class="fas fa-search"
