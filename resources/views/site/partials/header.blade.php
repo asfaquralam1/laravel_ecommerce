@@ -14,39 +14,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    {{-- <ul class="navbar-nav  mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Categories
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach ($categories as $category)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('category.product', $category->id) }}">{{ $category->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('product') }}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
-                        </li>
-                    </ul> --}}
+                    
                     <div class="navbar-cart mobile-cart">
-
-                        <div class="input-group">
-                            <input type="text" name="search" class="form-control search-input"
-                                placeholder="Search products..." value="{{ request('q') }}">
-                            <span class="input-group-text" id="search-icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </div>
 
                         @if (Auth::user())
                             <a class="nav-link" href="{{ route('profile') }}">
@@ -65,13 +34,11 @@
                     </div>
                 </div>
 
-                <div style="position: relative;border-radius: 10px;width:400px;">
+                <div class="search-area">
                     <input type="text" name="search" placeholder="Search..." value="{{ request('q') }}"
-                        class="form-control" style="border-radius: 25px;">
-                    <i class="fas fa-search"
-                        style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); color: gray;"></i>
+                        class="form-control search-input">
+                    <i class="fas fa-search search-icon"></i>
                 </div>
-
 
                 <div class="navbar-cart large-cart">
 
