@@ -58,8 +58,8 @@ body {
 }
 
 .search-input {
-    border-radius: 25px;
-    padding: 10px 25px;
+    border-radius: 25px !important;
+    padding: 10px 25px !important;
 }
 
 .mobile-cart {

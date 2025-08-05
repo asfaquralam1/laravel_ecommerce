@@ -14,18 +14,26 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    
+
                     <div class="navbar-cart mobile-cart">
 
-                        @if (Auth::user())
-                            <a class="nav-link" href="{{ route('profile') }}">
-                                <i class="fas fa-user"></i>
-                            </a>
+                        @if (Auth::check())
+                        <a class="nav-link" href="{{ route('profile') }}">
+                            @if(Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;">
+                            @else
+                            <i class="fas fa-user"></i>
+                            @endif
+                        </a>
                         @else
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <i class="fas fa-user"></i>
-                            </a>
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <!-- <a href="{{ url('auth/google') }}" class="btn btn-danger">
+                            <i class="fab fa-google"></i> Sign in with Google
+                        </a> -->
                         @endif
+
 
                         <a class="nav-link" href="{{ route('cart') }}">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -42,15 +50,20 @@
 
                 <div class="navbar-cart large-cart">
 
-                    @if (Auth::user())
-                        <a class="nav-link" href="{{ route('profile') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                    @if (Auth::check())
+                    <a class="nav-link" href="{{ route('profile') }}">
+                        @if(Auth::user()->avatar)
+                           <img src="{{ Auth::user()->avatar }}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;">
+                        @else
+                           <i class="fas fa-user"></i>
+                        @endif
+                    </a>
                     @else
-                        <a class="nav-link" href="{{ route('login') }}">
-                            <i class="fas fa-user"></i>
-                        </a>
+                    <a class="nav-link" href="{{ route('login') }}">
+                        <i class="fas fa-user"></i>
+                    </a>
                     @endif
+
 
                     <a class="nav-link" href="{{ route('cart') }}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -66,49 +79,57 @@
                 <a aria-current="page" href="{{ route('home') }}">Home</a>
             </li>
             @foreach ($categories as $category)
-                <li class="nav-item">
-                    <a href="{{ route('category.product', $category->name) }}">{{ ucfirst($category->name) }}</a>
-                </li>
+            <li class="nav-item">
+                <a href="{{ route('category.product', $category->name) }}">{{ ucfirst($category->name) }}</a>
+            </li>
             @endforeach
         </ul>
     </div>
 </header>
 
 @push('scripts')
-    <script>
-        $(function() {
-            let minPrice = {{ request('min_price', 0) }};
-            let maxPrice = {{ request('max_price', 10000) }};
+<script>
+    $(function() {
+        let minPrice = {
+            {
+                request('min_price', 0)
+            }
+        };
+        let maxPrice = {
+            {
+                request('max_price', 10000)
+            }
+        };
 
-            $("#price-range").slider({
-                range: true,
-                min: 0,
-                max: 10000,
-                values: [minPrice, maxPrice],
-                slide: function(event, ui) {
-                    $("#min-price-show").text(ui.values[0]);
-                    $("#max-price-show").text(ui.values[1]);
-                    $("#min_price").val(ui.values[0]);
-                    $("#max_price").val(ui.values[1]);
-                }
-            });
-
-            $("#min-price-show").text(minPrice);
-            $("#max-price-show").text(maxPrice);
+        $("#price-range").slider({
+            range: true,
+            min: 0,
+            max: 10000,
+            values: [minPrice, maxPrice],
+            slide: function(event, ui) {
+                $("#min-price-show").text(ui.values[0]);
+                $("#max-price-show").text(ui.values[1]);
+                $("#min_price").val(ui.values[0]);
+                $("#max_price").val(ui.values[1]);
+            }
         });
 
-        let timer;
-        $(document).ready(function() {
-            $('.search-input').on('input', function() {
-                clearTimeout(timer);
-                const query = $(this).val();
+        $("#min-price-show").text(minPrice);
+        $("#max-price-show").text(maxPrice);
+    });
 
-                if (query.length > 2) {
-                    timer = setTimeout(function() {
-                        window.location.href = `/search?q=${encodeURIComponent(query)}`;
-                    }, 1000);
-                }
-            });
+    let timer;
+    $(document).ready(function() {
+        $('.search-input').on('input', function() {
+            clearTimeout(timer);
+            const query = $(this).val();
+
+            if (query.length > 2) {
+                timer = setTimeout(function() {
+                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                }, 1000);
+            }
         });
-    </script>
+    });
+</script>
 @endpush

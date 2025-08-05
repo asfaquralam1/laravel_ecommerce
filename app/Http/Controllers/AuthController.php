@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -65,6 +66,28 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+     public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        $googleUser = Socialite::driver('google')->stateless()->user();
+
+        $user = User::updateOrCreate(
+            ['email' => $googleUser->getEmail()],
+            [
+                'name' => $googleUser->getName(),
+                'avatar' => $googleUser->getAvatar(),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        Auth::login($user);
+        return redirect()->intended('/');
     }
 
     public function sendOtp(Request $request)
