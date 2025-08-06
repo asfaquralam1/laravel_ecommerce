@@ -68,7 +68,7 @@ class AuthController extends Controller
         }
     }
 
-     public function redirectToGoogle()
+    public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
@@ -109,15 +109,25 @@ class AuthController extends Controller
 
         return redirect()->route('otp.verify.form')->with('email', $email);
     }
-    public function verifyForm() {
+    public function verifyForm()
+    {
         return view('site.auth.otp-verify');
     }
+
     public function verifyOtp(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'otp' => 'required|digits:6',
         ]);
+
+        $key = 'verify-otp:' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            return back()->withErrors(['otp' => 'Too many attempts. Try again later.']);
+        }
+
+        RateLimiter::hit($key, 60); // 60 seconds
 
         $otp = Otp::where('identifier', $request->email)
             ->where('otp', $request->otp)
@@ -132,9 +142,11 @@ class AuthController extends Controller
 
         Auth::login($user);
         $otp->delete();
+        RateLimiter::clear($key);
 
         return redirect()->route('home');
     }
+
 
 
     public function forgotpass()
