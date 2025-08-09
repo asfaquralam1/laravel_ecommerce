@@ -10,7 +10,7 @@
             </div>
         </div> --}}
         <div class="container">
-            <div class="product_deatils">
+            <div class="product-deatils">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="product_image_section">

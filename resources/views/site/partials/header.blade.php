@@ -89,47 +89,40 @@
 
 @push('scripts')
 <script>
-    $(function() {
-        let minPrice = {
-            {
-                request('min_price', 0)
-            }
-        };
-        let maxPrice = {
-            {
-                request('max_price', 10000)
-            }
-        };
+$(function() {
+    let minPrice = Number({{ request('min_price', 0) }});
+    let maxPrice = {{ request('max_price', 10000) }};
 
-        $("#price-range").slider({
-            range: true,
-            min: 0,
-            max: 10000,
-            values: [minPrice, maxPrice],
-            slide: function(event, ui) {
-                $("#min-price-show").text(ui.values[0]);
-                $("#max-price-show").text(ui.values[1]);
-                $("#min_price").val(ui.values[0]);
-                $("#max_price").val(ui.values[1]);
-            }
-        });
-
-        $("#min-price-show").text(minPrice);
-        $("#max-price-show").text(maxPrice);
+    $("#price-range").slider({
+        range: true,
+        min: 0,
+        max: 10000,
+        values: [minPrice, maxPrice],
+        slide: function(event, ui) {
+            $("#min-price-show").text(ui.values[0]);
+            $("#max-price-show").text(ui.values[1]);
+            $("#min_price").val(ui.values[0]);
+            $("#max_price").val(ui.values[1]);
+        }
     });
 
-    let timer;
-    $(document).ready(function() {
-        $('.search-input').on('input', function() {
-            clearTimeout(timer);
-            const query = $(this).val();
+    $("#min-price-show").text(minPrice);
+    $("#max-price-show").text(maxPrice);
+});
 
-            if (query.length > 2) {
-                timer = setTimeout(function() {
-                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
-                }, 1000);
-            }
-        });
+let timer;
+$(document).ready(function() {
+    $('.search-input').on('input', function() {
+        clearTimeout(timer);
+        const query = $(this).val();
+
+        if (query.length > 2) {
+            timer = setTimeout(function() {
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            }, 1000);
+        }
     });
+});
 </script>
+
 @endpush

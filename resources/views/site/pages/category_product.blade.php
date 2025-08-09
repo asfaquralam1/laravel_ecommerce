@@ -18,7 +18,7 @@
                         <h5 class="mb-3">Filter Products</h5>
 
                         {{-- Category Filter --}}
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select name="category" id="category" class="form-control">
                                 <option value="">All Categories</option>
@@ -28,7 +28,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                        </div> -->
+                        </div>
 
                         <!-- <div class="card p-3 mb-4"> -->
                         <h5 class="mb-3">Filter by Price</h5>
