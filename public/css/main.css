@@ -46,7 +46,7 @@ body {
 .search-area {
     position: relative;
     border-radius: 10px;
-    width: 400px;
+    width: 480px;
 }
 
 .search-icon {
@@ -58,8 +58,8 @@ body {
 }
 
 .search-input {
-    border-radius: 25px !important;
-    padding: 10px 25px !important;
+    border-radius: 10px !important;
+    padding: 8px 30px 8px 20px !important;
 }
 
 .mobile-cart {
