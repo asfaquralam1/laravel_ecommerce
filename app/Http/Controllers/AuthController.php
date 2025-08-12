@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyTestMail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -58,6 +59,13 @@ class AuthController extends Controller
             $user->phone = $request->phone;
             $user->password = Hash::make($request->password);
             $user->save();
+
+            $details = [
+                'title' => 'Ecommerce',
+                'body' => 'This is the best ecommerce site.'
+            ];
+            Mail::to($request->email)->send(new MyTestMail($details));
+
             //session()->flash('success','You Have Register successfully');
             return redirect('login')->with('success', 'You Have Register successfully');
         } else {
