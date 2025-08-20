@@ -156,7 +156,6 @@ class AuthController extends Controller
     }
 
 
-
     public function forgotpass()
     {
         return view('site.auth.change_password');
