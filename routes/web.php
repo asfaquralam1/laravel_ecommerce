@@ -72,9 +72,11 @@ Route::get('/download-pdf', [PDFController::class, 'downloadPdf'])->name('snappy
 
 // SSLCOMMERZ Start
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+Route::post('/success', [SSLCommerzPaymentController::class, 'success'])->name('ssl.success');
+Route::post('/fail', [SSLCommerzPaymentController::class, 'fail'])->name('ssl.fail');
+Route::post('/cancel', [SSLCommerzPaymentController::class, 'cancel'])->name('ssl.cancel');
+
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
