@@ -3,10 +3,43 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\coupon;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
+    public function index()
+    {
+        return view('admin.coupons.index');
+    }
+     public function create()
+    {
+        return view('admin.coupons.create');
+    }
+
+    // Store coupon
+    public function store(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|unique:coupons,code|max:50',
+            'type' => 'required|in:fixed,percent',
+            'value' => 'required|numeric|min:0',
+            'min_order_amount' => 'nullable|numeric|min:0',
+            'expires_at' => 'nullable|date|after:today',
+            'is_active' => 'nullable|boolean',
+        ]);
+
+        Coupon::create([
+            'code' => $request->code,
+            'type' => $request->type,
+            'value' => $request->value,
+            'min_order_amount' => $request->min_order_amount ?? 0,
+            'expires_at' => $request->expires_at,
+            'is_active' => $request->has('is_active'),
+        ]);
+
+        return redirect()->back()->with('success', 'Coupon created successfully!');
+    }
      public function applyCoupon(Request $request)
     {
         $this->validate($request, [
@@ -14,7 +47,7 @@ class CouponController extends Controller
             'order_amount' => 'required|numeric|min:1',
         ]);
 
-        $coupon = Coupon::where('code', $request->code)->first();
+        $coupon = coupon::where('code', $request->code)->first();
 
         if (!$coupon || !$coupon->isValid($request->order_amount)) {
             return response()->json(['error' => 'Invalid or expired coupon.'], 400);

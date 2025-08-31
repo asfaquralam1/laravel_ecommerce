@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
@@ -36,6 +37,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/printbarcode/product', [ProductController::class, 'printbarcode'])->name('printbarcode.product');
         Route::get('/product/printbarcode/pdf/{id}', [ProductController::class, 'generateBarcodePdf'])->name('product.barcode.pdf');
         Route::delete('/destory-product/{id}', [ProductController::class, 'delete_product'])->name('destory.product');
+
+        //coupon
+        Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
+        Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');
+        Route::post('/coupons/store', [CouponController::class, 'store'])->name('coupons.store');
+
         //order
         Route::get('/orders', [OrderController::class, 'index'])->name('order');
     });

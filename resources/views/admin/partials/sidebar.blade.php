@@ -46,6 +46,12 @@
                 <span class="nav-text">Product</span>
             </a>
         </li>
+         <li class="sidebar-item">
+            <a class="nav-link" href="{{ route('admin.coupons') }}">
+                <i class="fas fa-coupon"></i>
+                <span class="nav-text">Coupon</span>
+            </a>
+        </li>
         <li class="sidebar-item">
             <a class="nav-link" href="{{ route('admin.order') }}">
                 <i class="fas fa-cart-arrow-down"></i>
