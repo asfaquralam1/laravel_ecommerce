@@ -1,6 +1,7 @@
 <?php
 require 'admin.php';
 
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -65,6 +66,9 @@ Route::post('update-profile', [HomeController::class, 'update_profile'])->name('
 Route::post('update-profile', [HomeController::class, 'update_profile'])->name('update.profile');
 Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::post('/apply-coupon', [CouponController::class, 'applyCoupon'])->name('apply.coupon');
+Route::get('/remove-coupon', [CouponController::class, 'removeCoupon'])->name('remove.coupon');
 
 //user-order-pdf
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf');

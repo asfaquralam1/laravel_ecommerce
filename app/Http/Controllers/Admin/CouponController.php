@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\coupon;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
     public function index()
     {
-        return view('admin.coupons.index');
+        $coupons = Coupon::all();
+        return view('admin.coupons.index',compact('coupons'));
     }
      public function create()
     {

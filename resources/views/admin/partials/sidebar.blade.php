@@ -48,7 +48,7 @@
         </li>
          <li class="sidebar-item">
             <a class="nav-link" href="{{ route('admin.coupons') }}">
-                <i class="fas fa-coupon"></i>
+                <i class="fas fa-ticket-alt"></i>
                 <span class="nav-text">Coupon</span>
             </a>
         </li>

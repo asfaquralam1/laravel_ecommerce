@@ -26,7 +26,7 @@
                 <th>Created At</th>
             </tr>
         </thead>
-        {{-- <tbody>
+        <tbody>
             @forelse($coupons as $coupon)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
@@ -36,11 +36,11 @@
                         @if($coupon->type == 'percent')
                             {{ $coupon->value }}%
                         @else
-                            ${{ number_format($coupon->value, 2) }}
+                            {{ number_format($coupon->value, 2) }} tk
                         @endif
                     </td>
-                    <td>${{ number_format($coupon->min_order_amount, 2) }}</td>
-                    <td>{{ $coupon->expires_at ? $coupon->expires_at->format('Y-m-d') : 'No Expiry' }}</td>
+                    <td>{{ number_format($coupon->min_order_amount, 2) }} tk</td>
+                    <td>{{ $coupon->expires_at ? date('Y-m-d', strtotime($coupon->expires_at)) : 'No Expiry' }}</td>
                     <td>
                         @if($coupon->is_active)
                             <span class="badge bg-success">Active</span>
@@ -55,7 +55,7 @@
                     <td colspan="8" class="text-center">No coupons found.</td>
                 </tr>
             @endforelse
-        </tbody> --}}
+        </tbody>
     </table>
         </div>
     </div>
