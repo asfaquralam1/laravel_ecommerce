@@ -66,20 +66,12 @@
                             <form action="{{ route('apply.coupon') }}" method="POST" class="d-inline">
                                 @csrf
                                 <div class="input-group mt-2" style="max-width: 300px; float: right;">
-                                    <input type="text" name="coupon_code" class="form-control"
+                                    <input type="text" name="coupon_code" class="form-control" style="margin: 0px !important"
                                         placeholder="Enter coupon code" value="{{ session('coupon.code') ?? '' }}">
                                     <button type="submit" class="btn btn-primary">Apply</button>
                                 </div>
                             </form>
 
-                            @if (session('coupon'))
-                                <p class="mt-2 text-success">
-                                    <i class="fas fa-ticket-alt"></i>
-                                    Coupon <strong>{{ session('coupon.code') }}</strong> applied!
-                                    Discount: Tk. {{ number_format(session('coupon.discount'), 2) }}
-                                    <a href="{{ route('remove.coupon') }}" class="text-danger ms-2">[Remove]</a>
-                                </p>
-                            @endif
                         </td>
                     </tr>
 
@@ -89,8 +81,7 @@
                     @endphp
                     <tr>
                         <td colspan="6" class="text-end" style="background: #f8f8f8;padding: 20px;">
-                            <h5>Grand Total :
-                                Tk. {{ number_format($grand_total, 2) }}
+                            <h5>Total : Tk. {{ number_format($grand_total, 2) }}
                             </h5>
                         </td>
                     </tr>
