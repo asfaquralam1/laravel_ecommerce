@@ -42,6 +42,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
         Route::get('/coupons/create', [CouponController::class, 'create'])->name('coupons.create');
         Route::post('/coupons/store', [CouponController::class, 'store'])->name('coupons.store');
+        Route::post('/coupons/edit/{id}', [CouponController::class, 'store'])->name('coupons.edit');
+        Route::post('/coupons/status/{status}/{id}', [CouponController::class, 'status'])->name('coupons.status');
+        Route::post('/coupons/delete/{id}', [CouponController::class, 'delete'])->name('coupons.delete');
 
         //order
         Route::get('/orders', [OrderController::class, 'index'])->name('order');
