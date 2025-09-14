@@ -11,11 +11,11 @@ class CouponController extends Controller
     public function index()
     {
         $coupons = Coupon::all();
-        return view('admin.coupons.index',compact('coupons'));
+        return view('admin.coupon.index',compact('coupons'));
     }
      public function create()
     {
-        return view('admin.coupons.create');
+        return view('admin.coupon.create');
     }
 
     // Store coupon
@@ -40,6 +40,11 @@ class CouponController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Coupon created successfully!');
+    }
+     public function edit($id)
+    {
+        $coupon = Coupon::find($id);
+        return view('admin.coupon.edit', compact('coupon'));
     }
      public function applyCoupon(Request $request)
     {
