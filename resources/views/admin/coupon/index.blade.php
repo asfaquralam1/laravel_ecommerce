@@ -53,25 +53,25 @@
                                 <td class="action_icon_row">
                                     <!-- Toggle Status Form -->
                                     <form
-                                        action="{{ route('admin.coupons.status', ['status' => $coupon->status == 1 ? 0 : 1, 'id' => $coupon->id]) }}"
+                                        action="{{ route('admin.coupons.status', ['status' => $coupon->is_active == 1 ? 0 : 1, 'id' => $coupon->id]) }}"
                                         method="post" class="d-inline">
                                         @csrf
                                         <button type="submit"
-                                            class="btn btn-sm {{ $coupon->status == 1 ? 'btn-success' : 'btn-dark' }}"
+                                            class="btn btn-sm {{ $coupon->is_active == 1 ? 'btn-success' : 'btn-dark' }}"
                                             aria-label="Toggle Status">
                                             <i
-                                                class="fas {{ $coupon->status == 1 ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>
+                                                class="fas {{ $coupon->is_active == 1 ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>
                                         </button>
                                     </form>
 
                                     <!-- Edit Button -->
-                                    <a class="btn btn-sm btn-warning"
-                                        href="{{ route('admin.coupons.edit', $coupon->id) }}" aria-label="Edit">
+                                    <a class="btn btn-sm btn-warning" href="{{ route('admin.coupons.edit', $coupon->id) }}"
+                                        aria-label="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
                                     <!-- Delete Form -->
-                                    <form action="{{ route('admin.coupons.edit', $coupon->id) }}" method="post"
+                                    <form action="{{ route('admin.coupons.delete', $coupon->id) }}" method="post"
                                         class="d-inline"
                                         onsubmit="return confirm('Are you sure you want to delete this coupon?');">
                                         @method('DELETE')

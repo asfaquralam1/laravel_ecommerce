@@ -1,4 +1,3 @@
-<!-- File: app/Http/Controllers/HomeController.php -->
 <?php
 
 namespace App\Http\Controllers;

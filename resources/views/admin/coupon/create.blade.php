@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('page_title', '>Create Coupon')
+@section('page_title', 'Create Coupon')
 @section('create_coupon', 'active')
 @section('content')
     <div class="layout-wrapper">
