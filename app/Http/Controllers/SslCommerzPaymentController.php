@@ -139,6 +139,11 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
+        $post_data['success_url'] = route('ssl.success'); // must be POST
+        $post_data['fail_url']    = route('ssl.fail');
+        $post_data['cancel_url']  = route('ssl.cancel');
+
+
 
         #Before  going to initiate the payment order status need to update as Pending.
         $update_product = DB::table('orders')
@@ -238,18 +243,18 @@ class SslCommerzPaymentController extends Controller
     //         return view('site.pages.paynotify')->with('message', 'Invalid transaction.');
     //     }
     // }
-     public function success(Request $request)
+    public function success(Request $request)
     {
-        //dd($request->all());
+        dd('hi');
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
-            
+
         $sslc = new SslCommerzNotification();
-    
+
         #Check order status in order tabel against the transaction id
-        $order = Order::find($tran_id);  
-    
+        $order = Order::find($tran_id);
+
         if ($order->status == 'pending') {
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());
 
@@ -261,11 +266,11 @@ class SslCommerzPaymentController extends Controller
                 */
                 $order->payment_status = 1; // payment = 1 means paid.
                 $order->payment_method = $request->card_type; // specify the card
-            
+
                 $order->tran_date = $request->tran_date;
                 $order->tran_id = $tran_id;
                 $order->amount = $request->amount;
-                $order->store_amount = $request->store_amount; 
+                $order->store_amount = $request->store_amount;
                 $order->bank_tran_id = $request->bank_tran_id;
                 $order->currency_type = $request->currency_type;
                 $order->currency_amount = $request->currency_amount;
@@ -274,29 +279,29 @@ class SslCommerzPaymentController extends Controller
                 $order->card_issuer = $request->card_issuer;
 
                 $order->save();
-                if(session()->has('success') && session()->get('success') !== ''){
+                if (session()->has('success') && session()->get('success') !== '') {
                     session()->flash('success', '');
                 }
-                session()->flash('success', 'The payment corresponding to the order has received and your shipment is on its way!');       
+                session()->flash('success', 'The payment corresponding to the order has received and your shipment is on its way!');
                 return view('site.pages.paynotify', compact('order'));
-                } else {
-                    /*
+            } else {
+                /*
                     That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.
                     Here you need to update order status as Failed in order table.
                     */
-                    $order->status = 'failed';
-                    $order->payment_method = 'failed'; // specify the card method failed
-                    $order->save();
-                    if(session()->has('error') && session()->get('error') !== ''){
-                        session()->flash('error', '');
-                    }
-                    session()->flash('error', 'Sorry!! the payment corresponding to the order has failed.');
-                    return view('site.pages.paynotify', compact('order'));
+                $order->status = 'failed';
+                $order->payment_method = 'failed'; // specify the card method failed
+                $order->save();
+                if (session()->has('error') && session()->get('error') !== '') {
+                    session()->flash('error', '');
                 }
-        }else {
+                session()->flash('error', 'Sorry!! the payment corresponding to the order has failed.');
+                return view('site.pages.paynotify', compact('order'));
+            }
+        } else {
             #That means something wrong happened. You can redirect customer to your product page.
             //echo "Invalid Transaction";
-            session()->flash('error', 'Invalid Transaction');       
+            session()->flash('error', 'Invalid Transaction');
             return redirect()->route('product');
         }
     }

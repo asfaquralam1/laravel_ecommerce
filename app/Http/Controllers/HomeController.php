@@ -97,6 +97,56 @@ class HomeController extends Controller
         return view('site.pages.product_details', compact('product', 'categories', 'related_products'));
     }
 
+    public function applyCoupon(Request $request)
+    {
+        $request->validate([
+            'coupon_code' => 'required|string',
+        ]);
+
+        $coupon = \App\Models\Coupon::where('code', $request->coupon_code)
+            ->where('is_active', 1)
+            ->where(function ($q) {
+                $q->whereNull('expires_at')
+                    ->orWhere('expires_at', '>=', now());
+            })
+            ->first();
+
+        if (!$coupon) {
+            return back()->withErrors(['coupon_code' => 'Invalid or expired coupon.']);
+        }
+
+        // Calculate subtotal
+        $cartTotal = 0;
+        foreach (session('cart', []) as $item) {
+            $price = isset($item['discount_price']) && $item['discount_price'] > 0
+                ? $item['discount_price']
+                : $item['price'];
+            $cartTotal += $price * $item['quantity'];
+        }
+
+        if ($cartTotal < $coupon->min_order_amount) {
+            return back()->withErrors(['coupon_code' => 'Order total must be at least ' . $coupon->min_order_amount]);
+        }
+
+        $discount = $coupon->type === 'percent'
+            ? ($cartTotal * ($coupon->value / 100))
+            : $coupon->value;
+
+        session()->put('coupon', [
+            'code' => $coupon->code,
+            'discount' => $discount,
+        ]);
+
+        return back()->with('success', 'Coupon applied successfully!');
+    }
+
+    public function removeCoupon()
+    {
+        session()->forget('coupon');
+        return back()->with('success', 'Coupon removed successfully!');
+    }
+
+
     public function checkout_view()
     {
         $user = Auth::user();

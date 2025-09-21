@@ -1,6 +1,7 @@
 <?php
 require 'admin.php';
 
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -66,15 +67,20 @@ Route::post('update-profile', [HomeController::class, 'update_profile'])->name('
 Route::get('user/order', [HomeController::class, 'user_order'])->name('user.order');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+Route::post('/apply-coupon', [HomeController::class, 'applyCoupon'])->name('apply.coupon');
+Route::get('/remove-coupon', [HomeController::class, 'removeCoupon'])->name('remove.coupon');
+
 //user-order-pdf
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('pdf');
 Route::get('/download-pdf', [PDFController::class, 'downloadPdf'])->name('snappyPdf');
 
 // SSLCOMMERZ Start
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+Route::post('/success', [SSLCommerzPaymentController::class, 'success'])->name('ssl.success');
+Route::post('/fail', [SSLCommerzPaymentController::class, 'fail'])->name('ssl.fail');
+Route::post('/cancel', [SSLCommerzPaymentController::class, 'cancel'])->name('ssl.cancel');
+
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 

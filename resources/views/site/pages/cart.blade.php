@@ -27,7 +27,8 @@
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
                             @php
-                                $price = isset($details['discount_price']) && $details['discount_price'] > 0
+                                $price =
+                                    isset($details['discount_price']) && $details['discount_price'] > 0
                                         ? $details['discount_price']
                                         : $details['price'];
                                 $total += $price * $details['quantity'];
@@ -35,7 +36,7 @@
                             <tr data-id="{{ $id }}" style="border-bottom: 1px solid #e5e5e5">
                                 <td data-th="Product">
                                     <a href="{{ route('product.details', $id) }}" class="cart-item">
-                                        <img src="/product/{{ $details['image'] }}" class="cart-image"/>
+                                        <img src="/product/{{ $details['image'] }}" class="cart-image" />
                                         <h6>{{ $details['name'] }}</h6>
                                     </a>
                                 </td>
@@ -60,9 +61,32 @@
                     <tr>
                         <td colspan="6" class="text-end" style="background: #f8f8f8;padding: 20px;">
                             <h5>Subtotal : Tk.{{ number_format($total, 2) }}</h5>
+
+                            {{-- ✅ Coupon Section --}}
+                            <form action="{{ route('apply.coupon') }}" method="POST" class="d-inline">
+                                @csrf
+                                <div class="input-group mt-2" style="max-width: 300px; float: right;">
+                                    <input type="text" name="coupon_code" class="form-control" style="margin: 0px !important"
+                                        placeholder="Enter coupon code" value="{{ session('coupon.code') ?? '' }}">
+                                    <button type="submit" class="btn btn-primary">Apply</button>
+                                </div>
+                            </form>
+
+                        </td>
+                    </tr>
+
+                    @php
+                        $discount = session('coupon.discount') ?? 0;
+                        $grand_total = $total - $discount;
+                    @endphp
+                    <tr>
+                        <td colspan="6" class="text-end" style="background: #f8f8f8;padding: 20px;">
+                            <h5>Total : Tk. {{ number_format($grand_total, 2) }}
+                            </h5>
                         </td>
                     </tr>
                 </tfoot>
+
             </table>
             <div class="checkout_area">
                 <a href="{{ url('/') }}" class="shopping_btn"><i class="fa fa-angle-left"></i>
