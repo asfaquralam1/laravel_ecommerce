@@ -89,7 +89,7 @@ Route::get('/send-email', function () {
         'body' => 'This is a Warning.'
     ];
 
-    Mail::to('manahid960@gmail.com')->send(new MyTestMail($details));
+    Mail::to('asfaquralam01@gmail.com')->send(new MyTestMail($details));
 
     return 'Email sent!';
 });
