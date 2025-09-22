@@ -19,4 +19,10 @@ class Coupon extends Model
     protected $casts = [
         'expires_at' => 'date',
     ];
+
+       public function users()
+    {
+        return $this->belongsToMany(User::class, 'coupon_user')
+                    ->withTimestamps();
+    }
 }

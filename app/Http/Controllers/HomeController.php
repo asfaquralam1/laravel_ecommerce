@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -102,7 +104,7 @@ class HomeController extends Controller
             'coupon_code' => 'required|string',
         ]);
 
-        $coupon = \App\Models\Coupon::where('code', $request->coupon_code)
+        $coupon = Coupon::where('code', $request->coupon_code)
             ->where('is_active', 1)
             ->where(function ($q) {
                 $q->whereNull('expires_at')
@@ -112,6 +114,16 @@ class HomeController extends Controller
 
         if (!$coupon) {
             return back()->withErrors(['coupon_code' => 'Invalid or expired coupon.']);
+        }
+
+        // Check if user already used this coupon
+        $alreadyUsed = DB::table('coupon_user')
+            ->where('coupon_id', $coupon->id)
+            ->where('user_id', auth()->id())
+            ->exists();
+
+        if ($alreadyUsed) {
+            return back()->withErrors(['coupon_code' => 'You have already used this coupon.']);
         }
 
         // Calculate subtotal
