@@ -6,8 +6,8 @@
         @include('admin.partials.sidebar')
         <div class="content-wrapper">
             <div class="card-title">
-                <h5>Add Category</h5>
-                <a class="btn-warning back-btn" href="{{ route('admin.category') }}">
+                <h5>Add Coupons</h5>
+                <a class="btn-warning back-btn" href="{{ route('admin.coupons') }}">
                     <i class="fas fa-backward"></i> Go Back
                 </a>
             </div>

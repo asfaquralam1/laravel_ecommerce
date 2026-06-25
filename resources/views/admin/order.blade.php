@@ -7,7 +7,7 @@
     <div class="content-wrapper">
         <div class="info-section">
             <div class="card-title">
-                <h5>orders</h5>
+                <h5>Orders</h5>
             </div>
             <div class="table_area">
                 <table id="table" class="table table-bordered">
