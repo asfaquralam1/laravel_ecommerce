@@ -22,6 +22,7 @@ class CreateCouponsTable extends Migration
             $table->date('expires_at')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

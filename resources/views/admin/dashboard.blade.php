@@ -2,7 +2,7 @@
 @section('page_title', 'Dashboard')
 @section('dashboard_select', 'active')
 @section('content')
-<div class="layout-wrapper">
+<div class="layout-wrapper sidebar-open">
     @include('admin.partials.sidebar')
     <div class="dashboard-content">
         <div class="item_card">

@@ -43,14 +43,14 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+        </script>
     <!--datatable-->
     <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#table').DataTable({
                 "language": {
                     "sLengthMenu": "Show _MENU_ Entries",
@@ -97,24 +97,25 @@
         </script>
     @endif
     <script>
-        $('#sidebar-toggle').on('click', function() {
-            var $sidebar = $('.side-nav');
-            // Toggle the 'sidebar-open' class on layout-wrapper
-            if ($('.layout-wrapper').hasClass('sidebar-open')) {
+        $(document).ready(function () {
+            $('#sidebar-toggle').on('click', function () {
+                var $wrapper = $('.layout-wrapper');
+                var $sidebar = $('.side-nav');
+
+                if ($wrapper.hasClass('sidebar-open')) {
+                    $wrapper.removeClass('sidebar-open').addClass('sidebar-closed');
+                    $sidebar.css('width', '0px');
+                }
+                else {
+                    $wrapper.removeClass('sidebar-closed').addClass('sidebar-open');
+                    $sidebar.css('width', '250px');
+                }
+            });
+
+            $('.closebtn, #sidebar-close').on('click', function () {
                 $('.layout-wrapper').removeClass('sidebar-open').addClass('sidebar-closed');
-                $sidebar.css('width', '0px');
-            } else {
-                $('.layout-wrapper').removeClass('sidebar-closed').addClass('sidebar-open');
-                $sidebar.css('width', '250px');
-            }
-        });
-        $('#sidebar-close').on('click', function() {
-            var $sidebar = $('.side-nav');
-            // Toggle the 'sidebar-open' class on layout-wrapper
-            if ($('.layout-wrapper').hasClass('sidebar-open')) {
-                $('.layout-wrapper').removeClass('sidebar-open').addClass('sidebar-closed');
-                $sidebar.css('width', '0px');
-            }
+                $('.side-nav').css('width', '0px');
+            });
         });
     </script>
     @stack('scripts')
