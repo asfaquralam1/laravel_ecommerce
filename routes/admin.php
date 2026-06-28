@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Jobs\ProcessPodcast;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -25,7 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/add-category', [CategoryController::class, 'store'])->name('add.category');
         Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
         Route::post('/update-category/{id}', [CategoryController::class, 'update'])->name('update.category');
-        Route::delete('/destory-category/{id}', [CategoryController::class, 'delete'])->name('destory.category');
+        Route::delete('/destory-category/{id}', [CategoryController::class, 'delete'])->name('destroy.category');
         Route::post('/category/status/{status}/{id}', [CategoryController::class, 'status'])->name('status.category');
 
         //product
@@ -36,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/update-product/{id}', [ProductController::class, 'update_product'])->name('update.product');
         Route::get('/printbarcode/product', [ProductController::class, 'printbarcode'])->name('printbarcode.product');
         Route::get('/product/printbarcode/pdf/{id}', [ProductController::class, 'generateBarcodePdf'])->name('product.barcode.pdf');
-        Route::delete('/destory-product/{id}', [ProductController::class, 'delete_product'])->name('destory.product');
+        Route::delete('/destory-product/{id}', [ProductController::class, 'delete_product'])->name('destroy.product');
 
         //coupon
         Route::get('/coupons', [CouponController::class, 'index'])->name('coupons');
@@ -49,5 +50,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //order
         Route::get('/orders', [OrderController::class, 'index'])->name('order');
+
+        Route::get('/process', function () {
+            // এটি জবটিকে সরাসরি রান না করে ব্যাকগ্রাউন্ড লাইনে পাঠিয়ে দেবে
+            ProcessPodcast::dispatch();
+
+            return "আপনার রিকোয়েস্ট নেওয়া হয়েছে! ব্যাকগ্রাউন্ডে কাজ চলছে।";
+        });
     });
 });

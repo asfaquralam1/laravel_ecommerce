@@ -1,125 +1,76 @@
-{{-- @extends('admin.master')
-@section('page_title', 'Category')
-@section('category_select', 'active')
-@section('content')
-<div class="layout-wrapper">
-    @include('admin.partials.sidebar')
-    <div class="content-wrapper">
-        <div class="card-title">
-            <h5>Categories</h5>
-            <a class="btn-success add-btn" href="{{ route('admin.manage.category') }}"><i class="fas fa-plus"></i> Add
-                Category</a>
-        </div>
-        <div class="table_area">
-            <table id="table" class="table">
-                <thead>
-                    <tr>
-                        <th>Category Name</th>
-                        <th>Category Slug</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                @foreach ($categories as $category)
-                <tbody>
-                    <tr>
-                        <td>{{ $category->name }}</td>
-                        <td>{{ $category->slug }}</td>
-                        <td class="action_icon_row">
-                            @if ($category->status == 1)
-                            <form action="{{ url('admin/category/status/0') }}/{{ $category->id }}"
-                                method="post">
-                                @csrf
-                                <button type="submit" class="btn-success action-btn" id="submit"><i
-                                        class="fas fa-toggle-on"></i></button>
-                            </form>
-                            @elseif ($category->status == 0)
-                            <form action="{{ url('admin/category/status/1') }}/{{ $category->id }}"
-                                method="post">
-                                @csrf
-                                <button type="submit" class="btn-dark action-btn"><i
-                                        class="fas fa-toggle-off"></i></button>
-                            </form>
-                            @endif
-                            <a class="btn-warning action-btn"
-                                href="{{ route('admin.edit.category', $category->id) }}"><i
-                                    class="fas fa-edit"></i></a>
-                            <form action="{{ route('admin.destory.category', $category->id) }}" method="post">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn-danger action-btn"><i class="fas fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                @endforeach
-            </table>
-        </div>
-    </div>
-</div>
-@endsection --}}
-
 @extends('admin.master')
 @section('page_title', 'Category')
 @section('category_select', 'active')
+
 @section('content')
 <div class="layout-wrapper">
     @include('admin.partials.sidebar')
+    
     <div class="content-wrapper">
-        <div class="card-title">
-            <h5>Categories</h5>
-            <a class="btn-success add-btn" href="{{ route('admin.manage.category') }}">
-                <i class="fas fa-plus"></i> Add Category
+        <div class="card-title d-flex justify-content-between align-items-center mb-4">
+            <h5 class="mb-0">Categories</h5>
+            <a class="btn btn-success add-btn" href="{{ route('admin.manage.category') }}">
+                <i class="fas fa-plus me-1"></i> Add Category
             </a>
         </div>
-        <div class="table_area">
-            <table id="table" class="table">
-                <thead>
-                    <tr>
-                        <th>Category Name</th>
-                        <th>Category Slug</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $category)
-                    <tr>
-                        <td>{{ $category->name }}</td>
-                        <td>{{ $category->slug }}</td>
-                        <td>
-                            @if ($category->status == 1)
-                                <span class="badge bg-success">Active</span>
-                            @else
-                                <span class="badge bg-danger">Inactive</span>
-                            @endif
-                        </td>
-                        <td class="action_icon_row">
-                            <!-- Toggle Status Form -->
-                            <form action="{{ route('admin.status.category', ['status' => $category->status == 1 ? 0 : 1, 'id' => $category->id]) }}" method="post" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-sm {{ $category->status == 1 ? 'btn-success' : 'btn-dark' }}" aria-label="Toggle Status">
-                                    <i class="fas {{ $category->status == 1 ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>
-                                </button>
-                            </form>
 
-                            <!-- Edit Button -->
-                            <a class="btn btn-sm btn-warning" href="{{ route('admin.edit.category', $category->id) }}" aria-label="Edit">
-                                <i class="fas fa-edit"></i>
-                            </a>
+        <div class="table_area card p-3 shadow-sm border-0">
+            <div class="table-responsive">
+                <table id="table" class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Category Slug</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-end pe-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($categories as $category)
+                        <tr>
+                            <td class="fw-semibold">{{ $category->name }}</td>
+                            <td class="text-muted">{{ $category->slug }}</td>
+                            <td class="text-center">
+                                @if ($category->status == 1)
+                                    <span class="badge rounded-pill bg-success px-2.5">Active</span>
+                                @else
+                                    <span class="badge rounded-pill bg-danger px-2.5">Inactive</span>
+                                @endif
+                            </td>
+                            <td class="text-end pe-3">
+                                <div class="d-flex justify-content-end gap-1">
+                                    <form action="{{ route('admin.status.category', ['status' => $category->status == 1 ? 0 : 1, 'id' => $category->id]) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm {{ $category->status == 1 ? 'btn-outline-success' : 'btn-outline-secondary' }}" title="Toggle Status">
+                                            <i class="fas {{ $category->status == 1 ? 'fa-toggle-on' : 'fa-toggle-off' }} fa-lg"></i>
+                                        </button>
+                                    </form>
 
-                            <!-- Delete Form -->
-                            <form action="{{ route('admin.destory.category', $category->id) }}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-sm btn-danger" aria-label="Delete">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                    <a class="btn btn-sm btn-warning" href="{{ route('admin.edit.category', $category->id) }}" title="Edit Category">
+                                        <i class="fas fa-edit text-white"></i>
+                                    </a>
+
+                                    <form action="{{ route('admin.destroy.category', $category->id) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger" title="Delete Category">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                <i class="fas fa-folder-open fa-2x mb-2 d-block"></i>
+                                No categories found. Click "Add Category" to get started.
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

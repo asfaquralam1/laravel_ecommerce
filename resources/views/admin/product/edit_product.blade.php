@@ -1,160 +1,172 @@
 @extends('admin.master')
-@section('page_title', 'Edit product')
+
+@section('page_title', 'Edit Product')
 @section('category_select', 'active')
+
 @section('content')
     <div class="layout-wrapper">
         @include('admin.partials.sidebar')
-        <div class="content-wrapper">
-            <div class="container d-flex justify-content-between align-items-center mb-4">
-                <h5>Edit product</h5>
-                <a class="btn-warning back-btn" href="{{ route('admin.product') }}"><i class="fas fa-backward"></i> Go
-                    Back</a>
+        
+        <div class="content-wrapper p-4">
+            <div class="container-fluid d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold text-dark mb-0">Edit Product</h4>
+                <a class="btn btn-warning shadow-sm" href="{{ route('admin.product') }}">
+                    <i class="fas fa-arrow-left me-2"></i> Go Back
+                </a>
             </div>
-            <div class="container">
-                <div class="card p-4 shadow-sm rounded-3">
-                    <h3 class="mb-4">Product Information</h3>
-                    <form action="{{ route('admin.update.product', $product->id) }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Product Name</label>
-                                    <input id="name" name="name" value="{{ $product->name }}" type="text"
-                                        class="form-control" required>
-                                    @error('name')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
 
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="category" class="form-label">Category</label>
-                                    <select name="category_id" class="form-select">
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('category')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+            <div class="container-fluid">
+                <form action="{{ route('admin.update.product', $product->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <div class="row g-4">
+                        <div class="col-lg-8">
+                            <div class="card border-0 shadow-sm rounded-3 p-4 h-100">
+                                <h5 class="mb-4 text-primary border-bottom pb-2 fw-semibold">
+                                    <i class="fas fa-info-circle me-2"></i>Product Information
+                                </h5>
+                                
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="name" class="form-label fw-medium">Product Name <span class="text-danger">*</span></label>
+                                            <input id="name" name="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" value="{{ old('name', $product->name) }}" required>
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="details" class="form-label">Product Details</label>
-                                    <input id="details" name="details" value="{{ $product->details }}"
-                                        value="{{ $product->details }}" type="text" class="form-control" required>
-                                    @error('details')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-3">
+                                            <label for="category_id" class="form-label fw-medium">Category <span class="text-danger">*</span></label>
+                                            <select id="category_id" name="category_id" class="form-select form-select-lg @error('category_id') is-invalid @enderror" required>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}" {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group mb-3">
+                                            <label for="details" class="form-label fw-medium">Product Short Details <span class="text-danger">*</span></label>
+                                            <input id="details" name="details" type="text" class="form-control @error('details') is-invalid @enderror" value="{{ old('details', $product->details) }}" required>
+                                            @error('details')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="price" class="form-label fw-medium">Product Price <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Tk</span>
+                                                <input id="price" name="price" type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" value="{{ old('price', $product->price) }}" required>
+                                            </div>
+                                            @error('price')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="discount_price" class="form-label fw-medium">Discount Price</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Tk</span>
+                                                <input id="discount_price" name="discount_price" type="number" step="0.01" class="form-control @error('discount_price') is-invalid @enderror" value="{{ old('discount_price', $product->discount_price) }}">
+                                            </div>
+                                            @error('discount_price')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="quantity" class="form-label fw-medium">Stock Quantity <span class="text-danger">*</span></label>
+                                            <input id="quantity" name="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" value="{{ old('quantity', $product->quantity) }}" required>
+                                            @error('quantity')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group mb-3">
+                                            <label for="barcode" class="form-label fw-medium">Barcode <span class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <input id="barcode" name="barcode" type="text" class="form-control @error('barcode') is-invalid @enderror" value="{{ old('barcode', $product->barcode) }}" required>
+                                                <button type="button" onclick="generateBarcode()" class="btn btn-dark">
+                                                    <i class="fas fa-barcode me-1"></i> Generate
+                                                </button>
+                                            </div>
+                                            @error('barcode')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group mb-3">
+                                            <label for="product_description" class="form-label fw-medium">Product Detailed Description</label>
+                                            <textarea class="form-control @error('product_description') is-invalid @enderror" id="product_description" name="product_description" rows="5" placeholder="Enter detailed product description...">{{ old('product_description', $product->product_description ?? '') }}</textarea>
+                                            @error('product_description')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">Product Price</label>
-                                    <input id="price" name="price" value="{{ $product->price }}" type="number"
-                                        step="0.01" class="form-control" required>
-                                    @error('price')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                        <div class="col-lg-4">
+                            <div class="card border-0 shadow-sm rounded-3 p-4 h-100 d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="mb-4 text-primary border-bottom pb-2 fw-semibold">
+                                        <i class="fas fa-images me-2"></i>Product Media
+                                    </h5>
 
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="discount_price" class="form-label">Discount Price</label>
-                                    <input id="discount_price" name="discount_price" value="{{ $product->discount_price }}"
-                                        type="number" step="0.01" class="form-control" required>
-                                    @error('discount_price')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                                    <div class="text-center mb-4">
+                                        <h6 class="text-start fw-medium mb-2">Main Product Image</h6>
+                                        <div class="position-relative d-inline-block bg-light rounded border p-2 mb-2" id="imageContainer" style="cursor: pointer; width: 100%; max-width: 220px; aspect-ratio: 1;">
+                                            <img id="imagePreview" src="/product/{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid rounded w-100 h-100 object-fit-cover">
+                                            <label for="mainImage" id="editIcon" class="btn btn-sm btn-primary position-absolute bottom-0 end-0 m-2 rounded-circle shadow">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </label>
+                                        </div>
+                                        <input id="mainImage" name="image" type="file" accept="image/*" style="display: none;">
+                                        @error('image')
+                                            <div class="text-danger small mt-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="quantity" class="form-label">Stock Quantity</label>
-                                    <input id="quantity" name="quantity" value="{{ $product->quantity }}" type="number"
-                                        class="form-control" required>
-                                    @error('quantity')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
+                                    <div class="form-group mt-3">
+                                        <h6 class="fw-medium mb-2">Additional Gallery Images</h6>
+                                        <div class="input-images bg-light p-2 rounded border"></div>
+                                        <div class="form-text text-muted small mt-1">
+                                            <i class="las la-info-circle"></i> You can upload a maximum of 5 images in total.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="row g-3 align-items-end">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="mb-3">
-                                    <label for="barcode" class="form-label">Barcode <span
-                                            class="text-danger">*</span></label>
-                                    <input id="barcode" name="barcode" value="{{ $product->barcode }}" type="text"
-                                        class="form-control" required>
-                                    @error('barcode')
-                                        <div class="text-danger small">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-2">
-                                <div class="mb-3">
-                                    <button type="button" onclick="generateBarcode()" class="btn btn-success w-100 mt-4">
-                                        Generate Barcode
+                                
+                                <div class="mt-4 pt-4 border-top">
+                                    <button type="submit" class="btn btn-success btn-lg w-100 shadow-sm">
+                                        <i class="fas fa-save me-2"></i> Update Product
                                     </button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="product_description" class="form-label">Product Description</label>
-                                    <textarea class="form-control" id="product_description" name="product_description" value="{{ $product->details }}"
-                                        rows="6" placeholder="Enter detailed product description..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="avatar-edit">
-                                    <h6 class="mb-4">Product Image</h6>
-                                    <img id="imagePreview" src="/product/{{ $product->image }}"
-                                        alt="{{ $product->name }}" class="input_image">
-                                    <label for="image" id="editIcon"><i class="fas fa-pencil-alt"></i></label>
-                                    <input id="mainImage" name="image" type="file" style="display: none;">
-                                    @error('image')
-                                        <div class="text-center text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-9">
-                                <!-- image gallery-->
-                                <div class="input-field">
-                                    <h6 class="mb-4">Additional Images</h6>
-                                    <div class="input-images"></div>
-                                    <small class="form-text text-muted">
-                                        <i class="las la-info-circle"></i> @lang('You can only upload a maximum of 5 images')</label>
-                                    </small>
-                                </div>
-
-                            <!-- Preview Container -->
-                            <div id="image-preview-container"></div>
-                        </div>
-
-                        </div>
-                        <button type="submit" class="btn btn-success mt-3">
-                            Update
-                        </button>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -164,47 +176,42 @@
 
     <script>
         (function($) {
-            let preloaded = [];
+            "use strict";
 
+            let preloaded = [];
             @if (!empty($preloadedImages))
-                preloaded = @json($preloadedImages); // must be array of { id: 'image1.jpg', src: '...' }
+                preloaded = @json($preloadedImages); 
             @endif
 
             $('.input-images').imageUploader({
                 preloaded: preloaded,
                 imagesInputName: 'thumbs',
-                preloadedInputName: 'old', // will submit array of `id`s (which should be filenames)
+                preloadedInputName: 'old', 
                 maxFiles: 5
             });
 
-            // Get the image, file input, and edit icon elements
             const imageUpload = document.getElementById('mainImage');
             const previewImage = document.getElementById('imagePreview');
             const editIcon = document.getElementById('editIcon');
 
-            // Trigger file input when the image is clicked
-            previewImage.addEventListener('click', function() {
-                imageUpload.click();
-            });
+            if (previewImage && imageUpload) previewImage.addEventListener('click', () => imageUpload.click());
+            if (editIcon && imageUpload) editIcon.addEventListener('click', () => imageUpload.click());
 
-            // Trigger file input when the edit icon is clicked
-            editIcon.addEventListener('click', function() {
-                imageUpload.click();
-            });
+            if (imageUpload && previewImage) {
+                imageUpload.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = e => previewImage.src = e.target.result;
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
 
-            // Event listener for file selection
-            imageUpload.addEventListener('change', function(event) {
-                const file = event.target.files[0]; // Get the selected file
-                if (file) {
-                    // Create a URL for the selected file and update the image source
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        previewImage.src = e.target.result; // Update image source with uploaded file
-                    };
-                    reader.readAsDataURL(file); // Read the file as a data URL
-                }
-            });
+            window.generateBarcode = function() {
+                let barcode = Date.now() + Math.floor(Math.random() * 90 + 10);
+                document.getElementById('barcode').value = barcode;
+            };
         })(jQuery);
     </script>
-
 @endsection
